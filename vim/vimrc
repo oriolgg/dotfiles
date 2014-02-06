@@ -104,6 +104,8 @@ set wildmode=full                                            " Mostra les possib
 "autocmd InsertEnter *.* set listchars=tab:▸\ ,eol:↵
 "autocmd InsertLeave *.* set listchars=tab:▸\ ,trail:▫,eol:↵
 
+autocmd Filetype html setlocal noexpandtab tabstop=4 softtabstop=4 shiftwidth=4
+
 " Activar colors al text
 syntax enable
 

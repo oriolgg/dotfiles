@@ -223,7 +223,7 @@ if has('statusline')
 	"let &stl.="(%p%%) ".g:NeatStatusLine_separator." "
 	" column number
 	"let &stl.="COL %c%V ".g:NeatStatusLine_separator
-	let &stl.="COL %c ".g:NeatStatusLine_separator
+	let &stl.="COL %c "
 	" modified / unmodified (purple)
 	"let &stl.="%(%6* %{&modified ? 'modified':''} %)"
 
