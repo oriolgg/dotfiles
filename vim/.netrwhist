@@ -1,0 +1,7 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =5
+let g:netrw_dirhist_1='/Users/oriol/dotfiles/vim/bundle/vim-session'
+let g:netrw_dirhist_2='/Users/oriol/dotfiles/vim/bundle/vim-session/plugin'
+let g:netrw_dirhist_3='/Users/oriol/dotfiles/vim/bundle/vim-session/autoload'
+let g:netrw_dirhist_4='/Users/oriol/dotfiles/vim/bundle/vim-session/autoload/xolox'
+let g:netrw_dirhist_5='/Users/oriol/gesco/0-Projects/phoenix/solr/phoenix/solr/ctit/conf'

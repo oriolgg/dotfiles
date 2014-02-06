@@ -1,0 +1,389 @@
+""""""""""""""""""""""""""""""""""""""""""""""""""
+" Funcions
+"""""""""""""""""""""""""""""""""""""""""""""""""""
+func! EnsureDirExists (dir)
+" Funció per crear directoris si no existeixen
+	if !isdirectory(a:dir)
+		if exists('*mkdir')
+			call mkdir(a:dir,'p')
+		endif
+	endif
+endfunc
+
+func! DeleteTrailingWS()
+" Funció per esborrar els espais a final de línia del buffer
+	let previous_search=@/
+	let previous_cursor_line=line('.')
+	let previous_cursor_column=col('.')
+	%s/\s\+$//ge
+	let @/=previous_search
+	call cursor(previous_cursor_line, previous_cursor_column)
+endfunc
+
+func! RetabIndents()
+" Funció que canvia espais per tabs al principi de línia del buffer
+	let saved_view = winsaveview()
+	execute '%s@^\(\ \{'.&ts.'\}\)\+@\=repeat("\t", len(submatch(0))/'.&ts.')@e'
+	call winrestview(saved_view)
+endfunc
+
+""""""""""""""""""""""""""""""""""""""""""""""""""
+" Creació de directoris
+""""""""""""""""""""""""""""""""""""""""""""""""""
+:silent call EnsureDirExists($HOME.'/.vim_backup')           " Crear directori de backup
+:silent call EnsureDirExists($HOME.'/.vim_swap')             " Crear directori de swap
+:silent call EnsureDirExists($HOME.'/.vim_undo')             " Crear directori de undo
+:silent call EnsureDirExists($HOME.'/.vim_view')             " Crear directori de view
+:silent call EnsureDirExists($HOME.'/.vim_sessions')         " Crear directori de sessions
+
+""""""""""""""""""""""""""""""""""""""""""""""""""
+" General
+""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Pathogen
+execute pathogen#infect()
+Helptags
+
+" Mantenir la posició del cursor quan obres un buffer al mateix lloc a on el tenies al tancar-lo
+autocmd BufWinLeave *.* silent! mkview
+autocmd BufWinEnter *.* silent! loadview
+
+" Posar al títol de la finestra el path del buffer que estem editant
+let &titlestring = expand('%:pwd')
+if &term == 'screen' || &term == 'xterm'
+	set title
+endif
+
+" keyboard shortcuts
+let mapleader = ','
+
+set autoindent                                               " Activar autoindendació
+set autoread                                                 " reload files when changed on disk, i.e. via `git checkout`
+set backspace=2                                              " Fix broken backspace in some setups
+set backupdir=~/.vim_backup                                  " Canviar directori de buffer de backup
+set clipboard=unnamed                                        " yank and paste with the system clipboard
+set cursorline                                               " Ressalta la línia a on està el cursor
+set directory=~/.vim_swap                                    " Canviar directori de fitxers de swap
+set encoding=utf-8                                           " Posar utf-8 com a encoding per defecte
+set foldlevel=99
+set foldmethod=indent                                        " Es creen folds directament amb la indentació
+set foldnestmax=1                                            " Perquè es crein folds només al primer nivell d'indentació
+set hidden                                                   " Permet moure entre buffers sense mostrar error si estan editats però no guardats
+set history=10000                                            " Guarda les 10000 últimes comandes
+set hlsearch                                                 " Es ressalten les coincidencies de la cerca
+set ignorecase                                               " case-sensitive search if any caps
+set incsearch                                                " search as you type
+set laststatus=2                                             " always show statusline
+set list                                                     " Ressaltar els caràcters especials
+"set listchars=tab:▸\ ,trail:▫,eol:↩                          " Llistat de caràcters especials que es ressalten
+set listchars=tab:▸\ ,trail:▫,eol:↵                          " Llistat de caràcters especials que es ressalten
+set mouse=                                                   " Deshabilitar el ratolí
+set nocompatible                                             " Treure la compatibilitat amb Vi
+set noerrorbells                                             " Perquè no surtin errors sonors
+set noexpandtab tabstop=8 softtabstop=8 shiftwidth=8         " Definir els tabs com 8 espais
+set novisualbell                                             " Perquè no surtin errors visuals
+set nrformats=                                               " Per utilitzar el sistema decimal, no octal a l'incrementar o decrementar números
+set number                                                   " show line numbers
+set ruler                                                    " show where you are
+set showcmd                                                  " mostra els parcials de les comandes
+set showtabline=2                                            " Mostra la barra de tabs sempre
+set smartcase                                                " case-sensitive search if any caps
+set splitright splitbelow                                    " Obre les noves finestres a la dreta i a sota
+set undodir=~/.vim_undo                                      " Canviar directori de fitxers de undo
+set undofile                                                 " Undo persistent, encara que es tanqui el buffer
+set undolevels=10000                                         " Augmenta a 10000 el nivel de undo
+set undoreload=10000                                         " Augmenta a 10000 el nivel de redo
+set viewdir=~/.vim_view                                      " Canviar directori de fitxers de view
+set wildignore=*.swp,*.bak,*.pyc,*.pyo,*.class,*.tmp,*~      " Ignorar aquests tipus de fitxers
+set wildmenu                                                 " show a navigable menu for tab completion
+set wildmode=full                                            " Mostra les possibilitats d'una comanda rotllo zsh
+
+" Ocultar els trailing spaces en el mode inserció. Mirar de fer-ho només de la línia que s'està editant
+"autocmd InsertEnter *.* set nolist
+"autocmd InsertLeave *.* set list
+"autocmd InsertEnter *.* set listchars=tab:▸\ ,eol:↵
+"autocmd InsertLeave *.* set listchars=tab:▸\ ,trail:▫,eol:↵
+
+" Activar colors al text
+syntax enable
+
+set t_Co=256                                                 " Número de colors
+" Posar l'esquema de colors jellybeans
+set background=dark
+colorscheme solarized
+highlight SpecialKey ctermbg=NONE
+if has('gui_running')
+	highlight SpecialKey guibg=NONE
+	set guioptions-=rL
+	set guifont=Menlo:h12
+	set guicursor=a:blinkon0,a:block-cursor
+	map <ScrollWheelUp> <Nop>
+	map <ScrollWheelDown> <Nop>
+	map <ScrollWheelLeft> <Nop>
+	map <ScrollWheelRight> <Nop>
+endif
+"colorscheme 256-grayvim
+"colorscheme 256-jungle
+"colorscheme anotherdark
+"colorscheme badwolf
+"colorscheme busybee
+"colorscheme bvemu
+"colorscheme carvedwoodcool
+"colorscheme darkburn
+"colorscheme herald
+"colorscheme hornet
+"colorscheme jellybeans
+"colorscheme kellys
+"colorscheme lilypink
+"colorscheme lucius
+"colorscheme mustang
+"colorscheme nazca
+"colorscheme obsidian
+"colorscheme xoria256
+"colorscheme zenburn
+
+"highlight Normal ctermbg=NONE
+"highlight NonKey ctermbg=NONE
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""
+" Mapeig de teclat en mode inserció
+""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Anar al mode normal des del mode insert amb jj
+inoremap jj <Esc>
+
+" Deshabilitar <Esc> per obligar a fer jj per anar al mode normal
+" No funciona bé al terminal: escriu caràcters al moure amb el cursor amb les fletxes al mode inserció
+"inoremap <Esc> <Nop>
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""
+" Mapeig de teclat en mode visual
+""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Crear un fold amb la tecla <Space>
+vmap <Space> zf
+
+" Carrega el plugin dragvisuals.vim
+runtime plugin/dragvisuals.vim
+" En mode visual block, moure a l'esquerra el bloc seleccionat
+vmap <Expr> <Left> DVB_Drag('left')
+" En mode visual block, moure a la dreta el bloc seleccionat
+vmap <Expr> <Right> DVB_Drag('right')
+" En mode visual block, moure avall el bloc seleccionat
+vmap <Expr> <Down> DVB_Drag('down')
+" En mode visual block, moure amunt el bloc seleccionat
+vmap <Expr> <Up> DVB_Drag('up')
+" En mode visual block, duplicar el bloc seleccionat
+vmap <Expr> D DVB_Duplicate()
+let g:DVB_TrimWS = 1
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""
+" Mapeig de teclat en mode comanda
+""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Escriu a la línia de comandes el directori actual posant %%
+cnoremap %% <C-R>=fnameescape(expand('%:h')).'/'<Cr>
+
+" Permet moure's per la història de comandes amb <C-n> i <C-p>
+cnoremap <C-p> <Up>
+cnoremap <C-n> <Down>
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""
+" Mapeig de teclat en mode normal
+""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Moure a la finestra dreta amb Ctrl-H
+nmap <C-h> <C-w>h
+" Moure a la finestra inferior amb Ctrl-J
+nmap <C-j> <C-w>j
+" Moure a la finestra superior amb Ctrl-K
+nmap <C-k> <C-w>k
+" Moure a la finestra esquerra amb Ctrl-L
+nmap <C-l> <C-w>l
+
+" Alternar el ressaltar dels resultats de les cerques amb coh
+nnoremap <silent> coh :set hlsearch! hlsearch?<Cr>
+" Alternar el mostrar els caràcters especials amb col
+nnoremap <silent> col :set list! list?<Cr>
+" Alternar el mostrar els números de línia amb con
+nnoremap <silent> con :set number! number?<Cr>
+" Alternar l'enganxar del portapapers mantenint la indentació amb cop
+nnoremap <silent> cop :set paste! paste?<Cr>
+" Alternar el wrap de les línies amb cow
+nnoremap <silent> cow :set wrap! wrap?<Cr>
+
+" Executar vimgrep al directori actual
+nmap <Leader>vg :vimgrep //gj **/*<Left><Left><Left><Left><Left><Left><Left><Left>
+
+" Obrir i tancar folders amb la tecla <Space>
+nmap <Space> za
+
+" Copiar del caràcter actual al final de línia amb la tecla Y, per similitud amb D i C
+nmap <S-y> y$
+
+" Separar línies amb <S-k>
+nnoremap <S-k> i<Cr><Esc>^
+
+" Deshabilitar les tecles de moviment
+nnoremap <Right> <Nop>
+nnoremap <Left>  <Nop>
+nnoremap <Down>  <Nop>
+nnoremap <Up>    <Nop>
+
+" Posar la configuració de tabs a 2 espais amb <Leader><Leader>2
+nnoremap <Leader><Leader>2 <Esc>:set noexpandtab tabstop=2 softtabstop=2 shiftwidth=2<Cr>
+" Posar la configuració de tabs a 4 espais amb <Leader><Leader>4
+nnoremap <Leader><Leader>4 <Esc>:set noexpandtab tabstop=4 softtabstop=4 shiftwidth=4<Cr>
+" Posar la configuració de tabs a 8 espais amb <Leader><Leader>8
+nnoremap <Leader><Leader>8 <Esc>:set noexpandtab tabstop=8 softtabstop=8 shiftwidth=8<Cr>
+
+" Substituir la paraula sota el cursor a tot el buffer
+nnoremap <Leader>* :%s/\<<C-r><C-w>\>//g<Left><Left>
+
+" Obrir .vimrc a un nou tab amb <Leader>vv
+nnoremap <Leader>vv :tabedit $MYVIMRC<Cr>
+
+" Alterna entre maximitzar finestra actual i mantenir la disposició amb <Leader>m
+nnoremap <silent> <Leader>m :MaximizerToggle<Cr>
+
+" Mostrar una finestra amb els resultats de la cerca prèvia al buffer actual
+nnoremap <silent> <Leader>/ :execute 'vimgrep /'.@/.'/g %'<Cr>:copen<Cr>
+
+" Obre tots els buffers oberts en tabs amb <Leader>tb
+nnoremap <silent> <Leader>tb :tab :ball<Cr>
+" Tancar la pestanya actual amb <Leader>tc
+nnoremap <silent> <Leader>tc :tabclose<Cr>
+" Obrir el buffer actual a una nova pestanya amb <Leader>te
+nnoremap <silent> <Leader>te :tabedit %<Cr>
+" Tancar totes les pestanyes menys l'actual amb <Leader>to
+nnoremap <silent> <Leader>to :tabonly<Cr>
+
+" Evitar entrar al mode Ex amb la tecla Q
+nnoremap Q <Nop>
+
+" Utilitzar j per moure entre línies encara que estiguin wraped
+"nnoremap j gj
+" Utilitzar k per moure entre línies encara que estiguin wraped
+"nnoremap k gk
+
+" Intercanviar v per Ctrl-v, v per defecte serà en bloc
+nnoremap v <C-V>
+nnoremap <C-V> v
+
+" Esborra els espais al final de totes les línies amb <Leader>dt
+noremap <silent> <Leader>dt :call DeleteTrailingWS()<Cr>
+" Canvia els espais per tabuladors al principi de totes les línies amb <Leader>ri
+noremap <silent> <Leader>ri :call RetabIndents()<Cr>
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""
+" Configuració de plugins
+""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" CtrlP: Navegació ràpida de fitxers i buffers.
+" git clone https://github.com/kien/ctrlp.vim
+
+let g:ctrlp_match_window = 'order:ttb,max:20'                " Ordenació i número màxim de resultats
+let g:ctrlp_regexp = 1                                       " Fa servir cerca amb regex, no fuzzy
+
+if executable('ag')
+" Use The Silver Searcher https://github.com/ggreer/the_silver_searcher
+	let g:ackprg = 'ag --nogroup --column'
+
+	" Use Ag over Grep
+	set grepprg=ag\ --nogroup\ --nocolor
+
+	" Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
+	let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+endif
+
+" Mostrar finestra amb el CtrlP de buffers oberts
+nmap <Leader>b :CtrlPBuffer<Cr>
+" Mostrar finestra amb el CtrlP de fitxers
+nmap <Leader>f :CtrlP<Cr>
+" Mostrar finestra amb el CtrlP de fitxers escanejant de nou
+nmap <Leader>F :CtrlPClearCache<Cr>:CtrlP<Cr>
+
+
+" Vim-easymotion: Per saltar entre paraules, cerques, etc. de manera més àgil.
+" git clone https://github.com/Lokaltog/vim-easymotion
+
+" Vim-fugitive: Utilitzar Git des de Vim
+" git clone https://github.com/tpope/vim-fugitive
+
+" Vim-git-log: Amplia fugitive. Per veure el log dels canvis al repositori.
+" git clone https://github.com/kablamo/vim-git-log
+
+" Vim-signify: Marca els canvis del fitxer respecte el repositori.
+" git clone https://github.com/mhinz/vim-signify
+nnoremap cos :SignifyToggle<Cr>
+
+" Gitv: Mostra l'estat del repositori Git (necessita fugitive)
+" git clone https://github.com/gregsexton/gitv
+" Comanda :Gitv
+
+" Vim-maximizer: Per maximitzar i minimitzar finestres i mantenir les proporcions.
+" git clone https://github.com/szw/vim-maximizer
+
+" (Esborrat) Vim startify: Mostra a l'iniciar vim sense fitxer els últims fitxers/sessions oberts per obrir-los.
+" git clone https://github.com/mhinz/vim-startify
+
+" Gundo: Mostra l'arbre de modificacions d'un fitxer
+" git clone https://github.com/sjl/gundo.vim
+" Comanda: <Leader>u
+nnoremap <Leader>u :GundoToggle<Cr>
+
+" Vim-indent-object: Permet fer seleccions i modificació de text basades amb la indentació
+" git clone https://github.com/michaeljsmith/vim-indent-object
+" <Count>ai selecciona les línies a la mateixa indentació i la línia superior
+" <Count>ii selecciona les línies a la mateixa indentació
+" <Count>aI selecciona les línies a la mateixa indentació i la línia superior i inferior
+" <Count>iI selecciona les línies a la mateixa indentació
+
+" ag: Fer cerques de text a dins de fitxers (grep) millor.
+" Necessita silver-searcher: brew install the_silver_searcher
+" git clone https://github.com/rking/ag.vim
+
+" Tagbar: Per mostrar les funcions i demés d'una classe a la dreta
+" Necessita CTags: brew install ctags-exuberant
+" git clone https://github.com/majutsushi/tagbar
+nmap <Leader>o :TagbarToggle<Cr><C-l>
+
+" vim-css-color: Mostra el background del codi hex del color indicat.
+" git clone https://github.com/ap/vim-css-color
+
+" vim-indexed-search: Mostra a quin element estem de tots els trobats per una cerca
+" https://github.com/henrik/vim-indexed-search
+
+" vim-session: Gestionar les sessions de vim
+" Necessita vim-misc: git clone https://github.com/xolox/vim-misc
+" git clone https://github.com/xolox/vim-session
+let g:session_directory = '~/.vim_sessions'
+let g:session_autoload = 'yes'
+let g:session_autosave = 'yes'
+let g:session_command_aliases = 1
+nnoremap <Leader>so :OpenSession <Cr>
+nnoremap <Leader>ss :SaveSession 
+nnoremap <Leader>sd :DeleteSession<Cr>
+nnoremap <Leader>sc :CloseSession<Cr>
+
+" tabular: Aliniar fàcilment textos segons el paràmetre que indiquem
+" git clone https://github.com/godlygeek/tabular
+nmap <Leader>a= :Tabularize /=<Cr>
+vmap <Leader>a= :Tabularize /=<Cr>
+nmap <Leader>a: :Tabularize /:\zs<Cr>
+vmap <Leader>a: :Tabularize /:\zs<Cr>
+
+" (Esborrat) vim-seek: fer cerques a la mateixa línia utilitzant dos caràcters en lloc d'un com f i F
+" git clone https://github.com/goldfeld/vim-seek
+
+" vim-surround: mitjançant l'acció s es posen i treuen parentesis, claudators, cometes simples, un tag...
+" git clone https://github.com/tpope/vim-surround
+" cs"' -> canvia cometes dobles per cometes simples
+" ds0 -> elimina les cometes simples
+" ys{ambit}) -> posa entre parèntesi el que hi hagi a l'àmbit
+
