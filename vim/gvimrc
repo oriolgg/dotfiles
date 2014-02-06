@@ -1,0 +1,8 @@
+set guioptions-=rL
+set guifont=Menlo:h12
+set guicursor=a:blinkon0,a:block-cursor
+map <ScrollWheelUp> <Nop>
+map <ScrollWheelDown> <Nop>
+map <ScrollWheelLeft> <Nop>
+map <ScrollWheelRight> <Nop>
+
