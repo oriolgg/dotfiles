@@ -1,6 +1,6 @@
 # Readme #
 
-This dotfiles include my configuration for zsh, tmux and vim.
+This dotfiles include my configuration for [Zsh][zsh], [tmux][tmux] and [Vim][vim].
 
 ## Pre-requisites ##
 
@@ -59,6 +59,9 @@ Finally, you just need to create some symlinks:
     ln -s ~/dotfiles/vim/vimrc ~/.vimrc↵
     ln -s ~/dotfiles/zsh/zshrc ~/.zshrc↵
 
+[zsh]: http://www.zsh.org/
+[tmux]: http://tmux.sourceforge.net/
+[vim]: http://www.vim.org/
 [xcode]: https://developer.apple.com/xcode/
 [iterm2]: http://www.iterm2.com/#/section/home
 
