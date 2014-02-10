@@ -1,6 +1,15 @@
 # Readme #
 
 This dotfiles include my configuration for [Zsh][zsh], [tmux][tmux] and [Vim][vim].
+The configuration of each one is in a folder with its name.
+
+After installing and the first time you use vim, some folders will be created in your home directory:
+
+    .vim_backup: All your backup files will go here.
+    .vim_sessions: If you use sessions (I recommend it), they will be stored here.
+    .vim_swap: For your swap files.
+    .vim_undo: In this folder you will have all your changes of all your files stored.
+    .vim_view: Will store your latest status view of your files (like folding, cursor, etc).
 
 ## Pre-requisites ##
 
