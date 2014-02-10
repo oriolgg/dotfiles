@@ -379,3 +379,6 @@ vmap <Leader>a: :Tabularize /:\zs<Cr>
 " ds0 -> elimina les cometes simples
 " ys{ambit}) -> posa entre parèntesi el que hi hagi a l'àmbit
 
+" ultisnips: Snippets de TextMate i SnipMate
+" git clone https://github.com/SirVer/ultisnips
+
