@@ -1,6 +1,7 @@
 # Readme #
 
 This dotfiles include my configuration for [Zsh][zsh], [tmux][tmux] and [Vim][vim].
+
 The configuration of each one is in a folder with its name.
 
 After installing and the first time you use vim, some folders will be created in your home directory:
@@ -48,7 +49,7 @@ Install zsh:
 
     brew install zsh
 
-Make zsh default shell:
+Make zsh your default shell:
 
     sudo chsh -s /usr/local/bin/zsh
 
@@ -61,12 +62,12 @@ To clone my dotfiles:
 
 Finally, you just need to create some symlinks:
 
-    ln -s ~/dotfiles/zsh/oh-my-zsh ~/.oh-my-zsh↵
-    ln -s ~/dotfiles/bash/profile ~/.profile↵
-    ln -s ~/dotfiles/tmux/tmux.conf ~/.tmux.conf↵
-    ln -s ~/dotfiles/vim/ ~/.vim↵
-    ln -s ~/dotfiles/vim/vimrc ~/.vimrc↵
-    ln -s ~/dotfiles/zsh/zshrc ~/.zshrc↵
+    ln -s ~/dotfiles/zsh/oh-my-zsh ~/.oh-my-zsh
+    ln -s ~/dotfiles/bash/profile ~/.profile
+    ln -s ~/dotfiles/tmux/tmux.conf ~/.tmux.conf
+    ln -s ~/dotfiles/vim/ ~/.vim
+    ln -s ~/dotfiles/vim/vimrc ~/.vimrc
+    ln -s ~/dotfiles/zsh/zshrc ~/.zshrc
 
 [zsh]: http://www.zsh.org/
 [tmux]: http://tmux.sourceforge.net/
