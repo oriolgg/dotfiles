@@ -20,32 +20,32 @@ Install [XCode][xcode] and its Command Line Tools.
 
 Install [iTerm2][iterm2].
 
-Install Homebrew:
+Install [Homebrew][homebrew]:
 
     ruby -e "$(curl -fsSL https://raw.github.com/Homebrew/homebrew/go/install)"
     brew update
 
-Install Git:
+Install [Git][git]:
 
     brew install git
 
-Install MacVim:
+Install [MacVim][macvim]:
 
     brew install macvim
 
-Install SilverSearcher:
+Install [SilverSercher][silversercher]:
 
     brew install the_silver_searcher
 
-Install Tmux:
+Install [Tmux][tmux]:
 
     brew install tmux
 
-Install reattach-to-user-namespace:
+Install [reattach-to-user-namespace][reattach-to-user-namespace]:
 
     brew install reattach-to-user-namespace
 
-Install zsh:
+Install [Zsh][zsh]:
 
     brew install zsh
 
@@ -74,4 +74,9 @@ Finally, you just need to create some symlinks:
 [vim]: http://www.vim.org/
 [xcode]: https://developer.apple.com/xcode/
 [iterm2]: http://www.iterm2.com/#/section/home
+[homebrew]: http://brew.sh/
+[git]: http://git-scm.com/
+[macvim]: https://code.google.com/p/macvim/
+[silversercher]: https://github.com/ggreer/the_silver_searcher
+[reattach-to-user-namespace]: https://github.com/ChrisJohnsen/tmux-MacOSX-pasteboard
 
