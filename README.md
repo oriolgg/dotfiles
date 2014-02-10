@@ -8,7 +8,7 @@ In order to make it working, you have to follow few previous steps:
 
 Install [XCode][xcode] and its Command Line Tools.
 
-Install [iTerm2][iterm].
+Install [iTerm2][iterm2].
 
 Install Homebrew:
 
@@ -58,4 +58,7 @@ Finally, you just need to create some symlinks:
     ln -s ~/dotfiles/vim/ ~/.vim↵
     ln -s ~/dotfiles/vim/vimrc ~/.vimrc↵
     ln -s ~/dotfiles/zsh/zshrc ~/.zshrc↵
+
+[xcode]: https://developer.apple.com/xcode/
+[iterm2]: http://www.iterm2.com/#/section/home
 
