@@ -3,28 +3,32 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""
 func! EnsureDirExists (dir)
 " Funció per crear directoris si no existeixen
-	if !isdirectory(a:dir)
-		if exists('*mkdir')
-			call mkdir(a:dir,'p')
-		endif
-	endif
+    if !isdirectory(a:dir)
+        if exists('*mkdir')
+            call mkdir(a:dir,'p')
+        endif
+    endif
 endfunc
 
 func! DeleteTrailingWS()
 " Funció per esborrar els espais a final de línia del buffer
-	let previous_search=@/
-	let previous_cursor_line=line('.')
-	let previous_cursor_column=col('.')
-	%s/\s\+$//ge
-	let @/=previous_search
-	call cursor(previous_cursor_line, previous_cursor_column)
+    let previous_search=@/
+    let previous_cursor_line=line('.')
+    let previous_cursor_column=col('.')
+    %s/\s\+$//ge
+    let @/=previous_search
+    call cursor(previous_cursor_line, previous_cursor_column)
 endfunc
 
 func! RetabIndents()
 " Funció que canvia espais per tabs al principi de línia del buffer
-	let saved_view = winsaveview()
-	execute '%s@^\(\ \{'.&ts.'\}\)\+@\=repeat("\t", len(submatch(0))/'.&ts.')@e'
-	call winrestview(saved_view)
+    let previous_search=@/
+    let previous_cursor_line=line('.')
+    let previous_cursor_column=col('.')
+    "execute '%s@^\(\ \{'.&ts.'\}\)\+@\=repeat("\t", len(submatch(0))/'.&ts.')@e'
+    %s-^\(\t\)\+-    -e
+    let @/=previous_search
+    call cursor(previous_cursor_line, previous_cursor_column)
 endfunc
 
 """"""""""""""""""""""""""""""""""""""""""""""""""
@@ -51,7 +55,7 @@ autocmd BufWinEnter *.* silent! loadview
 " Posar al títol de la finestra el path del buffer que estem editant
 let &titlestring = expand('%:pwd')
 if &term == 'screen' || &term == 'xterm'
-	set title
+    set title
 endif
 
 " keyboard shortcuts
@@ -75,12 +79,11 @@ set ignorecase                                               " case-sensitive se
 set incsearch                                                " search as you type
 set laststatus=2                                             " always show statusline
 set list                                                     " Ressaltar els caràcters especials
-"set listchars=tab:▸\ ,trail:▫,eol:↩                          " Llistat de caràcters especials que es ressalten
 set listchars=tab:▸\ ,trail:▫,eol:↵                          " Llistat de caràcters especials que es ressalten
 set mouse=                                                   " Deshabilitar el ratolí
 set nocompatible                                             " Treure la compatibilitat amb Vi
 set noerrorbells                                             " Perquè no surtin errors sonors
-set noexpandtab tabstop=8 softtabstop=8 shiftwidth=8         " Definir els tabs com 8 espais
+set expandtab tabstop=4 softtabstop=4 shiftwidth=4           " Definir els tabs com 8 espais
 set novisualbell                                             " Perquè no surtin errors visuals
 set nrformats=                                               " Per utilitzar el sistema decimal, no octal a l'incrementar o decrementar números
 set number                                                   " show line numbers
@@ -103,8 +106,6 @@ set wildmode=full                                            " Mostra les possib
 "autocmd InsertLeave *.* set list
 "autocmd InsertEnter *.* set listchars=tab:▸\ ,eol:↵
 "autocmd InsertLeave *.* set listchars=tab:▸\ ,trail:▫,eol:↵
-
-autocmd Filetype html setlocal noexpandtab tabstop=4 softtabstop=4 shiftwidth=4
 
 " Activar colors al text
 syntax enable
@@ -232,6 +233,8 @@ nnoremap <Leader><Leader>2 <Esc>:set noexpandtab tabstop=2 softtabstop=2 shiftwi
 nnoremap <Leader><Leader>4 <Esc>:set noexpandtab tabstop=4 softtabstop=4 shiftwidth=4<Cr>
 " Posar la configuració de tabs a 8 espais amb <Leader><Leader>8
 nnoremap <Leader><Leader>8 <Esc>:set noexpandtab tabstop=8 softtabstop=8 shiftwidth=8<Cr>
+" Posar la configuració de 4 espais amb <leader><leader>0
+nnoremap <Leader><Leader>0 <Esc>:set expandtab tabstop=4 softtabstop=4 shiftwidth=4<Cr>
 
 " Substituir la paraula sota el cursor a tot el buffer
 nnoremap <Leader>* :%s/\<<C-r><C-w>\>//g<Left><Left>
@@ -262,6 +265,9 @@ nnoremap Q <Nop>
 " Utilitzar k per moure entre línies encara que estiguin wraped
 "nnoremap k gk
 
+" Per seleccionr l'últim text enganxat
+nnoremap <expr> gv '`[' . strpart(getregtype(), 0, 1) . '`]'
+
 " Intercanviar v per Ctrl-v, v per defecte serà en bloc
 nnoremap v <C-V>
 nnoremap <C-V> v
@@ -284,13 +290,13 @@ let g:ctrlp_regexp = 1                                       " Fa servir cerca a
 
 if executable('ag')
 " Use The Silver Searcher https://github.com/ggreer/the_silver_searcher
-	let g:ackprg = 'ag --nogroup --column'
+    let g:ackprg = 'ag --nogroup --column'
 
-	" Use Ag over Grep
-	set grepprg=ag\ --nogroup\ --nocolor
+    " Use Ag over Grep
+    set grepprg=ag\ --nogroup\ --nocolor
 
-	" Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
-	let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+    " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
+    let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
 endif
 
 " Mostrar finestra amb el CtrlP de buffers oberts
@@ -376,9 +382,13 @@ vmap <Leader>a: :Tabularize /:\zs<Cr>
 " vim-surround: mitjançant l'acció s es posen i treuen parentesis, claudators, cometes simples, un tag...
 " git clone https://github.com/tpope/vim-surround
 " cs"' -> canvia cometes dobles per cometes simples
-" ds0 -> elimina les cometes simples
+" ds' -> elimina les cometes simples
 " ys{ambit}) -> posa entre parèntesi el que hi hagi a l'àmbit
 
 " ultisnips: Snippets de TextMate i SnipMate
 " git clone https://github.com/SirVer/ultisnips
+
+" vim-exchange: Permet intercanviar textos (paraules, frases, etc.)
+" git clone https://github.com/tommcdo/vim-exchange
+" cx{àmbit}: la primera vegada marca l'àmbit com a element per intercanviar. La segona, intercanvia el nou àmbit amb l'anterior.
 
