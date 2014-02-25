@@ -1,6 +1,6 @@
 # Common setup
 
-export PATH=$HOME/bin:/usr/local/bin:/opt/local/bin:/opt/local/sbin:$PATH
+export PATH=$PATH:/opt/local/bin:/opt/local/sbin
 
 # Posar al títol de la tab el nom de directori i nom del fitxer
 myVim() {
