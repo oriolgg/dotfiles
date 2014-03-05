@@ -257,6 +257,9 @@ nnoremap <silent> <Leader>te :tabedit %<Cr>
 " Tancar totes les pestanyes menys l'actual amb <Leader>to
 nnoremap <silent> <Leader>to :tabonly<Cr>
 
+" Tancar tots els buffers que no estan oberts a cap finestra ni pestanya
+nnoremap <silent> <Leader>bd :Wipeout<Cr>
+
 " Evitar entrar al mode Ex amb la tecla Q
 nnoremap Q <Nop>
 
