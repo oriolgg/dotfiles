@@ -212,6 +212,15 @@ nnoremap <silent> cow :set wrap! wrap?<Cr>
 " Executar vimgrep al directori actual
 nmap <Leader>vg :vimgrep //gj **/*<Left><Left><Left><Left><Left><Left><Left><Left>
 
+" Mostrar una finestra amb els resultats de la cerca prèvia al buffer actual
+nnoremap <silent> <Leader>/ :execute 'vimgrep /'.@/.'/g %'<Cr>:copen<Cr>
+
+" Navegar pels diferents fitxers de vimgrep
+nnoremap [q :cprev<Cr>
+nnoremap ]q :cnext<Cr>
+nnoremap [Q :cfirst<Cr>
+nnoremap ]Q :clast<Cr>
+
 " Obrir i tancar folders amb la tecla <Space>
 nmap <Space> za
 
@@ -245,9 +254,6 @@ nnoremap <Leader>vv :tabedit $MYVIMRC<Cr>
 " Alterna entre maximitzar finestra actual i mantenir la disposició amb <Leader>m
 nnoremap <silent> <Leader>m :MaximizerToggle<Cr>
 
-" Mostrar una finestra amb els resultats de la cerca prèvia al buffer actual
-nnoremap <silent> <Leader>/ :execute 'vimgrep /'.@/.'/g %'<Cr>:copen<Cr>
-
 " Obre tots els buffers oberts en tabs amb <Leader>tb
 nnoremap <silent> <Leader>tb :tab :ball<Cr>
 " Tancar la pestanya actual amb <Leader>tc
@@ -258,7 +264,7 @@ nnoremap <silent> <Leader>te :tabedit %<Cr>
 nnoremap <silent> <Leader>to :tabonly<Cr>
 
 " Tancar tots els buffers que no estan oberts a cap finestra ni pestanya
-nnoremap <silent> <Leader>bd :Wipeout<Cr>
+nnoremap <silent> dhb :Wipeout<Cr>
 
 " Evitar entrar al mode Ex amb la tecla Q
 nnoremap Q <Nop>
@@ -357,8 +363,8 @@ nmap <Leader>o :TagbarToggle<Cr><C-l>
 " vim-css-color: Mostra el background del codi hex del color indicat.
 " git clone https://github.com/ap/vim-css-color
 
-" vim-indexed-search: Mostra a quin element estem de tots els trobats per una cerca
-" https://github.com/henrik/vim-indexed-search
+" (Esborrat) vim-indexed-search: Mostra a quin element estem de tots els trobats per una cerca
+" git clone https://github.com/henrik/vim-indexed-search
 
 " vim-session: Gestionar les sessions de vim
 " Necessita vim-misc: git clone https://github.com/xolox/vim-misc
