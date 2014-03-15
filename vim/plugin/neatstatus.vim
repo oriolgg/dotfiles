@@ -210,9 +210,11 @@ if has('statusline')
 	let &stl.="%= "
 
 	" file type (eg. python, ruby, etc..)
-	let &stl.="%0*".g:NeatStatusLine_separator."%8*%( %{&filetype} %)%0*".g:NeatStatusLine_separator." "
+    if (&filetype!='')
+        let &stl.="%0*".g:NeatStatusLine_separator."%8*%( %{&filetype} %)%0*"
+    endif
 	" file encoding (eg. utf8, latin1, etc..)
-	let &stl.="%(%{(&fenc!=''?&fenc:&enc)}%)"
+	let &stl.=g:NeatStatusLine_separator." %(%{(&fenc!=''?&fenc:&enc)}%)"
 	" file format (eg. unix, dos, etc..)
 	let &stl.="[%{&fileformat}] ".g:NeatStatusLine_separator." "
 	" buffer number
