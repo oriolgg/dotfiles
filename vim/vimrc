@@ -325,7 +325,7 @@ nmap <Leader>F :CtrlPClearCache<Cr>:CtrlP<Cr>
 " Vim-git-log: Amplia fugitive. Per veure el log dels canvis al repositori.
 " git clone https://github.com/kablamo/vim-git-log
 
-" Vim-signify: Marca els canvis del fitxer respecte el repositori.
+" Vim-signify: Marca els canvis del fitxer respecte el repositori a la columna esquerra del fitxer.
 " git clone https://github.com/mhinz/vim-signify
 nnoremap cos :SignifyToggle<Cr>
 
@@ -336,20 +336,10 @@ nnoremap cos :SignifyToggle<Cr>
 " Vim-maximizer: Per maximitzar i minimitzar finestres i mantenir les proporcions.
 " git clone https://github.com/szw/vim-maximizer
 
-" (Esborrat) Vim startify: Mostra a l'iniciar vim sense fitxer els últims fitxers/sessions oberts per obrir-los.
-" git clone https://github.com/mhinz/vim-startify
-
 " Gundo: Mostra l'arbre de modificacions d'un fitxer
 " git clone https://github.com/sjl/gundo.vim
 " Comanda: <Leader>u
 nnoremap <Leader>u :GundoToggle<Cr>
-
-" Vim-indent-object: Permet fer seleccions i modificació de text basades amb la indentació
-" git clone https://github.com/michaeljsmith/vim-indent-object
-" <Count>ai selecciona les línies a la mateixa indentació i la línia superior
-" <Count>ii selecciona les línies a la mateixa indentació
-" <Count>aI selecciona les línies a la mateixa indentació i la línia superior i inferior
-" <Count>iI selecciona les línies a la mateixa indentació
 
 " ag: Fer cerques de text a dins de fitxers (grep) millor.
 " Necessita silver-searcher: brew install the_silver_searcher
@@ -363,9 +353,6 @@ nmap <Leader>o :TagbarToggle<Cr><C-l>
 " vim-css-color: Mostra el background del codi hex del color indicat.
 " git clone https://github.com/ap/vim-css-color
 
-" (Esborrat) vim-indexed-search: Mostra a quin element estem de tots els trobats per una cerca
-" git clone https://github.com/henrik/vim-indexed-search
-
 " vim-session: Gestionar les sessions de vim
 " Necessita vim-misc: git clone https://github.com/xolox/vim-misc
 " git clone https://github.com/xolox/vim-session
@@ -373,20 +360,10 @@ let g:session_directory = '~/.vim_sessions'
 let g:session_autoload = 'yes'
 let g:session_autosave = 'yes'
 let g:session_command_aliases = 1
-nnoremap <Leader>so :OpenSession <Cr>
+nnoremap <Leader>so :OpenSession 
 nnoremap <Leader>ss :SaveSession 
 nnoremap <Leader>sd :DeleteSession<Cr>
 nnoremap <Leader>sc :CloseSession<Cr>
-
-" tabular: Aliniar fàcilment textos segons el paràmetre que indiquem
-" git clone https://github.com/godlygeek/tabular
-nmap <Leader>a= :Tabularize /=<Cr>
-vmap <Leader>a= :Tabularize /=<Cr>
-nmap <Leader>a: :Tabularize /:\zs<Cr>
-vmap <Leader>a: :Tabularize /:\zs<Cr>
-
-" (Esborrat) vim-seek: fer cerques a la mateixa línia utilitzant dos caràcters en lloc d'un com f i F
-" git clone https://github.com/goldfeld/vim-seek
 
 " vim-surround: mitjançant l'acció s es posen i treuen parentesis, claudators, cometes simples, un tag...
 " git clone https://github.com/tpope/vim-surround
@@ -394,10 +371,35 @@ vmap <Leader>a: :Tabularize /:\zs<Cr>
 " ds' -> elimina les cometes simples
 " ys{ambit}) -> posa entre parèntesi el que hi hagi a l'àmbit
 
-" ultisnips: Snippets de TextMate i SnipMate
-" git clone https://github.com/SirVer/ultisnips
-
 " vim-exchange: Permet intercanviar textos (paraules, frases, etc.)
 " git clone https://github.com/tommcdo/vim-exchange
 " cx{àmbit}: la primera vegada marca l'àmbit com a element per intercanviar. La segona, intercanvia el nou àmbit amb l'anterior.
+
+
+
+" (Esborrat) Vim startify: Mostra a l'iniciar vim sense fitxer els últims fitxers/sessions oberts per obrir-los.
+" git clone https://github.com/mhinz/vim-startify
+
+" (Esborrat) Vim-indent-object: Permet fer seleccions i modificació de text basades amb la indentació
+" git clone https://github.com/michaeljsmith/vim-indent-object
+" <Count>ai selecciona les línies a la mateixa indentació i la línia superior
+" <Count>ii selecciona les línies a la mateixa indentació
+" <Count>aI selecciona les línies a la mateixa indentació i la línia superior i inferior
+" <Count>iI selecciona les línies a la mateixa indentació
+
+" (Esborrat) vim-indexed-search: Mostra a quin element estem de tots els trobats per una cerca
+" git clone https://github.com/henrik/vim-indexed-search
+
+" (Esborrat) tabular: Aliniar fàcilment textos segons el paràmetre que indiquem
+" git clone https://github.com/godlygeek/tabular
+" nmap <Leader>a= :Tabularize /=<Cr>
+" vmap <Leader>a= :Tabularize /=<Cr>
+" nmap <Leader>a: :Tabularize /:\zs<Cr>
+" vmap <Leader>a: :Tabularize /:\zs<Cr>
+
+" (Esborrat) vim-seek: fer cerques a la mateixa línia utilitzant dos caràcters en lloc d'un com f i F
+" git clone https://github.com/goldfeld/vim-seek
+
+" (Esborrat) ultisnips: Snippets de TextMate i SnipMate
+" git clone https://github.com/SirVer/ultisnips
 
