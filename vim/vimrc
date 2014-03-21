@@ -25,8 +25,11 @@ func! RetabIndents()
     let previous_search=@/
     let previous_cursor_line=line('.')
     let previous_cursor_column=col('.')
-    "execute '%s@^\(\ \{'.&ts.'\}\)\+@\=repeat("\t", len(submatch(0))/'.&ts.')@e'
-    %s-^\(\t\)\+-    -e
+    if &expandtab
+        execute '%s@^\(\t\)\+@\=repeat(repeat(" ", '.&ts.'), len(submatch(0)))@e'
+    else
+        execute '%s@^\(\ \{'.&ts.'\}\)\+@\=repeat("\t", len(submatch(0))/'.&ts.')@e'
+    endif
     let @/=previous_search
     call cursor(previous_cursor_line, previous_cursor_column)
 endfunc

@@ -47,6 +47,8 @@ bindkey '^R' history-incremental-search-backward
 bindkey '^S' history-incremental-search-forward
 bindkey '^P' history-search-backward
 bindkey '^N' history-search-forward
+bindkey '^A' beginning-of-line
+bindkey '^E' end-of-line
 
 # Navegar per l'històric de comandes que comencen pel que hi ha escrit a la línia
 autoload -U up-line-or-beginning-search
