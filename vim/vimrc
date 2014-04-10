@@ -53,6 +53,15 @@ function! CloseWindowOrKillBuffer()
     endif
 endfunction
 
+function! CallFlake8()
+    let previous_search=@/
+    let previous_cursor_line=line('.')
+    let previous_cursor_column=col('.')
+    execute 'call Flake8()<Cr>'
+    let @/=previous_search
+    call cursor(previous_cursor_line, previous_cursor_column)
+endfunction
+
 """"""""""""""""""""""""""""""""""""""""""""""""""
 " Creació de directoris
 """"""""""""""""""""""""""""""""""""""""""""""""""
@@ -126,6 +135,7 @@ set showtabline=2                                            " Mostra la barra d
 set smartcase                                                " case-sensitive search if any caps
 set splitright splitbelow                                    " Obre les noves finestres a la dreta i a sota
 set switchbuf=usetab                                         " A l'obrir un nou fitxer posiciona a la tab/finestra que el tingui, no l'obre de nou
+set tags+=~/.virtualenvs/phoenix/tags
 set undodir=~/.vim_undo                                      " Canviar directori de fitxers de undo
 set undofile                                                 " Undo persistent, encara que es tanqui el buffer
 set undolevels=10000                                         " Augmenta a 10000 el nivel de undo
@@ -136,10 +146,6 @@ set wildmenu                                                 " show a navigable 
 set wildmode=full                                            " Mostra les possibilitats d'una comanda rotllo zsh
 
 " Ocultar els trailing spaces en el mode inserció. Mirar de fer-ho només de la línia que s'està editant
-"autocmd InsertEnter *.* set nolist
-"autocmd InsertLeave *.* set list
-"autocmd InsertEnter *.* set listchars=tab:▸\ ,eol:↵
-"autocmd InsertLeave *.* set listchars=tab:▸\ ,trail:▫,eol:↵
 
 " Activar colors al text
 syntax enable
@@ -149,28 +155,6 @@ set t_Co=256                                                 " Número de colors
 set background=dark
 colorscheme solarized
 highlight SpecialKey ctermbg=NONE guibg=NONE
-"colorscheme 256-grayvim
-"colorscheme 256-jungle
-"colorscheme anotherdark
-"colorscheme badwolf
-"colorscheme busybee
-"colorscheme bvemu
-"colorscheme carvedwoodcool
-"colorscheme darkburn
-"colorscheme herald
-"colorscheme hornet
-"colorscheme jellybeans
-"colorscheme kellys
-"colorscheme lilypink
-"colorscheme lucius
-"colorscheme mustang
-"colorscheme nazca
-"colorscheme obsidian
-"colorscheme xoria256
-"colorscheme zenburn
-
-"highlight Normal ctermbg=NONE
-"highlight NonKey ctermbg=NONE
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""
@@ -179,10 +163,6 @@ highlight SpecialKey ctermbg=NONE guibg=NONE
 
 " Anar al mode normal des del mode insert amb jj
 inoremap jj <Esc>
-
-" Deshabilitar <Esc> per obligar a fer jj per anar al mode normal
-" No funciona bé al terminal: escriu caràcters al moure amb el cursor amb les fletxes al mode inserció
-"inoremap <Esc> <Nop>
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""
@@ -232,17 +212,6 @@ nmap <C-k> <C-w>k
 " Moure a la finestra esquerra amb Ctrl-L
 nmap <C-l> <C-w>l
 
-" Alternar el ressaltar dels resultats de les cerques amb coh
-nnoremap <silent> coh :set hlsearch! hlsearch?<Cr>
-" Alternar el mostrar els caràcters especials amb col
-nnoremap <silent> col :set list! list?<Cr>
-" Alternar el mostrar els números de línia amb con
-nnoremap <silent> con :set number! number?<Cr>
-" Alternar l'enganxar del portapapers mantenint la indentació amb cop
-nnoremap <silent> cop :set paste! paste?<Cr>
-" Alternar el wrap de les línies amb cow
-nnoremap <silent> cow :set wrap! wrap?<Cr>
-
 " Per fer redo es pot amb Ctrl-R com sempre i amb U
 nnoremap U <C-r>
 
@@ -252,20 +221,14 @@ nmap <Leader>vg :vimgrep //gj **/*<Left><Left><Left><Left><Left><Left><Left><Lef
 " Mostrar una finestra amb els resultats de la cerca prèvia al buffer actual
 nnoremap <silent> <Leader>/ :execute 'vimgrep /'.@/.'/g %'<Cr>:copen<Cr>
 
-" Navegar pels diferents fitxers de vimgrep
-nnoremap [q :cprev<Cr>
-nnoremap ]q :cnext<Cr>
-nnoremap [Q :cfirst<Cr>
-nnoremap ]Q :clast<Cr>
-
 " Obrir i tancar folders amb la tecla <Space>
 nmap <Space> za
 
 " Copiar del caràcter actual al final de línia amb la tecla Y, per similitud amb D i C
 nmap <S-y> y$
 
-" Separar línies amb <S-k>
-nnoremap <S-k> i<Cr><Esc>^
+" Separar línies amb 
+nnoremap K i<Cr><Esc>^
 
 " Deshabilitar les tecles de moviment
 nnoremap <Right> <Nop>
@@ -307,12 +270,7 @@ nnoremap <silent> <Leader>to :tabonly<Cr>
 nnoremap <silent> dhb :Wipeout<Cr>
 
 " Utilitzar Q per tancar buffers
-nnoremap Q :call CloseWindowOrKillBuffer()<CR>
-
-" Utilitzar j per moure entre línies encara que estiguin wraped
-"nnoremap j gj
-" Utilitzar k per moure entre línies encara que estiguin wraped
-"nnoremap k gk
+nnoremap <silent> Q :call CloseWindowOrKillBuffer()<Cr>
 
 " Per seleccionr l'últim text enganxat
 nnoremap <expr> gv '`[' . strpart(getregtype(), 0, 1) . '`]'
@@ -325,6 +283,10 @@ nnoremap <C-V> v
 noremap <silent> <Leader>dt :call DeleteTrailingWS()<Cr>
 " Canvia els espais per tabuladors al principi de totes les línies amb <Leader>ri
 noremap <silent> <Leader>ri :call RetabIndents()<Cr>
+
+" Repeteix la última cerca amb els mateixos flags amb & en mode normal, visual o de selecció
+nnoremap & :&&<CR>
+xnoremap & :&&<CR>
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""
@@ -354,7 +316,8 @@ nmap <Leader>b :CtrlPBuffer<Cr>
 nmap <Leader>f :CtrlP<Cr>
 " Mostrar finestra amb el CtrlP de fitxers escanejant de nou
 nmap <Leader>F :CtrlPClearCache<Cr>:CtrlP<Cr>
-
+" Mostrar finestra amb els tags extrets fent ctags
+nmap <Leader>. :CtrlPClearCache<Cr>:CtrlPTag<Cr>
 
 " Vim-easymotion: Per saltar entre paraules, cerques, etc. de manera més àgil.
 " git clone https://github.com/Lokaltog/vim-easymotion
@@ -407,35 +370,33 @@ nnoremap <Leader>sc :CloseSession<Cr>
 
 " vim-surround: mitjançant l'acció s es posen i treuen parentesis, claudators, cometes simples, un tag...
 " git clone https://github.com/tpope/vim-surround
-" cs"' -> canvia cometes dobles per cometes simples
-" ds' -> elimina les cometes simples
-" ys{ambit}) -> posa entre parèntesi el que hi hagi a l'àmbit
 
 " vim-exchange: Permet intercanviar textos (paraules, frases, etc.)
 " git clone https://github.com/tommcdo/vim-exchange
 " cx{àmbit}: la primera vegada marca l'àmbit com a element per intercanviar. La segona, intercanvia el nou àmbit amb l'anterior.
 
+" vim-flake8:
+" git clone https://github.com/nvie/vim-flake8
+autocmd FileType python map <buffer> <Leader>pv :call CallFlake8()<Cr>
+let g:flake8_ignore = "E501"
+let g:flake8_max_complexity=10
 
+" vim-unimpaired:
+" git clone https://github.com/tpope/vim-unimpaired
+
+"""""""""""""""""""""" Esborrats
 
 " (Esborrat) Vim startify: Mostra a l'iniciar vim sense fitxer els últims fitxers/sessions oberts per obrir-los.
 " git clone https://github.com/mhinz/vim-startify
 
 " (Esborrat) Vim-indent-object: Permet fer seleccions i modificació de text basades amb la indentació
 " git clone https://github.com/michaeljsmith/vim-indent-object
-" <Count>ai selecciona les línies a la mateixa indentació i la línia superior
-" <Count>ii selecciona les línies a la mateixa indentació
-" <Count>aI selecciona les línies a la mateixa indentació i la línia superior i inferior
-" <Count>iI selecciona les línies a la mateixa indentació
 
 " (Esborrat) vim-indexed-search: Mostra a quin element estem de tots els trobats per una cerca
 " git clone https://github.com/henrik/vim-indexed-search
 
 " (Esborrat) tabular: Aliniar fàcilment textos segons el paràmetre que indiquem
 " git clone https://github.com/godlygeek/tabular
-" nmap <Leader>a= :Tabularize /=<Cr>
-" vmap <Leader>a= :Tabularize /=<Cr>
-" nmap <Leader>a: :Tabularize /:\zs<Cr>
-" vmap <Leader>a: :Tabularize /:\zs<Cr>
 
 " (Esborrat) vim-seek: fer cerques a la mateixa línia utilitzant dos caràcters en lloc d'un com f i F
 " git clone https://github.com/goldfeld/vim-seek
