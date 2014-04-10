@@ -1,0 +1,25 @@
+[core]
+	excludesfile = /Users/oriol/.gitignore_global
+[difftool "sourcetree"]
+	cmd = /Applications/p4merge.app/Contents/MacOS/p4merge \"$LOCAL\" \"$REMOTE\"
+	path = 
+[mergetool "sourcetree"]
+	cmd = /Applications/p4merge.app/Contents/MacOS/p4merge \"$BASE\" \"$LOCAL\" \"$REMOTE\" \"$MERGED\"
+	trustExitCode = true
+[user]
+	name = Oriol Garcia
+	email = ogarcia@gaa9.com
+[color]
+	ui = true
+[alias]
+	add = add -u
+	co = checkout
+	st = status
+	ci = commit
+	br = branch
+	discard = checkout -- .
+[push]
+	default = current
+
+[init]
+	templatedir = ~/.git_template
