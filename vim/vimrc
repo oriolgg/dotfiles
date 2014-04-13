@@ -115,6 +115,7 @@ set history=10000                                            " Guarda les 10000 
 set hlsearch                                                 " Es ressalten les coincidencies de la cerca
 set ignorecase                                               " case-sensitive search if any caps
 set incsearch                                                " search as you type
+set infercase                                                " Per fer case sensitive l'autocomplete
 set iskeyword+=_,$,@,%,#                                     " not word dividers
 set laststatus=2                                             " always show statusline
 set lazyredraw                                               " no repinta la pantalla mentre s'executen macros, més ràpid
@@ -288,6 +289,7 @@ noremap <silent> <Leader>ri :call RetabIndents()<Cr>
 nnoremap & :&&<CR>
 xnoremap & :&&<CR>
 
+filetype plugin indent on
 
 """"""""""""""""""""""""""""""""""""""""""""""""""
 " Configuració de plugins
