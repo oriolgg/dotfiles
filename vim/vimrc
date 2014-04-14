@@ -1,7 +1,7 @@
 """"""""""""""""""""""""""""""""""""""""""""""""""
 " Funcions
 """""""""""""""""""""""""""""""""""""""""""""""""""
-func! EnsureDirExists (dir)
+function! EnsureDirExists (dir)
 " Funció per crear directoris si no existeixen
     if !isdirectory(a:dir)
         if exists('*mkdir')
@@ -10,7 +10,7 @@ func! EnsureDirExists (dir)
     endif
 endfunc
 
-func! DeleteTrailingWS()
+function! DeleteTrailingWS()
 " Funció per esborrar els espais a final de línia del buffer
     let previous_search=@/
     let previous_cursor_line=line('.')
@@ -20,7 +20,7 @@ func! DeleteTrailingWS()
     call cursor(previous_cursor_line, previous_cursor_column)
 endfunc
 
-func! RetabIndents()
+function! RetabIndents()
 " Funció que canvia espais per tabs al principi de línia del buffer
     let previous_search=@/
     let previous_cursor_line=line('.')
@@ -62,6 +62,7 @@ function! CallFlake8()
     call cursor(previous_cursor_line, previous_cursor_column)
 endfunction
 
+
 """"""""""""""""""""""""""""""""""""""""""""""""""
 " Creació de directoris
 """"""""""""""""""""""""""""""""""""""""""""""""""
@@ -71,10 +72,10 @@ endfunction
 :silent call EnsureDirExists($HOME.'/.vim_view')             " Crear directori de view
 :silent call EnsureDirExists($HOME.'/.vim_sessions')         " Crear directori de sessions
 
+
 """"""""""""""""""""""""""""""""""""""""""""""""""
 " General
 """"""""""""""""""""""""""""""""""""""""""""""""""
-
 " Pathogen
 execute pathogen#infect()
 Helptags
@@ -100,53 +101,51 @@ endif
 let mapleader = ','
 
 set autoindent                                               " Activar autoindendació
-set autoread                                                 " reload files when changed on disk, i.e. via `git checkout`
+set autoread                                                 " Reload files when changed on disk, i.e. via `git checkout`
 set backspace=2                                              " Fix broken backspace in some setups
 set backupdir=~/.vim_backup                                  " Canviar directori de buffer de backup
-set clipboard=unnamed                                        " yank and paste with the system clipboard
+set clipboard=unnamed                                        " Yank and paste with the system clipboard
 set cursorline                                               " Ressalta la línia a on està el cursor
 set directory=~/.vim_swap                                    " Canviar directori de fitxers de swap
 set encoding=utf-8                                           " Posar utf-8 com a encoding per defecte
+set expandtab tabstop=4 softtabstop=4 shiftwidth=4           " Definir els tabs com 4 espais
 set foldlevel=99
 set foldmethod=indent                                        " Es creen folds directament amb la indentació
 set foldnestmax=1                                            " Perquè es crein folds només al primer nivell d'indentació
 set hidden                                                   " Permet moure entre buffers sense mostrar error si estan editats però no guardats
 set history=10000                                            " Guarda les 10000 últimes comandes
 set hlsearch                                                 " Es ressalten les coincidencies de la cerca
-set ignorecase                                               " case-sensitive search if any caps
-set incsearch                                                " search as you type
+set ignorecase                                               " Case-sensitive search if any caps
+set incsearch                                                " Search as you type
 set infercase                                                " Per fer case sensitive l'autocomplete
-set iskeyword+=_,$,@,%,#                                     " not word dividers
-set laststatus=2                                             " always show statusline
-set lazyredraw                                               " no repinta la pantalla mentre s'executen macros, més ràpid
+set iskeyword+=_,$,@,%,#                                     " Not word dividers
+set laststatus=2                                             " Always show statusline
+set lazyredraw                                               " No repinta la pantalla mentre s'executen macros, més ràpid
 set list                                                     " Ressaltar els caràcters especials
 set listchars=tab:▸\ ,trail:▫,eol:↵,extends:»,precedes:«     " Llistat de caràcters especials que es ressalten
 set mouse=                                                   " Deshabilitar el ratolí
 set nocompatible                                             " Treure la compatibilitat amb Vi
 set noerrorbells                                             " Perquè no surtin errors sonors
-set nowrap sidescroll=1 sidescrolloff=1                      " No tallar frases
-set expandtab tabstop=4 softtabstop=4 shiftwidth=4           " Definir els tabs com 8 espais
 set novisualbell                                             " Perquè no surtin errors visuals
+set nowrap sidescroll=1 sidescrolloff=1                      " No tallar frases
 set nrformats=                                               " Per utilitzar el sistema decimal, no octal a l'incrementar o decrementar números
-set number                                                   " show line numbers
-set ruler                                                    " show where you are
-set scrolloff=3                                              " deixa sempre visibles 3 línies a sobre o sota el cursor
-set showcmd                                                  " mostra els parcials de les comandes
+set number                                                   " Show line numbers
+set ruler                                                    " Show where you are
+set scrolloff=3                                              " Deixa sempre visibles 3 línies a sobre o sota el cursor
+set showcmd                                                  " Mostra els parcials de les comandes
 set showtabline=2                                            " Mostra la barra de tabs sempre
-set smartcase                                                " case-sensitive search if any caps
+set smartcase                                                " Case-sensitive search if any caps
 set splitright splitbelow                                    " Obre les noves finestres a la dreta i a sota
 set switchbuf=usetab                                         " A l'obrir un nou fitxer posiciona a la tab/finestra que el tingui, no l'obre de nou
-set tags+=~/.virtualenv.tags
+set tags+=~/.virtualenv.tags                                 " Afegir tags del virtualenv als tags per defecte
 set undodir=~/.vim_undo                                      " Canviar directori de fitxers de undo
 set undofile                                                 " Undo persistent, encara que es tanqui el buffer
 set undolevels=10000                                         " Augmenta a 10000 el nivel de undo
 set undoreload=10000                                         " Augmenta a 10000 el nivel de redo
 set viewdir=~/.vim_view                                      " Canviar directori de fitxers de view
-set wildignore=*.swp,*.bak,*.pyc,*.pyo,*.class,*.tmp,*~      " Ignorar aquests tipus de fitxers
-set wildmenu                                                 " show a navigable menu for tab completion
+set wildignore+=*.swp,*.bak,*.pyc,*.pyo,*.class,*.tmp,*~     " Ignorar aquests tipus de fitxers
+set wildmenu                                                 " Show a navigable menu for tab completion on command line
 set wildmode=full                                            " Mostra les possibilitats d'una comanda rotllo zsh
-
-" Ocultar els trailing spaces en el mode inserció. Mirar de fer-ho només de la línia que s'està editant
 
 " Activar colors al text
 syntax enable
@@ -172,20 +171,6 @@ inoremap jj <Esc>
 
 " Crear un fold amb la tecla <Space>
 vmap <Space> zf
-
-" Carrega el plugin dragvisuals.vim
-runtime plugin/dragvisuals.vim
-" En mode visual block, moure a l'esquerra el bloc seleccionat
-vmap <Expr> <Left> DVB_Drag('left')
-" En mode visual block, moure a la dreta el bloc seleccionat
-vmap <Expr> <Right> DVB_Drag('right')
-" En mode visual block, moure avall el bloc seleccionat
-vmap <Expr> <Down> DVB_Drag('down')
-" En mode visual block, moure amunt el bloc seleccionat
-vmap <Expr> <Up> DVB_Drag('up')
-" En mode visual block, duplicar el bloc seleccionat
-vmap <Expr> D DVB_Duplicate()
-let g:DVB_TrimWS = 1
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""
