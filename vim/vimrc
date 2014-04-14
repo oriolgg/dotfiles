@@ -198,7 +198,7 @@ nmap <C-k> <C-w>k
 " Moure a la finestra esquerra amb Ctrl-L
 nmap <C-l> <C-w>l
 
-" Per fer redo es pot amb Ctrl-R com sempre i amb U
+" Per fer redo es pot amb <C-r> i amb U
 nnoremap U <C-r>
 
 " Executar vimgrep al directori actual
@@ -213,7 +213,7 @@ nmap <Space> za
 " Copiar del caràcter actual al final de línia amb la tecla Y, per similitud amb D i C
 nmap <S-y> y$
 
-" Separar línies amb 
+" Separar línies amb K
 nnoremap K i<Cr><Esc>^
 
 " Deshabilitar les tecles de moviment
@@ -222,6 +222,7 @@ nnoremap <Left>  <Nop>
 nnoremap <Down>  <Nop>
 nnoremap <Up>    <Nop>
 
+" Utilitzar fletxa dreta i esquerra per anar al buffer següent i anterior, respectivament:
 nnoremap <left> :bprev<cr>
 nnoremap <right> :bnext<cr>
 
@@ -258,10 +259,10 @@ nnoremap <silent> dhb :Wipeout<Cr>
 " Utilitzar Q per tancar buffers
 nnoremap <silent> Q :call CloseWindowOrKillBuffer()<Cr>
 
-" Per seleccionr l'últim text enganxat
+" Per seleccionar l'últim text enganxat
 nnoremap <expr> gv '`[' . strpart(getregtype(), 0, 1) . '`]'
 
-" Intercanviar v per Ctrl-v, v per defecte serà en bloc
+" Intercanviar v per <C-v>: v per defecte serà en bloc
 nnoremap v <C-V>
 nnoremap <C-V> v
 
@@ -275,6 +276,7 @@ nnoremap & :&&<CR>
 xnoremap & :&&<CR>
 
 filetype plugin indent on
+
 
 """"""""""""""""""""""""""""""""""""""""""""""""""
 " Configuració de plugins
@@ -318,7 +320,6 @@ nmap <Leader>. :CtrlPClearCache<Cr>:CtrlPTag<Cr>
 
 " Vim-signify: Marca els canvis del fitxer respecte el repositori a la columna esquerra del fitxer.
 " git clone https://github.com/mhinz/vim-signify
-nnoremap cos :SignifyToggle<Cr>
 
 " Gitv: Mostra l'estat del repositori Git (necessita fugitive)
 " git clone https://github.com/gregsexton/gitv
@@ -329,7 +330,6 @@ nnoremap cos :SignifyToggle<Cr>
 
 " Gundo: Mostra l'arbre de modificacions d'un fitxer
 " git clone https://github.com/sjl/gundo.vim
-" Comanda: <Leader>u
 nnoremap <Leader>u :GundoToggle<Cr>
 
 " ag: Fer cerques de text a dins de fitxers (grep) millor.
@@ -340,9 +340,6 @@ nnoremap <Leader>u :GundoToggle<Cr>
 " Necessita CTags: brew install ctags-exuberant
 " git clone https://github.com/majutsushi/tagbar
 nmap <Leader>o :TagbarToggle<Cr><C-l>
-
-" vim-css-color: Mostra el background del codi hex del color indicat.
-" git clone https://github.com/ap/vim-css-color
 
 " vim-session: Gestionar les sessions de vim
 " Necessita vim-misc: git clone https://github.com/xolox/vim-misc
@@ -356,7 +353,7 @@ nnoremap <Leader>ss :SaveSession
 nnoremap <Leader>sd :DeleteSession<Cr>
 nnoremap <Leader>sc :CloseSession<Cr>
 
-" vim-surround: mitjançant l'acció s es posen i treuen parentesis, claudators, cometes simples, un tag...
+" vim-surround: mitjançant l'acció 's' es posen i treuen parentesis, claudators, cometes simples, un tag...
 " git clone https://github.com/tpope/vim-surround
 
 " vim-exchange: Permet intercanviar textos (paraules, frases, etc.)
@@ -372,7 +369,11 @@ let g:flake8_max_complexity=10
 " vim-unimpaired:
 " git clone https://github.com/tpope/vim-unimpaired
 
+
 """""""""""""""""""""" Esborrats
+
+" (Esborrat) vim-css-color: Mostra el background del codi hex del color indicat.
+" git clone https://github.com/ap/vim-css-color
 
 " (Esborrat) Vim startify: Mostra a l'iniciar vim sense fitxer els últims fitxers/sessions oberts per obrir-los.
 " git clone https://github.com/mhinz/vim-startify
