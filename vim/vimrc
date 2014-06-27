@@ -57,7 +57,7 @@ function! CallFlake8()
     let previous_search=@/
     let previous_cursor_line=line('.')
     let previous_cursor_column=col('.')
-    execute 'call Flake8()<Cr>'
+    execute 'PymodeLint'
     let @/=previous_search
     call cursor(previous_cursor_line, previous_cursor_column)
 endfunction
@@ -151,7 +151,6 @@ set wildmode=full                                            " Mostra les possib
 syntax enable
 
 set t_Co=256                                                 " Número de colors
-" Posar l'esquema de colors jellybeans
 set background=dark
 colorscheme solarized
 highlight SpecialKey ctermbg=NONE guibg=NONE
@@ -183,6 +182,17 @@ cnoremap %% <C-R>=fnameescape(expand('%:h')).'/'<Cr>
 " Permet moure's per la història de comandes amb <C-n> i <C-p>
 cnoremap <C-p> <Up>
 cnoremap <C-n> <Down>
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""
+" Mapeig de comandes
+""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Si escribim malament el guardar i/o sortir de vim, que funcioni
+:command WQ wq
+:command Wq wq
+:command W w
+:command Q q
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""
@@ -221,10 +231,6 @@ nnoremap <Right> <Nop>
 nnoremap <Left>  <Nop>
 nnoremap <Down>  <Nop>
 nnoremap <Up>    <Nop>
-
-" Utilitzar fletxa dreta i esquerra per anar al buffer següent i anterior, respectivament:
-nnoremap <left> :bprev<cr>
-nnoremap <right> :bnext<cr>
 
 " Posar la configuració de tabs a 2 espais amb <Leader><Leader>2
 nnoremap <Leader><Leader>2 <Esc>:set noexpandtab tabstop=2 softtabstop=2 shiftwidth=2<Cr>
@@ -360,17 +366,35 @@ nnoremap <Leader>sc :CloseSession<Cr>
 " git clone https://github.com/tommcdo/vim-exchange
 " cx{àmbit}: la primera vegada marca l'àmbit com a element per intercanviar. La segona, intercanvia el nou àmbit amb l'anterior.
 
-" vim-flake8:
-" git clone https://github.com/nvie/vim-flake8
-autocmd FileType python map <buffer> <Leader>pv :call CallFlake8()<Cr>
-let g:flake8_ignore = "E501"
-let g:flake8_max_complexity=10
-
 " vim-unimpaired:
 " git clone https://github.com/tpope/vim-unimpaired
 
+" vim-repeat:
+" git clone https://github.com/tpope/vim-repeat
+
+" ultisnips:
+" git clone https://github.com/sirver/ultisnips
+autocmd FileType python :UltiSnipsAddFiletypes python.django
+autocmd FileType htmldjango :UltiSnipsAddFiletypes html.htmldjango
+
+" vim-snippets:
+" git clone https://github.com/honza/vim-snippets
+
+" python-mode:
+" git clone https://github.com/klen/python-mode
+let g:pymode_doc_bind = 'Ñ'
+autocmd FileType python map <buffer> <Leader>pv :PymodeLint<Cr><C-J>
+let g:pymode_lint_on_write = 0
+let g:pymode_lint_ignore = "E501,C901"
+"let g:pymode_lint_mccabe_complexity = 10
 
 """""""""""""""""""""" Esborrats
+
+" (Esborrat) vim-flake8:
+" git clone https://github.com/nvie/vim-flake8
+"autocmd FileType python map <buffer> <Leader>pv :call CallFlake8()<Cr>
+"let g:flake8_ignore = "E501,C901"
+"let g:flake8_max_complexity=10
 
 " (Esborrat) vim-css-color: Mostra el background del codi hex del color indicat.
 " git clone https://github.com/ap/vim-css-color
