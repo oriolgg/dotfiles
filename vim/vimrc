@@ -1,3 +1,32 @@
+set nocompatible                                             " Treure la compatibilitat amb Vi
+
+filetype off
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+
+Bundle 'gmarik/vundle'
+Bundle 'rking/ag.vim'
+Bundle 'kien/ctrlp.vim'
+Bundle 'gregsexton/gitv'
+Bundle 'sjl/gundo.vim'
+Bundle 'klen/python-mode'
+Bundle 'majutsushi/tagbar'
+Bundle 'sirver/ultisnips'
+Bundle 'Lokaltog/vim-easymotion'
+Bundle 'tommcdo/vim-exchange'
+Bundle 'tpope/vim-fugitive'
+Bundle 'kablamo/vim-git-log'
+Bundle 'szw/vim-maximizer'
+Bundle 'xolox/vim-misc'
+Bundle 'tpope/vim-repeat'
+Bundle 'xolox/vim-session'
+Bundle 'mhinz/vim-signify'
+Bundle 'honza/vim-snippets'
+Bundle 'tpope/vim-surround'
+Bundle 'tpope/vim-unimpaired'
+
+filetype on
+
 """"""""""""""""""""""""""""""""""""""""""""""""""
 " Funcions
 """""""""""""""""""""""""""""""""""""""""""""""""""
@@ -76,9 +105,6 @@ endfunction
 """"""""""""""""""""""""""""""""""""""""""""""""""
 " General
 """"""""""""""""""""""""""""""""""""""""""""""""""
-" Pathogen
-execute pathogen#infect()
-Helptags
 
 " Mantenir la posició del cursor quan obres un buffer al mateix lloc a on el tenies al tancar-lo
 autocmd BufWinLeave *.* silent! mkview
@@ -124,7 +150,6 @@ set lazyredraw                                               " No repinta la pan
 set list                                                     " Ressaltar els caràcters especials
 set listchars=tab:▸\ ,trail:▫,eol:↵,extends:»,precedes:«     " Llistat de caràcters especials que es ressalten
 set mouse=                                                   " Deshabilitar el ratolí
-set nocompatible                                             " Treure la compatibilitat amb Vi
 set noerrorbells                                             " Perquè no surtin errors sonors
 set novisualbell                                             " Perquè no surtin errors visuals
 set nowrap sidescroll=1 sidescrolloff=1                      " No tallar frases
@@ -387,6 +412,9 @@ autocmd FileType python map <buffer> <Leader>pv :PymodeLint<Cr><C-J>
 let g:pymode_lint_on_write = 0
 let g:pymode_lint_ignore = "E501,C901"
 "let g:pymode_lint_mccabe_complexity = 10
+
+" vundle:
+" git clone https://github.com/gmarik/vundle.git
 
 """""""""""""""""""""" Esborrats
 
