@@ -1,0 +1,64 @@
+# Install Homebrew
+ruby -e "$(curl -fsSL https://raw.github.com/Homebrew/homebrew/go/install)"
+brew update
+
+# Install shell utilities
+brew install zsh
+brew install tmux
+brew install the_silver_searcher
+brew install reattach-to-user-namespace
+brew install ctags
+brew install git
+brew install git-flow-avh
+brew install unrar
+
+# Install Homebrew cask
+brew tap caskroom/cask
+brew install brew-cask
+
+# Install applications
+brew cask install iterm2
+brew cask install macvim
+brew cask install google-chrome
+brew cask install firefox
+brew cask install appcleaner
+brew cask install textmate
+brew cask install betterzip
+brew cask install cyberduck
+brew cask install transmission
+brew cask install vlc
+brew cask install plex-media-server
+brew cask install spotify
+brew cask install disk-inventory-x
+brew casK install skype
+brew cask install iexplorer
+brew cask install handbrake
+brew cask install jdownloader
+
+# Install working utilities
+sudo easy_install pip
+sudo pip install virtualenv
+brew install mongodb
+brew install nginx
+brew install rabbitmq
+brew install zint
+brew cask install java
+
+# Install working applications
+brew cask install sourcetree
+brew cask install sqldeveloper
+
+# I don't want the accent menu in OSx
+defaults write -g ApplePressAndHoldEnabled -bool false
+
+# Start nginx at start
+sudo cp ~/dotfiles/com.oriol.nginx.plist /Library/LaunchDaemons
+sudo launchctl load /Library/LaunchDaemons/com.oriol.nginx.plist
+
+# Start mongodb at start
+ln -s $(which mongod)/../../homebrew.mxcl.mongodb.plist ~/Library/LaunchAgents/homebrew.mxcl.mongodb.plist
+launchctl load ~/Library/LaunchAgents/homebrew.mxcl.mongodb.plist
+
+# Change the default shell
+chsh -s /usr/local/bin/zsh
+
