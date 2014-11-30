@@ -35,7 +35,7 @@ export VIRTUAL_ENV_DISABLE_PROMPT=disable
 if [[ -n $SSH_CONNECTION ]]; then
   export EDITOR='vim'
 else
-  export EDITOR='mvim'
+  export EDITOR='vim'
 fi
 
 # Using the AUTOCD option, you can simply type the name of a directory, and it will become the current directory.
@@ -43,11 +43,14 @@ setopt AUTO_CD
 
 bindkey -v 
 
+# Allow using C-s in terminal
+bindkey -r '\C-s'
+stty -ixon
+stty stop undef
+
 # vi style incremental search
-bindkey '^R' history-incremental-search-backward
-bindkey '^S' history-incremental-search-forward
-bindkey '^P' history-search-backward
-bindkey '^N' history-search-forward
+bindkey '^P' history-beginning-search-backward
+bindkey '^N' history-beginning-search-forward
 bindkey '^A' beginning-of-line
 bindkey '^E' end-of-line
 
@@ -64,6 +67,7 @@ bindkey '\e0C' forward-char
 bindkey '\e[C' forward-char
 
 # Arrow left
+bindkey '^H' backward-kill-word
 bindkey '\e0D' backward-char
 bindkey '\e[D' backward-char
 
@@ -73,6 +77,14 @@ bindkey '\C-j' history-search-forward
 bindkey '\C-h' backward-char
 bindkey '\C-l' forward-char
 
+bindkey '\e[1~' beginning-of-line
+bindkey '\e[4~' end-of-line
+bindkey '\eOF' end-of-line
+bindkey '\eOH' beginning-of-line
+bindkey '\e[3~' delete-char # Del
+bindkey '\e[6~' end-of-history
+bindkey '\e[5~' beginning-of-history
+
 # Navegar per l'històric de comandes que comencen pel que hi ha escrit a la línia
 # autoload -U up-line-or-beginning-search
 # autoload -U down-line-or-beginning-search
@@ -81,6 +93,7 @@ bindkey '\C-l' forward-char
 # bindkey "^[[A" up-line-or-beginning-search # Up
 # bindkey "^[[B" down-line-or-beginning-search # Down
 
+alias e=exit
 alias ctags="/usr/local/bin/ctags"
 alias j=autojump
 alias ls='ls -G'
@@ -93,9 +106,39 @@ alias gf='git flow'
 alias gcd='git checkout develop'
 alias gch='git checkout hotfix'
 alias gcr='git checkout release'
+alias gs='git status'
+alias gp='git push'
+alias gl='git pull'
 
 # Common settings
 [[ -f $HOME/.profile ]] && source $HOME/.profile
 # User settings
 [[ -f $HOME/.user_profile ]] && source $HOME/.user_profile
+
+# Corregir so a l'appleTv
+alias fixairplay="sudo kill `ps -ax | grep 'coreaudiod' | grep 'sbin' |awk '{print $1}'`"
+
+# Keypad
+# 0 . Enter
+bindkey -s "^[Op" "0"
+bindkey -s "^[Ol" "."
+bindkey -s "^[OM" "^M"
+# 1 2 3
+bindkey -s "^[Oq" "1"
+bindkey -s "^[Or" "2"
+bindkey -s "^[Os" "3"
+# 4 5 6
+bindkey -s "^[Ot" "4"
+bindkey -s "^[Ou" "5"
+bindkey -s "^[Ov" "6"
+# 7 8 9
+bindkey -s "^[Ow" "7"
+bindkey -s "^[Ox" "8"
+bindkey -s "^[Oy" "9"
+# + -  * / =
+bindkey -s "^[Ok" "+"
+bindkey -s "^[Om" "-"
+bindkey -s "^[Oj" "*"
+bindkey -s "^[Oo" "/"
+bindkey -s "^[OX" "="
 
