@@ -1,0 +1,10 @@
+/.git/
+/log/
+/logs/
+/tmp/
+*.bak
+*.class
+*.pyc
+*.pyo
+*.swp
+*.tmp
