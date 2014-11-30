@@ -24,6 +24,7 @@ Bundle 'mhinz/vim-signify'
 Bundle 'honza/vim-snippets'
 Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-unimpaired'
+Bundle 'christoomey/vim-tmux-navigator'
 
 filetype on
 
