@@ -1,5 +1,5 @@
 # Install Homebrew
-ruby -e "$(curl -fsSL https://raw.github.com/Homebrew/homebrew/go/install)"
+ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 brew update
 
 # Install shell utilities
@@ -46,6 +46,7 @@ brew cask install java
 
 # Install working applications
 brew cask install sourcetree
+brew cask install p4merge
 brew cask install sqldeveloper
 
 # I don't want the accent menu in OSx
@@ -60,5 +61,12 @@ ln -s $(which mongod)/../../homebrew.mxcl.mongodb.plist ~/Library/LaunchAgents/h
 launchctl load ~/Library/LaunchAgents/homebrew.mxcl.mongodb.plist
 
 # Change the default shell
-chsh -s /usr/local/bin/zsh
+chsh -s /bin/zsh
 
+ln -s ~/dotfiles/zsh/oh-my-zsh ~/.oh-my-zsh
+ln -s ~/dotfiles/bash/profile ~/.profile
+ln -s ~/dotfiles/tmux/tmux.conf ~/.tmux.conf
+ln -s ~/dotfiles/vim/ ~/.vim
+ln -s ~/dotfiles/vim/vimrc ~/.vimrc
+ln -s ~/dotfiles/vim/gvimrc ~/.gvimrc
+ln -s ~/dotfiles/zsh/zshrc ~/.zshrc
