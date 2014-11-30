@@ -124,7 +124,7 @@ if &term == 'screen' || &term == 'xterm'
 endif
 
 " keyboard shortcuts
-let mapleader = ','
+let mapleader = "\<Space>"
 
 set autoindent                                               " Activar autoindendació
 set autoread                                                 " Reload files when changed on disk, i.e. via `git checkout`
@@ -144,7 +144,7 @@ set hlsearch                                                 " Es ressalten les 
 set ignorecase                                               " Case-sensitive search if any caps
 set incsearch                                                " Search as you type
 set infercase                                                " Per fer case sensitive l'autocomplete
-set iskeyword+=_,$,@,%,#                                     " Not word dividers
+set iskeyword+=_,$,@,%                                       " Not word dividers
 set laststatus=2                                             " Always show statusline
 set lazyredraw                                               " No repinta la pantalla mentre s'executen macros, més ràpid
 set list                                                     " Ressaltar els caràcters especials
@@ -155,8 +155,8 @@ set novisualbell                                             " Perquè no surtin
 set nowrap sidescroll=1 sidescrolloff=1                      " No tallar frases
 set nrformats=                                               " Per utilitzar el sistema decimal, no octal a l'incrementar o decrementar números
 set number                                                   " Show line numbers
+set relativenumber                                           " Shows relative numbers
 set ruler                                                    " Show where you are
-set scrolloff=3                                              " Deixa sempre visibles 3 línies a sobre o sota el cursor
 set showcmd                                                  " Mostra els parcials de les comandes
 set showtabline=2                                            " Mostra la barra de tabs sempre
 set smartcase                                                " Case-sensitive search if any caps
@@ -168,7 +168,7 @@ set undofile                                                 " Undo persistent, 
 set undolevels=10000                                         " Augmenta a 10000 el nivel de undo
 set undoreload=10000                                         " Augmenta a 10000 el nivel de redo
 set viewdir=~/.vim_view                                      " Canviar directori de fitxers de view
-set wildignore+=*.swp,*.bak,*.pyc,*.pyo,*.class,*.tmp,*~     " Ignorar aquests tipus de fitxers
+set wildignore=*/tmp/,*.so,*.swp,*.zip,*.pdf,*.bak,*.pyc,*.pyo,*.class,*.tmp,*~      " Ignorar aquests tipus de fitxers
 set wildmenu                                                 " Show a navigable menu for tab completion on command line
 set wildmode=full                                            " Mostra les possibilitats d'una comanda rotllo zsh
 
@@ -193,8 +193,6 @@ inoremap jj <Esc>
 " Mapeig de teclat en mode visual
 """"""""""""""""""""""""""""""""""""""""""""""""""
 
-" Crear un fold amb la tecla <Space>
-vmap <Space> zf
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""
@@ -214,10 +212,10 @@ cnoremap <C-n> <Down>
 """"""""""""""""""""""""""""""""""""""""""""""""""
 
 " Si escribim malament el guardar i/o sortir de vim, que funcioni
-:command WQ wq
-:command Wq wq
-:command W w
-:command Q q
+command! WQ wq
+command! Wq wq
+command! W w
+command! Q q
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""
@@ -242,9 +240,6 @@ nmap <Leader>vg :vimgrep //gj **/*<Left><Left><Left><Left><Left><Left><Left><Lef
 " Mostrar una finestra amb els resultats de la cerca prèvia al buffer actual
 nnoremap <silent> <Leader>/ :execute 'vimgrep /'.@/.'/g %'<Cr>:copen<Cr>
 
-" Obrir i tancar folders amb la tecla <Space>
-nmap <Space> za
-
 " Copiar del caràcter actual al final de línia amb la tecla Y, per similitud amb D i C
 nmap <S-y> y$
 
@@ -256,6 +251,12 @@ nnoremap <Right> <Nop>
 nnoremap <Left>  <Nop>
 nnoremap <Down>  <Nop>
 nnoremap <Up>    <Nop>
+nnoremap <Space> <Nop>
+
+" Guardar el buffer actual amb <Leader>w
+nnoremap <Leader>w :w<CR>
+" Guardar el buffer actual i tancar-lo amb <Leader>W
+nnoremap <Leader>W :wq<CR>
 
 " Posar la configuració de tabs a 2 espais amb <Leader><Leader>2
 nnoremap <Leader><Leader>2 <Esc>:set noexpandtab tabstop=2 softtabstop=2 shiftwidth=2<Cr>
@@ -308,6 +309,12 @@ xnoremap & :&&<CR>
 
 filetype plugin indent on
 
+if executable("ag")
+    set grepprg=ag\ --nogroup\ --nocolor\ --ignore-case\ --column
+    set grepformat=%f:%l:%c:%m,%f:%l:%m
+    nnoremap <key> :silent! grep! "\b<C-r><C-w>\b"<CR>:cwindow<CR>:redraw!<CR>
+    "command! -nargs=+ -complete=file_in_path -bar Ag silent grep! <args>|cwindow|redraw!
+endif
 
 """"""""""""""""""""""""""""""""""""""""""""""""""
 " Configuració de plugins
@@ -319,6 +326,12 @@ filetype plugin indent on
 let g:ctrlp_match_window = 'order:ttb,max:20'                " Ordenació i número màxim de resultats
 let g:ctrlp_regexp = 1                                       " Fa servir cerca amb regex, no fuzzy
 
+"let g:ctrlp_custom_ignore = {
+"  \ 'dir':  '\v[\/]\.(git|hg|svn)$',
+"  \ 'file': '\v\.(exe|so|dll|pyc|pyo)$',
+"  \ 'link': 'some_bad_symbolic_links',
+"  \ }
+
 if executable('ag')
 " Use The Silver Searcher https://github.com/ggreer/the_silver_searcher
     let g:ackprg = 'ag --nogroup --column'
@@ -328,7 +341,7 @@ if executable('ag')
     set grepformat=%f:%l:%c:%m
 
     " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
-    let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+    let g:ctrlp_user_command = 'ag %s -l --nogroup --nocolor --column -g ""'
 endif
 
 " Mostrar finestra amb el CtrlP de buffers oberts
@@ -408,9 +421,11 @@ autocmd FileType htmldjango :UltiSnipsAddFiletypes html.htmldjango
 " python-mode:
 " git clone https://github.com/klen/python-mode
 let g:pymode_doc_bind = 'Ñ'
+let g:pymode_doc = 0
 autocmd FileType python map <buffer> <Leader>pv :PymodeLint<Cr><C-J>
 let g:pymode_lint_on_write = 0
 let g:pymode_lint_ignore = "E501,C901"
+autocmd FileType python :set colorcolumn=0
 "let g:pymode_lint_mccabe_complexity = 10
 
 " vundle:
