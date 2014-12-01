@@ -16,7 +16,7 @@ brew install unrar
 brew tap caskroom/cask
 brew install brew-cask
 
-# Install applications
+# Install Applications
 brew cask install iterm2
 brew cask install macvim
 brew cask install google-chrome
@@ -51,6 +51,8 @@ brew cask install sqldeveloper
 
 # I don't want the accent menu in OSx
 defaults write -g ApplePressAndHoldEnabled -bool false
+
+git clone https://github.com/oriolgg/dotfiles ~/.dotfiles --recursive
 
 # Start nginx at start
 sudo cp ~/.dotfiles/com.oriol.nginx.plist /Library/LaunchDaemons

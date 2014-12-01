@@ -51,23 +51,27 @@ Install [Zsh][zsh]:
 
 Make zsh your default shell:
 
-    sudo chsh -s /usr/local/bin/zsh
+    sudo chsh -s /bin/zsh
 
 ## Clone dotfiles ##
 
 To clone my dotfiles:
 
-    cd
-    git clone git://github.com/oriolgg/dotfiles.git
+    git clone https://github.com/oriolgg/dotfiles ~/.dotfiles --recursive
 
 Finally, you just need to create some symlinks:
 
-    ln -s ~/dotfiles/zsh/oh-my-zsh ~/.oh-my-zsh
-    ln -s ~/dotfiles/bash/profile ~/.profile
-    ln -s ~/dotfiles/tmux/tmux.conf ~/.tmux.conf
-    ln -s ~/dotfiles/vim/ ~/.vim
-    ln -s ~/dotfiles/vim/vimrc ~/.vimrc
-    ln -s ~/dotfiles/zsh/zshrc ~/.zshrc
+    ln -s ~/.dotfiles/zsh/oh-my-zsh ~/.oh-my-zsh
+    ln -s ~/.dotfiles/bash/profile ~/.profile
+    ln -s ~/.dotfiles/tmux/tmux.conf ~/.tmux.conf
+    ln -s ~/.dotfiles/vim/ ~/.vim
+    ln -s ~/.dotfiles/vim/vimrc ~/.vimrc
+    ln -s ~/.dotfiles/vim/gvimrc ~/.gvimrc
+    ln -s ~/.dotfiles/zsh/zshrc ~/.zshrc
+    ln -s ~/.dotfiles/git/gitconfig ~/.gitconfig
+    ln -s ~/.dotfiles/git/gitignore_global ~/.gitignore_global
+    ln -s ~/.dotfiles/agignore ~/.agignore
+    ln -s ~/.dotfiles/tmux/tmux-vim-select-pane /usr/local/bin/tmux-vim-select-pane
 
 [zsh]: http://www.zsh.org/
 [tmux]: http://tmux.sourceforge.net/
