@@ -1,0 +1,88 @@
+[submodule "zsh/oh-my-zsh"]
+	path = zsh/oh-my-zsh
+	url = https://github.com/oriolgg/oh-my-zsh
+	branch = master
+[submodule "vim/bundle/vundle"]
+	path = vim/bundle/vundle
+	url = https://github.com/gmarik/vundle
+	branch = master
+[submodule "vim/bundle/ag.vim"]
+	path = vim/bundle/ag.vim
+	url = https://github.com/rking/ag.vim
+	branch = master
+[submodule "vim/bundle/ctrlp.vim"]
+	path = vim/bundle/ctrlp.vim
+	url = https://github.com/kien/ctrlp.vim
+	branch = master
+[submodule "vim/bundle/gitv"]
+	path = vim/bundle/gitv
+	url = https://github.com/gregsexton/gitv
+	branch = master
+[submodule "vim/bundle/gundo.vim"]
+	path = vim/bundle/gundo.vim
+	url = https://github.com/sjl/gundo.vim
+	branch = master
+[submodule "vim/bundle/python-mode"]
+	path = vim/bundle/python-mode
+	url = https://github.com/klen/python-mode
+	branch = master
+[submodule "vim/bundle/tagbar"]
+	path = vim/bundle/tagbar
+	url = https://github.com/majutsushi/tagbar
+	branch = master
+[submodule "vim/bundle/ultisnips"]
+	path = vim/bundle/ultisnips
+	url = https://github.com/sirver/ultisnips
+	branch = master
+[submodule "vim/bundle/vim-easymotion"]
+	path = vim/bundle/vim-easymotion
+	url = https://github.com/Lokaltog/vim-easymotion
+	branch = master
+[submodule "vim/bundle/vim-exchange"]
+	path = vim/bundle/vim-exchange
+	url = https://github.com/tommcdo/vim-exchange
+	branch = master
+[submodule "vim/bundle/vim-fugitive"]
+	path = vim/bundle/vim-fugitive
+	url = https://github.com/tpope/vim-fugitive
+	branch = master
+[submodule "vim/bundle/vim-git-log"]
+	path = vim/bundle/vim-git-log
+	url = https://github.com/kablamo/vim-git-log
+	branch = master
+[submodule "vim/bundle/vim-maximizer"]
+	path = vim/bundle/vim-maximizer
+	url = https://github.com/szw/vim-maximizer
+	branch = master
+[submodule "vim/bundle/vim-misc"]
+	path = vim/bundle/vim-misc
+	url = https://github.com/xolox/vim-misc
+	branch = master
+[submodule "vim/bundle/vim-repeat"]
+	path = vim/bundle/vim-repeat
+	url = https://github.com/tpope/vim-repeat
+	branch = master
+[submodule "vim/bundle/vim-session"]
+	path = vim/bundle/vim-session
+	url = https://github.com/xolox/vim-session
+	branch = master
+[submodule "vim/bundle/vim-signify"]
+	path = vim/bundle/vim-signify
+	url = https://github.com/mhinz/vim-signify
+	branch = master
+[submodule "vim/bundle/vim-snippets"]
+	path = vim/bundle/vim-snippets
+	url = https://github.com/honza/vim-snippets
+	branch = master
+[submodule "vim/bundle/vim-surround"]
+	path = vim/bundle/vim-surround
+	url = https://github.com/tpope/vim-surround
+	branch = master
+[submodule "vim/bundle/vim-unimpaired"]
+	path = vim/bundle/vim-unimpaired
+	url = https://github.com/tpope/vim-unimpaired
+	branch = master
+[submodule "vim/bundle/vim-tmux-navigator"]
+	path = vim/bundle/vim-tmux-navigator
+	url = https://github.com/christoomey/vim-tmux-navigator
+	branch = master
