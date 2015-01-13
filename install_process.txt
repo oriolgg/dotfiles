@@ -68,6 +68,7 @@ chsh -s /bin/zsh
 ln -s ~/.dotfiles/zsh/oh-my-zsh ~/.oh-my-zsh
 ln -s ~/.dotfiles/bash/profile ~/.profile
 ln -s ~/.dotfiles/tmux/tmux.conf ~/.tmux.conf
+ln -s ~/.dotfiles/tmux/tmux-osx.conf ~/.tmux-osx.conf
 ln -s ~/.dotfiles/vim/ ~/.vim
 ln -s ~/.dotfiles/vim/vimrc ~/.vimrc
 ln -s ~/.dotfiles/vim/gvimrc ~/.gvimrc

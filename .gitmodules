@@ -86,3 +86,18 @@
 	path = vim/bundle/vim-tmux-navigator
 	url = https://github.com/christoomey/vim-tmux-navigator
 	branch = master
+[submodule "vim/bundle/smartpairs.vim"]
+	path = vim/bundle/smartpairs.vim
+	url = https://github.com/gorkunov/smartpairs.vim
+[submodule "vim/bundle/vim-airline"]
+	path = vim/bundle/vim-airline
+	url = https://github.com/bling/vim-airline
+[submodule "vim/bundle/vim-enmasse"]
+	path = vim/bundle/vim-enmasse
+	url = https://github.com/Wolfy87/vim-enmasse
+[submodule "vim/bundle/vim-flake8"]
+	path = vim/bundle/vim-flake8
+	url = https://github.com/nvie/vim-flake8
+[submodule "vim/bundle/vim-git"]
+	path = vim/bundle/vim-git
+	url = https://github.com/tpope/vim-git
