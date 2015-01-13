@@ -28,7 +28,7 @@ source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
-export PATH=$PATH:$HOME/bin:/usr/local/bin
+export PATH=/usr/bin:/usr/sbin:/bin:/usr/local/bin:/usr/local/games:/usr/games:$HOME/bin
 export VIRTUAL_ENV_DISABLE_PROMPT=disable
 
 # Preferred editor for local and remote sessions
@@ -94,12 +94,14 @@ bindkey '\e[5~' beginning-of-history
 # bindkey "^[[B" down-line-or-beginning-search # Down
 
 alias e=exit
-alias ctags="/usr/local/bin/ctags"
 alias j=autojump
 alias ls='ls -G'
+
 alias ta='tmux attach -t'
 alias ts='tmux new-session -s'
 alias tl='tmux list-sessions'
+
+alias c='tput reset'
 
 # Git
 alias gf='git flow'
@@ -114,9 +116,6 @@ alias gl='git pull'
 [[ -f $HOME/.profile ]] && source $HOME/.profile
 # User settings
 [[ -f $HOME/.user_profile ]] && source $HOME/.user_profile
-
-# Corregir so a l'appleTv
-alias fixairplay="sudo kill `ps -ax | grep 'coreaudiod' | grep 'sbin' |awk '{print $1}'`"
 
 # Keypad
 # 0 . Enter

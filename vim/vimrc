@@ -1,30 +1,41 @@
 set nocompatible                                             " Treure la compatibilitat amb Vi
 
 filetype off
+filetype plugin indent on
+filetype plugin on
+
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
 Bundle 'gmarik/vundle'
-Bundle 'rking/ag.vim'
-Bundle 'kien/ctrlp.vim'
-Bundle 'gregsexton/gitv'
-Bundle 'sjl/gundo.vim'
-Bundle 'klen/python-mode'
-Bundle 'majutsushi/tagbar'
-Bundle 'sirver/ultisnips'
+
 Bundle 'Lokaltog/vim-easymotion'
+Bundle 'bling/vim-airline'
+Bundle 'christoomey/vim-tmux-navigator'
+Bundle 'gregsexton/gitv'
+Bundle 'honza/vim-snippets'
+Bundle 'kablamo/vim-git-log'
+Bundle 'kien/ctrlp.vim'
+Bundle 'majutsushi/tagbar'
+Bundle 'mhinz/vim-signify'
+Bundle 'rking/ag.vim'
+Bundle 'sirver/ultisnips'
+Bundle 'sjl/gundo.vim'
+Bundle 'szw/vim-maximizer'
 Bundle 'tommcdo/vim-exchange'
 Bundle 'tpope/vim-fugitive'
-Bundle 'kablamo/vim-git-log'
-Bundle 'szw/vim-maximizer'
-Bundle 'xolox/vim-misc'
+Bundle 'tpope/vim-git'
 Bundle 'tpope/vim-repeat'
-Bundle 'xolox/vim-session'
-Bundle 'mhinz/vim-signify'
-Bundle 'honza/vim-snippets'
 Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-unimpaired'
-Bundle 'christoomey/vim-tmux-navigator'
+Bundle 'xolox/vim-misc'
+Bundle 'xolox/vim-session'
+Bundle 'nvie/vim-flake8'
+Bundle 'gorkunov/smartpairs.vim'
+Bundle 'Wolfy87/vim-enmasse'
+"Bundle 'terryma/vim-expand-region'
+
+runtime macros/matchit.vim
 
 filetype on
 
@@ -64,7 +75,7 @@ function! RetabIndents()
     call cursor(previous_cursor_line, previous_cursor_column)
 endfunc
 
-" Use Q to intelligently close a window 
+" Use Q to intelligently close a window
 " (if there are multiple windows into the same buffer)
 " or kill the buffer entirely if it's the last window looking into that buffer
 function! CloseWindowOrKillBuffer()
@@ -131,7 +142,7 @@ set autoindent                                               " Activar autoinden
 set autoread                                                 " Reload files when changed on disk, i.e. via `git checkout`
 set backspace=2                                              " Fix broken backspace in some setups
 set backupdir=~/.vim_backup                                  " Canviar directori de buffer de backup
-set clipboard=unnamed                                        " Yank and paste with the system clipboard
+set clipboard=unnamedplus                                    " Yank and paste with the system clipboard
 set cursorline                                               " Ressalta la línia a on està el cursor
 set directory=~/.vim_swap                                    " Canviar directori de fitxers de swap
 set encoding=utf-8                                           " Posar utf-8 com a encoding per defecte
@@ -139,7 +150,8 @@ set expandtab tabstop=4 softtabstop=4 shiftwidth=4           " Definir els tabs 
 set foldlevel=99
 set foldmethod=indent                                        " Es creen folds directament amb la indentació
 set foldnestmax=1                                            " Perquè es crein folds només al primer nivell d'indentació
-set hidden                                                   " Permet moure entre buffers sense mostrar error si estan editats però no guardats
+"set guifont=DejaVu\ Sans\ Mono\ for\ Powerline:h9
+set hidden                                                   " Permet moure entre buffers encara que aquests estiguin editats sense guardar
 set history=10000                                            " Guarda les 10000 últimes comandes
 set hlsearch                                                 " Es ressalten les coincidencies de la cerca
 set ignorecase                                               " Case-sensitive search if any caps
@@ -151,19 +163,19 @@ set lazyredraw                                               " No repinta la pan
 set list                                                     " Ressaltar els caràcters especials
 set listchars=tab:▸\ ,trail:▫,eol:↵,extends:»,precedes:«     " Llistat de caràcters especials que es ressalten
 set mouse=                                                   " Deshabilitar el ratolí
-set noerrorbells                                             " Perquè no surtin errors sonors
-set novisualbell                                             " Perquè no surtin errors visuals
+set noerrorbells                                             " No vull errors sonors
+set visualbell                                               " No vull errors visuals
 set nowrap sidescroll=1 sidescrolloff=1                      " No tallar frases
 set nrformats=                                               " Per utilitzar el sistema decimal, no octal a l'incrementar o decrementar números
 set number                                                   " Show line numbers
 set relativenumber                                           " Shows relative numbers
 set ruler                                                    " Show where you are
 set showcmd                                                  " Mostra els parcials de les comandes
-set showtabline=2                                            " Mostra la barra de tabs sempre
+set showtabline=2                                            " Mostra la barra de tabs/buffers sempre
 set smartcase                                                " Case-sensitive search if any caps
 set splitright splitbelow                                    " Obre les noves finestres a la dreta i a sota
 set switchbuf=usetab                                         " A l'obrir un nou fitxer posiciona a la tab/finestra que el tingui, no l'obre de nou
-set tags+=~/.virtualenv.tags                                 " Afegir tags del virtualenv als tags per defecte
+set tags=tags;./tags;~/.virtualenv.tags                      " Afegir tags del virtualenv als tags per defecte
 set undodir=~/.vim_undo                                      " Canviar directori de fitxers de undo
 set undofile                                                 " Undo persistent, encara que es tanqui el buffer
 set undolevels=10000                                         " Augmenta a 10000 el nivel de undo
@@ -172,6 +184,8 @@ set viewdir=~/.vim_view                                      " Canviar directori
 set wildignore=*/tmp/,*.so,*.swp,*.zip,*.pdf,*.bak,*.pyc,*.pyo,*.class,*.tmp,*~      " Ignorar aquests tipus de fitxers
 set wildmenu                                                 " Show a navigable menu for tab completion on command line
 set wildmode=full                                            " Mostra les possibilitats d'una comanda rotllo zsh
+set term=screen-256color
+set pastetoggle=<f5>
 
 " Activar colors al text
 syntax enable
@@ -207,6 +221,8 @@ cnoremap %% <C-R>=fnameescape(expand('%:h')).'/'<Cr>
 cnoremap <C-p> <Up>
 cnoremap <C-n> <Down>
 
+cmap w!! w !sudo tee % >/dev/null
+
 
 """"""""""""""""""""""""""""""""""""""""""""""""""
 " Mapeig de comandes
@@ -218,10 +234,19 @@ command! Wq wq
 command! W w
 command! Q q
 
+command! Qa qa
+
 
 """"""""""""""""""""""""""""""""""""""""""""""""""
 " Mapeig de teclat en mode normal
 """"""""""""""""""""""""""""""""""""""""""""""""""
+
+" Deshabilitar les tecles de moviment
+nnoremap <Right> <Nop>
+nnoremap <Left>  <Nop>
+nnoremap <Down>  <Nop>
+nnoremap <Up>    <Nop>
+nnoremap <Space> <Nop>
 
 " Moure a la finestra dreta amb Ctrl-H
 nmap <C-h> <C-w>h
@@ -231,6 +256,9 @@ nmap <C-j> <C-w>j
 nmap <C-k> <C-w>k
 " Moure a la finestra esquerra amb Ctrl-L
 nmap <C-l> <C-w>l
+
+map gb :bnext<Cr>
+map gB :bprevious<Cr>
 
 " Per fer redo es pot amb <C-r> i amb U
 nnoremap U <C-r>
@@ -246,13 +274,6 @@ nmap <S-y> y$
 
 " Separar línies amb K
 nnoremap K i<Cr><Esc>^
-
-" Deshabilitar les tecles de moviment
-nnoremap <Right> <Nop>
-nnoremap <Left>  <Nop>
-nnoremap <Down>  <Nop>
-nnoremap <Up>    <Nop>
-nnoremap <Space> <Nop>
 
 " Guardar el buffer actual amb <Leader>w
 nnoremap <Leader>w :w<CR>
@@ -272,7 +293,7 @@ nnoremap <Leader><Leader>0 <Esc>:set expandtab tabstop=4 softtabstop=4 shiftwidt
 nnoremap <Leader>* :%s/\<<C-r><C-w>\>//g<Left><Left>
 
 " Obrir .vimrc a un nou tab amb <Leader>vv
-nnoremap <Leader>vv :tabedit $MYVIMRC<Cr>
+nnoremap <Leader>vv :e $MYVIMRC<Cr>
 
 " Alterna entre maximitzar finestra actual i mantenir la disposició amb <Leader>m
 nnoremap <silent> <Leader>m :MaximizerToggle<Cr>
@@ -285,6 +306,9 @@ nnoremap <silent> <Leader>tc :tabclose<Cr>
 nnoremap <silent> <Leader>te :tabedit %<Cr>
 " Tancar totes les pestanyes menys l'actual amb <Leader>to
 nnoremap <silent> <Leader>to :tabonly<Cr>
+
+" Mostrar el tipus de fitxer
+nnoremap <Leader>ty :set filetype<Cr>
 
 " Tancar tots els buffers que no estan oberts a cap finestra ni pestanya
 nnoremap <silent> dhb :Wipeout<Cr>
@@ -308,14 +332,24 @@ noremap <silent> <Leader>ri :call RetabIndents()<Cr>
 nnoremap & :&&<CR>
 xnoremap & :&&<CR>
 
-filetype plugin indent on
+augroup CursorLineOnlyInActiveWindow
+    autocmd!
+    autocmd VimEnter,WinEnter,BufWinEnter * setlocal cursorline
+    autocmd WinLeave * setlocal nocursorline
+augroup END
 
-if executable("ag")
-    set grepprg=ag\ --nogroup\ --nocolor\ --ignore-case\ --column
-    set grepformat=%f:%l:%c:%m,%f:%l:%m
-    nnoremap <key> :silent! grep! "\b<C-r><C-w>\b"<CR>:cwindow<CR>:redraw!<CR>
-    "command! -nargs=+ -complete=file_in_path -bar Ag silent grep! <args>|cwindow|redraw!
+if has("eval")
+    function! SL(function)
+        if exists('*'.a:function)
+            return call(a:function,[])
+        else
+            return ''
+        endif
+    endfunction
 endif
+
+"set statusline=[%n]\ %<%.99f\ %h%w%m%r%{SL('CapsLockStatusline')}%y%{SL('fugitive#statusline')}%#ErrorMsg#%{SL('SyntasticStatuslineFlag')}%*%=%-14.(%l,%c%V%)\ %P
+"set statusline=[%n]\ %<%.99f\ %h%w%m%r%y%{SL('fugitive#statusline')}%#ErrorMsg#%{SL('SyntasticStatuslineFlag')}%*%=%(%l,%c%V%)
 
 """"""""""""""""""""""""""""""""""""""""""""""""""
 " Configuració de plugins
@@ -324,14 +358,8 @@ endif
 " CtrlP: Navegació ràpida de fitxers i buffers.
 " git clone https://github.com/kien/ctrlp.vim
 
-let g:ctrlp_match_window = 'order:ttb,max:20'                " Ordenació i número màxim de resultats
+let g:ctrlp_match_window = 'order:ttb,max:30'                " Ordenació i número màxim de resultats
 let g:ctrlp_regexp = 1                                       " Fa servir cerca amb regex, no fuzzy
-
-"let g:ctrlp_custom_ignore = {
-"  \ 'dir':  '\v[\/]\.(git|hg|svn)$',
-"  \ 'file': '\v\.(exe|so|dll|pyc|pyo)$',
-"  \ 'link': 'some_bad_symbolic_links',
-"  \ }
 
 if executable('ag')
 " Use The Silver Searcher https://github.com/ggreer/the_silver_searcher
@@ -411,34 +439,48 @@ nnoremap <Leader>sc :CloseSession<Cr>
 " vim-repeat:
 " git clone https://github.com/tpope/vim-repeat
 
-" ultisnips:
+" Ultisnips: Per snippets
 " git clone https://github.com/sirver/ultisnips
+let g:snips_email = 'loirog@gmail.com'
+let g:snips_github = 'https://github.com/oriolgg'
 autocmd FileType python :UltiSnipsAddFiletypes python.django
 autocmd FileType htmldjango :UltiSnipsAddFiletypes html.htmldjango
 
 " vim-snippets:
 " git clone https://github.com/honza/vim-snippets
 
-" python-mode:
-" git clone https://github.com/klen/python-mode
-let g:pymode_doc_bind = 'Ñ'
-let g:pymode_doc = 0
-autocmd FileType python map <buffer> <Leader>pv :PymodeLint<Cr><C-J>
-let g:pymode_lint_on_write = 0
-let g:pymode_lint_ignore = "E501,C901"
-autocmd FileType python :set colorcolumn=0
-"let g:pymode_lint_mccabe_complexity = 10
-
 " vundle:
 " git clone https://github.com/gmarik/vundle.git
 
-"""""""""""""""""""""" Esborrats
+" vim-airline: Línia de status i de buffers
+" git clone https://github.com/bling/vim-airline
+"let g:airline_section_b = '%{getcwd()}'
+let g:airline_section_c = '%f'
+"let g:airline_section_x = ''
+let g:airline_section_y = ''
+let g:airline#extensions#tagbar#enabled = 0
+let g:airline#extensions#hunks#enabled = 0
+let g:airline#extensions#virtualenv#enabled = 0
+let g:airline_left_sep=''
+let g:airline_right_sep=''
+let g:airline#extensions#tabline#show_buffers = 1
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#formatter = 'default'
+let g:airline#extensions#tabline#buffer_nr_show = 1
+let g:airline#extensions#bufferline#enabled = 1
+let g:airline#extensions#whitespace#checks = []
 
-" (Esborrat) vim-flake8:
+" vim-tmux-navigator: Per passar de vim a tmux
+" git clone https://github.com/christoomey/vim-tmux-navigator
+
+" vim-misc:
+" git clone https://github.com/xolox/vim-misc
+
+" vim-flake8:
 " git clone https://github.com/nvie/vim-flake8
-"autocmd FileType python map <buffer> <Leader>pv :call CallFlake8()<Cr>
-"let g:flake8_ignore = "E501,C901"
-"let g:flake8_max_complexity=10
+autocmd filetype python map <buffer> <leader>pv :call Flake8()<cr>
+
+"""""""""""""""""""""" Esborrats
 
 " (Esborrat) vim-css-color: Mostra el background del codi hex del color indicat.
 " git clone https://github.com/ap/vim-css-color
@@ -457,7 +499,4 @@ autocmd FileType python :set colorcolumn=0
 
 " (Esborrat) vim-seek: fer cerques a la mateixa línia utilitzant dos caràcters en lloc d'un com f i F
 " git clone https://github.com/goldfeld/vim-seek
-
-" (Esborrat) ultisnips: Snippets de TextMate i SnipMate
-" git clone https://github.com/SirVer/ultisnips
 
