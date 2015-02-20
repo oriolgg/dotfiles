@@ -1,5 +1,5 @@
 [core]
-	excludesfile = /Users/oriol/.gitignore_global
+	excludesfile = ~/.gitignore_global
 [difftool "sourcetree"]
 	cmd = /opt/homebrew-cask/Caskroom/p4merge/2014.1/p4merge.app/Contents/MacOS/p4merge \"$LOCAL\" \"$REMOTE\"
 	path = 
@@ -8,7 +8,7 @@
 	trustExitCode = true
 [user]
 	name = Oriol Garcia
-	email = oriol@photistics.com
+	email = ogarcia@redpoints.com
 [color]
 	ui = true
 [alias]
