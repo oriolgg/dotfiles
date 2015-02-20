@@ -103,3 +103,6 @@
 [submodule "vim/bundle/vim-textobj-lastpat"]
 	path = vim/bundle/vim-textobj-lastpat
 	url = https://github.com/kana/vim-textobj-lastpat
+[submodule "zsh/oh-my-zsh"]
+	path = zsh/oh-my-zsh
+	url = https://github.com/oriolgg/oh-my-zsh
