@@ -101,3 +101,9 @@
 [submodule "vim/bundle/vim-git"]
 	path = vim/bundle/vim-git
 	url = https://github.com/tpope/vim-git
+[submodule "vim/bundle/vim-textobj-user"]
+	path = vim/bundle/vim-textobj-user
+	url = https://github.com/kana/vim-textobj-user
+[submodule "vim/bundle/vim-textobj-lastpat"]
+	path = vim/bundle/vim-textobj-lastpat
+	url = https://github.com/kana/vim-textobj-lastpat
