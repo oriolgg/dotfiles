@@ -8,7 +8,7 @@ ZSH_THEME="oriol"
 CASE_SENSITIVE="true"
 
 #plugins=(git history-substring-search)
-plugins=(colored-man common-aliases encode64 extract git git-flow-avh history jsontools tmuxinator osx xcode z)
+plugins=(colored-man common-aliases encode64 extract git git-flow-avh history jsontools tmuxinator z)
 
 autoload -U zmv
 setopt correct
@@ -141,3 +141,7 @@ bindkey -s "^[Oj" "*"
 bindkey -s "^[Oo" "/"
 bindkey -s "^[OX" "="
 
+if [[ `uname` == 'Linux' ]]; then
+elif [[ `uname` == 'Darwin' ]]; then
+    source ~/.zshrc-osx
+fi
