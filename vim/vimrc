@@ -33,7 +33,8 @@ Bundle 'xolox/vim-session'
 Bundle 'nvie/vim-flake8'
 Bundle 'gorkunov/smartpairs.vim'
 Bundle 'Wolfy87/vim-enmasse'
-"Bundle 'terryma/vim-expand-region'
+Bundle 'kana/vim-textobj-user'
+Bundle 'kana/vim-textobj-lastpat'
 
 runtime macros/matchit.vim
 
@@ -142,7 +143,11 @@ set autoindent                                               " Activar autoinden
 set autoread                                                 " Reload files when changed on disk, i.e. via `git checkout`
 set backspace=2                                              " Fix broken backspace in some setups
 set backupdir=~/.vim_backup                                  " Canviar directori de buffer de backup
-set clipboard=unnamedplus                                    " Yank and paste with the system clipboard
+if has('mac')
+    set clipboard=unnamed                                        " Yank and paste with the system clipboard
+elseif has('unix')
+    set clipboard=unnamedplus                                        " Yank and paste with the system clipboard
+endif
 set cursorline                                               " Ressalta la línia a on està el cursor
 set directory=~/.vim_swap                                    " Canviar directori de fitxers de swap
 set encoding=utf-8                                           " Posar utf-8 com a encoding per defecte
@@ -157,7 +162,7 @@ set hlsearch                                                 " Es ressalten les 
 set ignorecase                                               " Case-sensitive search if any caps
 set incsearch                                                " Search as you type
 set infercase                                                " Per fer case sensitive l'autocomplete
-set iskeyword+=_,$,@,%                                       " Not word dividers
+set iskeyword+=_,@,%                                       " Not word dividers
 set laststatus=2                                             " Always show statusline
 set lazyredraw                                               " No repinta la pantalla mentre s'executen macros, més ràpid
 set list                                                     " Ressaltar els caràcters especials
@@ -191,6 +196,7 @@ set pastetoggle=<f5>
 syntax enable
 
 set t_Co=256                                                 " Número de colors
+let base16colorspace=256
 set background=dark
 colorscheme solarized
 highlight SpecialKey ctermbg=NONE guibg=NONE
