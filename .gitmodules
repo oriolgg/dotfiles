@@ -106,3 +106,6 @@
 [submodule "zsh/oh-my-zsh"]
 	path = zsh/oh-my-zsh
 	url = https://github.com/oriolgg/oh-my-zsh
+[submodule "tmux/tmux/plugins/tmux-resurrect"]
+	path = tmux/tmux/plugins/tmux-resurrect
+	url = https://github.com/tmux-plugins/tmux-resurrect
