@@ -254,6 +254,12 @@ nnoremap <Down>  <Nop>
 nnoremap <Up>    <Nop>
 nnoremap <Space> <Nop>
 
+" Tracta les línies llarques com a línies separades
+map j gj
+map k gk
+map gj j
+map gk k
+
 " Moure a la finestra dreta amb Ctrl-H
 nmap <C-h> <C-w>h
 " Moure a la finestra inferior amb Ctrl-J
