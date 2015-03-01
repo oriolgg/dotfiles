@@ -207,7 +207,7 @@ highlight SpecialKey ctermbg=NONE guibg=NONE
 """"""""""""""""""""""""""""""""""""""""""""""""""
 
 " Anar al mode normal des del mode insert amb jj
-inoremap jj <Esc>:w<Cr>
+inoremap jj <Esc>
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""
