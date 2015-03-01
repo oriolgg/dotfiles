@@ -28,7 +28,7 @@ source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
-export PATH=/usr/bin:/usr/sbin:/bin:/usr/local/bin:/usr/local/games:/usr/games:$HOME/bin
+export PATH=/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:$PATH
 export VIRTUAL_ENV_DISABLE_PROMPT=disable
 
 # Preferred editor for local and remote sessions
@@ -93,6 +93,7 @@ bindkey '\e[5~' beginning-of-history
 # bindkey "^[[A" up-line-or-beginning-search # Up
 # bindkey "^[[B" down-line-or-beginning-search # Down
 
+alias q=exit
 alias e=exit
 alias j=autojump
 alias ls='ls -G'
