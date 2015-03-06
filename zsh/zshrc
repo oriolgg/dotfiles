@@ -8,7 +8,7 @@ ZSH_THEME="oriol"
 CASE_SENSITIVE="true"
 
 #plugins=(git history-substring-search)
-plugins=(colored-man common-aliases encode64 extract git git-flow-avh history jsontools tmuxinator z)
+plugins=(colored-man common-aliases encode64 extract git git-flow-avh history jsontools tmuxinator z zsh-syntax-highlighting)
 
 autoload -U zmv
 setopt correct
@@ -49,6 +49,9 @@ stty -ixon
 stty stop undef
 
 # vi style incremental search
+bindkey "^R" history-incremental-search-backward
+bindkey "^S" history-incremental-search-forward
+
 bindkey '^P' history-beginning-search-backward
 bindkey '^N' history-beginning-search-forward
 bindkey '^A' beginning-of-line
