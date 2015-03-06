@@ -61,17 +61,21 @@ To clone my dotfiles:
 
 Finally, you just need to create some symlinks:
 
-    ln -s ~/.dotfiles/zsh/oh-my-zsh ~/.oh-my-zsh
+    ln -s ~/.dotfiles/agignore ~/.agignore
     ln -s ~/.dotfiles/bash/profile ~/.profile
-    ln -s ~/.dotfiles/tmux/tmux.conf ~/.tmux.conf
-    ln -s ~/.dotfiles/vim/ ~/.vim
-    ln -s ~/.dotfiles/vim/vimrc ~/.vimrc
-    ln -s ~/.dotfiles/vim/gvimrc ~/.gvimrc
-    ln -s ~/.dotfiles/zsh/zshrc ~/.zshrc
+    ln -s ~/.dotfiles/ctags ~/.ctags
     ln -s ~/.dotfiles/git/gitconfig ~/.gitconfig
     ln -s ~/.dotfiles/git/gitignore_global ~/.gitignore_global
-    ln -s ~/.dotfiles/agignore ~/.agignore
     ln -s ~/.dotfiles/tmux/tmux-vim-select-pane /usr/local/bin/tmux-vim-select-pane
+    ln -s ~/.dotfiles/tmux ~/.tmux
+    ln -s ~/.dotfiles/tmux/tmux.conf ~/.tmux.conf
+    ln -s ~/.dotfiles/tmux/tmux-osx.conf ~/.tmux-osx.conf
+    ln -s ~/.dotfiles/vim ~/.vim
+    ln -s ~/.dotfiles/vim/gvimrc ~/.gvimrc
+    ln -s ~/.dotfiles/vim/vimrc ~/.vimrc
+    ln -s ~/.dotfiles/zsh/oh-my-zsh ~/.oh-my-zsh
+    ln -s ~/.dotfiles/zsh/zshrc ~/.zshrc
+    ln -s ~/.dotfiles/zsh/zshrc-osx ~/.zshrc-osx
 
 [zsh]: http://www.zsh.org/
 [tmux]: http://tmux.sourceforge.net/
