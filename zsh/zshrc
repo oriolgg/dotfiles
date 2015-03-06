@@ -108,10 +108,10 @@ alias tl='tmux list-sessions'
 alias c='tput reset'
 
 # Git
-alias gf='git flow'
 alias gcd='git checkout develop'
 alias gch='git checkout hotfix'
 alias gcr='git checkout release'
+alias gf='git fetch'
 alias gs='git status'
 alias gp='git push'
 alias gl='git pull'
