@@ -10,14 +10,21 @@ call vundle#rc()
 Bundle 'gmarik/vundle'
 
 Bundle 'Lokaltog/vim-easymotion'
+Bundle 'Wolfy87/vim-enmasse'
 Bundle 'bling/vim-airline'
 Bundle 'christoomey/vim-tmux-navigator'
+Bundle 'gorkunov/smartpairs.vim'
 Bundle 'gregsexton/gitv'
 Bundle 'honza/vim-snippets'
 Bundle 'kablamo/vim-git-log'
+Bundle 'kana/vim-textobj-lastpat'
+Bundle 'kana/vim-textobj-user'
 Bundle 'kien/ctrlp.vim'
 Bundle 'majutsushi/tagbar'
 Bundle 'mhinz/vim-signify'
+Bundle 'mtth/scratch.vim'
+Bundle 'nvie/vim-flake8'
+Bundle 'oblitum/rainbow'
 Bundle 'rking/ag.vim'
 Bundle 'sirver/ultisnips'
 Bundle 'sjl/gundo.vim'
@@ -30,11 +37,6 @@ Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-unimpaired'
 Bundle 'xolox/vim-misc'
 Bundle 'xolox/vim-session'
-Bundle 'nvie/vim-flake8'
-Bundle 'gorkunov/smartpairs.vim'
-Bundle 'Wolfy87/vim-enmasse'
-Bundle 'kana/vim-textobj-user'
-Bundle 'kana/vim-textobj-lastpat'
 
 runtime macros/matchit.vim
 
@@ -122,6 +124,7 @@ endfunction
 " Mantenir la posició del cursor quan obres un buffer al mateix lloc a on el tenies al tancar-lo
 autocmd BufWinLeave *.* silent! mkview
 autocmd BufWinEnter *.* silent! loadview
+autocmd FocusLost *.* :wa
 
 " When restoring a hidden buffer Vim doesn't always keep the same view (like
 " when your view shows beyond the end of the file). (Vim tip 1375)
