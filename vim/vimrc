@@ -9,34 +9,34 @@ call vundle#rc()
 
 Bundle 'gmarik/vundle'
 
+Bundle 'rking/ag.vim'
+Bundle 'kien/ctrlp.vim'
+Bundle 'gregsexton/gitv'
+Bundle 'sjl/gundo.vim'
+Bundle 'oblitum/rainbow'
+Bundle 'mtth/scratch.vim'
+Bundle 'gorkunov/smartpairs.vim'
+Bundle 'majutsushi/tagbar'
+Bundle 'sirver/ultisnips'
+Bundle 'bling/vim-airline'
 Bundle 'Lokaltog/vim-easymotion'
 Bundle 'Wolfy87/vim-enmasse'
-Bundle 'bling/vim-airline'
-Bundle 'christoomey/vim-tmux-navigator'
-Bundle 'gorkunov/smartpairs.vim'
-Bundle 'gregsexton/gitv'
-Bundle 'honza/vim-snippets'
-Bundle 'kablamo/vim-git-log'
-Bundle 'kana/vim-textobj-lastpat'
-Bundle 'kana/vim-textobj-user'
-Bundle 'kien/ctrlp.vim'
-Bundle 'majutsushi/tagbar'
-Bundle 'mhinz/vim-signify'
-Bundle 'mtth/scratch.vim'
-Bundle 'nvie/vim-flake8'
-Bundle 'oblitum/rainbow'
-Bundle 'rking/ag.vim'
-Bundle 'sirver/ultisnips'
-Bundle 'sjl/gundo.vim'
-Bundle 'szw/vim-maximizer'
 Bundle 'tommcdo/vim-exchange'
+Bundle 'nvie/vim-flake8'
 Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-git'
-Bundle 'tpope/vim-repeat'
-Bundle 'tpope/vim-surround'
-Bundle 'tpope/vim-unimpaired'
+Bundle 'kablamo/vim-git-log'
+Bundle 'szw/vim-maximizer'
 Bundle 'xolox/vim-misc'
+Bundle 'tpope/vim-repeat'
 Bundle 'xolox/vim-session'
+Bundle 'mhinz/vim-signify'
+Bundle 'honza/vim-snippets'
+Bundle 'tpope/vim-surround'
+Bundle 'kana/vim-textobj-lastpat'
+Bundle 'kana/vim-textobj-user'
+Bundle 'christoomey/vim-tmux-navigator'
+Bundle 'tpope/vim-unimpaired'
 
 runtime macros/matchit.vim
 
@@ -492,6 +492,9 @@ let g:airline#extensions#whitespace#checks = []
 " vim-flake8:
 " git clone https://github.com/nvie/vim-flake8
 autocmd filetype python map <buffer> <leader>pv :call Flake8()<cr>
+
+let g:rainbow_active = 1
+nnoremap cop :RainbowToggle<cr>a<esc>
 
 """""""""""""""""""""" Esborrats
 
