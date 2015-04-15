@@ -496,6 +496,9 @@ autocmd filetype python map <buffer> <leader>pv :call Flake8()<cr>
 let g:rainbow_active = 1
 nnoremap cop :RainbowToggle<cr>a<esc>
 
+let g:scratch_autohide = 0
+"nnoremap gs :Scratch
+
 """""""""""""""""""""" Esborrats
 
 " (Esborrat) vim-css-color: Mostra el background del codi hex del color indicat.
