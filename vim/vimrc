@@ -13,8 +13,6 @@ Bundle 'rking/ag.vim'
 Bundle 'kien/ctrlp.vim'
 Bundle 'gregsexton/gitv'
 Bundle 'sjl/gundo.vim'
-Bundle 'oblitum/rainbow'
-Bundle 'mtth/scratch.vim'
 Bundle 'gorkunov/smartpairs.vim'
 Bundle 'majutsushi/tagbar'
 Bundle 'sirver/ultisnips'
@@ -492,12 +490,6 @@ let g:airline#extensions#whitespace#checks = []
 " vim-flake8:
 " git clone https://github.com/nvie/vim-flake8
 autocmd filetype python map <buffer> <leader>pv :call Flake8()<cr>
-
-let g:rainbow_active = 1
-nnoremap cop :RainbowToggle<cr>a<esc>
-
-let g:scratch_autohide = 0
-"nnoremap gs :Scratch
 
 """""""""""""""""""""" Esborrats
 
