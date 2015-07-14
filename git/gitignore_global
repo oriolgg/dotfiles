@@ -1,6 +1,5 @@
 *~
 .DS_Store
-**/migrations
 tags
 **/tags
 **/*.pyc
