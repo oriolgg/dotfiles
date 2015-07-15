@@ -2,9 +2,14 @@
 /log/
 /logs/
 /tmp/
+/app/cache/
 *.bak
 *.class
 *.pyc
 *.pyo
 *.swp
 *.tmp
+*.jpg
+*.png
+*.gif
+*.tags
