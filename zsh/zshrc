@@ -8,7 +8,25 @@ ZSH_THEME="oriol"
 CASE_SENSITIVE="true"
 
 #plugins=(git history-substring-search)
-plugins=(colored-man common-aliases encode64 extract git git-flow-avh history jsontools tmuxinator z zsh-syntax-highlighting)
+plugins=(
+    brew
+    colored-man
+    common-aliases
+    composer
+    encode64
+    extract
+    fasd
+    git
+    git-extras
+    git-flow-avh
+    history
+    jsontools
+    pass
+    symfony2
+    tmuxinator
+    vagrant
+    zsh-syntax-highlighting
+)
 
 autoload -U zmv
 setopt correct
@@ -101,6 +119,8 @@ alias e=exit
 alias j=autojump
 alias ls='ls -G'
 
+alias ag='ag -U'
+
 alias ta='tmux attach -t'
 alias ts='tmux new-session -s'
 alias tl='tmux list-sessions'
@@ -115,6 +135,13 @@ alias gf='git fetch'
 alias gs='git status'
 alias gp='git push'
 alias gl='git pull'
+
+alias f='find . -name'
+
+alias ctags-objc="ctags --languages=ObjectiveC --langmap=ObjectiveC:.h.m"
+alias ctags-php="ctags --languages=PHP --langmap=PHP:.php"
+alias ctags-js="ctags --languages=JavaScript --langmap=JavaScript:.js"
+alias ctags-css="ctags --languages=css --langmap=css:.css"
 
 # Common settings
 [[ -f $HOME/.profile ]] && source $HOME/.profile
