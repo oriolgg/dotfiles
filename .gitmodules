@@ -118,9 +118,9 @@
 [submodule "fonts"]
 	path = fonts
 	url = https://github.com/powerline/fonts
-[submodule "vim/bundle/scratch.vim"]
-	path = vim/bundle/scratch.vim
-	url = https://github.com/mtth/scratch.vim
-[submodule "vim/bundle/rainbow"]
-	path = vim/bundle/rainbow
-	url = https://github.com/oblitum/rainbow
+[submodule "vim/bundle/vim-taggatron"]
+	path = vim/bundle/vim-taggatron
+	url = http://github.com/joonty/vim-taggatron
+[submodule "vim/bundle/vim-jinja"]
+	path = vim/bundle/vim-jinja
+	url = http://github.com/mitsuhiko/vim-jinja
