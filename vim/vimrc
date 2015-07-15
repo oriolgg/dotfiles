@@ -36,6 +36,9 @@ Bundle 'kana/vim-textobj-user'
 Bundle 'christoomey/vim-tmux-navigator'
 Bundle 'tpope/vim-unimpaired'
 
+Bundle 'mitsuhiko/vim-jinja'
+Bundle 'joonty/vim-taggatron'
+
 runtime macros/matchit.vim
 
 filetype on
@@ -163,10 +166,10 @@ set hlsearch                                                 " Es ressalten les 
 set ignorecase                                               " Case-sensitive search if any caps
 set incsearch                                                " Search as you type
 set infercase                                                " Per fer case sensitive l'autocomplete
-set iskeyword+=_,@,%                                       " Not word dividers
+set iskeyword+=_,@,%                                         " Not word dividers
 set laststatus=2                                             " Always show statusline
 set lazyredraw                                               " No repinta la pantalla mentre s'executen macros, més ràpid
-set list                                                     " Ressaltar els caràcters especials
+set nolist                                                   " No ressaltar els caràcters especials
 set listchars=tab:▸\ ,trail:▫,eol:↵,extends:»,precedes:«     " Llistat de caràcters especials que es ressalten
 set mouse=                                                   " Deshabilitar el ratolí
 set noerrorbells                                             " No vull errors sonors
@@ -181,17 +184,23 @@ set showtabline=2                                            " Mostra la barra d
 set smartcase                                                " Case-sensitive search if any caps
 set splitright splitbelow                                    " Obre les noves finestres a la dreta i a sota
 set switchbuf=usetab                                         " A l'obrir un nou fitxer posiciona a la tab/finestra que el tingui, no l'obre de nou
-set tags=tags;./tags;~/.virtualenv.tags                      " Afegir tags del virtualenv als tags per defecte
+set tags=tags                                                " Afegir tags del virtualenv als tags per defecte
 set undodir=~/.vim_undo                                      " Canviar directori de fitxers de undo
 set undofile                                                 " Undo persistent, encara que es tanqui el buffer
 set undolevels=10000                                         " Augmenta a 10000 el nivel de undo
 set undoreload=10000                                         " Augmenta a 10000 el nivel de redo
 set viewdir=~/.vim_view                                      " Canviar directori de fitxers de view
-set wildignore=*/tmp/,*.so,*.swp,*.zip,*.pdf,*.bak,*.pyc,*.pyo,*.class,*.tmp,*~      " Ignorar aquests tipus de fitxers
+set wildignore=*/tmp/,*/.git/*,*.so,*.swp,*.zip,*.pdf,*.bak,*.pyc,*.pyo,*.class,*.tmp,*~      " Ignorar aquests tipus de fitxers
 set wildmenu                                                 " Show a navigable menu for tab completion on command line
 set wildmode=full                                            " Mostra les possibilitats d'una comanda rotllo zsh
 set term=screen-256color
 set pastetoggle=<f5>
+
+autocmd BufNewFile,BufRead *.h,*.m set tags+=~/Documents/global-objc-tags
+autocmd BufNewFile,BufRead *.js set tags+=.js.tags
+autocmd BufNewFile,BufRead *.php set tags+=.php.tags
+autocmd BufNewFile,BufRead *.css set tags+=.css.tags
+autocmd BufNewFile,BufRead *.twig set tags+=.js.tags;.css.tags
 
 " Activar colors al text
 syntax enable
@@ -371,17 +380,17 @@ endif
 
 let g:ctrlp_match_window = 'order:ttb,max:30'                " Ordenació i número màxim de resultats
 let g:ctrlp_regexp = 1                                       " Fa servir cerca amb regex, no fuzzy
+let g:ctrlp_max_files=0
 
 if executable('ag')
-" Use The Silver Searcher https://github.com/ggreer/the_silver_searcher
-    let g:ackprg = 'ag --nogroup --column'
+    let g:ackprg = 'ag --nogroup --nocolor --column'
 
     " Use Ag over Grep
     set grepprg=ag\ --nogroup\ --nocolor\ --column
     set grepformat=%f:%l:%c:%m
 
     " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
-    let g:ctrlp_user_command = 'ag %s -l --nogroup --nocolor --column -g ""'
+    let g:ctrlp_user_command = 'ag %s -lU --nogroup --nocolor --column -g ""'
 endif
 
 " Mostrar finestra amb el CtrlP de buffers oberts
@@ -490,6 +499,25 @@ let g:airline#extensions#whitespace#checks = []
 " vim-flake8:
 " git clone https://github.com/nvie/vim-flake8
 autocmd filetype python map <buffer> <leader>pv :call Flake8()<cr>
+
+" vim-taggatron
+let g:tagcommands = {
+\    "php" : {
+\        "tagfile": ".php.tags"
+\    },
+\    "javascript" : {
+\        "tagfile": ".js.tags"
+\    },
+\    "css" : {
+\        "tagfile": ".css.tags"
+\    },
+\    "cmd" : "ctags"
+\}
+
+au BufRead,BufNewFile *.twig set filetype=jinja
+au BufRead,BufNewFile *.twig set filetype=htmljinja
+au BufRead,BufNewFile *.html set filetype=jinja
+au BufRead,BufNewFile *.html set filetype=htmljinja
 
 """""""""""""""""""""" Esborrats
 
