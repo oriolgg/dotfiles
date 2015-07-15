@@ -1,8 +1,8 @@
-/.git/
-/log/
-/logs/
-/tmp/
-/app/cache/
+/**/.git/
+/**/log/
+/**/logs/
+/**/tmp/
+/**/cache/
 *.bak
 *.class
 *.pyc
