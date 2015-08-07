@@ -1,0 +1,26 @@
+" Exit insert mode with double j
+inoremap jj <Esc>
+
+" Split lines uith K
+nnoremap K i<Cr><Esc>^
+
+" Case-insensitive searching.
+set ignorecase
+
+" But case-sensitive if expression contains a capital letter.
+set smartcase
+
+set number
+set relativenumber
+
+" Use the system pasteboard
+set pasteboard
+
+" Map <space>b to toggle a breakpoint at the current line
+nmap <space>b :xccmd toggleBreakpointAtCurrentLine<CR>
+
+" Use <space>cm to toggle comments for the selection
+nmap <space>cm :xccmd commentAndUncommentCurrentLines<CR>
+
+" Save buffer with <space>w
+nmap <space>w :w<CR>
