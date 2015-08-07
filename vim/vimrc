@@ -107,6 +107,16 @@ function! CallFlake8()
     call cursor(previous_cursor_line, previous_cursor_column)
 endfunction
 
+command! -nargs=0 -bar Qargs execute 'args' QuickfixFilenames()
+function! QuickfixFilenames()
+  " Building a hash ensures we get each buffer only once
+  let buffer_numbers = {}
+  for quickfix_item in getqflist()
+    let buffer_numbers[quickfix_item['bufnr']] = bufname(quickfix_item['bufnr'])
+  endfor
+  return join(map(values(buffer_numbers), 'fnameescape(v:val)'))
+endfunction
+
 
 """"""""""""""""""""""""""""""""""""""""""""""""""
 " Creació de directoris
@@ -342,6 +352,15 @@ nnoremap <expr> gv '`[' . strpart(getregtype(), 0, 1) . '`]'
 " Intercanviar v per <C-v>: v per defecte serà en bloc
 nnoremap v <C-V>
 nnoremap <C-V> v
+
+map <Leader>e :e <C-R>=expand('%:p:h') . '/' <Cr>
+map <Leader>c :f <C-R>=expand('%:p:h') . '/' <Cr>
+map <Leader>t :tabe <C-R>=expand('%:p:h') . '/' <Cr>
+map <Leader>s :split <C-R>=expand('%:p:h') . '/' <Cr>
+
+" <C-k> i <C-j> mouen la finestra amunt i avall una línia alhora que el cursor
+map <c-j> j<c-e>
+map <c-k> k<c-y>
 
 " Esborra els espais al final de totes les línies amb <Leader>dt
 noremap <silent> <Leader>dt :call DeleteTrailingWS()<Cr>
