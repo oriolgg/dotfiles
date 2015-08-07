@@ -55,6 +55,8 @@ if [[ -n $SSH_CONNECTION ]]; then
 else
   export EDITOR='vim'
 fi
+export VISUAL='vim'
+export EDITOR='vim'
 
 # Using the AUTOCD option, you can simply type the name of a directory, and it will become the current directory.
 setopt AUTO_CD
@@ -137,6 +139,8 @@ alias gp='git push'
 alias gl='git pull'
 
 alias f='find . -name'
+
+alias vi=vim
 
 alias ctags-objc="ctags --languages=ObjectiveC --langmap=ObjectiveC:.h.m"
 alias ctags-php="ctags --languages=PHP --langmap=PHP:.php"
