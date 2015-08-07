@@ -1,4 +1,4 @@
 plugins=(colored-man common-aliases encode64 extract git git-flow-avh history jsontools tmuxinator osx xcode z)
-alias vim='~/Applications/MacVim.app/Contents/MacOS/Vim'
+alias vim='/Applications/MacVim.app/Contents/MacOS/Vim'
 
 alias ctags="`brew --prefix`/bin/ctags"
