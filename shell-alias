@@ -1,0 +1,39 @@
+alias q=exit
+alias e=exit
+alias j=autojump
+alias ls='ls -G'
+
+alias ag='ag -U'
+
+alias ta='tmux attach -t'
+alias ts='tmux new-session -s'
+alias tl='tmux list-sessions'
+
+alias c='tput reset'
+
+# Git
+alias gcd='git checkout develop'
+alias gch='git checkout hotfix'
+alias gcr='git checkout release'
+alias gf='git fetch'
+alias gs='git status'
+alias gp='git push'
+alias gl='git pull'
+alias glu='git pull upstream'
+alias ga='git add .'
+alias go='git commit -m'
+alias gc='git checkout'
+alias gmd='git merge develop'
+
+alias edf='vim -S $HOME/.vim_sessions/dotfiles.vim'
+
+alias f='find . -name'
+
+alias vi=vim
+
+alias ctags-objc="ctags --languages=ObjectiveC --langmap=ObjectiveC:.h.m"
+alias ctags-php="ctags --languages=PHP --langmap=PHP:.php"
+alias ctags-js="ctags --languages=JavaScript --langmap=JavaScript:.js"
+alias ctags-css="ctags --languages=css --langmap=css:.css"
+
+[[ -f $HOME/scripts/start.sh ]] && alias start=$HOME'/scripts/start.sh'
