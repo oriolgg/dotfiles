@@ -217,7 +217,7 @@ syntax enable
 
 set t_Co=256                                                 " Número de colors
 let base16colorspace=256
-set background=dark
+set background=light
 colorscheme solarized
 highlight SpecialKey ctermbg=NONE guibg=NONE
 
@@ -522,13 +522,16 @@ autocmd filetype python map <buffer> <leader>pv :call Flake8()<cr>
 " vim-taggatron
 let g:tagcommands = {
 \    "php" : {
-\        "tagfile": ".php.tags"
+\        "tagfile": ".php.tags",
+\        "args": "-R"
 \    },
 \    "javascript" : {
-\        "tagfile": ".js.tags"
+\        "tagfile": ".js.tags",
+\        "args": "-R"
 \    },
 \    "css" : {
-\        "tagfile": ".css.tags"
+\        "tagfile": ".css.tags",
+\        "args": "-R"
 \    },
 \    "cmd" : "ctags"
 \}
