@@ -3,6 +3,7 @@
 /**/logs/
 /**/tmp/
 /**/cache/
+node_modules
 *.bak
 *.class
 *.pyc
