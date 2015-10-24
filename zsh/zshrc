@@ -21,6 +21,7 @@ plugins=(
     git-flow-avh
     history
     jsontools
+    osx
     pass
     symfony2
     tmuxinator
@@ -28,6 +29,7 @@ plugins=(
     zsh-syntax-highlighting
 )
 
+DISABLE_AUTO_TITLE="true"
 autoload -U zmv
 setopt correct
 
@@ -108,44 +110,7 @@ bindkey '\e[3~' delete-char # Del
 bindkey '\e[6~' end-of-history
 bindkey '\e[5~' beginning-of-history
 
-# Navegar per l'històric de comandes que comencen pel que hi ha escrit a la línia
-# autoload -U up-line-or-beginning-search
-# autoload -U down-line-or-beginning-search
-# zle -N up-line-or-beginning-search
-# zle -N down-line-or-beginning-search
-# bindkey "^[[A" up-line-or-beginning-search # Up
-# bindkey "^[[B" down-line-or-beginning-search # Down
-
-alias q=exit
-alias e=exit
-alias j=autojump
-alias ls='ls -G'
-
-alias ag='ag -U'
-
-alias ta='tmux attach -t'
-alias ts='tmux new-session -s'
-alias tl='tmux list-sessions'
-
-alias c='tput reset'
-
-# Git
-alias gcd='git checkout develop'
-alias gch='git checkout hotfix'
-alias gcr='git checkout release'
-alias gf='git fetch'
-alias gs='git status'
-alias gp='git push'
-alias gl='git pull'
-
-alias f='find . -name'
-
-alias vi=vim
-
-alias ctags-objc="ctags --languages=ObjectiveC --langmap=ObjectiveC:.h.m"
-alias ctags-php="ctags --languages=PHP --langmap=PHP:.php"
-alias ctags-js="ctags --languages=JavaScript --langmap=JavaScript:.js"
-alias ctags-css="ctags --languages=css --langmap=css:.css"
+[[ -f $HOME/.shell-alias ]] && source $HOME/.shell-alias
 
 # Common settings
 [[ -f $HOME/.profile ]] && source $HOME/.profile
@@ -178,5 +143,5 @@ bindkey -s "^[OX" "="
 
 if [[ `uname` == 'Linux' ]]; then
 elif [[ `uname` == 'Darwin' ]]; then
-    source ~/.zshrc-osx
+    source $HOME/.zshrc-osx
 fi
