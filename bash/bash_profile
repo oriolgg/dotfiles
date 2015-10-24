@@ -17,9 +17,14 @@ else
 	PS1="\[\033[0;33m\][\t] \[\033[0;37m\]\[\033[1;32m\]\u\[\033[0;37m\]@\[\033[0;32m\]\h\[\033[0;37m\]:\[\033[0;36m\]\w\[\033[0;m\]> "
 fi
 
+[[ -f $HOME/.shell-alias ]] && source $HOME/.shell-alias
+
 # Common settings
 [[ -f $HOME/.profile ]] && source $HOME/.profile
 # User settings
 [[ -f $HOME/.user_profile ]] && source $HOME/.user_profile
 
-
+# Settings fot OSX
+if [ "$(uname)" == "Darwin" ]; then
+    [[ -f $HOME/.bashrc-osx ]] && source $HOME/.bashrc-osx
+fi
