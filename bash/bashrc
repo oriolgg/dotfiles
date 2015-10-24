@@ -24,6 +24,8 @@ fi
 # User settings
 [[ -f $HOME/.user_profile ]] && source $HOME/.user_profile
 
+[[ -f $HOME/.bash-alias ]] && source $HOME/.bash-alias
+
 # Settings fot OSX
 if [ "$(uname)" == "Darwin" ]; then
     [[ -f $HOME/.bashrc-osx ]] && source $HOME/.bashrc-osx
