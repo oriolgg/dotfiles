@@ -99,18 +99,24 @@ launchctl load ~/Library/LaunchAgents/homebrew.mxcl.mongodb.plist
 # Change the default shell
 chsh -s /bin/zsh
 
-ln -s ~/.dotfiles/agignore ~/.agignore
-ln -s ~/.dotfiles/ctags ~/.ctags
-ln -s ~/.dotfiles/bash/profile ~/.profile
-ln -s ~/.dotfiles/git/gitconfig ~/.gitconfig
-ln -s ~/.dotfiles/git/gitignore_global ~/.gitignore_global
-ln -s ~/.dotfiles/tmux/tmux-osx.conf ~/.tmux-osx.conf
-ln -s ~/.dotfiles/tmux/tmux-vim-select-pane /usr/local/bin/tmux-vim-select-pane
-ln -s ~/.dotfiles/tmux/tmux ~/.tmux
-ln -s ~/.dotfiles/tmux/tmux.conf ~/.tmux.conf
-ln -s ~/.dotfiles/vim/ ~/.vim
-ln -s ~/.dotfiles/vim/gvimrc ~/.gvimrc
-ln -s ~/.dotfiles/vim/vimrc ~/.vimrc
-ln -s ~/.dotfiles/zsh/oh-my-zsh ~/.oh-my-zsh
-ln -s ~/.dotfiles/zsh/zshrc ~/.zshrc
-ln -s ~/.dotfiles/zsh/zshrc-osx ~/.zshrc-osx
+ln -s .dotfiles/agignore .agignore
+ln -s .dotfiles/bash/bash-alias .bash-alias
+ln -s .dotfiles/bash/bashrc .bashrc
+ln -s .dotfiles/bash/bashrc-osx .bashrc-osx
+ln -s .dotfiles/bash/profile .profile
+ln -s .dotfiles/ctags .ctags
+ln -s .dotfiles/git/gitconfig .gitconfig
+ln -s .dotfiles/git/gitignore_global .gitignore_global
+ln -s .dotfiles/shell-alias .shell-alias
+ln -s .dotfiles/tmux/tmux .tmux
+ln -s .dotfiles/tmux/tmux-osx.conf .tmux-osx.conf
+ln -s .dotfiles/tmux/tmux-vim-select-pane /usr/local/bin/tmux-vim-select-pane
+ln -s .dotfiles/tmux/tmux.conf .tmux.conf
+ln -s .dotfiles/vim .vim
+ln -s .dotfiles/vim/gvimrc .gvimrc
+ln -s .dotfiles/vim/vimrc .vimrc
+ln -s .dotfiles/vim/xvimrc .xvimrc
+ln -s .dotfiles/zsh/oh-my-zsh .oh-my-zsh
+ln -s .dotfiles/zsh/oh-my-zsh .oh-my-zsh
+ln -s .dotfiles/zsh/zshrc .zshrc
+ln -s .dotfiles/zsh/zshrc-osx .zshrc-osx
