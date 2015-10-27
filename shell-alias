@@ -8,6 +8,7 @@ alias ag='ag -U'
 alias ta='tmux attach -t'
 alias ts='tmux new-session -s'
 alias tl='tmux list-sessions'
+alias tk='tmux list-panes -s -F '\''#{pane_pid} #{pane_current_command}'\'' | grep -v tmux | awk '\''{print $1}'\'' | xargs kill -9 ; e'
 
 alias c='tput reset'
 
@@ -36,4 +37,5 @@ alias ctags-php="ctags --languages=PHP --langmap=PHP:.php"
 alias ctags-js="ctags --languages=JavaScript --langmap=JavaScript:.js"
 alias ctags-css="ctags --languages=css --langmap=css:.css"
 
-[[ -f $HOME/scripts/start.sh ]] && alias start=$HOME'/scripts/start.sh'
+[[ -f $HOME/scripts/start_session.sh ]] && alias start=$HOME'/scripts/start_session.sh'
+[[ -f $HOME/scripts/resize_session.sh ]] && alias resize=$HOME'/scripts/resize_session.sh'
