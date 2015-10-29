@@ -179,6 +179,7 @@ set infercase                                                " Per fer case sens
 set iskeyword+=_,@,%                                         " Not word dividers
 set laststatus=2                                             " Always show statusline
 set lazyredraw                                               " No repinta la pantalla mentre s'executen macros, més ràpid
+set linebreak
 set nolist                                                   " No ressaltar els caràcters especials
 set listchars=tab:▸\ ,trail:▫,eol:↵,extends:»,precedes:«     " Llistat de caràcters especials que es ressalten
 set mouse=                                                   " Deshabilitar el ratolí
