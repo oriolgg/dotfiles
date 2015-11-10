@@ -122,7 +122,7 @@ endfunction
 " Creació de directoris
 """"""""""""""""""""""""""""""""""""""""""""""""""
 :silent call EnsureDirExists($HOME.'/.vim_backup')           " Crear directori de backup
-:silent call EnsureDirExists($HOME.'/.vim_swap')             " Crear directori de swap
+" :silent call EnsureDirExists($HOME.'/.vim_swap')             " Crear directori de swap
 :silent call EnsureDirExists($HOME.'/.vim_undo')             " Crear directori de undo
 :silent call EnsureDirExists($HOME.'/.vim_view')             " Crear directori de view
 :silent call EnsureDirExists($HOME.'/.vim_sessions')         " Crear directori de sessions
@@ -163,7 +163,7 @@ elseif has('unix')
     set clipboard=unnamedplus                                        " Yank and paste with the system clipboard
 endif
 set cursorline                                               " Ressalta la línia a on està el cursor
-set directory=~/.vim_swap                                    " Canviar directori de fitxers de swap
+" set directory=~/.vim_swap                                    " Canviar directori de fitxers de swap
 set encoding=utf-8                                           " Posar utf-8 com a encoding per defecte
 set expandtab tabstop=4 softtabstop=4 shiftwidth=4           " Definir els tabs com 4 espais
 set foldlevel=99
