@@ -124,3 +124,6 @@
 [submodule "vim/bundle/vim-jinja"]
 	path = vim/bundle/vim-jinja
 	url = http://github.com/mitsuhiko/vim-jinja
+[submodule "vim/bundle/vim-phpqa"]
+	path = vim/bundle/vim-phpqa
+	url = http://github.com/joonty/vim-phpqa

@@ -38,6 +38,7 @@ Bundle 'tpope/vim-unimpaired'
 
 Bundle 'mitsuhiko/vim-jinja'
 Bundle 'joonty/vim-taggatron'
+Bundle 'joonty/vim-phpqa'
 
 runtime macros/matchit.vim
 
@@ -186,6 +187,7 @@ set mouse=                                                   " Deshabilitar el r
 set noerrorbells                                             " No vull errors sonors
 set visualbell                                               " No vull errors visuals
 set nowrap sidescroll=1 sidescrolloff=1                      " No tallar frases
+set noswapfile
 set nrformats=                                               " Per utilitzar el sistema decimal, no octal a l'incrementar o decrementar números
 set number                                                   " Show line numbers
 set relativenumber                                           " Shows relative numbers
@@ -543,6 +545,11 @@ au BufRead,BufNewFile *.twig set filetype=jinja
 au BufRead,BufNewFile *.twig set filetype=htmljinja
 au BufRead,BufNewFile *.html set filetype=jinja
 au BufRead,BufNewFile *.html set filetype=htmljinja
+
+let g:phpqa_codesniffer_args = "--standard=Symfony2"
+let g:phpqa_messdetector_autorun = 0
+let g:phpqa_codesniffer_autorun = 0
+autocmd filetype php map <buffer> qcs :Phpcs<cr>
 
 """""""""""""""""""""" Esborrats
 
