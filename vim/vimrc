@@ -152,7 +152,7 @@ if &term == 'screen' || &term == 'xterm'
 endif
 
 " keyboard shortcuts
-let mapleader = "\<Space>"
+let mapleader = " "
 
 set autoindent                                               " Activar autoindendació
 set autoread                                                 " Reload files when changed on disk, i.e. via `git checkout`
@@ -271,11 +271,10 @@ command! Qa qa
 """"""""""""""""""""""""""""""""""""""""""""""""""
 
 " Deshabilitar les tecles de moviment
-nnoremap <Right> <Nop>
-nnoremap <Left>  <Nop>
-nnoremap <Down>  <Nop>
-nnoremap <Up>    <Nop>
-nnoremap <Space> <Nop>
+nnoremap <Left> :echoe "Use h"<CR>
+nnoremap <Right> :echoe "Use l"<CR>
+nnoremap <Up> :echoe "Use k"<CR>
+nnoremap <Down> :echoe "Use j"<CR>
 
 " Tracta les línies llarques com a línies separades
 map j gj
