@@ -104,6 +104,7 @@ ln -s .dotfiles/bash/bash-alias .bash-alias
 ln -s .dotfiles/bash/bashrc .bashrc
 ln -s .dotfiles/bash/bashrc-osx .bashrc-osx
 ln -s .dotfiles/bash/profile .profile
+ln -s .dotfiles/bin .bin
 ln -s .dotfiles/ctags .ctags
 ln -s .dotfiles/git/gitconfig .gitconfig
 ln -s .dotfiles/git/gitignore_global .gitignore_global
