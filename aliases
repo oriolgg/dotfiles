@@ -25,7 +25,7 @@ alias glu='git pull upstream'
 alias ga='git add .'
 alias go='git commit -m'
 alias gc='git checkout'
-alias gmd='git merge develop'
+alias gmd='git-merge-develop'
 alias gbpurge='git branch --merged develop | grep -v "\*" | grep -v "master" | grep -v "develop" | grep -v "staging" | xargs -n 1 git branch -d'
 
 alias edf='vim -S $HOME/.vim_sessions/dotfiles.vim'
