@@ -8,7 +8,7 @@ on run session_name
         tell myterm     
             launch session "Default Session"
             tell the last session
-                write text "tstart " & session_name
+                write text "ts " & session_name
             end tell
         end tell
 
