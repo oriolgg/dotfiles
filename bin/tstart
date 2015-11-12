@@ -8,8 +8,8 @@ if [ ! $session ] ; then
     [[ $session_name == -* ]] && session_name=${session_name:1}
 fi
 
-move_to_iterm_tab='osascript '$HOME'/scripts/move_to_iterm_tab.scpt '$session_name
-create_iterm_window_and_session='osascript '$HOME'/scripts/create_iterm_window_and_session.scpt '$session_name
+move_to_iterm_tab='osascript '$HOME'/.applescript/move_to_iterm_tab.scpt '$session_name
+create_iterm_window_and_session='osascript '$HOME'/.applescript/create_iterm_window_and_session.scpt '$session_name
 start_configured_session=$HOME'/scripts/start/'$session_name
 
 in_tmux() {

@@ -100,6 +100,7 @@ launchctl load ~/Library/LaunchAgents/homebrew.mxcl.mongodb.plist
 chsh -s /bin/zsh
 
 ln -s .dotfiles/agignore .agignore
+ln -s .dotfiles/applescript .applescript
 ln -s .dotfiles/bash/bash-alias .bash-alias
 ln -s .dotfiles/bash/bashrc .bashrc
 ln -s .dotfiles/bash/bashrc-osx .bashrc-osx
