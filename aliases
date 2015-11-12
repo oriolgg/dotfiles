@@ -6,7 +6,7 @@ alias ls='ls -G'
 alias ag='ag -U'
 
 alias ta='tmux attach -t'
-alias ts='tmux new-session -s'
+alias ts='tmux-start'
 alias tl='tmux list-sessions'
 alias tk='tmux list-panes -s -F '\''#{pane_pid} #{pane_current_command}'\'' | grep -v tmux | awk '\''{print $1}'\'' | xargs kill -9 ; e'
 
