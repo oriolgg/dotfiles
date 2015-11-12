@@ -127,3 +127,6 @@
 [submodule "vim/bundle/vim-phpqa"]
 	path = vim/bundle/vim-phpqa
 	url = http://github.com/joonty/vim-phpqa
+[submodule "vim/bundle/vim-mkdir"]
+	path = vim/bundle/vim-mkdir
+	url = http://github.com/pbrisbin/vim-mkdir
