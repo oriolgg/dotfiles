@@ -1,0 +1,51 @@
+#!/bin/sh
+
+session_name=$1
+
+if [ ! $session ] ; then
+    path_name="$(basename "$PWD" | tr . -)"
+    session_name=${1-$path_name}
+    [[ $session_name == -* ]] && session_name=${session_name:1}
+fi
+
+move_to_iterm_tab='osascript '$HOME'/scripts/move_to_iterm_tab.scpt '$session_name
+create_iterm_window_and_session='osascript '$HOME'/scripts/create_iterm_window_and_session.scpt '$session_name
+start_configured_session=$HOME'/scripts/start/'$session_name
+
+in_tmux() {
+    [ -n "$TMUX" ]
+}
+
+session_exists() {
+    tmux list-sessions | sed -E 's/:.*$//' | grep -q "^$session_name$"
+}
+
+session_is_attached() {
+    [[ `tmux ls -F '#{session_attached} #{session_name}' | grep "$session_name" | awk '{ print $1 }'` = "1" ]]
+}
+
+if session_exists ; then
+    if session_is_attached ; then
+        $move_to_iterm_tab
+    else
+        if in_tmux ; then
+            $create_iterm_window_and_session
+        else
+            echo '\033];'$session_name'\007'
+            tmux attach -t "$session_name"
+        fi
+    fi
+else
+    if in_tmux ; then
+        $create_iterm_window_and_session
+    else
+        if [[ -f $start_configured_session ]] ; then
+            $start_configured_session
+        else
+            tmux start-server
+            tmux new-session -s $session_name -d
+            echo '\033];'$session_name'\007'
+            tmux attach-session -t "$session_name"
+        fi
+    fi
+fi
