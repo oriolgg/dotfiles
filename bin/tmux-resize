@@ -1,0 +1,75 @@
+#!/bin/sh
+
+in_tmux=`echo $TMUX`
+if [ ! -z $in_tmux ] ; then
+    function to_small_screen() {
+        tmux selectw -t 1
+        tmux selectp -t 2
+        tmux break-pane
+        tmux rename-window shell
+        new_window_index=$2
+        new_window_index=$((new_window_index+1))
+        while [ $new_window_index -ge 3 ] ; do
+            new_index=$((new_window_index-1))
+            tmux swap-window -s $new_window_index -t $new_index
+            new_window_index=$new_index
+        done
+        tmux selectw -t 1
+        if [ $1 -eq 3 ] ; then
+            tmux selectp -t 2
+            tmux join-pane -v -t :2
+        fi
+    }
+
+    function to_large_screen() {
+        tmux selectw -t 2
+        tmux selectp -t 1
+        tmux selectw -t 1
+        tmux join-pane -h -p 35 -s :2
+        if [ $1 -eq 2 ] ; then
+            tmux join-pane -v -s :2
+        fi
+    }
+
+    cols=`tput cols`
+    lines=`tput lines`
+    current_window=`tmux display -p '#I'`
+    current_pane=`tmux display -p '#P'`
+    session_windows=`tmux display-message -p '#{session_windows}'`
+
+    if [ $cols -le 200 ] ; then
+        tmux selectw -t 1
+        first_window_panes=`tmux display -p '#{window_panes}'`
+        if [ $first_window_panes -ge 2 ] ; then
+            to_small_screen $first_window_panes $session_windows
+            if [ $current_window -eq 2 ] ; then
+                current_window=3
+            elif [ $current_pane -eq 2 ] ; then
+                current_pane=1
+                current_window=2
+            elif [ $current_pane -eq 3 ] ; then
+                current_pane=2
+                current_window=2
+            fi
+        fi
+    else
+        tmux selectw -t 2
+        second_window_panes=`tmux display -p '#{window_panes}'`
+        tmux selectw -t 1
+        first_window_panes=`tmux display -p '#{window_panes}'`
+        if [ $session_windows -a $first_window_panes -eq 1 ] ; then
+            to_large_screen $second_window_panes
+            if [ $current_window -eq 3 ] ; then
+                current_window=2
+            elif [ $current_window -eq 2 -a $current_pane -eq 1 ] ; then
+                current_pane=2
+                current_window=1
+            elif [ $current_window -eq 2 -a $current_pane -eq 2 ] ; then
+                current_pane=3
+                current_window=1
+            fi
+        fi
+    fi
+    tmux selectw -t $current_window
+    tmux selectp -t $current_pane
+fi
