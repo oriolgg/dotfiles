@@ -107,7 +107,7 @@ ln -s .dotfiles/bash/profile .profile
 ln -s .dotfiles/ctags .ctags
 ln -s .dotfiles/git/gitconfig .gitconfig
 ln -s .dotfiles/git/gitignore_global .gitignore_global
-ln -s .dotfiles/shell-alias .shell-alias
+ln -s .dotfiles/aliases .aliases
 ln -s .dotfiles/tmux/tmux .tmux
 ln -s .dotfiles/tmux/tmux-osx.conf .tmux-osx.conf
 ln -s .dotfiles/tmux/tmux-vim-select-pane /usr/local/bin/tmux-vim-select-pane
