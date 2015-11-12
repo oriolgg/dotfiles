@@ -1,0 +1,8 @@
+#!/bin/sh
+
+set -e
+
+git checkout develop
+git pull
+git checkout "$1"
+git merge develop
