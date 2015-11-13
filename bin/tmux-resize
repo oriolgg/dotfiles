@@ -3,10 +3,7 @@
 in_tmux=`echo $TMUX`
 if [ ! -z $in_tmux ] ; then
     function to_small_screen() {
-        tmux selectw -t 1
-        tmux selectp -t 2
-        tmux break-pane
-        tmux rename-window shell
+        tmux break-pane -s :1.2
         new_window_index=$2
         new_window_index=$((new_window_index+1))
         while [ $new_window_index -ge 3 ] ; do
@@ -14,20 +11,16 @@ if [ ! -z $in_tmux ] ; then
             tmux swap-window -s $new_window_index -t $new_index
             new_window_index=$new_index
         done
-        tmux selectw -t 1
+        tmux rename-window -t :2 shell
         if [ $1 -eq 3 ] ; then
-            tmux selectp -t 2
-            tmux join-pane -v -t :2
+            tmux join-pane -v -t :2 -s :1.2
         fi
     }
 
     function to_large_screen() {
-        tmux selectw -t 2
-        tmux selectp -t 1
-        tmux selectw -t 1
-        tmux join-pane -h -p 35 -s :2
+        tmux join-pane -h -p 35 -s :2.1 -t :1
         if [ $1 -eq 2 ] ; then
-            tmux join-pane -v -s :2
+            tmux join-pane -v -s :2.1 -t :1
         fi
     }
 
@@ -36,10 +29,9 @@ if [ ! -z $in_tmux ] ; then
     current_window=`tmux display -p '#I'`
     current_pane=`tmux display -p '#P'`
     session_windows=`tmux display-message -p '#{session_windows}'`
+    first_window_panes=`tmux display -p -t :1.1 '#{window_panes}'`
 
     if [ $cols -le 200 ] ; then
-        tmux selectw -t 1
-        first_window_panes=`tmux display -p '#{window_panes}'`
         if [ $first_window_panes -ge 2 ] ; then
             to_small_screen $first_window_panes $session_windows
             if [ $current_window -eq 2 ] ; then
@@ -53,10 +45,7 @@ if [ ! -z $in_tmux ] ; then
             fi
         fi
     else
-        tmux selectw -t 2
-        second_window_panes=`tmux display -p '#{window_panes}'`
-        tmux selectw -t 1
-        first_window_panes=`tmux display -p '#{window_panes}'`
+        second_window_panes=`tmux display -p -t :2.1 '#{window_panes}'`
         if [ $session_windows -a $first_window_panes -eq 1 ] ; then
             to_large_screen $second_window_panes
             if [ $current_window -eq 3 ] ; then
@@ -70,6 +59,6 @@ if [ ! -z $in_tmux ] ; then
             fi
         fi
     fi
-    tmux selectw -t $current_window
-    tmux selectp -t $current_pane
+    tmux select-window -t :$current_window
+    tmux select-pane -t :.$current_pane
 fi
