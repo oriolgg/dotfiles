@@ -361,7 +361,7 @@ map <Leader>c :f <C-R>=expand('%:p:h') . '/' <Cr>
 map <Leader>t :tabe <C-R>=expand('%:p:h') . '/' <Cr>
 map <Leader>s :split <C-R>=expand('%:p:h') . '/' <Cr>
 
-map <Leader>n :enew<Cr>
+map <Leader>n :enew<Cr>i
 
 " <C-k> i <C-j> mouen la finestra amunt i avall una línia alhora que el cursor
 map <c-j> j<c-e>
