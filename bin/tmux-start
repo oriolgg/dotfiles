@@ -18,7 +18,7 @@ in_tmux() {
 }
 
 session_exists() {
-    tmux list-sessions | sed -E 's/:.*$//' | grep -q "^$session_name$"
+    tmux list-sessions 2>/dev/null | sed -E 's/:.*$//' | grep -q "^$session_name$"
 }
 
 session_is_attached() {
