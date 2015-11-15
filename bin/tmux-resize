@@ -44,7 +44,7 @@ if [ ! -z $in_tmux ] ; then
                 current_window_id=2
             fi
         fi
-    else
+    elif [ $session_windows -ge 2 ] ; then
         second_window_panes=`tmux display -p -t :2.1 '#{window_panes}'`
         if [ $session_windows -a $first_window_panes -eq 1 ] ; then
             to_large_screen $second_window_panes
