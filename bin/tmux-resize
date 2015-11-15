@@ -24,41 +24,41 @@ if [ ! -z $in_tmux ] ; then
         fi
     }
 
-    cols=`tput cols`
-    lines=`tput lines`
-    current_window=`tmux display -p '#I'`
-    current_pane=`tmux display -p '#P'`
+    window_width=`tmux display-message -p '#{window_width}'`
+    window_height=`tmux display-message -p '#{window_height}'`
+    current_window_id=`tmux display -p '#I'`
+    current_pane_id=`tmux display -p '#P'`
     session_windows=`tmux display-message -p '#{session_windows}'`
     first_window_panes=`tmux display -p -t :1.1 '#{window_panes}'`
 
-    if [ $cols -le 200 ] ; then
+    if [ $window_width -le 200 ] ; then
         if [ $first_window_panes -ge 2 ] ; then
             to_small_screen $first_window_panes $session_windows
-            if [ $current_window -eq 2 ] ; then
-                current_window=3
-            elif [ $current_pane -eq 2 ] ; then
-                current_pane=1
-                current_window=2
-            elif [ $current_pane -eq 3 ] ; then
-                current_pane=2
-                current_window=2
+            if [ $current_window_id -eq 2 ] ; then
+                current_window_id=3
+            elif [ $current_pane_id -eq 2 ] ; then
+                current_pane_id=1
+                current_window_id=2
+            elif [ $current_pane_id -eq 3 ] ; then
+                current_pane_id=2
+                current_window_id=2
             fi
         fi
     else
         second_window_panes=`tmux display -p -t :2.1 '#{window_panes}'`
         if [ $session_windows -a $first_window_panes -eq 1 ] ; then
             to_large_screen $second_window_panes
-            if [ $current_window -eq 3 ] ; then
-                current_window=2
-            elif [ $current_window -eq 2 -a $current_pane -eq 1 ] ; then
-                current_pane=2
-                current_window=1
-            elif [ $current_window -eq 2 -a $current_pane -eq 2 ] ; then
-                current_pane=3
-                current_window=1
+            if [ $current_window_id -eq 3 ] ; then
+                current_window_id=2
+            elif [ $current_window_id -eq 2 -a $current_pane_id -eq 1 ] ; then
+                current_pane_id=2
+                current_window_id=1
+            elif [ $current_window_id -eq 2 -a $current_pane_id -eq 2 ] ; then
+                current_pane_id=3
+                current_window_id=1
             fi
         fi
     fi
-    tmux select-window -t :$current_window
-    tmux select-pane -t :.$current_pane
+    tmux select-window -t :$current_window_id
+    tmux select-pane -t :.$current_pane_id
 fi
