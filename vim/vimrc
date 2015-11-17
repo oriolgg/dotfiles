@@ -528,17 +528,19 @@ autocmd filetype python map <buffer> <leader>pv :call Flake8()<cr>
 let g:tagcommands = {
 \    "php" : {
 \        "tagfile": ".php.tags",
+\        "cmd" : "ctags",
 \        "args": "-R"
 \    },
 \    "javascript" : {
 \        "tagfile": ".js.tags",
+\        "cmd" : "ctags",
 \        "args": "-R"
 \    },
 \    "css" : {
 \        "tagfile": ".css.tags",
+\        "cmd" : "ctags",
 \        "args": "-R"
 \    },
-\    "cmd" : "ctags"
 \}
 
 au BufRead,BufNewFile *.twig set filetype=jinja
