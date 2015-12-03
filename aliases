@@ -39,3 +39,5 @@ alias ctags-objc="ctags --languages=ObjectiveC --langmap=ObjectiveC:.h.m"
 alias ctags-php="ctags --languages=PHP --langmap=PHP:.php"
 alias ctags-js="ctags --languages=JavaScript --langmap=JavaScript:.js"
 alias ctags-css="ctags --languages=css --langmap=css:.css"
+
+alias phpcs='phpcs --standard=Symfony2'
