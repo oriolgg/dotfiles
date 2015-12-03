@@ -295,6 +295,7 @@ map gB :bprevious<Cr>
 
 " Per fer redo es pot amb <C-r> i amb U
 nnoremap U <C-r>
+nnoremap :: @:
 
 " Executar vimgrep al directori actual
 nmap <Leader>vg :vimgrep //gj **/*<Left><Left><Left><Left><Left><Left><Left><Left>
