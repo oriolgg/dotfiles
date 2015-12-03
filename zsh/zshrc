@@ -9,7 +9,6 @@ CASE_SENSITIVE="true"
 
 #plugins=(git history-substring-search)
 plugins=(
-    brew
     colored-man
     common-aliases
     composer
@@ -26,6 +25,7 @@ plugins=(
     symfony2
     tmuxinator
     vagrant
+    zsh-completions
     zsh-syntax-highlighting
 )
 
