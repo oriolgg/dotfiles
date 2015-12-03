@@ -1,8 +1,4 @@
-*~
 .DS_Store
-tags
-**/tags
-**/.*.tags
-**/*.pyc
-*.pyc
-*.netrwhist
+*.sw[po]
+*.py[co]
+*tags
