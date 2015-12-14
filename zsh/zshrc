@@ -111,6 +111,7 @@ bindkey '\e[6~' end-of-history
 bindkey '\e[5~' beginning-of-history
 
 [[ -f $HOME/.aliases ]] && source $HOME/.aliases
+[[ -f $HOME/.aliases.local ]] && source $HOME/.aliases.local
 
 # Common settings
 [[ -f $HOME/.profile ]] && source $HOME/.profile
