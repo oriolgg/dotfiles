@@ -221,7 +221,7 @@ syntax enable
 
 set t_Co=256                                                 " Número de colors
 let base16colorspace=256
-set background=light
+set background=dark
 colorscheme solarized
 highlight SpecialKey ctermbg=NONE guibg=NONE
 
