@@ -130,3 +130,6 @@
 [submodule "vim/bundle/vim-mkdir"]
 	path = vim/bundle/vim-mkdir
 	url = http://github.com/pbrisbin/vim-mkdir
+[submodule "vim/bundle/vim-swift"]
+	path = vim/bundle/vim-swift
+	url = http://github.com/toyamarinyon/vim-swift

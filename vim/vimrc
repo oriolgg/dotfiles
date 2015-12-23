@@ -41,6 +41,8 @@ Bundle 'mitsuhiko/vim-jinja'
 Bundle 'joonty/vim-taggatron'
 Bundle 'joonty/vim-phpqa'
 
+Bundle 'toyamarinyon/vim-swift'
+
 runtime macros/matchit.vim
 
 filetype on
