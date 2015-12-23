@@ -13,6 +13,9 @@ set smartcase
 set number
 set relativenumber
 
+" Use system clipboard
+set clipboard=unnamed
+
 " Use the system pasteboard
 set pasteboard
 
@@ -21,6 +24,13 @@ nmap <space>b :xccmd toggleBreakpointAtCurrentLine<CR>
 
 " Use <space>cm to toggle comments for the selection
 nmap <space>cm :xccmd commentAndUncommentCurrentLines<CR>
+vmap <space>cm :xccmd commentAndUncommentCurrentLines<CR>
 
 " Save buffer with <space>w
 nmap <space>w :w<CR>
+
+" Highlight search
+set hlsearch
+
+" Toggle highlight search
+nmap <space>h :set hlsearch!<CR>
