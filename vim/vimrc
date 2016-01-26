@@ -546,6 +546,8 @@ let g:tagcommands = {
 \    },
 \}
 
+au BufRead,BufNewFile *.swift set filetype=swift
+
 au BufRead,BufNewFile *.twig set filetype=jinja
 au BufRead,BufNewFile *.twig set filetype=htmljinja
 au BufRead,BufNewFile *.html set filetype=jinja
