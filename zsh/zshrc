@@ -148,3 +148,6 @@ if [[ `uname` == 'Linux' ]]; then
 elif [[ `uname` == 'Darwin' ]]; then
     source $HOME/.zshrc-osx
 fi
+
+# TheFuck start
+eval "$(thefuck --alias)"
