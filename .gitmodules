@@ -8,7 +8,7 @@
 	branch = master
 [submodule "vim/bundle/ctrlp.vim"]
 	path = vim/bundle/ctrlp.vim
-	url = https://github.com/kien/ctrlp.vim
+	url = https://github.com/ctrlpvim/ctrlp.vim
 	branch = master
 [submodule "vim/bundle/gitv"]
 	path = vim/bundle/gitv
@@ -132,4 +132,4 @@
 	url = http://github.com/pbrisbin/vim-mkdir
 [submodule "vim/bundle/vim-swift"]
 	path = vim/bundle/vim-swift
-	url = http://github.com/toyamarinyon/vim-swift
+	url = https://github.com/kballard/vim-swift
