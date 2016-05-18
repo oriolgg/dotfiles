@@ -1,10 +1,11 @@
 [core]
 	excludesfile = ~/.gitignore_global
+	editor = mvim -v
 [difftool "sourcetree"]
-	cmd = /opt/homebrew-cask/Caskroom/p4merge/2014.3-1007540/p4merge.app/Contents/MacOS/p4merge \"$LOCAL\" \"$REMOTE\"
+	cmd = /opt/homebrew-cask/Caskroom/p4merge/2015.2-1312139/p4merge.app/Contents/MacOS/p4merge \"$LOCAL\" \"$REMOTE\"
 	path = 
 [mergetool "sourcetree"]
-	cmd = /opt/homebrew-cask/Caskroom/p4merge/2014.3-1007540/p4merge.app/Contents/MacOS/p4merge \"$BASE\" \"$LOCAL\" \"$REMOTE\" \"$MERGED\"
+	cmd = /opt/homebrew-cask/Caskroom/p4merge/2015.2-1312139/p4merge.app/Contents/MacOS/p4merge \"$BASE\" \"$LOCAL\" \"$REMOTE\" \"$MERGED\"
 	trustExitCode = true
 [user]
 	name = Oriol Garcia
