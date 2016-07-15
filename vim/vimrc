@@ -181,7 +181,7 @@ set hlsearch                                                 " Es ressalten les 
 set ignorecase                                               " Case-sensitive search if any caps
 set incsearch                                                " Search as you type
 set infercase                                                " Per fer case sensitive l'autocomplete
-set iskeyword+=_,@,%                                         " Not word dividers
+set iskeyword+=_,@                                           " Not word dividers
 set laststatus=2                                             " Always show statusline
 set lazyredraw                                               " No repinta la pantalla mentre s'executen macros, més ràpid
 set linebreak
