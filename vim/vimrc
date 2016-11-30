@@ -214,10 +214,11 @@ set term=screen-256color
 set pastetoggle=<f5>
 
 autocmd BufNewFile,BufRead *.h,*.m set tags+=~/Documents/global-objc-tags
-autocmd BufNewFile,BufRead *.js set tags+=.js.tags
+" autocmd BufNewFile,BufRead *.js set tags+=.js.tags
 autocmd BufNewFile,BufRead *.php set tags+=.php.tags
 autocmd BufNewFile,BufRead *.css set tags+=.css.tags
-autocmd BufNewFile,BufRead *.twig set tags+=.js.tags;.css.tags
+" autocmd BufNewFile,BufRead *.twig set tags+=.js.tags;.css.tags
+autocmd BufNewFile,BufRead *.twig set tags+=.css.tags
 
 " Activar colors al text
 syntax on
@@ -536,17 +537,17 @@ let g:tagcommands = {
 \        "cmd" : "ctags",
 \        "args": "-R"
 \    },
-\    "javascript" : {
-\        "tagfile": ".js.tags",
-\        "cmd" : "ctags",
-\        "args": "-R"
-\    },
 \    "css" : {
 \        "tagfile": ".css.tags",
 \        "cmd" : "ctags",
 \        "args": "-R"
 \    },
 \}
+" \    "javascript" : {
+" \        "tagfile": ".js.tags",
+" \        "cmd" : "ctags",
+" \        "args": "-R"
+" \    },
 
 au BufRead,BufNewFile *.swift set filetype=swift
 
