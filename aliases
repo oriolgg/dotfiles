@@ -28,6 +28,7 @@ alias gc='git checkout'
 alias gmd='git-merge-develop'
 alias gbpurge='git branch --merged develop | grep -v "\*" | grep -v "master" | grep -v "develop" | grep -v "staging" | xargs -n 1 git branch -d'
 alias gmodpull='git submodule foreach git pull origin master'
+alias gu='gf ; gcm ; gl ; gcd ; gl ; gbpurge'
 
 alias edf='vim -S $HOME/.vim_sessions/dotfiles.vim'
 
