@@ -55,6 +55,8 @@ export NVM_DIR="$HOME/.nvm"
 
 export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 
+export EVENT_NOKQUEUE=1
+
 # Preferred editor for local and remote sessions
 if [[ -n $SSH_CONNECTION ]]; then
   export EDITOR='vim'
@@ -123,6 +125,8 @@ bindkey '\e[5~' beginning-of-history
 [[ -f $HOME/.profile ]] && source $HOME/.profile
 # User settings
 [[ -f $HOME/.user_profile ]] && source $HOME/.user_profile
+# User settings
+[[ -f $HOME/.zshrc.local ]] && source $HOME/.zshrc.local
 
 # Keypad
 # 0 . Enter
