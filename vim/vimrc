@@ -36,6 +36,7 @@ Bundle 'kana/vim-textobj-user'
 Bundle 'christoomey/vim-tmux-navigator'
 Bundle 'tpope/vim-unimpaired'
 Bundle 'pbrisbin/vim-mkdir'
+Bundle 'rhysd/clever-f.vim'
 
 Bundle 'mitsuhiko/vim-jinja'
 Bundle 'joonty/vim-taggatron'
@@ -301,6 +302,10 @@ map gB :bprevious<Cr>
 nnoremap U <C-r>
 nnoremap :: @:
 
+" Per centrar les cerques a vim
+nnoremap n nzz
+nnoremap N Nzz
+
 " Executar vimgrep al directori actual
 nmap <Leader>vg :vimgrep //gj **/*<Left><Left><Left><Left><Left><Left><Left><Left>
 
@@ -308,7 +313,7 @@ nmap <Leader>vg :vimgrep //gj **/*<Left><Left><Left><Left><Left><Left><Left><Lef
 nnoremap <silent> <Leader>/ :execute 'vimgrep /'.@/.'/g %'<Cr>:copen<Cr>
 
 " Copiar del caràcter actual al final de línia amb la tecla Y, per similitud amb D i C
-nmap <S-y> y$
+nmap Y y$
 
 " Separar línies amb K
 nnoremap K i<Cr><Esc>^

@@ -19,6 +19,10 @@ set clipboard=unnamed
 " Use the system pasteboard
 set pasteboard
 
+set nowrap
+set wrapscan
+set laststatus=0
+
 " Map <space>b to toggle a breakpoint at the current line
 nmap <space>b :xccmd toggleBreakpointAtCurrentLine<CR>
 
@@ -34,3 +38,43 @@ set hlsearch
 
 " Toggle highlight search
 nmap <space>h :set hlsearch!<CR>
+
+" Mappings {{{1
+" Vim Mappings {{{2
+nmap Y y$
+nmap S i<CR><ESC>^m`gk:s/ +$//<CR>``
+
+" Whitespace removal
+nmap :w<CR> :%s/^\s+$//g<CR>:w<CR>:echo "Written and trimmed whitespace"<CR>
+
+" Poor man's surround.vim
+nmap <space>` gewi`<ESC>ea`<ESC>
+nmap <space>' gewi'<ESC>ea'<ESC>
+nmap <space>" gewi"<ESC>ea"<ESC>
+
+" Windows
+nmap <C-h> <C-w>h
+nmap <C-j> <C-w>j
+nmap <C-k> <C-w>k
+nmap <C-l> <C-w>l
+
+" Xcode Mappings {{{2
+nmap gcc :xccmd commentAndUncommentCurrentLines<CR>
+vmap gc :xccmd commentAndUncommentCurrentLines<CR>
+
+" Navigation
+nmap <space>f :xcmenucmd Open Quickly...<CR>
+nmap <space>n :nissue<CR>
+nmap <space>p :pissue<CR>
+nmap <space>i :xcmenucmd Jump to Generated Interface<CR>
+
+" Show
+nmap <space>g :xcmenucmd History...<CR>
+nmap <space>F :xccmd showInFinder<CR>
+nmap <space>D :xccmd showDeveloperDocumentation<CR>
+nmap <space>d :xcmenucmd Quick Help for Selected Item<CR>
+
+" Toggle Toolbars
+nmap <space>h :xccmd toggleNavigatorsVisibility<CR>
+nmap <space>j :xccmd toggleDebuggerVisibility<CR>
+nmap <space>l :xccmd toggleUtilitiesVisibility<CR>
