@@ -40,7 +40,6 @@ Bundle 'rhysd/clever-f.vim'
 
 Bundle 'mitsuhiko/vim-jinja'
 Bundle 'joonty/vim-taggatron'
-Bundle 'joonty/vim-phpqa'
 
 Bundle 'kballard/vim-swift'
 
@@ -560,11 +559,6 @@ au BufRead,BufNewFile *.twig set filetype=jinja
 au BufRead,BufNewFile *.twig set filetype=htmljinja
 au BufRead,BufNewFile *.html set filetype=jinja
 au BufRead,BufNewFile *.html set filetype=htmljinja
-
-let g:phpqa_codesniffer_args = "--standard=Symfony2"
-let g:phpqa_messdetector_autorun = 0
-let g:phpqa_codesniffer_autorun = 0
-autocmd filetype php map <buffer> qcs :Phpcs<cr>
 
 let g:swift_device = 'iPhone 6 (9.2)'
 let g:swift_platform = 'iphonesimulator'
