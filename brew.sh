@@ -25,133 +25,142 @@ brew update
 # Upgrade any already-installed formulae.
 brew upgrade
 
-brew install adns
-brew install ansible
-brew install autoconf
-brew install autojump
-brew install awscli
-brew install bison
-brew install boost
-brew install brew-rmtree
-brew install cairo
-brew install coreutils
-brew install cscope
-brew install ctags
-brew install elinks
-brew install exiftool
-brew install fasd
-brew install findutils
-brew install flac
-brew install fontconfig
-brew install freetype
-brew install gd
-brew install gdbm
-brew install gettext
-brew install git
-brew install git-extras
-brew install git-flow
-brew install gitsh
-brew install glib
-brew install glib-networking
-brew install gmp
-brew install gnu-getopt
-brew install gnupg
-brew install gnutls
-brew install gobject-introspection
-brew install graphite2
-brew install graphviz
-brew install gsettings-desktop-schemas
-brew install gst-plugins-base
-brew install gstreamer
-brew install harfbuzz
-brew install highlight
-brew install htop
-brew install htop-osx
-brew install icu4c
-brew install igbinary
-brew install imagemagick
-brew install jpeg
-brew install libassuan
-brew install libevent
-brew install libffi
-brew install libgcrypt
-brew install libgpg-error
-brew install libksba
-brew install libogg
-brew install libpng
-brew install libshout
-brew install libsoup
-brew install libtasn1
-brew install libtiff
-brew install libtool
-brew install libunistring
-brew install libusb
-brew install libvorbis
-brew install libxml2
-brew install libyaml
-brew install links
-brew install little-cms2
-brew install lua
-brew install lynx
-brew install macvim
-brew install mcrypt
-brew install mhash
-brew install mysql
-brew install netcat
-brew install nettle
-brew install nginx
-brew install node
-brew install npth
-brew install nvm
-brew install openssl
-brew install openssl@1.1
-brew install orc
-brew install p11-kit
-brew install p7zip
-brew install packer
-brew install pango
-brew install pass
-brew install pcre
-brew install php56
-brew install php56-igbinary
-brew install php56-imagick
-brew install php56-intl
-brew install php56-mcrypt
-brew install php56-redis
-brew install php56-tidy
-brew install phpunit
-brew install pinentry
-brew install pixman
-brew install pkg-config
-brew install postgresql
-brew install pwgen
-brew install python
-brew install python3
-brew install qrencode
-brew install readline
-brew install reattach-to-user-namespace
-brew install redis
-brew install rename
-brew install speex
-brew install sqlite
-brew install swiftlint
-brew install taglib
-brew install the_silver_searcher
-brew install thefuck
-brew install theora
-brew install tidy-html5
-brew install tig
-brew install tmux
-brew install tree
-brew install unar
-brew install unixodbc
-brew install vala
-brew install varnish
-brew install webp
-brew install xz
-brew install youtube-dl
-brew install zlib
-brew install zsh
+apps=(
+    adns
+    ansible
+    autoconf
+    autojump
+    awscli
+    bison
+    boost
+    brew-rmtree
+    cairo
+    coreutils
+    cscope
+    ctags
+    elinks
+    exiftool
+    fasd
+    findutils
+    flac
+    fontconfig
+    freetype
+    gd
+    gdbm
+    gettext
+    git
+    git-extras
+    git-flow
+    gitsh
+    glib
+    glib-networking
+    gmp
+    gnu-getopt
+    gnupg
+    gnutls
+    gobject-introspection
+    graphite2
+    graphviz
+    gsettings-desktop-schemas
+    gst-plugins-base
+    gstreamer
+    harfbuzz
+    highlight
+    htop
+    htop-osx
+    icu4c
+    igbinary
+    imagemagick
+    jpeg
+    libassuan
+    libevent
+    libffi
+    libgcrypt
+    libgpg-error
+    libksba
+    libogg
+    libpng
+    libshout
+    libsoup
+    libtasn1
+    libtiff
+    libtool
+    libunistring
+    libusb
+    libvorbis
+    libxml2
+    libyaml
+    links
+    little-cms2
+    lua
+    lynx
+    macvim
+    mcrypt
+    mhash
+    mysql
+    netcat
+    nettle
+    nginx
+    node
+    npth
+    nvm
+    openssl
+    openssl@1.1
+    orc
+    p11-kit
+    p7zip
+    packer
+    pango
+    pass
+    pcre
+    php56
+    php56-igbinary
+    php56-imagick
+    php56-intl
+    php56-mcrypt
+    php56-redis
+    php56-tidy
+    phpunit
+    pinentry
+    pixman
+    pkg-config
+    postgresql
+    pwgen
+    python
+    python3
+    qrencode
+    readline
+    reattach-to-user-namespace
+    redis
+    rename
+    shellcheck
+    speex
+    sqlite
+    swiftlint
+    taglib
+    the_silver_searcher
+    thefuck
+    theora
+    tidy-html5
+    tig
+    tmux
+    tree
+    unar
+    unixodbc
+    vala
+    varnish
+    webp
+    wifi-password
+    xz
+    youtube-dl
+    zlib
+    zsh
+)
+
+# Install apps to /Applications - default is: /Users/$user/Applications
+echo "installing brew formulas..."
+
+brew install "${apps[@]}"
 
 # Remove outdated versions from the cellar.
 brew cleanup

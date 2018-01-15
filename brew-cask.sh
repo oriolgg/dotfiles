@@ -63,21 +63,22 @@ apps=(
     sonarr
     sourcetree
     spotify
+    sublime-text
     suspicious-package
+    textmate
     torbrowser
     transmission
     vagrant
     virtualbox
+    visual-studio-code
     vlc
     webpquicklook
+    whatsapp
 )
 
 # Install apps to /Applications - default is: /Users/$user/Applications
 echo "installing cask apps..."
 
-for app in "${apps[@]}"
-do
-  brew cask install --appdir="/Applications" $app --force
-done
+brew cask install "${apps[@]}"
 
 brew cask cleanup
