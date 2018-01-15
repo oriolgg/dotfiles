@@ -23,6 +23,9 @@ sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.serve
 # Set standby delay to 2 hours (default is 1 hour) - in seconds
 sudo pmset -a standbydelay 7200
 
+# Disable the sound effects on boot
+sudo nvram SystemAudioVolume=" "
+
 # Show battery life percentage.
 defaults write com.apple.menuextra.battery ShowPercent -string "YES"
 
@@ -115,8 +118,13 @@ defaults write com.apple.frameworks.diskimages auto-open-ro-root -bool true
 defaults write com.apple.frameworks.diskimages auto-open-rw-root -bool true
 defaults write com.apple.finder OpenWindowForNewRemovableDisk -bool true
 
+# Show item info near icons on the desktop and in other icon views
+/usr/libexec/PlistBuddy -c "Set :DesktopViewSettings:IconViewSettings:showItemInfo true" ~/Library/Preferences/com.apple.finder.plist
+/usr/libexec/PlistBuddy -c "Set :FK_StandardViewSettings:IconViewSettings:showItemInfo true" ~/Library/Preferences/com.apple.finder.plist
+/usr/libexec/PlistBuddy -c "Set :StandardViewSettings:IconViewSettings:showItemInfo true" ~/Library/Preferences/com.apple.finder.plist
+
 # Use list view in all Finder windows by default
-# Four-letter codes for the other view modes: `icnv`, `clmv`, `Flwv`, `Nlsv`
+# Four-letter codes for the view modes: `icnv`, `clmv`, `Flwv`, `Nlsv`
 defaults write com.apple.finder FXPreferredViewStyle -string "icnv"
 
 # Disable the warning before emptying the Trash
@@ -262,8 +270,12 @@ defaults write com.apple.ActivityMonitor SortDirection -int 0
 defaults write org.m0k.transmission UseIncompleteDownloadFolder -bool true
 defaults write org.m0k.transmission IncompleteDownloadFolder -string "${HOME}/Documents/Torrents"
 
+# Use `~/Downloads` to store completed downloads
+defaults write org.m0k.transmission DownloadLocationConstant -bool true
+
 # Don’t prompt for confirmation before downloading
 defaults write org.m0k.transmission DownloadAsk -bool false
+defaults write org.m0k.transmission MagnetOpenAsk -bool false
 
 # Trash original torrent files
 defaults write org.m0k.transmission DeleteOriginalTorrent -bool true
@@ -279,13 +291,20 @@ defaults write org.m0k.transmission BlocklistNew -bool true
 defaults write org.m0k.transmission BlocklistURL -string "http://john.bitsurge.net/public/biglist.p2p.gz"
 defaults write org.m0k.transmission BlocklistAutoUpdate -bool true
 
+# Randomize port on launch
+defaults write org.m0k.transmission RandomPort -bool true
+
 ###############################################################################
 # Kill affected applications                                                  #
 ###############################################################################
 
-for app in "Activity Monitor" "cfprefsd" \
-    "Dock" "Finder" \
-    "Safari" "SystemUIServer" "Terminal" \
+for app in "Activity Monitor" \
+    "cfprefsd" \
+    "Dock" \
+    "Finder" \
+    "Safari" \
+    "SystemUIServer" \
+    "Terminal" \
     "Transmission"; do
     killall "${app}" &> /dev/null
 done
