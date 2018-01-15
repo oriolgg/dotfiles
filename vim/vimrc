@@ -15,7 +15,6 @@ Bundle 'gregsexton/gitv'
 Bundle 'sjl/gundo.vim'
 Bundle 'gorkunov/smartpairs.vim'
 Bundle 'majutsushi/tagbar'
-Bundle 'sirver/ultisnips'
 Bundle 'bling/vim-airline'
 Bundle 'Lokaltog/vim-easymotion'
 Bundle 'Wolfy87/vim-enmasse'
@@ -492,13 +491,6 @@ nnoremap <Leader>sc :CloseSession<Cr>
 
 " vim-repeat:
 " git clone https://github.com/tpope/vim-repeat
-
-" Ultisnips: Per snippets
-" git clone https://github.com/sirver/ultisnips
-let g:snips_email = 'loirog@gmail.com'
-let g:snips_github = 'https://github.com/oriolgg'
-autocmd FileType python :UltiSnipsAddFiletypes python.django
-autocmd FileType htmldjango :UltiSnipsAddFiletypes html.htmldjango
 
 " vim-snippets:
 " git clone https://github.com/honza/vim-snippets

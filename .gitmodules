@@ -26,10 +26,6 @@
 	path = vim/bundle/tagbar
 	url = https://github.com/majutsushi/tagbar
 	branch = master
-[submodule "vim/bundle/ultisnips"]
-	path = vim/bundle/ultisnips
-	url = https://github.com/sirver/ultisnips
-	branch = master
 [submodule "vim/bundle/vim-easymotion"]
 	path = vim/bundle/vim-easymotion
 	url = https://github.com/Lokaltog/vim-easymotion
@@ -124,9 +120,6 @@
 [submodule "vim/bundle/vim-jinja"]
 	path = vim/bundle/vim-jinja
 	url = http://github.com/mitsuhiko/vim-jinja
-[submodule "vim/bundle/vim-phpqa"]
-	path = vim/bundle/vim-phpqa
-	url = http://github.com/joonty/vim-phpqa
 [submodule "vim/bundle/vim-mkdir"]
 	path = vim/bundle/vim-mkdir
 	url = http://github.com/pbrisbin/vim-mkdir
