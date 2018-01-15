@@ -44,3 +44,5 @@ alias ctags-js="ctags --languages=JavaScript --langmap=JavaScript:.js"
 alias ctags-css="ctags --languages=css --langmap=css:.css"
 
 alias phpcs='phpcs --standard=Symfony2'
+
+alias afk="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend"
