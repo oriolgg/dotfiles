@@ -44,6 +44,9 @@ nmap <space>h :set hlsearch!<CR>
 nmap Y y$
 nmap S i<CR><ESC>^m`gk:s/ +$//<CR>``
 
+nmap n nzz
+nmap N Nzz
+
 " Whitespace removal
 nmap :w<CR> :%s/^\s+$//g<CR>:w<CR>:echo "Written and trimmed whitespace"<CR>
 
