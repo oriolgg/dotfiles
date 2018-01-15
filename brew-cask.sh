@@ -48,6 +48,7 @@ apps=(
     mono-mdk
     monolingual
     moom
+    opera
     p4merge
     qlcolorcode
     qlimagesize
@@ -64,6 +65,7 @@ apps=(
     spotify
     suspicious-package
     torbrowser
+    transmission
     vagrant
     virtualbox
     vlc
