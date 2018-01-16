@@ -35,7 +35,6 @@ Bundle 'kana/vim-textobj-user'
 Bundle 'christoomey/vim-tmux-navigator'
 Bundle 'tpope/vim-unimpaired'
 Bundle 'pbrisbin/vim-mkdir'
-Bundle 'rhysd/clever-f.vim'
 
 Bundle 'mitsuhiko/vim-jinja'
 Bundle 'joonty/vim-taggatron'
