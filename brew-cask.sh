@@ -18,14 +18,10 @@ fi
 
 #homebrew now includes cask, so let's get rid of the old version
 brew uninstall --force brew-cask
-brew untap phinze/cask
 brew untap caskroom/cask
 
 # Make sure we’re using the latest Homebrew.
 brew update
-
-# Upgrade any already-installed formulae.
-brew upgrade --all
 
 # Handle dependencies
 brew tap caskroom/cask
@@ -34,15 +30,20 @@ brew tap buo/cask-upgrade
 
 # Apps for caskroom
 apps=(
+    1password
     alfred
     appcleaner
     betterzip
     cakebrew
     cyberduck
     disk-inventory-x
+    dropbox
+    evernote
     firefox
     google-chrome
+    handbrake
     iterm2
+    kaleidoscope
     key-codes
     macvim
     mono-mdk
@@ -55,12 +56,14 @@ apps=(
     qlmarkdown
     qlprettypatch
     qlstephen
+    qlvideo
     quicklook-csv
     quicklook-json
+    scummvm
     sequel-pro
     skype
     slack
-    sonarr
+    soapui
     sourcetree
     spotify
     sublime-text
@@ -69,11 +72,14 @@ apps=(
     torbrowser
     transmission
     vagrant
+    vagrant-manager
     virtualbox
     visual-studio-code
     vlc
     webpquicklook
     whatsapp
+    wkhtmltopdf
+    zeplin
 )
 
 # Install apps to /Applications - default is: /Users/$user/Applications
