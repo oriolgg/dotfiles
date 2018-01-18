@@ -132,3 +132,6 @@
 [submodule "tmux/tmux/plugins/tmux-resurrect"]
 	path = tmux/tmux/plugins/tmux-resurrect
 	url = https://github.com/tmux-plugins/tmux-resurrect
+[submodule "vim/colors/vim-colors-solarized"]
+	path = vim/colors/vim-colors-solarized
+	url = https://github.com/altercation/vim-colors-solarized
