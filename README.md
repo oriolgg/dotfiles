@@ -18,8 +18,6 @@ In order to make it working, you have to follow few previous steps:
 
 Install [XCode][xcode] and its Command Line Tools.
 
-Install [iTerm2][iterm2].
-
 Install [Homebrew][homebrew]:
 
     ruby -e "$(curl -fsSL https://raw.github.com/Homebrew/homebrew/go/install)"
@@ -29,35 +27,21 @@ Install [Git][git]:
 
     brew install git
 
-Install [MacVim][macvim]:
+Clone my dotfiles:
 
-    brew install macvim
+    git clone https://github.com/oriolgg/dotfiles ~/.dotfiles --recursive
 
-Install [SilverSercher][silversercher]:
+Execute brew.sh in order to install necessary packages:
 
-    brew install the_silver_searcher
+    ~/.dotfiles/brew.sh
 
-Install [Tmux][tmux]:
+Execute brew-cask.sh in order to install my most used apps:
 
-    brew install tmux
-
-Install [reattach-to-user-namespace][reattach-to-user-namespace]:
-
-    brew install reattach-to-user-namespace
-
-Install [Zsh][zsh]:
-
-    brew install zsh
+    ~/.dotfiles/brew-cask.sh
 
 Make zsh your default shell:
 
     sudo chsh -s /bin/zsh
-
-## Clone dotfiles ##
-
-To clone my dotfiles:
-
-    git clone https://github.com/oriolgg/dotfiles ~/.dotfiles --recursive
 
 Finally, you just need to create some symlinks:
 
