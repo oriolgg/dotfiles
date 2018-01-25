@@ -33,6 +33,7 @@ apps=(
     1password
     alfred
     appcleaner
+    beamer
     betterzip
     cakebrew
     cyberduck
@@ -59,6 +60,7 @@ apps=(
     qlvideo
     quicklook-csv
     quicklook-json
+    script-debugger
     scummvm
     sequel-pro
     skype
