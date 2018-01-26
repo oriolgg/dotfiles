@@ -35,16 +35,12 @@ apps=(
     git
     git-flow
     lynx
-    mysql
-    postgresql
     python
     python3
     readline
     reattach-to-user-namespace
     rename
-    swiftlint
     the_silver_searcher
-    thefuck
     tmux
     tree
     unar

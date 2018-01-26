@@ -31,23 +31,18 @@ brew tap buo/cask-upgrade
 # Apps for caskroom
 apps=(
     1password
-    alfred
     appcleaner
-    beamer
     betterzip
-    cakebrew
     cyberduck
     disk-inventory-x
     dropbox
     evernote
+    fantastical
     firefox
     google-chrome
-    handbrake
     iterm2
-    kaleidoscope
-    key-codes
+    jitouch
     macvim
-    mono-mdk
     monolingual
     moom
     opera
@@ -61,22 +56,17 @@ apps=(
     quicklook-csv
     quicklook-json
     script-debugger
-    scummvm
     sequel-pro
     skype
     slack
     soapui
     sourcetree
     spotify
-    sublime-text
     suspicious-package
-    textmate
-    torbrowser
     transmission
     vagrant
     vagrant-manager
     virtualbox
-    visual-studio-code
     vlc
     webpquicklook
     whatsapp
