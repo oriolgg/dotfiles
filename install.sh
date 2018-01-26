@@ -13,9 +13,6 @@ git clone https://github.com/oriolgg/dotfiles ~/.dotfiles --recursive
 # Installs brew and the default cask formulas
 /bin/bash ~/.dotfiles/brew-cask.sh
 
-# Set default osx defaults
-/bin/bash ~/.dotfiles/osx-defaults.sh
-
 # Change the default shell
 chsh -s /bin/zsh
 
@@ -42,3 +39,6 @@ ln -s .dotfiles/zsh/oh-my-zsh .oh-my-zsh
 ln -s .dotfiles/zsh/oh-my-zsh .oh-my-zsh
 ln -s .dotfiles/zsh/zshrc .zshrc
 ln -s .dotfiles/zsh/zshrc-osx .zshrc-osx
+
+# Set default osx defaults
+/bin/bash ~/.dotfiles/osx-defaults.sh
