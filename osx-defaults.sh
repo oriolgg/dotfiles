@@ -29,6 +29,21 @@ sudo nvram SystemAudioVolume=" "
 # Show battery life percentage.
 defaults write com.apple.menuextra.battery ShowPercent -string "YES"
 
+# Set appearance
+# Blue     : 1
+# Graphite : 6
+defaults write NSGlobalDomain AppleAquaColorVariant -int 6
+
+# Highlight color
+# Graphite : `0.780400 0.815700 0.858800`
+# Silver   : `0.776500 0.776500 0.776500`
+# Blue     : `0.709800 0.835300 1.000000`
+defaults write NSGlobalDomain AppleHighlightColor -string '0.780400 0.815700 0.858800'
+
+# Disable the new window animation - every new window grows
+# from a small one to a big one over a few hundred millisecs
+defaults write NSGlobalDomain NSAutomaticWindowAnimationsEnabled -bool false
+
 # Expand save panel by default
 defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode -bool true
 defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode2 -bool true
@@ -48,6 +63,18 @@ defaults write NSGlobalDomain NSAutomaticDashSubstitutionEnabled -bool false
 
 # Don't relaunch open apps on restart
 defaults write com.apple.loginwindow LoginwindowLaunchesRelaunchApps -bool false
+
+# Disable sound effects when changing volume
+defaults write NSGlobalDomain com.apple.sound.beep.feedback -integer 0
+
+# Disable sounds effects for user interface changes
+defaults write NSGlobalDomain com.apple.sound.uiaudio.enabled -int 0
+
+# Allow fast user switching (icon style, in the menu bar)
+defaults write NSGlobalDomain userMenuExtraStyle -int 2
+
+# Don't want Photos.app to open up as soon as you plug something in?
+defaults write com.apple.ImageCapture disableHotPlug -bool YES
 
 ###############################################################################
 # Trackpad, mouse, keyboard, Bluetooth accessories, and input                 #
@@ -74,9 +101,21 @@ defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false
 # Disable shadow in screenshots
 defaults write com.apple.screencapture disable-shadow -bool true
 
+# Set keyboard repeat rate to "damn fast".
+defaults write NSGlobalDomain KeyRepeat -int 2
+
+# Set a shorter delay until key repeat
+defaults write NSGlobalDomain InitialKeyRepeat -int 15
+
+# Disable annoying "application crashed" dialogs
+defaults write com.apple.CrashReporter DialogType none
+
 ###############################################################################
 # Finder                                                                      #
 ###############################################################################
+
+# New Finder windows points to home
+defaults write com.apple.finder NewWindowTarget -string "PfHm"
 
 # Finder: allow quitting via ⌘ + Q; doing so will also hide desktop icons
 defaults write com.apple.finder QuitMenuItem -bool true
@@ -172,6 +211,13 @@ defaults write com.apple.dock autohide -bool true
 # Make Dock icons of hidden applications translucent
 defaults write com.apple.dock showhidden -bool true
 
+# Disables osx choose accents popup
+defaults write -g ApplePressAndHoldEnabled -bool false
+
+# Use a dark menu bar / dock
+defaults write NSGlobalDomain AppleInterfaceStyle -string "Dark"
+
+#Disables 
 # Hot corners
 # Possible values:
 #  0: no-op
@@ -220,6 +266,9 @@ defaults write com.apple.Safari com.apple.Safari.ContentPageGroupIdentifier.WebK
 
 # Hide Safari’s bookmarks bar by default
 defaults write com.apple.Safari ShowFavoritesBar -bool false
+
+# Remove useless icons from Safari's bookmarks bar
+defaults write com.apple.Safari ProxiesInBookmarksBar "()"
 
 # Hide Safari’s sidebar in Top Sites
 defaults write com.apple.Safari ShowSidebarInTopSites -bool false
