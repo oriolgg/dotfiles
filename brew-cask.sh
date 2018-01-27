@@ -23,6 +23,9 @@ brew untap caskroom/cask
 # Make sure we’re using the latest Homebrew.
 brew update
 
+# Upgrade any already-installed formulae.
+brew upgrade
+
 # Handle dependencies
 brew tap caskroom/cask
 brew tap caskroom/versions
