@@ -476,7 +476,7 @@ defaults write com.apple.ActivityMonitor SortColumn -string "CPUUsage"
 defaults write com.apple.ActivityMonitor SortDirection -int 0
 
 ###############################################################################
-# Address Book, Dashboard, iCal, TextEdit, and Disk Utility                   #
+# TextEdit and QuicTimePlayer                                                 #
 ###############################################################################
 
 # Use plain text mode for new TextEdit documents
@@ -563,25 +563,16 @@ defaults write org.m0k.transmission RandomPort -bool true
 
 for app in "Activity Monitor" \
 	"Address Book" \
-	"Calendar" \
 	"cfprefsd" \
 	"Contacts" \
 	"Dock" \
 	"Finder" \
-	"Google Chrome Canary" \
-	"Google Chrome" \
 	"Mail" \
 	"Messages" \
-	"Opera" \
 	"Photos" \
 	"Safari" \
-	"SizeUp" \
-	"Spectacle" \
-	"SystemUIServer" \
 	"Terminal" \
 	"Transmission" \
-	"Tweetbot" \
-	"Twitter" \
 	"iCal"; do
 	killall "${app}" &> /dev/null
 done
