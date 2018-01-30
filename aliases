@@ -46,3 +46,5 @@ alias ctags-css="ctags --languages=css --langmap=css:.css"
 alias phpcs='phpcs --standard=Symfony2'
 
 alias afk="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend"
+
+alias lynx='lynx -cfg=$HOME/.lynx.cfg -lss=$HOME/.lynx.lss'
