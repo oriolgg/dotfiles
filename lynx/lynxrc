@@ -127,13 +127,13 @@ cookie_strict_invalid_domains=
 
 # dir_list_order specifies the directory list order under DIRED_SUPPORT
 # (if implemented).  The default is "ORDER_BY_NAME"
-dir_list_order=ORDER_BY_NAME
+dir_list_order=ORDER_BY_TYPE
 
 # dir_list_styles specifies the directory list style under DIRED_SUPPORT
 # (if implemented).  The default is "MIXED_STYLE", which sorts both
 # files and directories together.  "FILES_FIRST" lists files first and
 # "DIRECTORIES_FIRST" lists directories first.
-dir_list_style=MIXED_STYLE
+dir_list_style=DIRECTORIES_FIRST
 
 # If emacs_keys is to "on" then the normal EMACS movement keys:
 #   ^N = down    ^P = up
@@ -145,7 +145,7 @@ emacs_keys=off
 # or sending mail.  If no editor is specified, then file editing is disabled
 # unless it is activated from the command line, and the built-in line editor
 # will be used for sending mail.
-file_editor=vi
+file_editor=vim
 
 # The file_sorting_method specifies which value to sort on when viewing
 # file lists such as FTP directories.  The options are:
