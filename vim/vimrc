@@ -226,7 +226,9 @@ let base16colorspace=256
 set background=light
 colorscheme solarized
 highlight SpecialKey ctermbg=NONE guibg=NONE
-highlight Normal ctermbg=NONE guibg=NONE
+if !has('gui_running')
+    highlight Normal ctermbg=NONE guibg=NONE
+endif
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""
