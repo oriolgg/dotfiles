@@ -212,7 +212,6 @@ set wildmode=full                                            " Mostra les possib
 if !has('nvim')
     set term=screen-256color
 endif
-set termguicolors
 set pastetoggle=<f5>
 
 autocmd BufNewFile,BufRead *.h,*.m set tags+=~/Documents/global-objc-tags
@@ -228,11 +227,12 @@ syntax on
 set t_Co=256                                                 " Número de colors
 let base16colorspace=256
 set background=light
-colorscheme solarized
+colorscheme solarized8_light
 highlight SpecialKey ctermbg=NONE guibg=NONE
 if !has('gui_running')
     highlight Normal ctermbg=NONE guibg=NONE
 endif
+set termguicolors
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""
