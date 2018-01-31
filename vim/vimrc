@@ -35,6 +35,7 @@ Bundle 'kana/vim-textobj-user'
 Bundle 'christoomey/vim-tmux-navigator'
 Bundle 'tpope/vim-unimpaired'
 Bundle 'pbrisbin/vim-mkdir'
+Bundle 'machakann/vim-highlightedyank'
 
 Bundle 'mitsuhiko/vim-jinja'
 Bundle 'joonty/vim-taggatron'
@@ -208,7 +209,10 @@ set viewdir=~/.vim_view                                      " Canviar directori
 set wildignore=*/tmp/,*/.git/*,*.so,*.swp,*.zip,*.pdf,*.bak,*.pyc,*.pyo,*.class,*.tmp,*~      " Ignorar aquests tipus de fitxers
 set wildmenu                                                 " Show a navigable menu for tab completion on command line
 set wildmode=full                                            " Mostra les possibilitats d'una comanda rotllo zsh
-set term=screen-256color
+if !has('nvim')
+    set term=screen-256color
+endif
+set termguicolors
 set pastetoggle=<f5>
 
 autocmd BufNewFile,BufRead *.h,*.m set tags+=~/Documents/global-objc-tags
