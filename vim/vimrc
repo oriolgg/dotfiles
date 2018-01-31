@@ -4,47 +4,36 @@ filetype off
 filetype plugin indent on
 filetype plugin on
 
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+packadd minpac
+call minpac#init()
 
-Bundle 'gmarik/vundle'
+call minpac#add('ctrlpvim/ctrlp.vim')
+call minpac#add('sjl/gundo.vim')
+"?call minpac#add('gorkunov/smartpairs.vim')
+call minpac#add('Lokaltog/vim-easymotion')
+call minpac#add('tpope/vim-fugitive')
+call minpac#add('kablamo/vim-git-log')
+call minpac#add('xolox/vim-misc')
+call minpac#add('tpope/vim-repeat')
+call minpac#add('xolox/vim-session')
+call minpac#add('mhinz/vim-signify')
+call minpac#add('tpope/vim-surround')
+call minpac#add('kana/vim-textobj-user')
+call minpac#add('christoomey/vim-tmux-navigator')
+call minpac#add('tpope/vim-unimpaired')
+call minpac#add('pbrisbin/vim-mkdir')
+call minpac#add('machakann/vim-highlightedyank')
+"?call minpac#add('mitsuhiko/vim-jinja')
+call minpac#add('joonty/vim-taggatron')
+call minpac#add('lifepillar/vim-solarized8')
+call minpac#add('adelarsq/vim-matchit')
+call minpac#add('k-takata/minpac', {'type':'opt'})
 
-Bundle 'rking/ag.vim'
-Bundle 'ctrlpvim/ctrlp.vim'
-Bundle 'gregsexton/gitv'
-Bundle 'sjl/gundo.vim'
-Bundle 'gorkunov/smartpairs.vim'
-Bundle 'majutsushi/tagbar'
-Bundle 'bling/vim-airline'
-Bundle 'Lokaltog/vim-easymotion'
-Bundle 'Wolfy87/vim-enmasse'
-Bundle 'tommcdo/vim-exchange'
-Bundle 'nvie/vim-flake8'
-Bundle 'tpope/vim-fugitive'
-Bundle 'tpope/vim-git'
-Bundle 'kablamo/vim-git-log'
-Bundle 'szw/vim-maximizer'
-Bundle 'xolox/vim-misc'
-Bundle 'tpope/vim-repeat'
-Bundle 'xolox/vim-session'
-Bundle 'mhinz/vim-signify'
-Bundle 'honza/vim-snippets'
-Bundle 'tpope/vim-surround'
-Bundle 'kana/vim-textobj-lastpat'
-Bundle 'kana/vim-textobj-user'
-Bundle 'christoomey/vim-tmux-navigator'
-Bundle 'tpope/vim-unimpaired'
-Bundle 'pbrisbin/vim-mkdir'
-Bundle 'machakann/vim-highlightedyank'
+command! PackUpdate call minpac#update()
+command! PackClean call minpac#clean()
 
-Bundle 'mitsuhiko/vim-jinja'
-Bundle 'joonty/vim-taggatron'
+"runtime macros/matchit.vim
 
-Bundle 'kballard/vim-swift'
-
-runtime macros/matchit.vim
-
-execute pathogen#infect()
 filetype on
 
 """"""""""""""""""""""""""""""""""""""""""""""""""
@@ -100,15 +89,6 @@ function! CloseWindowOrKillBuffer()
     else
         bdelete
     endif
-endfunction
-
-function! CallFlake8()
-    let previous_search=@/
-    let previous_cursor_line=line('.')
-    let previous_cursor_column=col('.')
-    execute 'PymodeLint'
-    let @/=previous_search
-    call cursor(previous_cursor_line, previous_cursor_column)
 endfunction
 
 command! -nargs=0 -bar Qargs execute 'args' QuickfixFilenames()
@@ -227,7 +207,7 @@ syntax on
 set t_Co=256                                                 " Número de colors
 let base16colorspace=256
 set background=light
-colorscheme solarized
+colorscheme solarized8
 highlight SpecialKey ctermbg=NONE guibg=NONE
 if !has('gui_running')
     highlight Normal ctermbg=NONE guibg=NONE
@@ -346,9 +326,6 @@ nnoremap <Leader>* :%s/\<<C-r><C-w>\>//g<Left><Left>
 " Obrir .vimrc a un nou tab amb <Leader>vv
 nnoremap <Leader>vv :e $MYVIMRC<Cr>
 
-" Alterna entre maximitzar finestra actual i mantenir la disposició amb <Leader>m
-nnoremap <silent> <Leader>m :MaximizerToggle<Cr>
-
 " Obre tots els buffers oberts en tabs amb <Leader>tb
 nnoremap <silent> <Leader>tb :tab :ball<Cr>
 " Tancar la pestanya actual amb <Leader>tc
@@ -457,25 +434,9 @@ nmap <Leader>. :CtrlPClearCache<Cr>:CtrlPTag<Cr>
 " Vim-signify: Marca els canvis del fitxer respecte el repositori a la columna esquerra del fitxer.
 " git clone https://github.com/mhinz/vim-signify
 
-" Gitv: Mostra l'estat del repositori Git (necessita fugitive)
-" git clone https://github.com/gregsexton/gitv
-" Comanda :Gitv
-
-" Vim-maximizer: Per maximitzar i minimitzar finestres i mantenir les proporcions.
-" git clone https://github.com/szw/vim-maximizer
-
 " Gundo: Mostra l'arbre de modificacions d'un fitxer
 " git clone https://github.com/sjl/gundo.vim
 nnoremap <Leader>u :GundoToggle<Cr>
-
-" ag: Fer cerques de text a dins de fitxers (grep) millor.
-" Necessita silver-searcher: brew install the_silver_searcher
-" git clone https://github.com/rking/ag.vim
-
-" Tagbar: Per mostrar les funcions i demés d'una classe a la dreta
-" Necessita CTags: brew install ctags-exuberant
-" git clone https://github.com/majutsushi/tagbar
-nmap <Leader>o :TagbarToggle<Cr><C-l>
 
 " vim-session: Gestionar les sessions de vim
 " Necessita vim-misc: git clone https://github.com/xolox/vim-misc
@@ -492,49 +453,20 @@ nnoremap <Leader>sc :CloseSession<Cr>
 " vim-surround: mitjançant l'acció 's' es posen i treuen parentesis, claudators, cometes simples, un tag...
 " git clone https://github.com/tpope/vim-surround
 
-" vim-exchange: Permet intercanviar textos (paraules, frases, etc.)
-" git clone https://github.com/tommcdo/vim-exchange
-" cx{àmbit}: la primera vegada marca l'àmbit com a element per intercanviar. La segona, intercanvia el nou àmbit amb l'anterior.
-
 " vim-unimpaired:
 " git clone https://github.com/tpope/vim-unimpaired
 
 " vim-repeat:
 " git clone https://github.com/tpope/vim-repeat
 
-" vim-snippets:
-" git clone https://github.com/honza/vim-snippets
-
 " vundle:
 " git clone https://github.com/gmarik/vundle.git
-
-" vim-airline: Línia de status i de buffers
-" git clone https://github.com/bling/vim-airline
-"let g:airline_section_b = '%{getcwd()}'
-let g:airline_section_c = '%f'
-"let g:airline_section_x = ''
-let g:airline_section_y = ''
-let g:airline#extensions#tagbar#enabled = 0
-let g:airline#extensions#hunks#enabled = 0
-let g:airline#extensions#virtualenv#enabled = 0
-let g:airline_left_sep=''
-let g:airline_right_sep=''
-let g:airline#extensions#tabline#show_buffers = 1
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#formatter = 'default'
-let g:airline#extensions#tabline#buffer_nr_show = 1
-let g:airline#extensions#bufferline#enabled = 1
-let g:airline#extensions#whitespace#checks = []
 
 " vim-tmux-navigator: Per passar de vim a tmux
 " git clone https://github.com/christoomey/vim-tmux-navigator
 
 " vim-misc:
 " git clone https://github.com/xolox/vim-misc
-
-" vim-flake8:
-" git clone https://github.com/nvie/vim-flake8
-autocmd filetype python map <buffer> <leader>pv :call Flake8()<cr>
 
 " vim-taggatron
 let g:tagcommands = {
@@ -561,27 +493,4 @@ au BufRead,BufNewFile *.twig set filetype=jinja
 au BufRead,BufNewFile *.twig set filetype=htmljinja
 au BufRead,BufNewFile *.html set filetype=jinja
 au BufRead,BufNewFile *.html set filetype=htmljinja
-
-let g:swift_device = 'iPhone 6 (9.2)'
-let g:swift_platform = 'iphonesimulator'
-
-"""""""""""""""""""""" Esborrats
-
-" (Esborrat) vim-css-color: Mostra el background del codi hex del color indicat.
-" git clone https://github.com/ap/vim-css-color
-
-" (Esborrat) Vim startify: Mostra a l'iniciar vim sense fitxer els últims fitxers/sessions oberts per obrir-los.
-" git clone https://github.com/mhinz/vim-startify
-
-" (Esborrat) Vim-indent-object: Permet fer seleccions i modificació de text basades amb la indentació
-" git clone https://github.com/michaeljsmith/vim-indent-object
-
-" (Esborrat) vim-indexed-search: Mostra a quin element estem de tots els trobats per una cerca
-" git clone https://github.com/henrik/vim-indexed-search
-
-" (Esborrat) tabular: Aliniar fàcilment textos segons el paràmetre que indiquem
-" git clone https://github.com/godlygeek/tabular
-
-" (Esborrat) vim-seek: fer cerques a la mateixa línia utilitzant dos caràcters en lloc d'un com f i F
-" git clone https://github.com/goldfeld/vim-seek
 
