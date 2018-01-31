@@ -51,5 +51,8 @@ ln -s ~/.dotfiles/zsh/oh-my-zsh ~/.oh-my-zsh
 ln -s ~/.dotfiles/zsh/zshrc ~/.zshrc
 ln -s ~/.dotfiles/zsh/zshrc-osx ~/.zshrc-osx
 
+mkdir -p ~/.config/nvim
+ln -s ~/.dotfiles/nvim/init.vim ~/.config/nvim/init.vim
+
 # Set default osx defaults
 /bin/bash ~/.dotfiles/osx-defaults.sh

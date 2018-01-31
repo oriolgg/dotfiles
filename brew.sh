@@ -35,6 +35,7 @@ apps=(
     git
     git-flow
     lynx
+    neovim
     python
     python3
     readline
