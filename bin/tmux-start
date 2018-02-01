@@ -10,7 +10,6 @@ if [ ! $session ] ; then
 fi
 
 move_to_iterm_tab='osascript '$HOME'/.applescript/move_to_iterm_tab.scpt '$session_name
-create_iterm_window_and_session='osascript '$HOME'/.applescript/create_iterm_window_and_session.scpt '$session_name
 start_configured_session=$HOME'/.start/'$session_name
 
 in_tmux() {
@@ -37,7 +36,7 @@ if session_exists ; then
         $move_to_iterm_tab
     else
         if in_tmux ; then
-            $create_iterm_window_and_session
+            tmux switch -t "$session_name"
         else
             echo '\033];'$session_name'\007'
             tmux attach -t "$session_name"
@@ -45,7 +44,7 @@ if session_exists ; then
     fi
 else
     if in_tmux ; then
-        $create_iterm_window_and_session
+        # tmux switch -t "$session_name"
     else
         if [[ -f $start_configured_session ]] ; then
             $start_configured_session
