@@ -30,6 +30,9 @@
 [submodule "vim/pack/minpac/start/gundo.vim"]
     path = vim/pack/minpac/start/gundo.vim
     url = https://github.com/sjl/gundo.vim
+[submodule "vim/pack/minpac/start/smartpairs.vim"]
+	path = vim/pack/minpac/start/smartpairs.vim
+	url = https://github.com/gorkunov/smartpairs.vim
 [submodule "vim/pack/minpac/start/vim-airline"]
     path = vim/pack/minpac/start/vim-airline
     url = https://github.com/vim-airline/vim-airline
