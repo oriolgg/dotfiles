@@ -7,29 +7,29 @@ filetype plugin on
 packadd minpac
 call minpac#init()
 
-call minpac#add('ctrlpvim/ctrlp.vim')
-call minpac#add('sjl/gundo.vim')
-"?call minpac#add('gorkunov/smartpairs.vim')
 call minpac#add('Lokaltog/vim-easymotion')
-call minpac#add('tpope/vim-fugitive')
-call minpac#add('kablamo/vim-git-log')
-call minpac#add('xolox/vim-misc')
-call minpac#add('tpope/vim-repeat')
-call minpac#add('xolox/vim-session')
-call minpac#add('mhinz/vim-signify')
-call minpac#add('tpope/vim-surround')
-call minpac#add('kana/vim-textobj-user')
-call minpac#add('christoomey/vim-tmux-navigator')
-call minpac#add('tpope/vim-unimpaired')
-call minpac#add('pbrisbin/vim-mkdir')
-call minpac#add('machakann/vim-highlightedyank')
-"?call minpac#add('mitsuhiko/vim-jinja')
-call minpac#add('joonty/vim-taggatron')
-call minpac#add('lifepillar/vim-solarized8')
 call minpac#add('adelarsq/vim-matchit')
+call minpac#add('christoomey/vim-tmux-navigator')
+call minpac#add('ctrlpvim/ctrlp.vim')
+"?call minpac#add('gorkunov/smartpairs.vim')
+call minpac#add('joonty/vim-taggatron')
+call minpac#add('k-takata/minpac', {'type':'opt'})
+call minpac#add('kablamo/vim-git-log')
+call minpac#add('kana/vim-textobj-user')
+call minpac#add('lifepillar/vim-solarized8')
+call minpac#add('lumiliet/vim-twig')
+call minpac#add('machakann/vim-highlightedyank')
+call minpac#add('mhinz/vim-signify')
+call minpac#add('pbrisbin/vim-mkdir')
+call minpac#add('sjl/gundo.vim')
+call minpac#add('tpope/vim-fugitive')
+call minpac#add('tpope/vim-repeat')
+call minpac#add('tpope/vim-surround')
+call minpac#add('tpope/vim-unimpaired')
 call minpac#add('vim-airline/vim-airline')
 call minpac#add('vim-airline/vim-airline-themes')
-call minpac#add('k-takata/minpac', {'type':'opt'})
+call minpac#add('xolox/vim-misc')
+call minpac#add('xolox/vim-session')
 
 command! PackUpdate call minpac#update()
 command! PackClean call minpac#clean()
@@ -489,13 +489,6 @@ let g:tagcommands = {
 " \        "args": "-R"
 " \    },
 
-au BufRead,BufNewFile *.swift set filetype=swift
-
-au BufRead,BufNewFile *.twig set filetype=jinja
-au BufRead,BufNewFile *.twig set filetype=htmljinja
-au BufRead,BufNewFile *.html set filetype=jinja
-au BufRead,BufNewFile *.html set filetype=htmljinja
-
 " vim-airline: Línia de status i de buffers
 " git clone https://github.com/bling/vim-airline
 "let g:airline_section_b = '%{getcwd()}'
@@ -513,4 +506,3 @@ let g:airline#extensions#tabline#formatter = 'default'
 let g:airline#extensions#tabline#buffer_nr_show = 1
 let g:airline#extensions#bufferline#enabled = 1
 let g:airline#extensions#whitespace#checks = []
-
