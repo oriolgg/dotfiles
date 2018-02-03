@@ -1,5 +1,63 @@
 #!/bin/sh
 
+function ssh_aws {
+    session=$1
+    environment=$2
+
+    vpn_disconnect_all
+    vpn_connect "$1vpn"
+
+    instances=$(aws ec2 describe-instances --profile $session --region eu-west-1 --filter "Name=key-name,Values=$session-$environment" "Name=instance-state-name,Values=running")
+
+    instanceLineNumbers=($((grep -n "\"Instances\"" | cut -d : -f 1) <<< "$instances"))
+
+    total=${#instanceLineNumbers[*]}
+    insideTmux=0
+    if [ "$TERM" = "screen-256color" ]; then
+        insideTmux=1
+    fi
+    if [ $total -eq 0 ]; then
+        echo "There is no instance with the key name $session-$environment running"
+    else
+        if [ $insideTmux -ne 1 ]; then
+            tmux start-server
+            tmux new-session -s "ssh-$session-$environment" -n "ssh-$session-$environment" -d
+        fi
+    fi
+
+    for (( i=1; i<=$total; i++ )) do 
+        if [ $i = $total ]; then
+            currentInstance=s$(echo "$instances" | awk 'NR >= '${instanceLineNumbers[$i]})
+        else
+            currentInstance=s$(echo "$instances" | awk 'NR >= '${instanceLineNumbers[$i]}' && NR <= '${instanceLineNumbers[($i + 1)]})
+        fi
+
+        privateIpAddress=$((grep "\"PrivateIpAddress\"" | head -1) <<< "$currentInstance")
+        privateIpAddress="$(grep -oE '[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}' <<< "$privateIpAddress")"
+
+        instanceType=$((grep "\"InstanceType\"" | sed 's: ::g' | sed 's/,$//' | uniq | head -1 | cut -d ':' -f 2 | sed -e 's/^"//' -e 's/"$//') <<< "$currentInstance")
+
+        imageId=$((grep "\"ImageId\"" | sed 's: ::g' | sed 's/,$//' | uniq | head -1 | cut -d ':' -f 2 | sed -e 's/^"//' -e 's/"$//') <<< "$currentInstance")
+
+        environmentLineNumber=$((grep -n "\"environment\"" | cut -d : -f 1) <<< "$currentInstance")
+        instanceEnvironment=$((head -n $((environmentLineNumber + 1)) | tail -n 1 | sed 's: ::g' | sed 's/,$//' | uniq | head -1 | cut -d ':' -f 2 | sed -e 's/^"//' -e 's/"$//') <<< "$currentInstance")
+        echo "\n\n\n########################################\nimageId:          $imageId\nenvironment:      $instanceEnvironment\nprivateIpAddress: $privateIpAddress\ninstanceType:     $instanceType\n########################################\n\n\n"
+
+        if [ $((i % 2)) -ne 0 ]; then
+            if [ $insideTmux -eq 1 ] || [ $i -ne 1 ]; then
+                tmux new-window -n "ssh-$session-$environment"
+            fi
+        else
+            tmux splitw -h
+        fi
+
+        tmux send-keys "echo '\n\n\n########################################\nimageId:          $imageId\nenvironment:      $instanceEnvironment\nprivateIpAddress: $privateIpAddress\ninstanceType:     $instanceType\n########################################\n\n\n' ; ssh -i ~/.keys/$session-web-$instanceEnvironment.pem ubuntu@$privateIpAddress" C-m
+    done
+    if [ $insideTmux -ne 1 ]; then
+        tmux attach-session -t "ssh-$session-$environment"
+    fi
+}
+
 function vpn_connect {
     /usr/bin/env osascript <<-EOF
 tell application "System Events"
