@@ -26,7 +26,7 @@ session_is_attached() {
 
 create_new_session() {
     tmux start-server
-    tmux new-session -s $session_name -d
+    tmux new-session -s $session_name -n shell -d
     echo '\033];'$session_name'\007'
     tmux attach-session -t "$session_name"
 }
@@ -44,7 +44,8 @@ if session_exists ; then
     fi
 else
     if in_tmux ; then
-        # tmux switch -t "$session_name"
+        tmux detach
+        create_new_session
     else
         if [[ -f $start_configured_session ]] ; then
             $start_configured_session
