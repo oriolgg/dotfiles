@@ -25,8 +25,14 @@ function ssh_aws {
         fi
     fi
 
-    for (( i=1; i<=$total; i++ )) do 
-        if [ $i = $total ]; then
+    if [ "${instanceLineNumbers[0]}" = "" ]; then
+        init=1
+    else
+        init=0
+    fi
+    total2=$((total+init))
+    for (( i=$init; i<$total2; i++ )) do 
+        if [ "${instanceLineNumbers[($i + 1)]}" = "" ]; then
             currentInstance=s$(echo "$instances" | awk 'NR >= '${instanceLineNumbers[$i]})
         else
             currentInstance=s$(echo "$instances" | awk 'NR >= '${instanceLineNumbers[$i]}' && NR <= '${instanceLineNumbers[($i + 1)]})
@@ -41,10 +47,9 @@ function ssh_aws {
 
         environmentLineNumber=$((grep -n "\"environment\"" | cut -d : -f 1) <<< "$currentInstance")
         instanceEnvironment=$((head -n $((environmentLineNumber + 1)) | tail -n 1 | sed 's: ::g' | sed 's/,$//' | uniq | head -1 | cut -d ':' -f 2 | sed -e 's/^"//' -e 's/"$//') <<< "$currentInstance")
-        echo "\n\n\n########################################\nimageId:          $imageId\nenvironment:      $instanceEnvironment\nprivateIpAddress: $privateIpAddress\ninstanceType:     $instanceType\n########################################\n\n\n"
 
-        if [ $((i % 2)) -ne 0 ]; then
-            if [ $insideTmux -eq 1 ] || [ $i -ne 1 ]; then
+        if [ $(((i - init) % 2)) -eq 0 ]; then
+            if [ $insideTmux -eq 1 ] || [ $i -ne $init ]; then
                 tmux new-window -n "ssh-$session-$environment"
             fi
         else
