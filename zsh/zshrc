@@ -4,6 +4,10 @@ ZSH=$HOME/.oh-my-zsh
 # Set name of the theme to load.
 ZSH_THEME="oriol"
 
+# COMPLETION SETTINGS
+# add custom completion scripts
+fpath=(~/.dotfiles/zsh/completions $fpath) 
+
 # Set to this to use case-sensitive completion
 CASE_SENSITIVE="true"
 

@@ -1,0 +1,21 @@
+#compdef ssh_aws
+
+_ssh_aws() {
+  local state
+
+  _arguments \
+    '1: :->aws_profile'\
+    '*: :->eb_name'
+
+  case $state in
+    (aws_profile) _arguments '1:profiles:($(sed -n -E "s/\[([a-zA-Z0-9_\-]+)\]/\1/p" ~/.aws/credentials | tr \\n " "))' ;;
+              (*) case $words[2] in
+              marmota)
+                compadd "$@" dev stg prod ;;
+              havet)
+                compadd "$@" dev test stg prod ;;
+        esac
+  esac
+}
+
+_ssh_aws "$@"
