@@ -374,6 +374,10 @@ noremap <silent> <Leader>ri :call RetabIndents()<Cr>
 nnoremap & :&&<CR>
 xnoremap & :&&<CR>
 
+if has('nvim')
+  tnoremap <Esc> <C-\><C-n>
+endif
+
 augroup CursorLineOnlyInActiveWindow
     autocmd!
     autocmd VimEnter,WinEnter,BufWinEnter * setlocal cursorline
