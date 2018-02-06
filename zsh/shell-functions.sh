@@ -1,8 +1,18 @@
 #!/bin/sh
 
 function ssh_aws {
+    if [ "$#" -ne 2 ] && [ "$#" -ne 3 ]; then
+        echo "Usage ssh_aws <aws profile name> <environment name> [instance ip]"
+        echo "e.g.:"
+        echo " ssh_aws marmota prod"
+        return 1
+    fi
+
     session=$1
     environment=$2
+    if [ "$#" -eq 3 ]; then
+        ip=$3
+    fi
 
     vpn_disconnect_all
     vpn_connect "$1vpn"
@@ -48,15 +58,26 @@ function ssh_aws {
         environmentLineNumber=$((grep -n "\"environment\"" | cut -d : -f 1) <<< "$currentInstance")
         instanceEnvironment=$((head -n $((environmentLineNumber + 1)) | tail -n 1 | sed 's: ::g' | sed 's/,$//' | uniq | head -1 | cut -d ':' -f 2 | sed -e 's/^"//' -e 's/"$//') <<< "$currentInstance")
 
-        if [ $(((i - init) % 2)) -eq 0 ]; then
-            if [ $insideTmux -eq 1 ] || [ $i -ne $init ]; then
-                tmux new-window -n "ssh-$session-$environment"
+        if [ "$#" -eq 3 ]; then
+            if [ "$privateIpAddress" = "$ip" ]; then
+                if [ $insideTmux -eq 1 ]; then
+                    tmux new-window -n "ssh-$session-$environment"
+                fi
+
+                tmux send-keys "echo '\n\n\n########################################\nimageId:          $imageId\nenvironment:      $instanceEnvironment\nprivateIpAddress: $privateIpAddress\ninstanceType:     $instanceType\n########################################\n\n\n' ; ssh -i ~/.keys/$session-web-$instanceEnvironment.pem ubuntu@$privateIpAddress" C-m
+                break
             fi
         else
-            tmux splitw -h
-        fi
+            if [ $(((i - init) % 2)) -eq 0 ]; then
+                if [ $insideTmux -eq 1 ] || [ $i -ne $init ]; then
+                    tmux new-window -n "ssh-$session-$environment"
+                fi
+            else
+                tmux splitw -h
+            fi
 
-        tmux send-keys "echo '\n\n\n########################################\nimageId:          $imageId\nenvironment:      $instanceEnvironment\nprivateIpAddress: $privateIpAddress\ninstanceType:     $instanceType\n########################################\n\n\n' ; ssh -i ~/.keys/$session-web-$instanceEnvironment.pem ubuntu@$privateIpAddress" C-m
+            tmux send-keys "echo '\n\n\n########################################\nimageId:          $imageId\nenvironment:      $instanceEnvironment\nprivateIpAddress: $privateIpAddress\ninstanceType:     $instanceType\n########################################\n\n\n' ; ssh -i ~/.keys/$session-web-$instanceEnvironment.pem ubuntu@$privateIpAddress" C-m
+        fi
     done
     if [ $insideTmux -ne 1 ]; then
         tmux attach-session -t "ssh-$session-$environment"
@@ -64,9 +85,20 @@ function ssh_aws {
 }
 
 function scp_aws {
+    if [ "$#" -ne 3 ] && [ "$#" -ne 4 ]; then
+        echo "Usage scp_aws <aws profile name> <environment name> [instance ip] <file to copy>:<path in instance>"
+        echo "e.g.:"
+        echo " scp_aws marmota prod file.txt:~"
+        return 1
+    fi
+
     session=$1
     environment=$2
     filePath=$3
+    if [ "$#" -eq 4 ]; then
+        ip=$3
+        filePath=$4
+    fi
     fileFrom=${filePath%:*}
     pathTo=${filePath##*:}
 
@@ -105,8 +137,16 @@ function scp_aws {
         environmentLineNumber=$((grep -n "\"environment\"" | cut -d : -f 1) <<< "$currentInstance")
         instanceEnvironment=$((head -n $((environmentLineNumber + 1)) | tail -n 1 | sed 's: ::g' | sed 's/,$//' | uniq | head -1 | cut -d ':' -f 2 | sed -e 's/^"//' -e 's/"$//') <<< "$currentInstance")
 
-        echo "\n\n\n########################################\nimageId:          $imageId\nenvironment:      $instanceEnvironment\nprivateIpAddress: $privateIpAddress\ninstanceType:     $instanceType\n########################################\n\n\n"
-        scp -i ~/.keys/$session-web-$instanceEnvironment.pem $fileFrom ubuntu@$privateIpAddress:$pathTo
+        if [ "$#" -eq 4 ]; then
+            if [ "$privateIpAddress" = "$ip" ]; then
+                echo "\n\n\n########################################\nimageId:          $imageId\nenvironment:      $instanceEnvironment\nprivateIpAddress: $privateIpAddress\ninstanceType:     $instanceType\n########################################\n\n\n"
+                scp -i ~/.keys/$session-web-$instanceEnvironment.pem $fileFrom ubuntu@$privateIpAddress:$pathTo
+                break
+            fi
+        else
+            echo "\n\n\n########################################\nimageId:          $imageId\nenvironment:      $instanceEnvironment\nprivateIpAddress: $privateIpAddress\ninstanceType:     $instanceType\n########################################\n\n\n"
+            scp -i ~/.keys/$session-web-$instanceEnvironment.pem $fileFrom ubuntu@$privateIpAddress:$pathTo
+        fi
     done
 }
 
