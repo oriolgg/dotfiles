@@ -1,29 +1,19 @@
-alias q=exit
 alias e=exit
-alias j=autojump
 alias ls='ls -G'
 
 alias ag='ag -U'
 
-alias ta='tmux attach -t'
-alias tl='tmux list-sessions'
 alias tk='tmux list-panes -s -F '\''#{pane_pid} #{pane_current_command}'\'' | grep -v tmux | awk '\''{print $1}'\'' | xargs kill -9 ; e'
 alias ts='tmux-start'
-alias tr='tmux-resize'
-
-alias c='tput reset'
 
 alias brewski='echo "brew update:" && brew update && echo "brew upgrade:" && brew upgrade && echo "brew cleanup:" && brew cleanup && echo "brew cask upgrade:" && brew cask upgrade && echo "brew cask cleanup:" && brew cask cleanup; echo "brew doctor:" && brew doctor'
 
 # Git
 alias gcd='git checkout develop'
-alias gch='git checkout hotfix'
-alias gcr='git checkout release'
 alias gf='git fetch -p'
 alias gs='git status'
 alias gp='git push'
 alias gl='git pull'
-alias glu='git pull upstream'
 alias ga='git add .'
 alias go='git commit -m'
 alias gc='git checkout'
@@ -37,13 +27,6 @@ alias edf='vim -S $HOME/.vim_sessions/dotfiles.vim'
 alias f='find . -name'
 
 alias vi=vim
-
-alias ctags-objc="ctags --languages=ObjectiveC --langmap=ObjectiveC:.h.m"
-alias ctags-php="ctags --languages=PHP --langmap=PHP:.php"
-alias ctags-js="ctags --languages=JavaScript --langmap=JavaScript:.js"
-alias ctags-css="ctags --languages=css --langmap=css:.css"
-
-alias phpcs='phpcs --standard=Symfony2'
 
 alias afk="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend"
 
