@@ -7,6 +7,11 @@ ZSH_THEME="oriol"
 # COMPLETION SETTINGS
 # add custom completion scripts
 fpath=(~/.dotfiles/zsh/completions $fpath) 
+zstyle ":completion:*" verbose yes
+zstyle ":completion:*:descriptions" format "%B%d%b"
+zstyle ":completion:*:messages" format "%d"
+zstyle ":completion:*:warnings" format "No matches for: %d"
+zstyle ":completion:*" group-name ”
 
 # Set to this to use case-sensitive completion
 CASE_SENSITIVE="true"
