@@ -28,6 +28,9 @@ _scp_aws_environment() {
 
     environments=()
     total=${#instanceLineNumbers[*]}
+    if [ $total -eq 0 ]; then
+        return
+    fi
     total2=$((total+init))
     for (( i=$init; i<$total2; i++ )) do 
         if [ "${instanceLineNumbers[($i + 1)]}" = "" ]; then
@@ -56,6 +59,9 @@ _scp_aws_instance() {
 
     instancesToShow=()
     total=${#instanceLineNumbers[*]}
+    if [ $total -eq 0 ]; then
+        return
+    fi
     total2=$((total+init))
     for (( i=$init; i<$total2; i++ )) do 
         if [ "${instanceLineNumbers[($i + 1)]}" = "" ]; then
