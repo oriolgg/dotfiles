@@ -20,20 +20,20 @@ _ssh_aws "$@"
 _ssh_aws_environment() {
     instances=$(aws ec2 describe-instances --profile $words[2] --region eu-west-1 --filter "Name=instance-state-name,Values=running")
     instanceLineNumbers=($((grep -n "\"Instances\"" | cut -d : -f 1) <<< "$instances"))
-    if [ "${instanceLineNumbers[0]}" = "" ]; then
+    total=${#instanceLineNumbers[*]}
+    if [ ! -n "$BASH" ]; then
         init=1
     else
         init=0
     fi
 
     environments=()
-    total=${#instanceLineNumbers[*]}
-    total2=$((total+init))
-    for (( i=$init; i<$total2; i++ )) do 
-        if [ "${instanceLineNumbers[($i + 1)]}" = "" ]; then
-            currentInstance=$(echo "$instances" | awk 'NR >= '${instanceLineNumbers[$i]})
+    for (( i=0; i<$total; i++ )) do 
+        if [ $i -eq $((total -1)) ]; then
+            # Last element of the array
+            currentInstance=$(echo "$instances" | awk 'NR >= '${instanceLineNumbers[$((i + init))]})
         else
-            currentInstance=$(echo "$instances" | awk 'NR >= '${instanceLineNumbers[$i]}' && NR <= '${instanceLineNumbers[($i + 1)]})
+            currentInstance=$(echo "$instances" | awk 'NR >= '${instanceLineNumbers[$((i + init))]}' && NR <= '${instanceLineNumbers[($((i + init)) + 1)]})
         fi
         environmentLineNumber=$((grep -n "\"environment\"" | cut -d : -f 1) <<< "$currentInstance")
         if [ "$environmentLineNumber" != "" ]; then
@@ -48,20 +48,20 @@ _ssh_aws_environment() {
 _ssh_aws_instance() {
     instances=$(aws ec2 describe-instances --profile $words[2] --region eu-west-1 --filter "Name=key-name,Values=$words[2]-$words[3]" "Name=instance-state-name,Values=running")
     instanceLineNumbers=($((grep -n "\"Instances\"" | cut -d : -f 1) <<< "$instances"))
-    if [ "${instanceLineNumbers[0]}" = "" ]; then
+    total=${#instanceLineNumbers[*]}
+    if [ ! -n "$BASH" ]; then
         init=1
     else
         init=0
     fi
 
     instancesToShow=()
-    total=${#instanceLineNumbers[*]}
-    total2=$((total+init))
-    for (( i=$init; i<$total2; i++ )) do 
-        if [ "${instanceLineNumbers[($i + 1)]}" = "" ]; then
-            currentInstance=$(echo "$instances" | awk 'NR >= '${instanceLineNumbers[$i]})
+    for (( i=0; i<$total; i++ )) do 
+        if [ $i -eq $((total -1)) ]; then
+            # Last element of the array
+            currentInstance=$(echo "$instances" | awk 'NR >= '${instanceLineNumbers[$((i + init))]})
         else
-            currentInstance=$(echo "$instances" | awk 'NR >= '${instanceLineNumbers[$i]}' && NR <= '${instanceLineNumbers[($i + 1)]})
+            currentInstance=$(echo "$instances" | awk 'NR >= '${instanceLineNumbers[$((i + init))]}' && NR <= '${instanceLineNumbers[($((i + init)) + 1)]})
         fi
 
         privateIpAddress=$((grep "\"PrivateIpAddress\"" | head -1) <<< "$currentInstance")
