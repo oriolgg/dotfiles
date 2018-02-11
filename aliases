@@ -13,7 +13,7 @@ alias tr='tmux-resize'
 
 alias c='tput reset'
 
-alias brewski='echo "brew update:" && brew update && echo "brew upgrade:" && brew upgrade && echo "brew cleanup:" && brew cleanup && echo "brew cask upgrade:" && brew cask upgrade && echo "brew cask cleanup:" && brew cask cleanup; echo "brew doctor:" && brew doctor'
+alias brewski='echo "brew update:" && brew update && echo "brew upgrade:" && brew upgrade && echo "brew cleanup:" && brew cleanup && echo "brew cask upgrade:" && brew cu -ay && echo "brew cask cleanup:" && brew cask cleanup; echo "brew doctor:" && brew doctor'
 
 # Git
 alias gcd='git checkout develop'

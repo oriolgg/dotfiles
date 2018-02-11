@@ -45,6 +45,7 @@ apps=(
     tmux
     tree
     unar
+    unrar
     vim
     wifi-password
     youtube-dl
