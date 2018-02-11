@@ -14,14 +14,16 @@ function ssh_aws {
         ip=$3
     fi
 
-    vpn_disconnect_all
-    vpn_connect "$1vpn"
-
     instances=$(aws ec2 describe-instances --profile $session --region eu-west-1 --filter "Name=key-name,Values=$session-$environment" "Name=instance-state-name,Values=running")
 
     instanceLineNumbers=($((grep -n "\"Instances\"" | cut -d : -f 1) <<< "$instances"))
 
     total=${#instanceLineNumbers[*]}
+    if [ ! -n "$BASH" ]; then
+        init=1
+    else
+        init=0
+    fi
     insideTmux=0
     if [ "$TERM" = "screen-256color" ]; then
         insideTmux=1
@@ -29,23 +31,21 @@ function ssh_aws {
     if [ $total -eq 0 ]; then
         echo "There is no instance with the key name $session-$environment running"
     else
+        vpn_disconnect_all
+        vpn_connect "$1vpn"
+
         if [ $insideTmux -ne 1 ]; then
             tmux start-server
             tmux new-session -s "ssh-$session-$environment" -n "ssh-$session-$environment" -d
         fi
     fi
 
-    if [ "${instanceLineNumbers[0]}" = "" ]; then
-        init=1
-    else
-        init=0
-    fi
-    total2=$((total+init))
-    for (( i=$init; i<$total2; i++ )) do 
-        if [ "${instanceLineNumbers[($i + 1)]}" = "" ]; then
-            currentInstance=s$(echo "$instances" | awk 'NR >= '${instanceLineNumbers[$i]})
+    for (( i=0; i<$total; i++ )) do 
+        if [ $i -eq $((total -1)) ]; then
+            # Last element of the array
+            currentInstance=$(echo "$instances" | awk 'NR >= '${instanceLineNumbers[$((i + init))]})
         else
-            currentInstance=s$(echo "$instances" | awk 'NR >= '${instanceLineNumbers[$i]}' && NR <= '${instanceLineNumbers[($i + 1)]})
+            currentInstance=$(echo "$instances" | awk 'NR >= '${instanceLineNumbers[$((i + init))]}' && NR <= '${instanceLineNumbers[($((i + init)) + 1)]})
         fi
 
         privateIpAddress=$((grep "\"PrivateIpAddress\"" | head -1) <<< "$currentInstance")
@@ -64,19 +64,19 @@ function ssh_aws {
                     tmux new-window -n "ssh-$session-$environment"
                 fi
 
-                tmux send-keys "echo '\n\n\n########################################\nimageId:          $imageId\nenvironment:      $instanceEnvironment\nprivateIpAddress: $privateIpAddress\ninstanceType:     $instanceType\n########################################\n\n\n' ; ssh -i ~/.keys/$session-web-$instanceEnvironment.pem ubuntu@$privateIpAddress" C-m
+                tmux send-keys "printf '\n\n\n########################################\nimageId:          $imageId\nenvironment:      $instanceEnvironment\nprivateIpAddress: $privateIpAddress\ninstanceType:     $instanceType\n########################################\n\n\n' ; ssh -i ~/.keys/$session-web-$instanceEnvironment.pem ubuntu@$privateIpAddress" C-m
                 break
             fi
         else
-            if [ $(((i - init) % 2)) -eq 0 ]; then
-                if [ $insideTmux -eq 1 ] || [ $i -ne $init ]; then
+            if [ $((i % 2)) -eq 0 ]; then
+                if [ $insideTmux -eq 1 ] || [ $i -ne 0 ]; then
                     tmux new-window -n "ssh-$session-$environment"
                 fi
             else
                 tmux splitw -h
             fi
 
-            tmux send-keys "echo '\n\n\n########################################\nimageId:          $imageId\nenvironment:      $instanceEnvironment\nprivateIpAddress: $privateIpAddress\ninstanceType:     $instanceType\n########################################\n\n\n' ; ssh -i ~/.keys/$session-web-$instanceEnvironment.pem ubuntu@$privateIpAddress" C-m
+            tmux send-keys "printf '\n\n\n########################################\nimageId:          $imageId\nenvironment:      $instanceEnvironment\nprivateIpAddress: $privateIpAddress\ninstanceType:     $instanceType\n########################################\n\n\n' ; ssh -i ~/.keys/$session-web-$instanceEnvironment.pem ubuntu@$privateIpAddress" C-m
         fi
     done
     if [ $insideTmux -ne 1 ]; then
@@ -102,29 +102,29 @@ function scp_aws {
     fileFrom=${filePath%:*}
     pathTo=${filePath##*:}
 
-    vpn_disconnect_all
-    vpn_connect "$1vpn"
-
     instances=$(aws ec2 describe-instances --profile $session --region eu-west-1 --filter "Name=key-name,Values=$session-$environment" "Name=instance-state-name,Values=running")
 
     instanceLineNumbers=($((grep -n "\"Instances\"" | cut -d : -f 1) <<< "$instances"))
 
     total=${#instanceLineNumbers[*]}
-    if [ $total -eq 0 ]; then
-        echo "There is no instance with the key name $session-$environment running"
-    fi
-
-    if [ "${instanceLineNumbers[0]}" = "" ]; then
+    if [ ! -n "$BASH" ]; then
         init=1
     else
         init=0
     fi
-    total2=$((total+init))
-    for (( i=$init; i<$total2; i++ )) do 
-        if [ "${instanceLineNumbers[($i + 1)]}" = "" ]; then
-            currentInstance=s$(echo "$instances" | awk 'NR >= '${instanceLineNumbers[$i]})
+    if [ $total -eq 0 ]; then
+        echo "There is no instance with the key name $session-$environment running"
+    else
+        vpn_disconnect_all
+        vpn_connect "$1vpn"
+    fi
+
+    for (( i=0; i<$total; i++ )) do 
+        if [ $i -eq $((total -1)) ]; then
+            # Last element of the array
+            currentInstance=$(echo "$instances" | awk 'NR >= '${instanceLineNumbers[$((i + init))]})
         else
-            currentInstance=s$(echo "$instances" | awk 'NR >= '${instanceLineNumbers[$i]}' && NR <= '${instanceLineNumbers[($i + 1)]})
+            currentInstance=$(echo "$instances" | awk 'NR >= '${instanceLineNumbers[$((i + init))]}' && NR <= '${instanceLineNumbers[($((i + init)) + 1)]})
         fi
 
         privateIpAddress=$((grep "\"PrivateIpAddress\"" | head -1) <<< "$currentInstance")
@@ -139,12 +139,12 @@ function scp_aws {
 
         if [ "$#" -eq 4 ]; then
             if [ "$privateIpAddress" = "$ip" ]; then
-                echo "\n\n\n########################################\nimageId:          $imageId\nenvironment:      $instanceEnvironment\nprivateIpAddress: $privateIpAddress\ninstanceType:     $instanceType\n########################################\n\n\n"
+                printf "\n\n\n########################################\nimageId:          $imageId\nenvironment:      $instanceEnvironment\nprivateIpAddress: $privateIpAddress\ninstanceType:     $instanceType\n########################################\n\n\n"
                 scp -i ~/.keys/$session-web-$instanceEnvironment.pem $fileFrom ubuntu@$privateIpAddress:$pathTo
                 break
             fi
         else
-            echo "\n\n\n########################################\nimageId:          $imageId\nenvironment:      $instanceEnvironment\nprivateIpAddress: $privateIpAddress\ninstanceType:     $instanceType\n########################################\n\n\n"
+            printf "\n\n\n########################################\nimageId:          $imageId\nenvironment:      $instanceEnvironment\nprivateIpAddress: $privateIpAddress\ninstanceType:     $instanceType\n########################################\n\n\n"
             scp -i ~/.keys/$session-web-$instanceEnvironment.pem $fileFrom ubuntu@$privateIpAddress:$pathTo
         fi
     done
