@@ -163,3 +163,7 @@ if [[ `uname` == 'Linux' ]]; then
 elif [[ `uname` == 'Darwin' ]]; then
     source $HOME/.zshrc-osx
 fi
+
+if [[ "$TERM" != "screen-256color" ]]; then
+    ts "$USER"
+fi

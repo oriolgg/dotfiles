@@ -2,7 +2,7 @@
 
 session_name=$1
 
-if [ ! $session ] ; then
+if [ ! $session_name ] ; then
     path_name="$(basename "$PWD" | tr . -)"
     session_name=${1-$path_name}
     # Maybe we are at .XXX folder and this shows an error.
@@ -27,8 +27,6 @@ session_is_attached() {
 create_new_session() {
     tmux start-server
     tmux new-session -s $session_name -n shell -d
-    echo '\033];'$session_name'\007'
-    tmux attach-session -t "$session_name"
 }
 
 if session_exists ; then
@@ -43,14 +41,15 @@ if session_exists ; then
         fi
     fi
 else
-    if in_tmux ; then
-        tmux detach
-        create_new_session
+    if [[ -f $start_configured_session ]] ; then
+        $start_configured_session
     else
-        if [[ -f $start_configured_session ]] ; then
-            $start_configured_session
-        else
-            create_new_session
-        fi
+        create_new_session
+    fi
+
+    if in_tmux ; then
+        tmux switch-client -t "$session_name"
+    else
+        tmux attach-session -t "$session_name"
     fi
 fi
