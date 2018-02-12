@@ -2,6 +2,9 @@
     path = fonts
     url = https://github.com/powerline/fonts
 
+[submodule "tmux/tmux/plugins/tmux-battery"]
+	path = tmux/tmux/plugins/tmux-battery
+	url = https://github.com/tmux-plugins/tmux-battery
 [submodule "tmux/tmux/plugins/tmux-continuum"]
     path = tmux/tmux/plugins/tmux-continuum
     url = https://github.com/tmux-plugins/tmux-continuum
