@@ -29,6 +29,7 @@ call minpac#add('tpope/vim-surround')
 call minpac#add('tpope/vim-unimpaired')
 call minpac#add('vim-airline/vim-airline')
 call minpac#add('vim-airline/vim-airline-themes')
+call minpac#add('w0rp/ale')
 call minpac#add('xolox/vim-misc')
 call minpac#add('xolox/vim-session')
 
@@ -349,10 +350,6 @@ nnoremap <silent> Q :call CloseWindowOrKillBuffer()<Cr>
 
 " Per seleccionar l'últim text enganxat
 nnoremap <expr> gv '`[' . strpart(getregtype(), 0, 1) . '`]'
-
-" Intercanviar v per <C-v>: v per defecte serà en bloc
-nnoremap v <C-V>
-nnoremap <C-V> v
 
 map <Leader>e :e <C-R>=expand('%:p:h') . '/' <Cr>
 map <Leader>c :f <C-R>=expand('%:p:h') . '/' <Cr>
