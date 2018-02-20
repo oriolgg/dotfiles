@@ -33,8 +33,11 @@ call minpac#add('w0rp/ale')
 call minpac#add('xolox/vim-misc')
 call minpac#add('xolox/vim-session')
 
-command! PackUpdate call minpac#update()
-command! PackClean call minpac#clean()
+call minpac#add('junegunn/fzf')
+call minpac#add('junegunn/fzf.vim')
+
+command! PackUpdate packadd minpac | source $MYVIMRC | call minpac#update()
+command! PackClean  packadd minpac | source $MYVIMRC | call minpac#clean()
 
 "runtime macros/matchit.vim
 
@@ -197,6 +200,9 @@ if !has('nvim')
     set term=screen-256color
 endif
 set pastetoggle=<f5>
+
+set path+=**
+set suffixesadd+=.php,.py
 
 autocmd BufNewFile,BufRead *.h,*.m set tags+=~/Documents/global-objc-tags
 " autocmd BufNewFile,BufRead *.js set tags+=.js.tags
@@ -418,13 +424,14 @@ if executable('ag')
 endif
 
 " Mostrar finestra amb el CtrlP de buffers oberts
-nmap <Leader>b :CtrlPBuffer<Cr>
+nmap <Leader>b :Buffers<Cr>
 " Mostrar finestra amb el CtrlP de fitxers
-nmap <Leader>f :CtrlP<Cr>
+nmap <Leader>f :FZF<Cr>
 " Mostrar finestra amb el CtrlP de fitxers escanejant de nou
 nmap <Leader>F :CtrlPClearCache<Cr>:CtrlP<Cr>
 " Mostrar finestra amb els tags extrets fent ctags
-nmap <Leader>. :CtrlPClearCache<Cr>:CtrlPTag<Cr>
+nmap <Leader>. :Tags<Cr>:CtrlPTag<Cr>
+let $FZF_DEFAULT_COMMAND = 'ag -g ""'
 
 " Vim-easymotion: Per saltar entre paraules, cerques, etc. de manera més àgil.
 " git clone https://github.com/Lokaltog/vim-easymotion

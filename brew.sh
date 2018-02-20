@@ -46,10 +46,12 @@ apps=(
     tree
     unar
     unrar
-    vim
+    vim --with-python3
     wifi-password
     youtube-dl
     zsh
+
+    fzf
 )
 
 # Install apps to /Applications - default is: /Users/$user/Applications

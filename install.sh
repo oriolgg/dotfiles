@@ -56,3 +56,4 @@ ln -s ~/.dotfiles/nvim/init.vim ~/.config/nvim/init.vim
 
 # Set default osx defaults
 /bin/bash ~/.dotfiles/osx-defaults.sh
+/usr/local/opt/fzf/install --all

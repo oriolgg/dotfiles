@@ -167,3 +167,5 @@ fi
 if [[ "$TERM" != "screen-256color" ]]; then
     ts "$USER"
 fi
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
