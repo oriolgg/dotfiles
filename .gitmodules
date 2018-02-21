@@ -60,6 +60,9 @@
 [submodule "vim/pack/minpac/start/vim-git-log"]
     path = vim/pack/minpac/start/vim-git-log
     url = https://github.com/kablamo/vim-git-log
+[submodule "vim/pack/minpac/start/vim-grepper"]
+	path = vim/pack/minpac/start/vim-grepper
+	url = https://github.com/mhinz/vim-grepper
 [submodule "vim/pack/minpac/start/vim-highlightedyank"]
     path = vim/pack/minpac/start/vim-highlightedyank
     url = https://github.com/machakann/vim-highlightedyank
