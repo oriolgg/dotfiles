@@ -12,6 +12,7 @@ call minpac#add('adelarsq/vim-matchit')
 call minpac#add('chriskempson/base16-vim')
 call minpac#add('christoomey/vim-tmux-navigator')
 call minpac#add('gorkunov/smartpairs.vim')
+call minpac#add('int3/vim-extradite')
 call minpac#add('joonty/vim-taggatron')
 call minpac#add('junegunn/fzf')
 call minpac#add('junegunn/fzf.vim')
@@ -34,8 +35,8 @@ call minpac#add('w0rp/ale')
 call minpac#add('xolox/vim-misc')
 call minpac#add('xolox/vim-session')
 
-command! PackUpdate packadd minpac | source $MYVIMRC | call minpac#update()
-command! PackClean  packadd minpac | source $MYVIMRC | call minpac#clean()
+command! PackUpdate call minpac#update()
+command! PackClean  call minpac#clean()
 
 "runtime macros/matchit.vim
 

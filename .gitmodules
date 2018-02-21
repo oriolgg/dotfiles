@@ -51,6 +51,9 @@
 [submodule "vim/pack/minpac/start/vim-easymotion"]
     path = vim/pack/minpac/start/vim-easymotion
     url = https://github.com/Lokaltog/vim-easymotion
+[submodule "vim/pack/minpac/start/vim-extradite"]
+	path = vim/pack/minpac/start/vim-extradite
+	url = https://github.com/int3/vim-extradite
 [submodule "vim/pack/minpac/start/vim-fugitive"]
     path = vim/pack/minpac/start/vim-fugitive
     url = https://github.com/tpope/vim-fugitive
