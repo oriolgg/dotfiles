@@ -13,7 +13,6 @@ call minpac#add('chriskempson/base16-vim')
 call minpac#add('christoomey/vim-tmux-navigator')
 call minpac#add('gorkunov/smartpairs.vim')
 call minpac#add('int3/vim-extradite')
-call minpac#add('joonty/vim-taggatron')
 call minpac#add('junegunn/fzf')
 call minpac#add('junegunn/fzf.vim')
 call minpac#add('k-takata/minpac', {'type':'opt'})
@@ -457,25 +456,6 @@ nnoremap <Leader>sc :CloseSession<Cr>
 
 " vim-misc:
 " git clone https://github.com/xolox/vim-misc
-
-" vim-taggatron
-let g:tagcommands = {
-\    "php" : {
-\        "tagfile": ".php.tags",
-\        "cmd" : "ctags",
-\        "args": "-R"
-\    },
-\    "css" : {
-\        "tagfile": ".css.tags",
-\        "cmd" : "ctags",
-\        "args": "-R"
-\    },
-\}
-" \    "javascript" : {
-" \        "tagfile": ".js.tags",
-" \        "cmd" : "ctags",
-" \        "args": "-R"
-" \    },
 
 " vim-airline: Línia de status i de buffers
 " git clone https://github.com/bling/vim-airline
