@@ -833,7 +833,7 @@
 	<key>NSWindow Frame UKCrashReporter</key>
 	<string>99 293 592 584 0 0 1440 877 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>0 0 1440 878 0 0 1440 900 </string>
+	<string>0 0 1440 878 0 0 1440 878 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
 	<string>0 9 1438 869 0 0 1440 878 </string>
 	<key>NSWindow Frame iTerm Window 2</key>
@@ -1848,7 +1848,7 @@
 	<key>PromptOnClose</key>
 	<true/>
 	<key>PromptOnQuit</key>
-	<true/>
+	<false/>
 	<key>QuitWhenAllWindowsClosed</key>
 	<true/>
 	<key>RightCommand</key>
@@ -1866,7 +1866,7 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2018-02-02T08:22:18Z</date>
+	<date>2018-03-07T18:42:36Z</date>
 	<key>SUSkippedVersion</key>
 	<string>2.1.3</string>
 	<key>SavePasteHistory</key>
@@ -1916,6 +1916,6 @@
 	<key>findRegex_iTerm</key>
 	<false/>
 	<key>iTerm Version</key>
-	<string>3.1.5.beta.2</string>
+	<string>3.1.6beta4</string>
 </dict>
 </plist>
