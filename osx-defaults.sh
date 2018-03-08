@@ -173,7 +173,7 @@ defaults write com.apple.finder _FXSortFoldersFirst -bool true
 defaults write com.apple.finder FXDefaultSearchScope -string "SCcf"
 
 # Hides sidebar from Finder
-defaults write com.apple.finder ShowSidebar -bool false
+# defaults write com.apple.finder ShowSidebar -bool false
 
 # Disable the warning when changing a file extension
 defaults write com.apple.finder FXEnableExtensionChangeWarning -bool false

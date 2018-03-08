@@ -26,7 +26,7 @@ brew update
 brew upgrade
 
 apps=(
-    ansible
+    #ansible
     awscli
     coreutils
     ctags

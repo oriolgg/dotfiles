@@ -36,7 +36,6 @@ apps=(
     1password
     appcleaner
     betterzip
-    cyberduck
     disk-inventory-x
     dropbox
     evernote
@@ -48,7 +47,6 @@ apps=(
     macvim
     monolingual
     moom
-    opera
     p4merge
     qlcolorcode
     qlimagesize
@@ -62,7 +60,6 @@ apps=(
     sequel-pro
     skype
     slack
-    soapui
     sourcetree
     spotify
     suspicious-package
@@ -74,7 +71,6 @@ apps=(
     webpquicklook
     whatsapp
     wkhtmltopdf
-    zeplin
 )
 
 # Install apps to /Applications - default is: /Users/$user/Applications
