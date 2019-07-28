@@ -75,6 +75,8 @@ export EDITOR='vim'
 
 export WWW_HOME='http://www.google.com'
 
+export LC_ALL=en_US.UTF-8
+
 # Using the AUTOCD option, you can simply type the name of a directory, and it will become the current directory.
 setopt AUTO_CD
 

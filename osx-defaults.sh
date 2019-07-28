@@ -41,17 +41,6 @@ sudo nvram SystemAudioVolume=" "
 # Show battery life percentage.
 defaults write com.apple.menuextra.battery ShowPercent -string "YES"
 
-# Set appearance
-# Blue     : 1
-# Graphite : 6
-defaults write NSGlobalDomain AppleAquaColorVariant -int 6
-
-# Highlight color
-# Graphite : `0.780400 0.815700 0.858800`
-# Silver   : `0.776500 0.776500 0.776500`
-# Blue     : `0.709800 0.835300 1.000000`
-defaults write NSGlobalDomain AppleHighlightColor -string '0.780400 0.815700 0.858800'
-
 # Disable the new window animation - every new window grows
 # from a small one to a big one over a few hundred millisecs
 defaults write NSGlobalDomain NSAutomaticWindowAnimationsEnabled -bool false
@@ -148,9 +137,6 @@ defaults write com.apple.CrashReporter DialogType none
 # New Finder windows points to home
 defaults write com.apple.finder NewWindowTarget -string "PfHm"
 
-# Finder: allow quitting via ⌘ + Q; doing so will also hide desktop icons
-# defaults write com.apple.finder QuitMenuItem -bool true
-
 # Finder: disable window animations and Get Info animations
 defaults write com.apple.finder DisableAllAnimations -bool true
 
@@ -171,9 +157,6 @@ defaults write com.apple.finder _FXSortFoldersFirst -bool true
 
 # When performing a search, search the current folder by default
 defaults write com.apple.finder FXDefaultSearchScope -string "SCcf"
-
-# Hides sidebar from Finder
-# defaults write com.apple.finder ShowSidebar -bool false
 
 # Disable the warning when changing a file extension
 defaults write com.apple.finder FXEnableExtensionChangeWarning -bool false
@@ -279,9 +262,6 @@ defaults write -g ApplePressAndHoldEnabled -bool false
 
 # Hide indicator lights for open applications
 defaults write com.apple.dock show-process-indicators -bool false
-
-# Use a dark menu bar / dock
-defaults write NSGlobalDomain AppleInterfaceStyle -string "Dark"
 
 # Don’t automatically rearrange Spaces based on most recent use
 defaults write com.apple.dock mru-spaces -bool false

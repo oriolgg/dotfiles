@@ -26,14 +26,12 @@ brew update
 brew upgrade
 
 apps=(
-    #ansible
     awscli
     coreutils
     ctags
     exiftool
     findutils
     git
-    git-flow
     lynx
     neovim
     python

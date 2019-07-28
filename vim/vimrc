@@ -34,6 +34,7 @@ call minpac#add('w0rp/ale')
 call minpac#add('xolox/vim-misc')
 call minpac#add('xolox/vim-session')
 call minpac#add('mhinz/vim-grepper')
+call minpac#add('rafi/awesome-vim-colorschemes')
 
 command! PackUpdate call minpac#update()
 command! PackClean  call minpac#clean()
@@ -215,8 +216,8 @@ syntax on
 
 set t_Co=256                                                 " Número de colors
 let base16colorspace=256
-set background=light
-colorscheme solarized8
+set background=dark
+colorscheme afterglow
 highlight SpecialKey ctermbg=NONE guibg=NONE
 if !has('gui_running')
     highlight Normal ctermbg=NONE guibg=NONE

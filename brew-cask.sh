@@ -47,7 +47,6 @@ apps=(
     macvim
     monolingual
     moom
-    p4merge
     qlcolorcode
     qlimagesize
     qlmarkdown
@@ -57,20 +56,14 @@ apps=(
     quicklook-csv
     quicklook-json
     script-debugger
-    sequel-pro
     skype
     slack
     sourcetree
     spotify
-    suspicious-package
     transmission
-    vagrant
-    vagrant-manager
-    virtualbox
     vlc
     webpquicklook
     whatsapp
-    wkhtmltopdf
 )
 
 # Install apps to /Applications - default is: /Users/$user/Applications

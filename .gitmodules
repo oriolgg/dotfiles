@@ -102,6 +102,9 @@
 [submodule "vim/pack/minpac/start/vim-unimpaired"]
     path = vim/pack/minpac/start/vim-unimpaired
     url = https://github.com/tpope/vim-unimpaired
+[submodule "vim/pack/minpac/start/awesome-vim-colorschemes"]
+    path = vim/pack/minpac/start/awesome-vim-colorschemes
+    url = https://github.com/rafi/awesome-vim-colorschemes
 
 [submodule "zsh/oh-my-zsh"]
     path = zsh/oh-my-zsh

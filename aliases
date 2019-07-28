@@ -6,7 +6,7 @@ alias ag='ag -U'
 alias tk='tmux list-panes -s -F '\''#{pane_pid} #{pane_current_command}'\'' | grep -v tmux | awk '\''{print $1}'\'' | xargs kill -9 ; e'
 alias ts='tmux-start'
 
-alias brewski='echo "brew update:" && brew update && echo "brew upgrade:" && brew upgrade && echo "brew cleanup:" && brew cleanup && echo "brew cask upgrade:" && brew cu -ay && echo "brew cask cleanup:" && brew cask cleanup; echo "brew doctor:" && brew doctor'
+alias brewski='echo "brew update:" && brew update && echo "brew upgrade:" && brew upgrade && echo "brew cleanup:" && brew cleanup && echo "brew cask upgrade:" && brew cu -ay && echo "brew cleanup:" && brew cleanup; echo "brew doctor:" && brew doctor'
 
 # Git
 alias gcd='git checkout develop'
@@ -27,6 +27,7 @@ alias edf='vim -S $HOME/.vim_sessions/dotfiles.vim'
 alias f='find . -name'
 
 alias vi=vim
+alias vim=nvim
 
 alias afk="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend"
 
