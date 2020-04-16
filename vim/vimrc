@@ -4,40 +4,34 @@ filetype off
 filetype plugin indent on
 filetype plugin on
 
-packadd minpac
-call minpac#init()
-
-call minpac#add('Lokaltog/vim-easymotion')
-call minpac#add('adelarsq/vim-matchit')
-call minpac#add('chriskempson/base16-vim')
-call minpac#add('christoomey/vim-tmux-navigator')
-call minpac#add('gorkunov/smartpairs.vim')
-call minpac#add('int3/vim-extradite')
-call minpac#add('junegunn/fzf')
-call minpac#add('junegunn/fzf.vim')
-call minpac#add('k-takata/minpac', {'type':'opt'})
-call minpac#add('kablamo/vim-git-log')
-call minpac#add('kana/vim-textobj-user')
-call minpac#add('lifepillar/vim-solarized8')
-call minpac#add('lumiliet/vim-twig')
-call minpac#add('machakann/vim-highlightedyank')
-call minpac#add('mhinz/vim-signify')
-call minpac#add('pbrisbin/vim-mkdir')
-call minpac#add('sjl/gundo.vim')
-call minpac#add('tpope/vim-fugitive')
-call minpac#add('tpope/vim-repeat')
-call minpac#add('tpope/vim-surround')
-call minpac#add('tpope/vim-unimpaired')
-call minpac#add('vim-airline/vim-airline')
-call minpac#add('vim-airline/vim-airline-themes')
-call minpac#add('w0rp/ale')
-call minpac#add('xolox/vim-misc')
-call minpac#add('xolox/vim-session')
-call minpac#add('mhinz/vim-grepper')
-call minpac#add('rafi/awesome-vim-colorschemes')
-
-command! PackUpdate call minpac#update()
-command! PackClean  call minpac#clean()
+call plug#begin('~/.vim/plugged')
+Plug 'Lokaltog/vim-easymotion'
+Plug 'adelarsq/vim-matchit'
+Plug 'christoomey/vim-tmux-navigator'
+Plug 'gorkunov/smartpairs.vim'
+Plug 'int3/vim-extradite'
+Plug 'junegunn/fzf'
+Plug 'junegunn/fzf.vim'
+Plug 'kablamo/vim-git-log'
+Plug 'kana/vim-textobj-user'
+Plug 'lifepillar/vim-solarized8'
+Plug 'lumiliet/vim-twig'
+Plug 'machakann/vim-highlightedyank'
+Plug 'mhinz/vim-signify'
+Plug 'pbrisbin/vim-mkdir'
+Plug 'sjl/gundo.vim'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-unimpaired'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'w0rp/ale'
+Plug 'xolox/vim-misc'
+Plug 'xolox/vim-session'
+Plug 'mhinz/vim-grepper'
+Plug 'chrisbra/Colorizer'
+call plug#end()
 
 "runtime macros/matchit.vim
 
@@ -215,14 +209,14 @@ autocmd BufNewFile,BufRead *.twig set tags+=.css.tags
 syntax on
 
 set t_Co=256                                                 " Número de colors
+set termguicolors
 let base16colorspace=256
 set background=dark
-colorscheme afterglow
+colorscheme solarized8
 highlight SpecialKey ctermbg=NONE guibg=NONE
 if !has('gui_running')
     highlight Normal ctermbg=NONE guibg=NONE
 endif
-set termguicolors
 
 " set Vim-specific sequences for RGB colors
 let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"

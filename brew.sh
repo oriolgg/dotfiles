@@ -48,6 +48,7 @@ apps=(
     wifi-password
     youtube-dl
     zsh
+    Rigellute/tap/spotify-tui
 
     fzf
 )
