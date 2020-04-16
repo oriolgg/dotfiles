@@ -18,7 +18,7 @@ CASE_SENSITIVE="true"
 
 #plugins=(git history-substring-search)
 plugins=(
-    colored-man
+    colored-man-pages
     common-aliases
     composer
     encode64
@@ -34,8 +34,6 @@ plugins=(
     symfony2
     tmuxinator
     vagrant
-    zsh-completions
-    zsh-syntax-highlighting
 )
 
 DISABLE_AUTO_TITLE="true"
