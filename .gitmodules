@@ -43,30 +43,15 @@
 [submodule "vim/plugged/fzf.vim"]
 	path = vim/plugged/fzf.vim
 	url = https://github.com/junegunn/fzf.vim
-[submodule "vim/plugged/vim-git-log"]
-	path = vim/plugged/vim-git-log
-	url = https://github.com/kablamo/vim-git-log
-[submodule "vim/plugged/vim-textobj-user"]
-	path = vim/plugged/vim-textobj-user
-	url = https://github.com/kana/vim-textobj-user
 [submodule "vim/plugged/vim-solarized8"]
 	path = vim/plugged/vim-solarized8
 	url = https://github.com/lifepillar/vim-solarized8
-[submodule "vim/plugged/vim-twig"]
-	path = vim/plugged/vim-twig
-	url = https://github.com/lumiliet/vim-twig
 [submodule "vim/plugged/vim-highlightedyank"]
 	path = vim/plugged/vim-highlightedyank
 	url = https://github.com/machakann/vim-highlightedyank
-[submodule "vim/plugged/vim-signify"]
-	path = vim/plugged/vim-signify
-	url = https://github.com/mhinz/vim-signify
 [submodule "vim/plugged/vim-mkdir"]
 	path = vim/plugged/vim-mkdir
 	url = https://github.com/pbrisbin/vim-mkdir
-[submodule "vim/plugged/gundo.vim"]
-	path = vim/plugged/gundo.vim
-	url = https://github.com/sjl/gundo.vim
 [submodule "vim/plugged/vim-fugitive"]
 	path = vim/plugged/vim-fugitive
 	url = https://github.com/tpope/vim-fugitive
@@ -82,9 +67,6 @@
 [submodule "vim/plugged/vim-airline"]
 	path = vim/plugged/vim-airline
 	url = https://github.com/vim-airline/vim-airline
-[submodule "vim/plugged/vim-airline-themes"]
-	path = vim/plugged/vim-airline-themes
-	url = https://github.com/vim-airline/vim-airline-themes
 [submodule "vim/plugged/ale"]
 	path = vim/plugged/ale
 	url = https://github.com/w0rp/ale
@@ -100,3 +82,24 @@
 [submodule "vim/plugged/Colorizer"]
 	path = vim/plugged/Colorizer
 	url = https://github.com/chrisbra/Colorizer
+[submodule "vim/plugged/stable-windows"]
+	path = vim/plugged/stable-windows
+	url = https://github.com/gillyb/stable-windows
+[submodule "vim/plugged/vim-g"]
+	path = vim/plugged/vim-g
+	url = https://github.com/szw/vim-g
+[submodule "vim/plugged/vim-gitgutter"]
+	path = vim/plugged/vim-gitgutter
+	url = https://github.com/airblade/vim-gitgutter
+[submodule "vim/plugged/swift.vim"]
+	path = vim/plugged/swift.vim
+	url = https://github.com/keith/swift.vim
+[submodule "vim/plugged/undotree"]
+	path = vim/plugged/undotree
+	url = https://github.com/mbbill/undotree
+[submodule "vim/plugged/fzf-preview.vim"]
+	path = vim/plugged/fzf-preview.vim
+	url = https://github.com/yuki-ycino/fzf-preview.vim
+[submodule "vim/plugged/vim-airline-themes"]
+	path = vim/plugged/vim-airline-themes
+	url = https://github.com/vim-airline/vim-airline-themes

@@ -5,35 +5,37 @@ filetype plugin indent on
 filetype plugin on
 
 call plug#begin('~/.vim/plugged')
-Plug 'Lokaltog/vim-easymotion'
-Plug 'adelarsq/vim-matchit'
-Plug 'christoomey/vim-tmux-navigator'
-Plug 'gorkunov/smartpairs.vim'
-Plug 'int3/vim-extradite'
-Plug 'junegunn/fzf'
-Plug 'junegunn/fzf.vim'
-Plug 'kablamo/vim-git-log'
-Plug 'kana/vim-textobj-user'
-Plug 'lifepillar/vim-solarized8'
-Plug 'lumiliet/vim-twig'
-Plug 'machakann/vim-highlightedyank'
-Plug 'mhinz/vim-signify'
-Plug 'pbrisbin/vim-mkdir'
-Plug 'sjl/gundo.vim'
-Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-repeat'
-Plug 'tpope/vim-surround'
-Plug 'tpope/vim-unimpaired'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-Plug 'w0rp/ale'
-Plug 'xolox/vim-misc'
-Plug 'xolox/vim-session'
-Plug 'mhinz/vim-grepper'
-Plug 'chrisbra/Colorizer'
+Plug 'Lokaltog/vim-easymotion'                      " Per saltar entre paraules, cerques, etc. de manera més àgil
+Plug 'adelarsq/vim-matchit'                         " Extén els tipus de coincidències de la comanda %
+Plug 'airblade/vim-gitgutter'                       " Mostra canvis git al fitxer i més
+Plug 'chrisbra/Colorizer'                           " Mostra el color dels codis i noms de color del text
+Plug 'christoomey/vim-tmux-navigator'               " Navegar fluidament entre tmux i vim
+Plug 'gillyb/stable-windows'                        " Manté estable la finestra quan hi ha canvis de layout (help, fzf...)
+Plug 'gorkunov/smartpairs.vim'                      " Seleccions incrementals utilitzant v consecutivament
+Plug 'int3/vim-extradite'                           " Amplia funcionalitat de fugitive mostrant commits
+if has('nvim')
+    Plug 'yuki-ycino/fzf-preview.vim'                   " Ús de FZF a una finestra flotant de neovim
+else
+    Plug 'junegunn/fzf', { 'do': { -> fzf#install() } } " Permet utilitzar fzf dins de vim
+    Plug 'junegunn/fzf.vim'                             " Permet utilitzar fzf dins de vim
+endif
+Plug 'keith/swift.vim'                              " Permet ressaltar colors i indentar fitxers Swift
+Plug 'lifepillar/vim-solarized8'                    " Esquema de colors Solarized
+Plug 'machakann/vim-highlightedyank'                " Destaca en vermell el text copiat al portapapers
+Plug 'mbbill/undotree'                             " Mostra l'arbre de modificacions d'un fitxer
+Plug 'mhinz/vim-grepper'                            " Utilitza llibreries externes (ag, rg) per omplir la llista quicklist o location
+Plug 'pbrisbin/vim-mkdir'                           " Crea els directoris necessaris en guardar un fitxer
+Plug 'szw/vim-g'                                    " Obre una pestanya al navegador amb el text a buscar (DuckDuckGo)
+Plug 'tpope/vim-fugitive'                           " Utilitzar Git dins de Vim
+Plug 'tpope/vim-repeat'                             " Permet utilitzar '.' per repetir comandes de surround.vim, speeddating.vim, unimpaired.vim, vim-easyclip i vim-easyclip
+Plug 'tpope/vim-surround'                           " mitjançant l'acció 's' es posen i treuen parentesis, claudators, cometes simples, un tag...
+Plug 'tpope/vim-unimpaired'                         " Utilitzant [ i ] es poden realitzar moviments o canvis de text o canvis de comportaments
+Plug 'vim-airline/vim-airline'                      " Barra d'estat i de buffers/tabs
+Plug 'vim-airline/vim-airline-themes'               " Barra d'estat i de buffers/tabs
+Plug 'w0rp/ale'                                     " Revisar sintaxi de fitxers
+Plug 'xolox/vim-misc'                               "
+Plug 'xolox/vim-session'                            " Amplia la gestió de sessions de vim (necessita miv-misc
 call plug#end()
-
-"runtime macros/matchit.vim
 
 filetype on
 
@@ -120,7 +122,7 @@ endfunction
 " Mantenir la posició del cursor quan obres un buffer al mateix lloc a on el tenies al tancar-lo
 autocmd BufWinLeave *.* silent! mkview
 autocmd BufWinEnter *.* silent! loadview
-autocmd FocusLost *.* :wa
+autocmd FocusLost *.* silent! :wa
 
 " When restoring a hidden buffer Vim doesn't always keep the same view (like
 " when your view shows beyond the end of the file). (Vim tip 1375)
@@ -148,13 +150,11 @@ elseif has('unix')
     set clipboard=unnamedplus                                " Yank and paste with the system clipboard
 endif
 set cursorline                                               " Ressalta la línia a on està el cursor
-" set directory=~/.vim_swap                                    " Canviar directori de fitxers de swap
 set encoding=utf-8                                           " Posar utf-8 com a encoding per defecte
 set expandtab tabstop=4 softtabstop=4 shiftwidth=4           " Definir els tabs com 4 espais
 set foldlevel=99
 set foldmethod=indent                                        " Es creen folds directament amb la indentació
 set foldnestmax=1                                            " Perquè es crein folds només al primer nivell d'indentació
-"set guifont=DejaVu\ Sans\ Mono\ for\ Powerline:h9
 set hidden                                                   " Permet moure entre buffers encara que aquests estiguin editats sense guardar
 set history=10000                                            " Guarda les 10000 últimes comandes
 set hlsearch                                                 " Es ressalten les coincidencies de la cerca
@@ -198,12 +198,8 @@ set pastetoggle=<f5>
 set path+=**
 set suffixesadd+=.php,.py
 
+" TAGS
 autocmd BufNewFile,BufRead *.h,*.m set tags+=~/Documents/global-objc-tags
-" autocmd BufNewFile,BufRead *.js set tags+=.js.tags
-autocmd BufNewFile,BufRead *.php set tags+=.php.tags
-autocmd BufNewFile,BufRead *.css set tags+=.css.tags
-" autocmd BufNewFile,BufRead *.twig set tags+=.js.tags;.css.tags
-autocmd BufNewFile,BufRead *.twig set tags+=.css.tags
 
 " Activar colors al text
 syntax on
@@ -214,6 +210,8 @@ let base16colorspace=256
 set background=dark
 colorscheme solarized8
 highlight SpecialKey ctermbg=NONE guibg=NONE
+" Highlights selection in yellow
+hi Visual cterm=reverse guifg=#b4881d guibg=#022b35
 if !has('gui_running')
     highlight Normal ctermbg=NONE guibg=NONE
 endif
@@ -229,12 +227,6 @@ let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 
 " Anar al mode normal des del mode insert amb jj
 inoremap jj <Esc>
-
-
-""""""""""""""""""""""""""""""""""""""""""""""""""
-" Mapeig de teclat en mode visual
-""""""""""""""""""""""""""""""""""""""""""""""""""
-
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""
@@ -268,12 +260,6 @@ command! Qa qa
 " Mapeig de teclat en mode normal
 """"""""""""""""""""""""""""""""""""""""""""""""""
 
-" Deshabilitar les tecles de moviment
-nnoremap <Left> :echoe "Use h"<CR>
-nnoremap <Right> :echoe "Use l"<CR>
-nnoremap <Up> :echoe "Use k"<CR>
-nnoremap <Down> :echoe "Use j"<CR>
-
 " Tracta les línies llarques com a línies separades
 map j gj
 map k gk
@@ -294,15 +280,9 @@ map gB :bprevious<Cr>
 nnoremap U <C-r>
 nnoremap :: @:
 
-" Per centrar les cerques a vim
+" Centra verticalment cada nova ocurrència d'una cerca
 nnoremap n nzz
 nnoremap N Nzz
-
-" Executar vimgrep al directori actual
-nmap <Leader>vg :vimgrep //gj **/*<Left><Left><Left><Left><Left><Left><Left><Left>
-
-" Mostrar una finestra amb els resultats de la cerca prèvia al buffer actual
-nnoremap <silent> <Leader>/ :execute 'vimgrep /'.@/.'/g %'<Cr>:copen<Cr>
 
 " Copiar del caràcter actual al final de línia amb la tecla Y, per similitud amb D i C
 nmap Y y$
@@ -319,31 +299,8 @@ nnoremap <Leader>W :wq<CR>
 nnoremap <Leader><Leader>2 <Esc>:set noexpandtab tabstop=2 softtabstop=2 shiftwidth=2<Cr>
 " Posar la configuració de tabs a 4 espais amb <Leader><Leader>4
 nnoremap <Leader><Leader>4 <Esc>:set noexpandtab tabstop=4 softtabstop=4 shiftwidth=4<Cr>
-" Posar la configuració de tabs a 8 espais amb <Leader><Leader>8
-nnoremap <Leader><Leader>8 <Esc>:set noexpandtab tabstop=8 softtabstop=8 shiftwidth=8<Cr>
 " Posar la configuració de 4 espais amb <leader><leader>0
 nnoremap <Leader><Leader>0 <Esc>:set expandtab tabstop=4 softtabstop=4 shiftwidth=4<Cr>
-
-" Substituir la paraula sota el cursor a tot el buffer
-nnoremap <Leader>* :%s/\<<C-r><C-w>\>//g<Left><Left>
-
-" Obrir .vimrc a un nou tab amb <Leader>vv
-nnoremap <Leader>vv :e $MYVIMRC<Cr>
-
-" Obre tots els buffers oberts en tabs amb <Leader>tb
-nnoremap <silent> <Leader>tb :tab :ball<Cr>
-" Tancar la pestanya actual amb <Leader>tc
-nnoremap <silent> <Leader>tc :tabclose<Cr>
-" Obrir el buffer actual a una nova pestanya amb <Leader>te
-nnoremap <silent> <Leader>te :tabedit %<Cr>
-" Tancar totes les pestanyes menys l'actual amb <Leader>to
-nnoremap <silent> <Leader>to :tabonly<Cr>
-
-" Mostrar el tipus de fitxer
-nnoremap <Leader>ty :set filetype<Cr>
-
-" Tancar tots els buffers que no estan oberts a cap finestra ni pestanya
-nnoremap <silent> dhb :Wipeout<Cr>
 
 " Utilitzar Q per tancar buffers
 nnoremap <silent> Q :call CloseWindowOrKillBuffer()<Cr>
@@ -351,16 +308,10 @@ nnoremap <silent> Q :call CloseWindowOrKillBuffer()<Cr>
 " Per seleccionar l'últim text enganxat
 nnoremap <expr> gv '`[' . strpart(getregtype(), 0, 1) . '`]'
 
-map <Leader>e :e <C-R>=expand('%:p:h') . '/' <Cr>
+" Indica un nom de fitxer pel buffer actual
 map <Leader>c :f <C-R>=expand('%:p:h') . '/' <Cr>
-map <Leader>t :tabe <C-R>=expand('%:p:h') . '/' <Cr>
-map <Leader>s :split <C-R>=expand('%:p:h') . '/' <Cr>
 
 map <Leader>n :enew<Cr>i
-
-" <C-k> i <C-j> mouen la finestra amunt i avall una línia alhora que el cursor
-map <c-j> j<c-e>
-map <c-k> k<c-y>
 
 " Esborra els espais al final de totes les línies amb <Leader>dt
 noremap <silent> <Leader>dt :call DeleteTrailingWS()<Cr>
@@ -372,6 +323,7 @@ nnoremap & :&&<CR>
 xnoremap & :&&<CR>
 
 if has('nvim')
+    " Sortir del terminal de neovim amb Esc
   tnoremap <Esc> <C-\><C-n>
 endif
 
@@ -391,72 +343,56 @@ if has("eval")
     endfunction
 endif
 
-"set statusline=[%n]\ %<%.99f\ %h%w%m%r%{SL('CapsLockStatusline')}%y%{SL('fugitive#statusline')}%#ErrorMsg#%{SL('SyntasticStatuslineFlag')}%*%=%-14.(%l,%c%V%)\ %P
-"set statusline=[%n]\ %<%.99f\ %h%w%m%r%y%{SL('fugitive#statusline')}%#ErrorMsg#%{SL('SyntasticStatuslineFlag')}%*%=%(%l,%c%V%)
 
 """"""""""""""""""""""""""""""""""""""""""""""""""
 " Configuració de plugins
 """"""""""""""""""""""""""""""""""""""""""""""""""
 
-" Mostrar finestra amb el Fzf de buffers oberts
-nmap <Leader>b :Buffers<Cr>
-" Mostrar finestra amb el Fzf de fitxers
-nmap <Leader>f :FZF<Cr>
-" Mostrar finestra amb els tags extrets fent ctags
-nmap <Leader>. :Tags<Cr>:Tags<Cr>
-let $FZF_DEFAULT_COMMAND = 'ag -g ""'
+if has('nvim')
+    " fzf-preview.vim
+    hi Floating guibg=#1B1B1B
 
-" Vim-easymotion: Per saltar entre paraules, cerques, etc. de manera més àgil.
-" git clone https://github.com/Lokaltog/vim-easymotion
+    nnoremap <Leader>ff     :<C-u>FzfPreviewDirectoryFiles<CR>
+    nnoremap <Leader>fgs    :<C-u>FzfPreviewGitStatus<CR>
+    nnoremap <Leader>fgf    :<C-u>FzfPreviewGitFiles<CR>
+    nnoremap <Leader>fb     :<C-u>FzfPreviewBuffers<CR>
+    nnoremap <Leader>fgr    :<C-u>FzfPreviewProjectGrep<Space>
+    nnoremap <Leader>ft     :<C-u>FzfPreviewBufferTags<CR>
+else
+    let g:fzf_preview_use_floating_window = 0
+    nmap <Leader>f :FZF<Cr>
+    nmap <Leader>b :Buffers<Cr>
+    nmap <Leader>. :Tags<Cr>:Tags<Cr>
+    let $FZF_DEFAULT_COMMAND = 'ag -g ""'
 
-" Vim-fugitive: Utilitzar Git des de Vim
-" git clone https://github.com/tpope/vim-fugitive
+    function! s:fzf_statusline()
+        highlight fzf1 ctermfg=161 ctermbg=251
+        highlight fzf2 ctermfg=23 ctermbg=251
+        highlight fzf3 ctermfg=237 ctermbg=251
+        setlocal statusline=%#fzf1#\ >\ %#fzf2#fz%#fzf3#f
+    endfunction
+    autocmd! User FzfStatusLine call <SID>fzf_statusline()
+endif
 
-" Vim-git-log: Amplia fugitive. Per veure el log dels canvis al repositori.
-" git clone https://github.com/kablamo/vim-git-log
+" vim-g: Obre finestra al navegador amb el text a buscar
+let g:vim_g_query_url = "https://duckduckgo.com/?q="
+let g:vim_g_command = "Go"
 
-" Vim-signify: Marca els canvis del fitxer respecte el repositori a la columna esquerra del fitxer.
-" git clone https://github.com/mhinz/vim-signify
+" undotree
+nnoremap <Leader>u :call undotree#UndotreeToggle()<Cr>
 
-" Gundo: Mostra l'arbre de modificacions d'un fitxer
-" git clone https://github.com/sjl/gundo.vim
-nnoremap <Leader>u :GundoToggle<Cr>
-
-" vim-session: Gestionar les sessions de vim
-" Necessita vim-misc: git clone https://github.com/xolox/vim-misc
-" git clone https://github.com/xolox/vim-session
+" vim-session
 let g:session_directory = '~/.vim_sessions'
 let g:session_autoload = 'yes'
 let g:session_autosave = 'yes'
 let g:session_command_aliases = 1
-nnoremap <Leader>so :OpenSession 
-nnoremap <Leader>ss :SaveSession 
+nnoremap <Leader>so :OpenSession
+nnoremap <Leader>ss :SaveSession
 nnoremap <Leader>sd :DeleteSession<Cr>
 nnoremap <Leader>sc :CloseSession<Cr>
 
-" vim-surround: mitjançant l'acció 's' es posen i treuen parentesis, claudators, cometes simples, un tag...
-" git clone https://github.com/tpope/vim-surround
-
-" vim-unimpaired:
-" git clone https://github.com/tpope/vim-unimpaired
-
-" vim-repeat:
-" git clone https://github.com/tpope/vim-repeat
-
-" vundle:
-" git clone https://github.com/gmarik/vundle.git
-
-" vim-tmux-navigator: Per passar de vim a tmux
-" git clone https://github.com/christoomey/vim-tmux-navigator
-
-" vim-misc:
-" git clone https://github.com/xolox/vim-misc
-
 " vim-airline: Línia de status i de buffers
-" git clone https://github.com/bling/vim-airline
-"let g:airline_section_b = '%{getcwd()}'
 let g:airline_section_c = '%f'
-"let g:airline_section_x = ''
 let g:airline_section_y = ''
 let g:airline#extensions#tagbar#enabled = 0
 let g:airline#extensions#hunks#enabled = 0
@@ -475,12 +411,13 @@ nmap gs <plug>(GrepperOperator)
 xmap gs <plug>(GrepperOperator)
 
 nnoremap <leader>gg :Grepper -tool git<cr>
+nnoremap <leader>gr :Grepper -tool rg<cr>
 nnoremap <leader>ga :Grepper -tool ag<cr>
 nnoremap <leader>gs :Grepper -tool ag -side<cr>
 nnoremap <leader>*  :Grepper -tool ag -cword -noprompt<cr>
 
 let g:grepper           = {}
-let g:grepper.tools     = ['git', 'ag', 'grep']
+let g:grepper.tools     = ['git', 'ag', 'grep', 'rg']
 let g:grepper.open      = 1
 let g:grepper.jump      = 0
 let g:grepper.next_tool = '<leader>g'
