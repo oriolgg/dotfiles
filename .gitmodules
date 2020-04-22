@@ -37,9 +37,6 @@
 [submodule "vim/plugged/vim-extradite"]
 	path = vim/plugged/vim-extradite
 	url = https://github.com/int3/vim-extradite
-[submodule "vim/plugged/fzf"]
-	path = vim/plugged/fzf
-	url = https://github.com/junegunn/fzf
 [submodule "vim/plugged/fzf.vim"]
 	path = vim/plugged/fzf.vim
 	url = https://github.com/junegunn/fzf.vim

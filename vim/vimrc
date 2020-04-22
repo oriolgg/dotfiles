@@ -7,7 +7,6 @@ filetype plugin on
 call plug#begin('~/.vim/plugged')
 
   Plug 'chrisbra/Colorizer'             " Mostra el color dels codis i noms de color del text
-  Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
   Plug 'junegunn/fzf.vim'               " Permet utilitzar fzf dins de vim
   Plug 'yuki-ycino/fzf-preview.vim'     " Ús de FZF a una finestra flotant de neovim
   Plug 'gorkunov/smartpairs.vim'        " Seleccions incrementals utilitzant v consecutivament
@@ -409,7 +408,14 @@ let g:smoothie_base_speed = 25
 xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
 
+" FZF
+let g:fzf_history_dir = $HOME.'/.fzf-history'
+" In order to work with vim
+set rtp+=/usr/local/opt/fzf
+
 " miniyank
+let g:miniyank_filename = $HOME."/.miniyank.mpack"
+
 function! FZFYankList() abort
   function! KeyValue(key, val)
     let line = join(a:val[0], '')
@@ -443,9 +449,6 @@ command! YanksBefore call fzf#run(fzf#wrap('YanksBefore', {
 
 map <leader>ya :YanksAfter<CR>
 map <leader>yb :YanksBefore<CR>
-
-" FZF
-let g:fzf_history_dir = $HOME.'/.fzf-history'
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """"" Versió 1
