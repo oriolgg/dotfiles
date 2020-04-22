@@ -31,7 +31,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'christoomey/vim-tmux-navigator' " Navegar fluidament entre tmux i vim
   Plug 'tpope/vim-unimpaired'           " Utilitzant [ i ] es poden realitzar moviments o canvis de text o canvis de comportaments
   Plug 'ryanoasis/vim-devicons'         " Posa icones a vim-airline
-  Plug 'bfredl/nvim-miniyank'
+  Plug 'bfredl/nvim-miniyank'           " Guarda els textos copiats a un fitxer comú compartit per totes les instàncies de vim
   Plug 'matze/vim-move'                 " Permet moure línies senceres (actual o seleccionades) amunt o avall amb Alt j o k
   Plug 'junegunn/vim-easy-align'        " Alinea parts de línies al mateix nivell segons el caràcter indicat
   Plug 'psliwka/vim-smoothie'           " Desplaçaments verticals del buffer amb moviment, per seguir-ho fàciment
@@ -415,6 +415,7 @@ set rtp+=/usr/local/opt/fzf
 
 " miniyank
 let g:miniyank_filename = $HOME."/.miniyank.mpack"
+let g:miniyank_maxitems = 100
 
 function! FZFYankList() abort
   function! KeyValue(key, val)

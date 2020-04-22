@@ -34,6 +34,7 @@ apps=(
     coreutils
     exa
     exiftool
+    fd
     findutils
     fzf
     git
@@ -46,6 +47,7 @@ apps=(
     readline
     reattach-to-user-namespace
     rename
+    ripgrep
     the_silver_searcher
     tmux
     tree
