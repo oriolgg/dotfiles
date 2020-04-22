@@ -37,7 +37,6 @@ plugins=(
     vagrant
     web-search
     z
-    zsh-syntax-highlighting
 )
 
 DISABLE_AUTO_TITLE="true"
