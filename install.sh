@@ -50,9 +50,18 @@ ln -s ~/.dotfiles/vim/xvimrc ~/.xvimrc
 ln -s ~/.dotfiles/zsh/oh-my-zsh ~/.oh-my-zsh
 ln -s ~/.dotfiles/zsh/zshrc ~/.zshrc
 ln -s ~/.dotfiles/zsh/zshrc-osx ~/.zshrc-osx
+ln -s ~/.dotfiles/zsh/fzf.zsh ~/.fzf.zsh
+ln -s ~/.dotfiles/zsh/fzf-forgit.zsh ~/.fzf-forgit.zsh
+ln -s ~/.dotfiles/lynx/lynx.cfg ~/.lynx.cfg
+ln -s ~/.dotfiles/lynx/lynx.lss ~/.lynx.lss
+ln -s ~/.dotfiles/lynx/lynxrc ~/.lynxrc
 
 mkdir -p ~/.config/nvim
 ln -s ~/.dotfiles/nvim/init.vim ~/.config/nvim/init.vim
+
+# Install Rust and devicon-lookup
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+cargo install devicon-lookup
 
 # Set default osx defaults
 /bin/bash ~/.dotfiles/osx-defaults.sh

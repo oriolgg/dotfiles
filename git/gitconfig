@@ -1,6 +1,6 @@
 [core]
 	excludesfile = /Users/oriol/.gitignore_global
-	editor = vim -v
+	editor =  -v
 [difftool "sourcetree"]
 	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
 	path = 
@@ -9,7 +9,6 @@
 	trustExitCode = true
 [user]
 	name = Oriol Garcia
-	email = oriol.garcia@atresmediahf.com
 [color]
 	ui = true
 [alias]

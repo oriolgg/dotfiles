@@ -10,6 +10,8 @@
 	<false/>
 	<key>AppleAntiAliasingThreshold</key>
 	<integer>1</integer>
+	<key>ApplePressAndHoldEnabled</key>
+	<false/>
 	<key>AppleScrollAnimationEnabled</key>
 	<integer>0</integer>
 	<key>AppleSmoothFixedFontsSizeThreshold</key>
@@ -709,13 +711,6 @@
 			<key>Text</key>
 			<string>0x13 0x48</string>
 		</dict>
-		<key>0x68-0x80000</key>
-		<dict>
-			<key>Action</key>
-			<integer>11</integer>
-			<key>Text</key>
-			<string>0x13 0x1B 0x5B 0x44</string>
-		</dict>
 		<key>0x6a-0x180000</key>
 		<dict>
 			<key>Action</key>
@@ -723,26 +718,12 @@
 			<key>Text</key>
 			<string>0x13 0x4A</string>
 		</dict>
-		<key>0x6a-0x80000</key>
-		<dict>
-			<key>Action</key>
-			<integer>11</integer>
-			<key>Text</key>
-			<string>0x13 0x1B 0x5B 0x42</string>
-		</dict>
 		<key>0x6b-0x180000</key>
 		<dict>
 			<key>Action</key>
 			<integer>11</integer>
 			<key>Text</key>
 			<string>0x13 0x4B</string>
-		</dict>
-		<key>0x6b-0x80000</key>
-		<dict>
-			<key>Action</key>
-			<integer>11</integer>
-			<key>Text</key>
-			<string>0x13 0x1B 0x5B 0x41</string>
 		</dict>
 		<key>0x6c-0x140000</key>
 		<dict>
@@ -757,13 +738,6 @@
 			<integer>11</integer>
 			<key>Text</key>
 			<string>0x13 0x4C</string>
-		</dict>
-		<key>0x6c-0x80000</key>
-		<dict>
-			<key>Action</key>
-			<integer>11</integer>
-			<key>Text</key>
-			<string>0x13 0x1B 0x5B 0x43</string>
 		</dict>
 		<key>0x9-0x40000</key>
 		<dict>
@@ -964,13 +938,13 @@
 	<key>Hotkey</key>
 	<true/>
 	<key>HotkeyChar</key>
-	<integer>116</integer>
+	<integer>0</integer>
 	<key>HotkeyCode</key>
-	<integer>17</integer>
+	<integer>33</integer>
 	<key>HotkeyMigratedFromSingleToMulti</key>
 	<true/>
 	<key>HotkeyModifiers</key>
-	<integer>524576</integer>
+	<integer>1048848</integer>
 	<key>IRMemory</key>
 	<integer>4</integer>
 	<key>JobName</key>
@@ -1031,7 +1005,7 @@
 	<key>NSWindow Frame SharedPreferences</key>
 	<string>258 357 796 486 0 0 1440 877 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>0 0 1440 877 0 0 1440 877 </string>
+	<string>0 0 1440 900 0 0 1440 900 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
 	<string>176 70 395 419 0 0 1440 877 </string>
 	<key>NSWindow Frame iTerm Window 2</key>
@@ -1040,6 +1014,8 @@
 	<array>
 		<dict>
 			<key>ASCII Anti Aliased</key>
+			<true/>
+			<key>ASCII Ligatures</key>
 			<true/>
 			<key>Allow Title Reporting</key>
 			<true/>
@@ -1531,6 +1507,41 @@
 					<key>Text</key>
 					<string>9</string>
 				</dict>
+				<key>0x63-0x80000</key>
+				<dict>
+					<key>Action</key>
+					<integer>10</integer>
+					<key>Text</key>
+					<string>c</string>
+				</dict>
+				<key>0x68-0x80000</key>
+				<dict>
+					<key>Action</key>
+					<integer>10</integer>
+					<key>Text</key>
+					<string>h</string>
+				</dict>
+				<key>0x6a-0x80000</key>
+				<dict>
+					<key>Action</key>
+					<integer>10</integer>
+					<key>Text</key>
+					<string>j</string>
+				</dict>
+				<key>0x6b-0x80000</key>
+				<dict>
+					<key>Action</key>
+					<integer>10</integer>
+					<key>Text</key>
+					<string>k</string>
+				</dict>
+				<key>0x6c-0x80000</key>
+				<dict>
+					<key>Action</key>
+					<integer>10</integer>
+					<key>Text</key>
+					<string>l</string>
+				</dict>
 				<key>0xf700-0x220000</key>
 				<dict>
 					<key>Action</key>
@@ -1761,7 +1772,7 @@
 			<key>Non-ASCII Anti Aliased</key>
 			<true/>
 			<key>Normal Font</key>
-			<string>Menlo-Regular 11</string>
+			<string>DroidSansMonoNerdFontComplete- 11</string>
 			<key>Option Key Sends</key>
 			<integer>0</integer>
 			<key>Prompt Before Closing 2</key>
@@ -1930,6 +1941,8 @@
 			<false/>
 			<key>Use Italic Font</key>
 			<false/>
+			<key>Use Non-ASCII Font</key>
+			<false/>
 			<key>Vertical Spacing</key>
 			<real>1</real>
 			<key>Visual Bell</key>
@@ -1942,9 +1955,17 @@
 	</array>
 	<key>NoSyncAllAppVersions</key>
 	<array>
+		<string>3.3.9</string>
 		<string>3.2.9</string>
 		<string>3.3.5</string>
 		<string>3.3.6</string>
+	</array>
+	<key>NoSyncBFPRecents</key>
+	<array>
+		<string>Droid Sans Mono for Powerline</string>
+		<string>Hack Nerd Font</string>
+		<string>DroidSansMono Nerd Font Mono</string>
+		<string>DroidSansMono Nerd Font</string>
 	</array>
 	<key>NoSyncConfirmRunOpenFile</key>
 	<true/>
@@ -1955,7 +1976,7 @@
 		<key>screenFrame</key>
 		<string>{{0, 0}, {1440, 900}}</string>
 		<key>topLeft</key>
-		<string>{398, 710}</string>
+		<string>{258, 766}</string>
 	</dict>
 	<key>NoSyncHaveRequestedFullDiskAccess</key>
 	<true/>
@@ -1964,7 +1985,7 @@
 	<key>NoSyncInstallationId</key>
 	<string>A2166A52-3A6C-45E7-9FBE-153307830631</string>
 	<key>NoSyncLaunchExperienceControllerRunCount</key>
-	<integer>20</integer>
+	<integer>75</integer>
 	<key>NoSyncNeverRemindPrefsChangesLostForFile</key>
 	<true/>
 	<key>NoSyncNeverRemindPrefsChangesLostForFile_selection</key>
@@ -2768,6 +2789,8 @@
 	<string>https://iterm2.com/appcasts/testing_new.xml?shard=17</string>
 	<key>SUHasLaunchedBefore</key>
 	<true/>
+	<key>SULastCheckTime</key>
+	<date>2019-12-22T22:52:16Z</date>
 	<key>SUSendProfileInfo</key>
 	<false/>
 	<key>SavePasteHistory</key>
@@ -2803,7 +2826,7 @@
 	<key>UseCompactLabel</key>
 	<true/>
 	<key>UseLionStyleFullscreen</key>
-	<true/>
+	<false/>
 	<key>VisualIndicatorForEsc</key>
 	<false/>
 	<key>WebKitDefaultFontSize</key>
@@ -2818,10 +2841,12 @@
 	<string>/-+\~_.</string>
 	<key>findIgnoreCase_iTerm</key>
 	<true/>
+	<key>findMode_iTerm</key>
+	<integer>0</integer>
 	<key>findRegex_iTerm</key>
 	<false/>
 	<key>iTerm Version</key>
-	<string>3.3.6</string>
+	<string>3.3.9</string>
 	<key>kCPKSelectionViewPreferredModeKey</key>
 	<integer>0</integer>
 	<key>kCPKSelectionViewShowHSBTextFieldsKey</key>

@@ -30,23 +30,24 @@ brew upgrade
 brew tap caskroom/cask
 brew tap caskroom/versions
 brew tap buo/cask-upgrade
+brew tap homebrew/cask-fonts
 
 # Apps for caskroom
 apps=(
-    1password
+
     appcleaner
-    betterzip
     disk-inventory-x
     dropbox
     evernote
-    fantastical
     firefox
+    font-droidsansmono-nerd-font
     google-chrome
+    handbrake
     iterm2
     jitouch
     macvim
     monolingual
-    moom
+    opera
     qlcolorcode
     qlimagesize
     qlmarkdown
@@ -64,6 +65,7 @@ apps=(
     vlc
     webpquicklook
     whatsapp
+
 )
 
 # Install apps to /Applications - default is: /Users/$user/Applications

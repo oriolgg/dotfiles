@@ -5,36 +5,39 @@ filetype plugin indent on
 filetype plugin on
 
 call plug#begin('~/.vim/plugged')
-Plug 'Lokaltog/vim-easymotion'                      " Per saltar entre paraules, cerques, etc. de manera més àgil
-Plug 'adelarsq/vim-matchit'                         " Extén els tipus de coincidències de la comanda %
-Plug 'airblade/vim-gitgutter'                       " Mostra canvis git al fitxer i més
-Plug 'chrisbra/Colorizer'                           " Mostra el color dels codis i noms de color del text
-Plug 'christoomey/vim-tmux-navigator'               " Navegar fluidament entre tmux i vim
-Plug 'gillyb/stable-windows'                        " Manté estable la finestra quan hi ha canvis de layout (help, fzf...)
-Plug 'gorkunov/smartpairs.vim'                      " Seleccions incrementals utilitzant v consecutivament
-Plug 'int3/vim-extradite'                           " Amplia funcionalitat de fugitive mostrant commits
-if has('nvim')
-    Plug 'yuki-ycino/fzf-preview.vim'                   " Ús de FZF a una finestra flotant de neovim
-else
-    Plug 'junegunn/fzf', { 'do': { -> fzf#install() } } " Permet utilitzar fzf dins de vim
-    Plug 'junegunn/fzf.vim'                             " Permet utilitzar fzf dins de vim
-endif
-Plug 'keith/swift.vim'                              " Permet ressaltar colors i indentar fitxers Swift
-Plug 'lifepillar/vim-solarized8'                    " Esquema de colors Solarized
-Plug 'machakann/vim-highlightedyank'                " Destaca en vermell el text copiat al portapapers
-Plug 'mbbill/undotree'                             " Mostra l'arbre de modificacions d'un fitxer
-Plug 'mhinz/vim-grepper'                            " Utilitza llibreries externes (ag, rg) per omplir la llista quicklist o location
-Plug 'pbrisbin/vim-mkdir'                           " Crea els directoris necessaris en guardar un fitxer
-Plug 'szw/vim-g'                                    " Obre una pestanya al navegador amb el text a buscar (DuckDuckGo)
-Plug 'tpope/vim-fugitive'                           " Utilitzar Git dins de Vim
-Plug 'tpope/vim-repeat'                             " Permet utilitzar '.' per repetir comandes de surround.vim, speeddating.vim, unimpaired.vim, vim-easyclip i vim-easyclip
-Plug 'tpope/vim-surround'                           " mitjançant l'acció 's' es posen i treuen parentesis, claudators, cometes simples, un tag...
-Plug 'tpope/vim-unimpaired'                         " Utilitzant [ i ] es poden realitzar moviments o canvis de text o canvis de comportaments
-Plug 'vim-airline/vim-airline'                      " Barra d'estat i de buffers/tabs
-Plug 'vim-airline/vim-airline-themes'               " Barra d'estat i de buffers/tabs
-Plug 'w0rp/ale'                                     " Revisar sintaxi de fitxers
-Plug 'xolox/vim-misc'                               "
-Plug 'xolox/vim-session'                            " Amplia la gestió de sessions de vim (necessita miv-misc
+
+  Plug 'chrisbra/Colorizer'             " Mostra el color dels codis i noms de color del text
+  Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+  Plug 'junegunn/fzf.vim'               " Permet utilitzar fzf dins de vim
+  Plug 'yuki-ycino/fzf-preview.vim'     " Ús de FZF a una finestra flotant de neovim
+  Plug 'gorkunov/smartpairs.vim'        " Seleccions incrementals utilitzant v consecutivament
+  Plug 'gillyb/stable-windows'          " Manté estable la finestra quan hi ha canvis de layout (help, fzf...)
+  Plug 'keith/swift.vim'                " Permet ressaltar colors i indentar fitxers Swift
+  Plug 'mbbill/undotree'                " Mostra l'arbre de modificacions d'un fitxer
+  Plug 'vim-airline/vim-airline'        " Barra d'estat i de buffers/tabs
+  Plug 'vim-airline/vim-airline-themes' " Barra d'estat i de buffers/tabs
+  Plug 'tpope/vim-commentary'           " Gestionar comentaris fàcilment
+  Plug 'Lokaltog/vim-easymotion'        " Per saltar entre paraules, cerques, etc. de manera més àgil
+  Plug 'int3/vim-extradite'             " Amplia funcionalitat de fugitive mostrant commits
+  Plug 'tpope/vim-fugitive'             " Utilitzar Git dins de Vim
+  Plug 'szw/vim-g'                      " Obre una pestanya al navegador amb el text a buscar (DuckDuckGo)
+  Plug 'machakann/vim-highlightedyank'  " Destaca en vermell el text copiat al portapapers
+  Plug 'adelarsq/vim-matchit'           " Extén els tipus de coincidències de la comanda %
+  Plug 'xolox/vim-misc'                 " Recull d'scripts. Necessari per vim-session
+  Plug 'pbrisbin/vim-mkdir'             " Crea els directoris necessaris en guardar un fitxer
+  Plug 'tpope/vim-repeat'               " Permet utilitzar '.' per repetir comandes de surround.vim, speeddating.vim, unimpaired.vim, vim-easyclip i vim-radical
+  Plug 'xolox/vim-session'              " Amplia la gestió de sessions de vim (necessita miv-misc
+  Plug 'lifepillar/vim-solarized8'      " Esquema de colors Solarized
+  Plug 'tpope/vim-surround'             " mitjançant l'acció 's' es posen i treuen parentesis, claudators, cometes simples, un tag...
+  Plug 'christoomey/vim-tmux-navigator' " Navegar fluidament entre tmux i vim
+  Plug 'tpope/vim-unimpaired'           " Utilitzant [ i ] es poden realitzar moviments o canvis de text o canvis de comportaments
+  Plug 'ryanoasis/vim-devicons'         " Posa icones a vim-airline
+  Plug 'bfredl/nvim-miniyank'
+  Plug 'matze/vim-move'                 " Permet moure línies senceres (actual o seleccionades) amunt o avall amb Alt j o k
+  Plug 'junegunn/vim-easy-align'        " Alinea parts de línies al mateix nivell segons el caràcter indicat
+  Plug 'psliwka/vim-smoothie'           " Desplaçaments verticals del buffer amb moviment, per seguir-ho fàciment
+  Plug 'mhinz/vim-startify'             " Substitueix la pantalla d'entrada de vim per algo més útil amb ultims fitxers oberts
+
 call plug#end()
 
 filetype on
@@ -108,7 +111,7 @@ endfunction
 """"""""""""""""""""""""""""""""""""""""""""""""""
 " Creació de directoris
 """"""""""""""""""""""""""""""""""""""""""""""""""
-:silent call EnsureDirExists($HOME.'/.vim_backup')           " Crear directori de backup
+" :silent call EnsureDirExists($HOME.'/.vim_backup')           " Crear directori de backup
 " :silent call EnsureDirExists($HOME.'/.vim_swap')             " Crear directori de swap
 :silent call EnsureDirExists($HOME.'/.vim_undo')             " Crear directori de undo
 :silent call EnsureDirExists($HOME.'/.vim_view')             " Crear directori de view
@@ -140,20 +143,22 @@ endif
 " keyboard shortcuts
 let mapleader = " "
 
+let loaded_netrw = 0
+
 set autoindent                                               " Activar autoindendació
 set autoread                                                 " Reload files when changed on disk, i.e. via `git checkout`
 set backspace=2                                              " Fix broken backspace in some setups
-set backupdir=~/.vim_backup                                  " Canviar directori de buffer de backup
+" set backupdir=~/.vim_backup                                  " Canviar directori de buffer de backup
 if has('mac')
     set clipboard=unnamed                                    " Yank and paste with the system clipboard
 elseif has('unix')
     set clipboard=unnamedplus                                " Yank and paste with the system clipboard
 endif
 set cursorline                                               " Ressalta la línia a on està el cursor
-set encoding=utf-8                                           " Posar utf-8 com a encoding per defecte
+set encoding=UTF-8                                           " Posar UTF-8 com a encoding per defecte
 set expandtab tabstop=4 softtabstop=4 shiftwidth=4           " Definir els tabs com 4 espais
 set foldlevel=99
-set foldmethod=indent                                        " Es creen folds directament amb la indentació
+set foldmethod=manual                                        " Es creen folds directament amb la indentació
 set foldnestmax=1                                            " Perquè es crein folds només al primer nivell d'indentació
 set hidden                                                   " Permet moure entre buffers encara que aquests estiguin editats sense guardar
 set history=10000                                            " Guarda les 10000 últimes comandes
@@ -191,7 +196,9 @@ set wildignore=*/tmp/,*/.git/*,*.so,*.swp,*.zip,*.pdf,*.bak,*.pyc,*.pyo,*.class,
 set wildmenu                                                 " Show a navigable menu for tab completion on command line
 set wildmode=full                                            " Mostra les possibilitats d'una comanda rotllo zsh
 if !has('nvim')
-    set term=screen-256color
+  set term=screen-256color
+else
+  set guifont=DroidSansMono_Nerd_Font:h11
 endif
 set pastetoggle=<f5>
 
@@ -225,8 +232,8 @@ let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 " Mapeig de teclat en mode inserció
 """"""""""""""""""""""""""""""""""""""""""""""""""
 
-" Anar al mode normal des del mode insert amb jj
-inoremap jj <Esc>
+" Anar al mode normal des del mode insert amb jj o jk
+inoremap jk <Esc>
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""
@@ -273,8 +280,18 @@ nmap <C-k> <C-w>k
 " Moure a la finestra esquerra amb Ctrl-L
 nmap <C-l> <C-w>l
 
+" Utilitzar Ctrl-C per comentar/descomentar línies de codi
+map <C-c> gcc<Esc>
+
 map gb :bnext<Cr>
 map gB :bprevious<Cr>
+
+" Utilitzar <Tab> en lloc de % per moure pels "aparellats"
+nnoremap <Tab> %
+
+" Reload vimrc
+nnoremap gsv :so $MYVIMRC<CR>
+let g:WebDevIconsUnicodeDecorateFileNodesDefaultSymbol = 'ƛ'
 
 " Per fer redo es pot amb <C-r> i amb U
 nnoremap U <C-r>
@@ -348,38 +365,15 @@ endif
 " Configuració de plugins
 """"""""""""""""""""""""""""""""""""""""""""""""""
 
-if has('nvim')
-    " fzf-preview.vim
-    hi Floating guibg=#1B1B1B
-
-    nnoremap <Leader>ff     :<C-u>FzfPreviewDirectoryFiles<CR>
-    nnoremap <Leader>fgs    :<C-u>FzfPreviewGitStatus<CR>
-    nnoremap <Leader>fgf    :<C-u>FzfPreviewGitFiles<CR>
-    nnoremap <Leader>fb     :<C-u>FzfPreviewBuffers<CR>
-    nnoremap <Leader>fgr    :<C-u>FzfPreviewProjectGrep<Space>
-    nnoremap <Leader>ft     :<C-u>FzfPreviewBufferTags<CR>
-else
-    let g:fzf_preview_use_floating_window = 0
-    nmap <Leader>f :FZF<Cr>
-    nmap <Leader>b :Buffers<Cr>
-    nmap <Leader>. :Tags<Cr>:Tags<Cr>
-    let $FZF_DEFAULT_COMMAND = 'ag -g ""'
-
-    function! s:fzf_statusline()
-        highlight fzf1 ctermfg=161 ctermbg=251
-        highlight fzf2 ctermfg=23 ctermbg=251
-        highlight fzf3 ctermfg=237 ctermbg=251
-        setlocal statusline=%#fzf1#\ >\ %#fzf2#fz%#fzf3#f
-    endfunction
-    autocmd! User FzfStatusLine call <SID>fzf_statusline()
-endif
-
 " vim-g: Obre finestra al navegador amb el text a buscar
 let g:vim_g_query_url = "https://duckduckgo.com/?q="
 let g:vim_g_command = "Go"
 
 " undotree
 nnoremap <Leader>u :call undotree#UndotreeToggle()<Cr>
+let g:undotree_WindowLayout = 2
+let g:undotree_ShortIndicators = 1
+let g:undotree_SetFocusWhenToggle = 1
 
 " vim-session
 let g:session_directory = '~/.vim_sessions'
@@ -405,21 +399,184 @@ let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
 let g:airline#extensions#tabline#buffer_nr_show = 1
 let g:airline#extensions#bufferline#enabled = 1
 let g:airline#extensions#whitespace#checks = []
+let g:airline_powerline_fonts = 1
 
-" vim-grepper:
-nmap gs <plug>(GrepperOperator)
-xmap gs <plug>(GrepperOperator)
+" smoothie
+let g:smoothie_update_interval = 20
+let g:smoothie_base_speed = 25
 
-nnoremap <leader>gg :Grepper -tool git<cr>
-nnoremap <leader>gr :Grepper -tool rg<cr>
-nnoremap <leader>ga :Grepper -tool ag<cr>
-nnoremap <leader>gs :Grepper -tool ag -side<cr>
-nnoremap <leader>*  :Grepper -tool ag -cword -noprompt<cr>
+" vim-easy-align
+xmap ga <Plug>(EasyAlign)
+nmap ga <Plug>(EasyAlign)
 
-let g:grepper           = {}
-let g:grepper.tools     = ['git', 'ag', 'grep', 'rg']
-let g:grepper.open      = 1
-let g:grepper.jump      = 0
-let g:grepper.next_tool = '<leader>g'
+" miniyank
+function! FZFYankList() abort
+  function! KeyValue(key, val)
+    let line = join(a:val[0], '')
+    if (a:val[1] ==# 'V')
+      let line = line
+    endif
+    return a:key.' '.line
+  endfunction
+  return map(miniyank#read(), function('KeyValue'))
+endfunction
 
-command! Todo Grepper -tool git -query -E '(TODO|FIXME|XXX):'
+function! FZFYankHandler(opt, line) abort
+  let key = substitute(a:line, ' .*', '', '')
+  if !empty(a:line)
+    let yanks = miniyank#read()[key]
+    call miniyank#drop(yanks, a:opt)
+  endif
+endfunction
+
+command! YanksAfter call fzf#run(fzf#wrap('YanksAfter', {
+\ 'source':  FZFYankList(),
+\ 'sink':    function('FZFYankHandler', ['p']),
+\ 'options': '--no-sort --no-preview --prompt="YanksAfter> "',
+\ }))
+
+command! YanksBefore call fzf#run(fzf#wrap('YanksBefore', {
+\ 'source':  FZFYankList(),
+\ 'sink':    function('FZFYankHandler', ['P']),
+\ 'options': '--no-sort --no-preview --prompt="YanksBefore> "',
+\ }))
+
+map <leader>ya :YanksAfter<CR>
+map <leader>yb :YanksBefore<CR>
+
+" FZF
+let g:fzf_history_dir = $HOME.'/.fzf-history'
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""" Versió 1
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+"if has('nvim')
+"    hi Floating guibg=#022b35
+
+"    nnoremap <Leader>ff  :<C-u>FzfPreviewDirectoryFiles<CR>
+"    nnoremap <Leader>fgs :<C-u>FzfPreviewGitStatus<CR>
+"    nnoremap <Leader>fgf :<C-u>FzfPreviewGitFiles<CR>
+"    nnoremap <Leader>fb  :<C-u>FzfPreviewBuffers<CR>
+"    nnoremap <Leader>fgr :<C-u>FzfPreviewProjectGrep<Space>
+"    nnoremap <Leader>ft  :<C-u>FzfPreviewBufferTags<CR>
+
+"else
+"    nmap <Leader>f :FZF!<Cr>
+"    nmap <Leader>b :Buffers!<Cr>
+"    nmap <Leader>. :Tags!<Cr>
+"    inoremap <C-f> <Esc><Esc>:BLines!<CR>
+"    let $FZF_DEFAULT_COMMAND = 'ag -g ""'
+"    "let $FZF_DEFAULT_OPTS .= ' --preview'
+"    let g:fzf_preview_window = 'right:60%'
+
+"    function! s:fzf_statusline()
+"        highlight fzf1 ctermfg=161 ctermbg=251
+"        highlight fzf2 ctermfg=23 ctermbg=251
+"        highlight fzf3 ctermfg=237 ctermbg=251
+"        setlocal statusline=%#fzf1#\ >\ %#fzf2#fz%#fzf3#f
+"    endfunction
+"    autocmd! User FzfStatusLine call <SID>fzf_statusline()
+"endif
+
+
+
+
+" Files + devicons
+let g:max_lines=10000
+nnoremap <silent> <leader>i :call Fzf_files_with_dev_icons($FZF_DEFAULT_COMMAND, "Files")<CR>
+" GFiles?
+nnoremap <silent> <leader>j :call Fzf_git_diff_files_with_dev_icons()<CR>
+" Gfiles
+nnoremap <silent> <leader>k :call Fzf_files_with_dev_icons("git ls-files \| uniq", "Git files")<CR>
+
+function! Fzf_files_with_dev_icons(command, prompt)
+  let l:fzf_files_options = '--preview "bat --color always --style=numbers,changes {2..} | head -' . g:max_lines . '" --reverse'
+
+  function! s:edit_devicon_prepended_file(item)
+    let l:file_path = a:item[4:-1]
+    execute 'silent e' l:file_path
+  endfunction
+
+  let opts = fzf#wrap({})
+  let opts['source'] = a:command . ' | devicon-lookup'
+  let opts['sink'] = function('s:edit_devicon_prepended_file')
+  let opts['options'] = '-m --preview-window=right:60%:border --prompt "' . a:prompt . ' > " ' . l:fzf_files_options
+  let opts['down'] = '40%'
+  let opts['window'] = {'width': 0.9, 'height': 0.9}
+
+  call fzf#run(opts)
+endfunction
+
+function! Fzf_git_diff_files_with_dev_icons()
+  let l:fzf_files_options = '--ansi --preview "sh -c \"(git diff --color=always -- {3..}) \""'
+
+  function! s:edit_devicon_prepended_file_diff(item)
+    echom a:item
+    let l:file_path = a:item[7:-1]
+    echom l:file_path
+    let l:first_diff_line_number = system("git diff -U0 " . l:file_path . " | rg '^@@.*\+' -o | rg '[0-9]+' -o | head -1")
+    execute 'silent e' l:file_path
+    execute l:first_diff_line_number
+  endfunction
+
+  let opts = fzf#wrap({})
+  let opts['source'] = 'git -c color.status=always status --short --untracked-files=all | devicon-lookup'
+  let opts['sink'] = function('s:edit_devicon_prepended_file_diff')
+  let opts['options'] = '-m --preview-window=right:60%:border --prompt "Untracked files > " ' . l:fzf_files_options
+  let opts['down'] = '40%'
+  let opts['window'] = {'width': 0.9, 'height': 0.9}
+
+  call fzf#run(opts)
+endfunction
+
+nnoremap <silent> <leader>b :call BufWidth()<CR>
+function! BufWidth()
+  let width = winwidth(0)
+  let numberwidth = max([&numberwidth, strlen(line('$'))+1])
+  let numwidth = (&number || &relativenumber)? numberwidth : 0
+  let foldwidth = &foldcolumn
+
+  if &signcolumn == 'yes'
+    let signwidth = 2
+  elseif &signcolumn == 'auto'
+    let signs = execute(printf('sign place buffer=%d', bufnr('')))
+    let signs = split(signs, "\n")
+    let signwidth = len(signs)>2? 2: 0
+  else
+    let signwidth = 0
+  endif
+  echo width
+  return width - numwidth - foldwidth - signwidth
+endfunction
+
+
+" vim-startify
+" returns all modified files of the current git repo
+" `2>/dev/null` makes the command fail quietly, so that when we are not
+" in a git repo, the list will be empty
+function! s:gitModified()
+    let files = systemlist('git ls-files -m 2>/dev/null')
+    return map(files, "{'line': v:val, 'path': v:val}")
+endfunction
+
+" same as above, but show untracked files, honouring .gitignore
+function! s:gitUntracked()
+    let files = systemlist('git ls-files -o --exclude-standard 2>/dev/null')
+    return map(files, "{'line': v:val, 'path': v:val}")
+endfunction
+
+let g:startify_lists = [
+        \ { 'type': 'files',     'header': ['   MRU']            },
+        \ { 'type': 'dir',       'header': ['   MRU '. getcwd()] },
+        \ { 'type': 'sessions',  'header': ['   Sessions']       },
+        \ { 'type': 'bookmarks', 'header': ['   Bookmarks']      },
+        \ { 'type': function('s:gitModified'),  'header': ['   git modified']},
+        \ { 'type': function('s:gitUntracked'), 'header': ['   git untracked']},
+        \ { 'type': 'commands',  'header': ['   Commands']       },
+        \ ]
+
+
+if exists("g:loaded_webdevicons")
+    call webdevicons#refresh()
+endif

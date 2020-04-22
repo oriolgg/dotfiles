@@ -16,8 +16,11 @@ fi
 # Exit if, for some reason, Homebrew is not installed.
 [[ ! "$(type -P brew)" ]] && e_error "Homebrew failed to install." && return 1
 
-#homebrew now includes cask, so let's get rid of the old version
+# Homebrew now includes cask, so let's get rid of the old version
 brew uninstall --force brew-cask
+
+# Add some new tabs
+brew tap homebrew/cask-fonts
 
 # Make sure we’re using the latest Homebrew.
 brew update
@@ -26,14 +29,18 @@ brew update
 brew upgrade
 
 apps=(
+
     awscli
     coreutils
-    ctags
+    exa
     exiftool
     findutils
+    fzf
     git
+    git-flow
     lynx
     neovim
+    node
     python
     python3
     readline
@@ -43,20 +50,21 @@ apps=(
     tmux
     tree
     unar
+    universal-ctags
     unrar
     vim --with-python3
     wifi-password
     youtube-dl
     zsh
-    Rigellute/tap/spotify-tui
 
-    fzf
 )
 
 # Install apps to /Applications - default is: /Users/$user/Applications
 echo "installing brew formulas..."
 
 brew install "${apps[@]}"
+
+brew install --HEAD universal-ctags/universal-ctags/universal-ctags
 
 # Remove outdated versions from the cellar.
 brew cleanup

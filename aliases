@@ -1,12 +1,13 @@
 alias e=exit
 alias ls='ls -G'
+alias ls=exa
 
 alias ag='ag -U'
 
 alias tk='tmux list-panes -s -F '\''#{pane_pid} #{pane_current_command}'\'' | grep -v tmux | awk '\''{print $1}'\'' | xargs kill -9 ; e'
 alias ts='tmux-start'
 
-alias brewski='echo "brew update:" && brew update && echo "brew upgrade:" && brew upgrade && echo "brew cleanup:" && brew cleanup && echo "brew cask upgrade:" && brew cu -ay && echo "brew cleanup:" && brew cleanup; echo "brew doctor:" && brew doctor'
+alias brewup=' brew update &&  brew upgrade &&  brew cleanup &&  brew cu -ay &&  brew cleanup &&  brew doctor'
 
 # Git
 alias gcd='git checkout develop'
@@ -24,11 +25,16 @@ alias gu='gf ; gcm ; gl ; gcd ; gl ; gbpurge'
 
 alias edf='vim -S $HOME/.vim_sessions/dotfiles.vim'
 
-alias f='find . -name'
+alias v=nvim
+alias vi=v
+alias vim=v
 
-alias vi=vim
-alias vim=nvim
+vf() { fzf -m | xargs -o $EDITOR ;}
 
 alias afk="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend"
 
 alias lynx='lynx -cfg=$HOME/.lynx.cfg -lss=$HOME/.lynx.lss'
+
+ansi-colors() {
+    for i in {0..255}; do print -Pn "%K{$i}  %k%F{$i}${(l:3::0:)i}%f " ${${(M)$((i%6)):#3}:+$'\n'}; done
+}

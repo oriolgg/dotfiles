@@ -67,18 +67,12 @@
 [submodule "vim/plugged/vim-airline"]
 	path = vim/plugged/vim-airline
 	url = https://github.com/vim-airline/vim-airline
-[submodule "vim/plugged/ale"]
-	path = vim/plugged/ale
-	url = https://github.com/w0rp/ale
 [submodule "vim/plugged/vim-misc"]
 	path = vim/plugged/vim-misc
 	url = https://github.com/xolox/vim-misc
 [submodule "vim/plugged/vim-session"]
 	path = vim/plugged/vim-session
 	url = https://github.com/xolox/vim-session
-[submodule "vim/plugged/vim-grepper"]
-	path = vim/plugged/vim-grepper
-	url = https://github.com/mhinz/vim-grepper
 [submodule "vim/plugged/Colorizer"]
 	path = vim/plugged/Colorizer
 	url = https://github.com/chrisbra/Colorizer
@@ -88,9 +82,6 @@
 [submodule "vim/plugged/vim-g"]
 	path = vim/plugged/vim-g
 	url = https://github.com/szw/vim-g
-[submodule "vim/plugged/vim-gitgutter"]
-	path = vim/plugged/vim-gitgutter
-	url = https://github.com/airblade/vim-gitgutter
 [submodule "vim/plugged/swift.vim"]
 	path = vim/plugged/swift.vim
 	url = https://github.com/keith/swift.vim
@@ -103,3 +94,33 @@
 [submodule "vim/plugged/vim-airline-themes"]
 	path = vim/plugged/vim-airline-themes
 	url = https://github.com/vim-airline/vim-airline-themes
+[submodule "vim/plugged/vim-nerdtree-syntax-highlight"]
+	path = vim/plugged/vim-nerdtree-syntax-highlight
+	url = https://github.com/tiagofumo/vim-nerdtree-syntax-highlight
+[submodule "vim/plugged/vim-commentary"]
+	path = vim/plugged/vim-commentary
+	url = https://github.com/tpope/vim-commentary
+[submodule "vim/plugged/vim-devicons"]
+	path = vim/plugged/vim-devicons
+	url = https://github.com/ryanoasis/vim-devicons
+[submodule "vim/plugged/nvim-miniyank"]
+	path = vim/plugged/nvim-miniyank
+	url = https://github.com/bfredl/nvim-miniyank
+[submodule "vim/plugged/vim-move"]
+	path = vim/plugged/vim-move
+	url = https://github.com/matze/vim-move
+[submodule "vim/plugged/vim-smoothie"]
+	path = vim/plugged/vim-smoothie
+	url = https://github.com/psliwka/vim-smoothie
+[submodule "vim/plugged/vim-gutentags"]
+	path = vim/plugged/vim-gutentags
+	url = https://github.com/ludovicchabant/vim-gutentags
+[submodule "vim/plugged/gutentags_plus"]
+	path = vim/plugged/gutentags_plus
+	url = https://github.com/skywind3000/gutentags_plus
+[submodule "vim/plugged/vim-easy-align"]
+	path = vim/plugged/vim-easy-align
+	url = https://github.com/junegunn/vim-easy-align
+[submodule "vim/plugged/vim-startify"]
+	path = vim/plugged/vim-startify
+	url = https://github.com/mhinz/vim-startify
