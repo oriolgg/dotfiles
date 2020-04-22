@@ -44,61 +44,61 @@ filetype on
 """"""""""""""""""""""""""""""""""""""""""""""""""
 " Funcions
 """""""""""""""""""""""""""""""""""""""""""""""""""
-function! EnsureDirExists (dir)
 " Funció per crear directoris si no existeixen
-    if !isdirectory(a:dir)
-        if exists('*mkdir')
-            call mkdir(a:dir,'p')
-        endif
+function! EnsureDirExists (dir)
+  if !isdirectory(a:dir)
+    if exists('*mkdir')
+      call mkdir(a:dir,'p')
     endif
+  endif
 endfunc
 
-function! DeleteTrailingWS()
 " Funció per esborrar els espais a final de línia del buffer
-    let previous_search=@/
-    let previous_cursor_line=line('.')
-    let previous_cursor_column=col('.')
-    %s/\s\+$//ge
-    let @/=previous_search
-    call cursor(previous_cursor_line, previous_cursor_column)
+function! DeleteTrailingWS()
+  let previous_search=@/
+  let previous_cursor_line=line('.')
+  let previous_cursor_column=col('.')
+  %s/\s\+$//ge
+  let @/=previous_search
+  call cursor(previous_cursor_line, previous_cursor_column)
 endfunc
 
-function! RetabIndents()
 " Funció que canvia espais per tabs al principi de línia del buffer
-    let previous_search=@/
-    let previous_cursor_line=line('.')
-    let previous_cursor_column=col('.')
-    if &expandtab
-        execute '%s@^\(\t\)\+@\=repeat(repeat(" ", '.&ts.'), len(submatch(0)))@e'
-    else
-        execute '%s@^\(\ \{'.&ts.'\}\)\+@\=repeat("\t", len(submatch(0))/'.&ts.')@e'
-    endif
-    let @/=previous_search
-    call cursor(previous_cursor_line, previous_cursor_column)
+function! RetabIndents()
+  let previous_search=@/
+  let previous_cursor_line=line('.')
+  let previous_cursor_column=col('.')
+  if &expandtab
+    execute '%s@^\(\t\)\+@\=repeat(repeat(" ", '.&ts.'), len(submatch(0)))@e'
+  else
+    execute '%s@^\(\ \{'.&ts.'\}\)\+@\=repeat("\t", len(submatch(0))/'.&ts.')@e'
+  endif
+  let @/=previous_search
+  call cursor(previous_cursor_line, previous_cursor_column)
 endfunc
 
 " Use Q to intelligently close a window
 " (if there are multiple windows into the same buffer)
 " or kill the buffer entirely if it's the last window looking into that buffer
 function! CloseWindowOrKillBuffer()
-    let number_of_windows_to_this_buffer = len(filter(range(1, winnr('$')), "winbufnr(v:val) == bufnr('%')"))
+  let number_of_windows_to_this_buffer = len(filter(range(1, winnr('$')), "winbufnr(v:val) == bufnr('%')"))
 
-    " We should never bdelete a nerd tree
-    if matchstr(expand("%"), 'NERD') == 'NERD'
-        wincmd c
-        return
-    endif
+  " We should never bdelete a nerd tree
+  if matchstr(expand("%"), 'NERD') == 'NERD'
+    wincmd c
+    return
+  endif
 
-    if number_of_windows_to_this_buffer > 1
-        wincmd c
-    else
-        bdelete
-    endif
+  if number_of_windows_to_this_buffer > 1
+    wincmd c
+  else
+    bdelete
+  endif
 endfunction
 
 command! -nargs=0 -bar Qargs execute 'args' QuickfixFilenames()
+" Building a hash ensures we get each buffer only once
 function! QuickfixFilenames()
-  " Building a hash ensures we get each buffer only once
   let buffer_numbers = {}
   for quickfix_item in getqflist()
     let buffer_numbers[quickfix_item['bufnr']] = bufname(quickfix_item['bufnr'])
@@ -129,14 +129,14 @@ autocmd FocusLost *.* silent! :wa
 " When restoring a hidden buffer Vim doesn't always keep the same view (like
 " when your view shows beyond the end of the file). (Vim tip 1375)
 if ! &diff
-    au BufLeave * let b:winview = winsaveview()
-    au BufEnter * if(exists('b:winview')) | call winrestview(b:winview) | endif
+  au BufLeave * let b:winview = winsaveview()
+  au BufEnter * if(exists('b:winview')) | call winrestview(b:winview) | endif
 endif
 
 " Posar al títol de la finestra el path del buffer que estem editant
 let &titlestring = expand('%:pwd')
 if &term == 'screen' || &term == 'xterm'
-    set title
+  set title
 endif
 
 " keyboard shortcuts
@@ -149,9 +149,9 @@ set autoread                                                 " Reload files when
 set backspace=2                                              " Fix broken backspace in some setups
 " set backupdir=~/.vim_backup                                  " Canviar directori de buffer de backup
 if has('mac')
-    set clipboard=unnamed                                    " Yank and paste with the system clipboard
+  set clipboard=unnamed                                    " Yank and paste with the system clipboard
 elseif has('unix')
-    set clipboard=unnamedplus                                " Yank and paste with the system clipboard
+  set clipboard=unnamedplus                                " Yank and paste with the system clipboard
 endif
 set cursorline                                               " Ressalta la línia a on està el cursor
 set encoding=UTF-8                                           " Posar UTF-8 com a encoding per defecte
@@ -219,7 +219,7 @@ highlight SpecialKey ctermbg=NONE guibg=NONE
 " Highlights selection in yellow
 hi Visual cterm=reverse guifg=#b4881d guibg=#022b35
 if !has('gui_running')
-    highlight Normal ctermbg=NONE guibg=NONE
+  highlight Normal ctermbg=NONE guibg=NONE
 endif
 
 " set Vim-specific sequences for RGB colors
@@ -344,19 +344,19 @@ if has('nvim')
 endif
 
 augroup CursorLineOnlyInActiveWindow
-    autocmd!
-    autocmd VimEnter,WinEnter,BufWinEnter * setlocal cursorline
-    autocmd WinLeave * setlocal nocursorline
+  autocmd!
+  autocmd VimEnter,WinEnter,BufWinEnter * setlocal cursorline
+  autocmd WinLeave * setlocal nocursorline
 augroup END
 
 if has("eval")
-    function! SL(function)
-        if exists('*'.a:function)
-            return call(a:function,[])
-        else
-            return ''
-        endif
-    endfunction
+  function! SL(function)
+    if exists('*'.a:function)
+      return call(a:function,[])
+    else
+      return ''
+    endif
+  endfunction
 endif
 
 
@@ -368,10 +368,11 @@ endif
 let g:vim_g_query_url = "https://duckduckgo.com/?q="
 let g:vim_g_command = "Go"
 
-" undotree
-nnoremap <Leader>u :call undotree#UndotreeToggle()<Cr>
-let g:undotree_WindowLayout = 2
+nnoremap <Leader>u :UndotreeToggle<Cr>
+let g:undotree_WindowLayout = 1
 let g:undotree_ShortIndicators = 1
+let g:undotree_SplitWidth = 60
+let g:undotree_DiffpanelHeight = 20
 let g:undotree_SetFocusWhenToggle = 1
 
 " vim-session
@@ -560,14 +561,14 @@ endfunction
 " `2>/dev/null` makes the command fail quietly, so that when we are not
 " in a git repo, the list will be empty
 function! s:gitModified()
-    let files = systemlist('git ls-files -m 2>/dev/null')
-    return map(files, "{'line': v:val, 'path': v:val}")
+  let files = systemlist('git ls-files -m 2>/dev/null')
+  return map(files, "{'line': v:val, 'path': v:val}")
 endfunction
 
 " same as above, but show untracked files, honouring .gitignore
 function! s:gitUntracked()
-    let files = systemlist('git ls-files -o --exclude-standard 2>/dev/null')
-    return map(files, "{'line': v:val, 'path': v:val}")
+  let files = systemlist('git ls-files -o --exclude-standard 2>/dev/null')
+  return map(files, "{'line': v:val, 'path': v:val}")
 endfunction
 
 let g:startify_lists = [
