@@ -33,7 +33,7 @@ local color05='#1488ad'
 local color06='#B4881D'
 
 export FZF_DEFAULT_OPTS="
-    --height 80%
+    --height 75%
     --reverse
     -s
     --border
@@ -47,7 +47,7 @@ export FZF_DEFAULT_OPTS="
     --inline-info
     --preview-window=right:50%
     --preview 'bat --style=numbers,changes --color=always {} | head -10000'
-    --bind change:top,ctrl-w:backward-kill-word,ctrl-a:beginning-of-line,ctrl-e:end-of-line,shift-right:forward-word,shift-left:backward-word,ctrl-c:clear-query,ctrl-f:page-down,ctrl-b:page-up,ctrl-u:half-page-up,ctrl-d:half-page-down,ctrl-t:top,ctrl-p:up,ctrl-n:down,ctrl-k:up,ctrl-j:down,ctrl-o:toggle-sort,ctrl-x:toggle,tab:toggle-out,btab:toggle-up,alt-e:preview-down,alt-y:preview-up,alt-f:preview-page-down,alt-b:preview-page-up,alt-p:toggle-preview
+    --bind change:top,ctrl-w:backward-kill-word,ctrl-a:beginning-of-line,ctrl-e:end-of-line,shift-right:forward-word,shift-left:backward-word,ctrl-c:clear-query,ctrl-f:page-down,ctrl-b:page-up,ctrl-u:half-page-up,ctrl-d:half-page-down,ctrl-t:top,ctrl-p:up,ctrl-n:down,ctrl-o:toggle-sort,ctrl-x:toggle,tab:toggle-out,btab:toggle-up,alt-e:preview-down,alt-y:preview-up,alt-f:preview-page-down,alt-b:preview-page-up,alt-p:toggle-preview
 "
 
 # Search Field
@@ -65,8 +65,6 @@ export FZF_DEFAULT_OPTS="
 #   [ctrl-d] - (half-page-down) Mou mitja pàgina avall
 #   [ctrl-t] - (top) Mou el resultat marcat al primer de la llista
 #   [change] - (top) Mou el resultat marcat al primer de la llista quan hi ha un canvi al search field
-#   [ctrl-j] - (up) Mou el resultat marcat al següent
-#   [ctrl-k] - (down) Mou el resultat marcat a l'anterior
 #   [ctrl-n] - (up) Mou el resultat marcat al següent
 #   [ctrl-p] - (down) Mou el resultat marcat a l'anterior
 #   [ctrl-o] - (toggle-sort) Ordena/desordena els resultats de la cerca
@@ -88,16 +86,14 @@ FZF_TAB_COMMAND=(
     '--color=hl:$(( $#headers == 0 ? 108 : 255 ))'
     --nth=2,3 --delimiter='\x00'  # Don't search prefix
     --layout=reverse --height='${FZF_TMUX_HEIGHT:=75%}'
-    --tiebreak=begin -m --bind=tab:down,btab:up,change:top,ctrl-space:toggle --cycle
+    --tiebreak=begin -m
+    --bind change:top,ctrl-w:backward-kill-word,ctrl-a:beginning-of-line,ctrl-e:end-of-line,shift-right:forward-word,shift-left:backward-word,ctrl-c:clear-query,ctrl-f:page-down,ctrl-b:page-up,ctrl-u:half-page-up,ctrl-d:half-page-down,ctrl-t:top,ctrl-p:up,ctrl-n:down,ctrl-o:toggle-sort,ctrl-x:toggle,tab:toggle-out,btab:toggle-up,alt-e:preview-down,alt-y:preview-up,alt-f:preview-page-down,alt-b:preview-page-up,alt-p:toggle-preview
     '--query=$query'   # $query will be expanded to query string at runtime.
     '--header-lines=$#headers' # $#headers will be expanded to lines of headers at runtime
 )
 zstyle ':fzf-tab:*' command $FZF_TAB_COMMAND
 enable-fzf-tab
 zstyle ':fzf-tab:complete:cd:*' extra-opts --preview=$extract'exa -1 --color=always $realpath'
-
-
-
 
 # Integration with z
 # like normal z when used with arguments but displays an fzf prompt when used without.
@@ -114,82 +110,6 @@ fif() {
     rg -uu --files-with-matches --no-messages "$1" | fzf $FZF_PREVIEW_WINDOW --preview "rg --ignore-case --pretty --context 10 '$1' {}"
 }
 
-# Homebrew
-# Install (one or multiple) selected application(s)
-# using "brew search" as source input
-# mnemonic [B]rew [I]nstall [P]lugin
-bip() {
-    local token=$(brew search | fzf -m --query="$1" +m --preview 'brew info {}')
-
-    # if [[ $inst ]]; then
-    #     for prog in $(echo $inst);
-    #     do; brew install $prog; done;
-    # fi
-    if [[ $token ]]; then
-        echo "(I)nstall or open the (h)omepage of $token"
-        read input
-        if [ $input = "i" ] || [ $input = "I" ]; then
-            brew install $token
-        fi
-        if [ $input = "h" ] || [ $input = "H" ]; then
-            brew home $token
-        fi
-    fi
-}
-
-# Delete (one or multiple) selected application(s)
-# mnemonic [B]rew [U]ninstall [P]lugin (e.g. uninstall)
-bup() {
-    local uninst=$(brew leaves | fzf -m)
-
-    if [[ $uninst ]]; then
-        for prog in $(echo $uninst);
-        do; brew uninstall $prog; done;
-    fi
-}
-
-# Homebrew Cask
-# Install or open the webpage for the selected application
-# using brew cask search as input source
-# and display a info quickview window for the currently marked application
-bci() {
-    local token
-    token=$(brew search --casks | fzf --query="$1" +m --preview 'brew cask info {}')
-
-    if [ "x$token" != "x" ]
-    then
-        echo "(I)nstall or open the (h)omepage of $token"
-        read input
-        if [ $input = "i" ] || [ $input = "I" ]; then
-            brew cask install $token
-        fi
-        if [ $input = "h" ] || [ $input = "H" ]; then
-            brew cask home $token
-        fi
-    fi
-}
-
-
-# Uninstall or open the webpage for the selected application
-# using brew list as input source (all brew cask installed applications)
-# and display a info quickview window for the currently marked application
-bcu() {
-    local token
-    token=$(brew cask list | fzf --query="$1" +m --preview 'brew cask info {}')
-
-    if [ "x$token" != "x" ]
-    then
-        echo "(U)ninstall or open the (h)omepage of $token"
-        read input
-        if [ $input = "u" ] || [ $input = "U" ]; then
-            brew cask uninstall $token
-        fi
-        if [ $input = "h" ] || [ $token = "h" ]; then
-            brew cask home $token
-        fi
-    fi
-}
-
 # Mostra les variables d'entorn
 envf() {
   local token
@@ -202,7 +122,7 @@ envf() {
 }
 
 # Mostra els commits d'un projecte o els commits que han afectat al fitxer indicat per paràmetre
-gli() {
+gitcom() {
   local filter
   if [ -n $@ ] && [ -f $@ ]; then
     filter="-- $@"
