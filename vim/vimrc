@@ -489,14 +489,31 @@ map <leader>yb :YanksBefore<CR>
 
 " Files + devicons
 let g:max_lines=10000
-nnoremap <silent> <leader>i :call Fzf_files_with_dev_icons($FZF_DEFAULT_COMMAND, "Files")<CR>
+nnoremap <silent> <leader>f :call Fzf_files_with_dev_icons($FZF_DEFAULT_COMMAND, "Files")<CR>
 " GFiles?
-nnoremap <silent> <leader>j :call Fzf_git_diff_files_with_dev_icons()<CR>
+nnoremap <silent> <leader>m :call Fzf_git_diff_files_with_dev_icons()<CR>
 " Gfiles
-nnoremap <silent> <leader>k :call Fzf_files_with_dev_icons("git ls-files \| uniq", "Git files")<CR>
+nnoremap <silent> <leader>g :call Fzf_files_with_dev_icons("git ls-files \| uniq", "Git files")<CR>
+
+"export FZF_DEFAULT_OPTS="
+"--height 80%
+"--reverse
+"--border
+"--color=bg:$color00,bg+:$color00
+"--color=fg:$color01,fg+:$color02
+"--color=hl:$color04,hl+:$color05
+"--color=spinner:$color04,info:$color06
+"--color=border:$color05,pointer:$color02
+"--color=prompt:$color01,header:$color05
+"--color=marker:$color05
+"--inline-info
+"--preview-window=right:50%
+"--preview 'bat --style=numbers,changes --color=always {} | head -10000'
+"--bind change:top,ctrl-e:preview-down,ctrl-y:preview-up,ctrl-u:preview-page-up,ctrl-d:preview-page-down,ctrl-j:page-down,ctrl-k:page-up
+"export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
 
 function! Fzf_files_with_dev_icons(command, prompt)
-  let l:fzf_files_options = '--preview "bat --color always --style=numbers,changes {2..} | head -' . g:max_lines . '" --reverse'
+  let l:fzf_files_options = '--preview "bat --theme solarizedDark --color always --style=numbers,changes {2..} | head -' . g:max_lines . '" --reverse'
 
   function! s:edit_devicon_prepended_file(item)
     let l:file_path = a:item[4:-1]
