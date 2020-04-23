@@ -80,6 +80,12 @@ export WWW_HOME='http://www.duckduckgo.com/lite'
 
 export LC_ALL=en_US.UTF-8
 
+# Highlight man pages with bat
+export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+
+# Utilitza Solarized dark per veure els fitxers
+export BAT_THEME="solarizedDark"
+
 # Using the AUTOCD option, you can simply type the name of a directory, and it will become the current directory.
 setopt AUTO_CD
 

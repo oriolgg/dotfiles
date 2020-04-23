@@ -10,9 +10,19 @@ fi
 
 # Key bindings
 # ------------
+# [Ctrl-T] -> Posa a la línia de comandes el nom del fitxer o directori seleccionat
+# [Alt-C] -> Llista directoris dins del directori actual i fa cd a ell. Si hi havi alguna cosa escrita, ho manté un cop s'ha fet cd al directori
 source "/usr/local/opt/fzf/shell/key-bindings.zsh"
 
+# Obre fzf amb l'historial de comandes
+bindkey '^Y' fzf-history-widget
 
+bindkey '^R' up-line-or-history
+bindkey '^F' down-line-or-history
+
+# Busca a l'historial comandes que comencen pel que ja s'ha escrit
+bindkey '^P' history-beginning-search-backward
+bindkey '^N' history-beginning-search-forward
 
 local color00='#022b35'
 local color01='#A7ADBA'
@@ -24,7 +34,8 @@ local color06='#B4881D'
 
 export FZF_DEFAULT_OPTS="
     --height 80%
-    --no-reverse
+    --reverse
+    -s
     --border
     --color=bg:$color00,bg+:$color00
     --color=fg:$color01,fg+:$color02
@@ -36,16 +47,39 @@ export FZF_DEFAULT_OPTS="
     --inline-info
     --preview-window=right:50%
     --preview 'bat --style=numbers,changes --color=always {} | head -10000'
-    --bind change:top,ctrl-e:preview-down,ctrl-y:preview-up,ctrl-u:preview-page-up,ctrl-d:preview-page-down,ctrl-j:page-down,ctrl-k:page-up
+    --bind change:top,ctrl-w:backward-kill-word,ctrl-a:beginning-of-line,ctrl-e:end-of-line,shift-right:forward-word,shift-left:backward-word,ctrl-c:clear-query,ctrl-f:page-down,ctrl-b:page-up,ctrl-u:half-page-up,ctrl-d:half-page-down,ctrl-t:top,ctrl-p:up,ctrl-n:down,ctrl-k:up,ctrl-j:down,ctrl-o:toggle-sort,ctrl-x:toggle,tab:toggle-out,btab:toggle-up,alt-e:preview-down,alt-y:preview-up,alt-f:preview-page-down,alt-b:preview-page-up,alt-p:toggle-preview
 "
-export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
 
-bindkey '^R' up-line-or-history
-bindkey '^F' down-line-or-history
-bindkey '^Y' fzf-history-widget
+# Search Field
+#   [ctrl-w] - (backward-kill-word) Esborra la paraula anterior del cursor
+#   [ctrl-a] - (beginning-of-line)
+#   [ctrl-e] - (end-of-line)
+#   [shift-right] - (backward-word) Mou el cursor a la paraula anterior
+#   [shift-left] - (forward-word) Mou el cursor a la paraula següent
+#   [ctrl-c] - (clear-query) Esborra el camp de cerca
 
-bindkey '^P' history-beginning-search-backward
-bindkey '^N' history-beginning-search-forward
+# Search Result List
+#   [ctrl-f] - (page-down) Mou una pàgina avall
+#   [ctrl-b] - (page-up) Mou una pàgina amunt
+#   [ctrl-u] - (half-page-up) Mou mitja pàgina amunt
+#   [ctrl-d] - (half-page-down) Mou mitja pàgina avall
+#   [ctrl-t] - (top) Mou el resultat marcat al primer de la llista
+#   [change] - (top) Mou el resultat marcat al primer de la llista quan hi ha un canvi al search field
+#   [ctrl-j] - (up) Mou el resultat marcat al següent
+#   [ctrl-k] - (down) Mou el resultat marcat a l'anterior
+#   [ctrl-n] - (up) Mou el resultat marcat al següent
+#   [ctrl-p] - (down) Mou el resultat marcat a l'anterior
+#   [ctrl-o] - (toggle-sort) Ordena/desordena els resultats de la cerca
+#   [ctrl-x] - (toggle) Selecciona/deselecciona el resultat de cerca marcat
+#   [tab] - (toggle-out) Selecciona/deselecciona el resultat marcat i mou al següent
+#   [btab] - (toggle-out) Selecciona/deselecciona el resultat marcat i mou al anterior
+
+# Preview
+#   [alt-e] - (preview-down) Mou una línia avall
+#   [alt-y] - (preview-up) Mou una pàgina amunt
+#   [alt-f] - (preview-page-down) Mou una pàgina avall
+#   [alt-b] - (preview-page-up) Mou una pàgina amunt
+#   [alt-p] - (toggle-preview) Mostra/oculta el panell de previsualització
 
 FZF_TAB_COMMAND=(
     fzf
@@ -156,21 +190,34 @@ bcu() {
     fi
 }
 
+# Mostra les variables d'entorn
+envf() {
+  local token
+  token=$(printenv | awk -F'=' '/^[A-Z]+/ {print $1}' | fzf --preview 'echo ${(P)$(echo {})}')
 
-b() {
-    bookmarks_path=~/Library/Application\ Support/com.operasoftware.Opera/Bookmarks
-
-    jq_script='
-        def ancestors: while(. | length >= 2; del(.[-1,-2]));
-        . as $in | paths(.url?) as $key | $in | getpath($key) | {name,url, path: [$key[0:-2] | ancestors as $a | $in | getpath($a) | .name?] | reverse | join("/") } | .path + "/" + .name + "\t" + .url'
-
-    jq -r $jq_script < "$bookmarks_path" \
-        | sed -E $'s/(.*)\t(.*)/\\1\t\x1b[36m\\2\x1b[m/g' \
-        | fzf --ansi -m --no-preview \
-        | cut -d$'\t' -f2 \
-        | xargs open
+  if [ "x$token" != "x" ]
+  then
+      echo $token'\n'$(printenv $token)
+  fi
 }
 
-envf() {
-    printenv | awk -F'=' '/^[A-Z]+/ {print $1}' | fzf --preview 'echo ${(P)$(echo {})}'
+# Mostra els commits d'un projecte o els commits que han afectat al fitxer indicat per paràmetre
+gli() {
+  local filter
+  if [ -n $@ ] && [ -f $@ ]; then
+    filter="-- $@"
+  fi
+
+  git log \
+    --graph --color=always --abbrev=7 --format='%C(auto)%h %an %C(blue)%s %C(yellow)%cr' $@ | \
+    fzf \
+      --ansi --no-sort --reverse --tiebreak=index \
+      --preview "f() { set -- \$(echo -- \$@ | grep -o '[a-f0-9]\{7\}'); [ \$# -eq 0 ] || git show --color=always \$1 $filter; }; f {}" \
+      --bind "change:top,ctrl-b:backward-word,ctrl-w:backward-kill-word,ctrl-t:top,ctrl-u:half-page-up,ctrl-d:half-page-down,ctrl-x:toggle,alt-a:toggle-all,ctrl-o:toggle-sort,tab:toggle-out,btab:toggle-in,alt-e:preview-down,alt-y:preview-up,alt-u:preview-page-up,alt-d:preview-page-down,alt-p:toggle-preview,enter:execute:
+                (grep -o '[a-f0-9]\{7\}' | head -1 |
+                xargs -I % sh -c 'git show --color=always % | less -R') << 'FZF-EOF'
+                {}
+                FZF-EOF" \
+      --preview-window=right:60% \
+      --height 80%
 }
