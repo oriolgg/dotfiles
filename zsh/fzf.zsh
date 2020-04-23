@@ -32,22 +32,23 @@ local color04='#c94c22'
 local color05='#1488ad'
 local color06='#B4881D'
 
-export FZF_DEFAULT_OPTS="
-    --height 75%
-    --reverse
-    -s
-    --border
-    --color=bg:$color00,bg+:$color00
-    --color=fg:$color01,fg+:$color02
-    --color=hl:$color04,hl+:$color05
-    --color=spinner:$color04,info:$color06
-    --color=border:$color05,pointer:$color02
-    --color=prompt:$color01,header:$color05
-    --color=marker:$color05
-    --inline-info
-    --preview-window=right:50%
-    --preview 'bat --style=numbers,changes --color=always {} | head -10000'
-    --bind change:top,ctrl-w:backward-kill-word,ctrl-a:beginning-of-line,ctrl-e:end-of-line,shift-right:forward-word,shift-left:backward-word,ctrl-c:clear-query,ctrl-f:page-down,ctrl-b:page-up,ctrl-u:half-page-up,ctrl-d:half-page-down,ctrl-t:top,ctrl-p:up,ctrl-n:down,ctrl-o:toggle-sort,ctrl-x:toggle,tab:toggle-out,btab:toggle-up,alt-e:preview-down,alt-y:preview-up,alt-f:preview-page-down,alt-b:preview-page-up,alt-p:toggle-preview
+default_bind_options='change:top,ctrl-w:backward-kill-word,ctrl-a:beginning-of-line,ctrl-e:end-of-line,shift-right:forward-word,shift-left:backward-word,ctrl-c:clear-query,ctrl-f:page-down,ctrl-b:page-up,ctrl-u:half-page-up,ctrl-d:half-page-down,ctrl-t:top,ctrl-p:up,ctrl-n:down,ctrl-o:toggle-sort,ctrl-x:toggle,tab:toggle-out,btab:toggle-up,alt-e:preview-down,alt-y:preview-up,alt-j:preview-page-down,alt-k:preview-page-up,alt-f:preview-page-down,alt-b:preview-page-up,alt-p:toggle-preview'
+default_preview_window='bottom:50%:border'
+export FZF_DEFAULT_OPTS="  --height 75%
+  --reverse
+  -s
+  --border
+  --color=bg:$color00,bg+:$color00
+  --color=fg:$color01,fg+:$color02
+  --color=hl:$color04,hl+:$color05
+  --color=spinner:$color04,info:$color06
+  --color=border:$color05,pointer:$color02
+  --color=prompt:$color01,header:$color05
+  --color=marker:$color05
+  --inline-info
+  --preview 'bat --style=numbers,changes --color=always {} | head -10000'
+  --bind $default_bind_options
+  --preview-window $default_preview_window
 "
 
 # Search Field
@@ -77,6 +78,8 @@ export FZF_DEFAULT_OPTS="
 #   [alt-y] - (preview-up) Mou una pàgina amunt
 #   [alt-f] - (preview-page-down) Mou una pàgina avall
 #   [alt-b] - (preview-page-up) Mou una pàgina amunt
+#   [alt-j] - (preview-page-down) Mou una pàgina avall
+#   [alt-k] - (preview-page-up) Mou una pàgina amunt
 #   [alt-p] - (toggle-preview) Mostra/oculta el panell de previsualització
 
 FZF_TAB_COMMAND=(
@@ -87,10 +90,19 @@ FZF_TAB_COMMAND=(
     --nth=2,3 --delimiter='\x00'  # Don't search prefix
     --layout=reverse --height='${FZF_TMUX_HEIGHT:=75%}'
     --tiebreak=begin -m
-    --bind change:top,ctrl-w:backward-kill-word,ctrl-a:beginning-of-line,ctrl-e:end-of-line,shift-right:forward-word,shift-left:backward-word,ctrl-c:clear-query,ctrl-f:page-down,ctrl-b:page-up,ctrl-u:half-page-up,ctrl-d:half-page-down,ctrl-t:top,ctrl-p:up,ctrl-n:down,ctrl-o:toggle-sort,ctrl-x:toggle,tab:toggle-out,btab:toggle-up,alt-e:preview-down,alt-y:preview-up,alt-f:preview-page-down,alt-b:preview-page-up,alt-p:toggle-preview
     '--query=$query'   # $query will be expanded to query string at runtime.
     '--header-lines=$#headers' # $#headers will be expanded to lines of headers at runtime
+    --bind $default_bind_options
+    --preview-window $default_preview_window
 )
+FORGIT_FZF_DEFAULT_OPTS="
+    --border
+    --reverse
+    --height '75%'
+    --bind $default_bind_options
+    --preview-window $default_preview_window
+"
+
 zstyle ':fzf-tab:*' command $FZF_TAB_COMMAND
 enable-fzf-tab
 zstyle ':fzf-tab:complete:cd:*' extra-opts --preview=$extract'exa -1 --color=always $realpath'
@@ -110,34 +122,13 @@ fif() {
     rg -uu --files-with-matches --no-messages "$1" | fzf $FZF_PREVIEW_WINDOW --preview "rg --ignore-case --pretty --context 10 '$1' {}"
 }
 
-# Mostra les variables d'entorn
+# Mostra les variables d'entorn i els seus valors
 envf() {
   local token
-  token=$(printenv | awk -F'=' '/^[A-Z]+/ {print $1}' | fzf --preview 'echo ${(P)$(echo {})}')
+  token=$(printenv | awk -F'=' '/^[A-Z]+/ {print $1}' | fzf --preview 'echo ${(P)$(echo {})}' --preview-window $default_preview_window)
 
   if [ "x$token" != "x" ]
   then
       echo $token'\n'$(printenv $token)
   fi
-}
-
-# Mostra els commits d'un projecte o els commits que han afectat al fitxer indicat per paràmetre
-gitcom() {
-  local filter
-  if [ -n $@ ] && [ -f $@ ]; then
-    filter="-- $@"
-  fi
-
-  git log \
-    --graph --color=always --abbrev=7 --format='%C(auto)%h %an %C(blue)%s %C(yellow)%cr' $@ | \
-    fzf \
-      --ansi --no-sort --reverse --tiebreak=index \
-      --preview "f() { set -- \$(echo -- \$@ | grep -o '[a-f0-9]\{7\}'); [ \$# -eq 0 ] || git show --color=always \$1 $filter; }; f {}" \
-      --bind "change:top,ctrl-b:backward-word,ctrl-w:backward-kill-word,ctrl-t:top,ctrl-u:half-page-up,ctrl-d:half-page-down,ctrl-x:toggle,alt-a:toggle-all,ctrl-o:toggle-sort,tab:toggle-out,btab:toggle-in,alt-e:preview-down,alt-y:preview-up,alt-u:preview-page-up,alt-d:preview-page-down,alt-p:toggle-preview,enter:execute:
-                (grep -o '[a-f0-9]\{7\}' | head -1 |
-                xargs -I % sh -c 'git show --color=always % | less -R') << 'FZF-EOF'
-                {}
-                FZF-EOF" \
-      --preview-window=right:60% \
-      --height 80%
 }

@@ -35,7 +35,6 @@ call plug#begin('~/.vim/plugged')
   Plug 'matze/vim-move'                 " Permet moure línies senceres (actual o seleccionades) amunt o avall amb Alt j o k
   Plug 'junegunn/vim-easy-align'        " Alinea parts de línies al mateix nivell segons el caràcter indicat
   Plug 'psliwka/vim-smoothie'           " Desplaçaments verticals del buffer amb moviment, per seguir-ho fàciment
-  Plug 'mhinz/vim-startify'             " Substitueix la pantalla d'entrada de vim per algo més útil amb ultims fitxers oberts
 
 call plug#end()
 
@@ -327,7 +326,7 @@ nnoremap <expr> gv '`[' . strpart(getregtype(), 0, 1) . '`]'
 " Indica un nom de fitxer pel buffer actual
 map <Leader>c :f <C-R>=expand('%:p:h') . '/' <Cr>
 
-map <Leader>n :enew<Cr>i
+map <Leader>n :enew<Cr>
 
 " Esborra els espais al final de totes les línies amb <Leader>dt
 noremap <silent> <Leader>dt :call DeleteTrailingWS()<Cr>
@@ -484,33 +483,16 @@ map <leader>yb :YanksBefore<CR>
 "    autocmd! User FzfStatusLine call <SID>fzf_statusline()
 "endif
 
-
-
-
 " Files + devicons
 let g:max_lines=10000
+let g:fzf_default_bind = '--bind change:top,ctrl-w:backward-kill-word,ctrl-a:beginning-of-line,ctrl-e:end-of-line,shift-right:forward-word,shift-left:backward-word,ctrl-c:clear-query,ctrl-f:page-down,ctrl-b:page-up,ctrl-u:half-page-up,ctrl-d:half-page-down,ctrl-t:top,ctrl-p:up,ctrl-n:down,ctrl-o:toggle-sort,ctrl-x:toggle,tab:toggle-out,btab:toggle-up,alt-e:preview-down,alt-y:preview-up,alt-j:preview-page-down,alt-k:preview-page-up,alt-f:preview-page-down,alt-b:preview-page-up,alt-p:toggle-preview'
+let g:fzf_default_preview_window = '--preview-window=bottom:50%:border'
+" Searches for all folder files
 nnoremap <silent> <leader>f :call Fzf_files_with_dev_icons($FZF_DEFAULT_COMMAND, "Files")<CR>
-" GFiles?
-nnoremap <silent> <leader>m :call Fzf_git_diff_files_with_dev_icons()<CR>
-" Gfiles
+" Searches for all git tracked files
 nnoremap <silent> <leader>g :call Fzf_files_with_dev_icons("git ls-files \| uniq", "Git files")<CR>
-
-"export FZF_DEFAULT_OPTS="
-"--height 80%
-"--reverse
-"--border
-"--color=bg:$color00,bg+:$color00
-"--color=fg:$color01,fg+:$color02
-"--color=hl:$color04,hl+:$color05
-"--color=spinner:$color04,info:$color06
-"--color=border:$color05,pointer:$color02
-"--color=prompt:$color01,header:$color05
-"--color=marker:$color05
-"--inline-info
-"--preview-window=right:50%
-"--preview 'bat --style=numbers,changes --color=always {} | head -10000'
-"--bind change:top,ctrl-e:preview-down,ctrl-y:preview-up,ctrl-u:preview-page-up,ctrl-d:preview-page-down,ctrl-j:page-down,ctrl-k:page-up
-"export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
+" Searches for all git files not staged
+nnoremap <silent> <leader>m :call Fzf_git_diff_files_with_dev_icons()<CR>
 
 function! Fzf_files_with_dev_icons(command, prompt)
   let l:fzf_files_options = '--preview "bat --theme solarizedDark --color always --style=numbers,changes {2..} | head -' . g:max_lines . '" --reverse'
@@ -523,7 +505,7 @@ function! Fzf_files_with_dev_icons(command, prompt)
   let opts = fzf#wrap({})
   let opts['source'] = a:command . ' | devicon-lookup'
   let opts['sink'] = function('s:edit_devicon_prepended_file')
-  let opts['options'] = '-m --preview-window=right:60%:border --prompt "' . a:prompt . ' > " ' . l:fzf_files_options
+  let opts['options'] = '-m ' . g:fzf_default_preview_window . ' --prompt "' . a:prompt . ' > " ' . l:fzf_files_options . ' ' . g:fzf_default_bind
   let opts['down'] = '40%'
   let opts['window'] = {'width': 0.9, 'height': 0.9}
 
@@ -531,7 +513,7 @@ function! Fzf_files_with_dev_icons(command, prompt)
 endfunction
 
 function! Fzf_git_diff_files_with_dev_icons()
-  let l:fzf_files_options = '--ansi --preview "sh -c \"(git diff --color=always -- {3..}) \""'
+  let l:fzf_files_options = '--ansi --preview "sh -c \"(git diff --color=always -- {3..}) \"" --reverse'
 
   function! s:edit_devicon_prepended_file_diff(item)
     echom a:item
@@ -545,60 +527,9 @@ function! Fzf_git_diff_files_with_dev_icons()
   let opts = fzf#wrap({})
   let opts['source'] = 'git -c color.status=always status --short --untracked-files=all | devicon-lookup'
   let opts['sink'] = function('s:edit_devicon_prepended_file_diff')
-  let opts['options'] = '-m --preview-window=right:60%:border --prompt "Untracked files > " ' . l:fzf_files_options
+  let opts['options'] = '-m ' . g:fzf_default_preview_window . ' --prompt "Untracked files > " ' . l:fzf_files_options . ' ' . g:fzf_default_bind
   let opts['down'] = '40%'
   let opts['window'] = {'width': 0.9, 'height': 0.9}
 
   call fzf#run(opts)
 endfunction
-
-nnoremap <silent> <leader>b :call BufWidth()<CR>
-function! BufWidth()
-  let width = winwidth(0)
-  let numberwidth = max([&numberwidth, strlen(line('$'))+1])
-  let numwidth = (&number || &relativenumber)? numberwidth : 0
-  let foldwidth = &foldcolumn
-
-  if &signcolumn == 'yes'
-    let signwidth = 2
-  elseif &signcolumn == 'auto'
-    let signs = execute(printf('sign place buffer=%d', bufnr('')))
-    let signs = split(signs, "\n")
-    let signwidth = len(signs)>2? 2: 0
-  else
-    let signwidth = 0
-  endif
-  echo width
-  return width - numwidth - foldwidth - signwidth
-endfunction
-
-
-" vim-startify
-" returns all modified files of the current git repo
-" `2>/dev/null` makes the command fail quietly, so that when we are not
-" in a git repo, the list will be empty
-function! s:gitModified()
-  let files = systemlist('git ls-files -m 2>/dev/null')
-  return map(files, "{'line': v:val, 'path': v:val}")
-endfunction
-
-" same as above, but show untracked files, honouring .gitignore
-function! s:gitUntracked()
-  let files = systemlist('git ls-files -o --exclude-standard 2>/dev/null')
-  return map(files, "{'line': v:val, 'path': v:val}")
-endfunction
-
-let g:startify_lists = [
-        \ { 'type': 'files',     'header': ['   MRU']            },
-        \ { 'type': 'dir',       'header': ['   MRU '. getcwd()] },
-        \ { 'type': 'sessions',  'header': ['   Sessions']       },
-        \ { 'type': 'bookmarks', 'header': ['   Bookmarks']      },
-        \ { 'type': function('s:gitModified'),  'header': ['   git modified']},
-        \ { 'type': function('s:gitUntracked'), 'header': ['   git untracked']},
-        \ { 'type': 'commands',  'header': ['   Commands']       },
-        \ ]
-
-
-if exists("g:loaded_webdevicons")
-    call webdevicons#refresh()
-endif

@@ -118,6 +118,3 @@
 [submodule "vim/plugged/vim-easy-align"]
 	path = vim/plugged/vim-easy-align
 	url = https://github.com/junegunn/vim-easy-align
-[submodule "vim/plugged/vim-startify"]
-	path = vim/plugged/vim-startify
-	url = https://github.com/mhinz/vim-startify
