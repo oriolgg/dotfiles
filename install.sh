@@ -55,6 +55,10 @@ ln -s ~/.dotfiles/zsh/fzf-forgit.zsh ~/.fzf-forgit.zsh
 ln -s ~/.dotfiles/lynx/lynx.cfg ~/.lynx.cfg
 ln -s ~/.dotfiles/lynx/lynx.lss ~/.lynx.lss
 ln -s ~/.dotfiles/lynx/lynxrc ~/.lynxrc
+ln -s ~/.dotfiles/zsh/oriol.zsh-theme ~/.oh-my-zsh/custom/themes/oriol.zsh-theme
+
+git clone https://github.com/Aloxaf/fzf-tab ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/fzf-tab
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 
 mkdir -p ~/.config/nvim
 ln -s ~/.dotfiles/nvim/init.vim ~/.config/nvim/init.vim
