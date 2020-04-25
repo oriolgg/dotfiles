@@ -1,92 +1,66 @@
-set nocompatible                                             " Treure la compatibilitat amb Vi
+""""""""""""""""""""""""""""""""""""""""""""""""""
+" vim/neovim config file
+""""""""""""""""""""""""""""""""""""""""""""""""""
 
-filetype off
-filetype plugin indent on
-filetype plugin on
+" vim-plug: Plugins section
 
 call plug#begin('~/.vim/plugged')
 
-  Plug 'chrisbra/Colorizer'             " Mostra el color dels codis i noms de color del text
-  Plug 'junegunn/fzf.vim'               " Permet utilitzar fzf dins de vim
-  Plug 'yuki-ycino/fzf-preview.vim'     " Ús de FZF a una finestra flotant de neovim
-  Plug 'gorkunov/smartpairs.vim'        " Seleccions incrementals utilitzant v consecutivament
-  Plug 'gillyb/stable-windows'          " Manté estable la finestra quan hi ha canvis de layout (help, fzf...)
-  Plug 'keith/swift.vim'                " Permet ressaltar colors i indentar fitxers Swift
-  Plug 'mbbill/undotree'                " Mostra l'arbre de modificacions d'un fitxer
-  Plug 'vim-airline/vim-airline'        " Barra d'estat i de buffers/tabs
-  Plug 'vim-airline/vim-airline-themes' " Barra d'estat i de buffers/tabs
-  Plug 'tpope/vim-commentary'           " Gestionar comentaris fàcilment
-  Plug 'Lokaltog/vim-easymotion'        " Per saltar entre paraules, cerques, etc. de manera més àgil
-  Plug 'int3/vim-extradite'             " Amplia funcionalitat de fugitive mostrant commits
-  Plug 'tpope/vim-fugitive'             " Utilitzar Git dins de Vim
-  Plug 'szw/vim-g'                      " Obre una pestanya al navegador amb el text a buscar (DuckDuckGo)
-  Plug 'machakann/vim-highlightedyank'  " Destaca en vermell el text copiat al portapapers
-  Plug 'adelarsq/vim-matchit'           " Extén els tipus de coincidències de la comanda %
-  Plug 'xolox/vim-misc'                 " Recull d'scripts. Necessari per vim-session
-  Plug 'pbrisbin/vim-mkdir'             " Crea els directoris necessaris en guardar un fitxer
-  Plug 'tpope/vim-repeat'               " Permet utilitzar '.' per repetir comandes de surround.vim, speeddating.vim, unimpaired.vim, vim-easyclip i vim-radical
-  Plug 'xolox/vim-session'              " Amplia la gestió de sessions de vim (necessita miv-misc
-  Plug 'lifepillar/vim-solarized8'      " Esquema de colors Solarized
-  Plug 'tpope/vim-surround'             " mitjançant l'acció 's' es posen i treuen parentesis, claudators, cometes simples, un tag...
-  Plug 'christoomey/vim-tmux-navigator' " Navegar fluidament entre tmux i vim
-  Plug 'tpope/vim-unimpaired'           " Utilitzant [ i ] es poden realitzar moviments o canvis de text o canvis de comportaments
-  Plug 'ryanoasis/vim-devicons'         " Posa icones a vim-airline
-  Plug 'bfredl/nvim-miniyank'           " Guarda els textos copiats a un fitxer comú compartit per totes les instàncies de vim
-  Plug 'matze/vim-move'                 " Permet moure línies senceres (actual o seleccionades) amunt o avall amb Alt j o k
-  Plug 'junegunn/vim-easy-align'        " Alinea parts de línies al mateix nivell segons el caràcter indicat
-  Plug 'psliwka/vim-smoothie'           " Desplaçaments verticals del buffer amb moviment, per seguir-ho fàciment
+  " User Interface
+  Plug 'http://github.com/lifepillar/vim-solarized8'       " Solarized color schema
+  Plug 'http://github.com/vim-airline/vim-airline'         " Airline status bar
+  Plug 'http://github.com/vim-airline/vim-airline-themes'  " Airline themes
+  Plug 'http://github.com/ryanoasis/vim-devicons'          " Use of icons in the UI
+  Plug 'http://github.com/machakann/vim-highlightedyank'   " Highlights in red the yanked text
+    let g:highlightedyank_highlight_duration = 200
+  Plug 'http://github.com/psliwka/vim-smoothie'            " Smoothie scroll (using [Ctrl-u], [Ctrl-d], [Ctrl-b] and [Ctrl-f]
+  Plug 'http://github.com/gillyb/stable-windows'           " When opening splits, maintains the same layout (working?)
+
+  " Fuzzy finder
+  Plug '/usr/local/opt/fzf'                                " Fuzzy finder in Vim
+  Plug 'http://github.com/junegunn/fzf.vim'                " Extended Fuzzy finder commands
+
+  " Intregration of Git
+  Plug 'http://github.com/tpope/vim-fugitive'              " Best Git plugin for Vim
+  Plug 'http://github.com/int3/vim-extradite'              " Git commit plugin for Vim
+
+  " Text manupilation
+  Plug 'http://github.com/tpope/vim-commentary'            " Better commenting lines
+  Plug 'http://github.com/tpope/vim-surround'              " All about 'surroundings': parentheses, brackets, quotes, XML tags, and more
+  Plug 'http://github.com/matze/vim-move'                  " Extends movement of text in the buffer
+  Plug 'http://github.com/junegunn/vim-easy-align'         " Alignment for contiguos lines using a character as a reference
+
+  " Movement inside a buffer
+  Plug 'http://github.com/Lokaltog/vim-easymotion'         " Improved movement and motion
+  Plug 'http://github.com/chrisbra/matchit'                " Extended use for % command
+
+  " Other
+  Plug 'https://github.com/vim-scripts/vim-g'              " Opens browser with the specified text
+    let g:vim_g_query_url = "https://duckduckgo.com/?q="
+    let g:vim_g_command = "Go"
+  Plug 'https://github.com/mbbill/undotree'                " Shows undo tree for the current buffer
+  Plug 'http://github.com/pbrisbin/vim-mkdir'              " Creates all required folders when saving buffers
+  Plug 'http://github.com/xolox/vim-session'               " Improves Vim session management
+  Plug 'http://github.com/chrisbra/Colorizer'              " Colorizes all color codes and color names in the buffer
+  Plug 'http://github.com/xolox/vim-misc'                  " Misc Vim script functions (required for vim-session)
+  Plug 'http://github.com/christoomey/vim-tmux-navigator'  " Seamless navigation between tmux panes and vim splits
+  Plug 'http://github.com/tpope/vim-unimpaired'            " Mappings for common ex commands, line mappings (add before/after, movement), toggle vim options and encode/decode
+  Plug 'http://github.com/bfredl/nvim-miniyank'            " Saves in disk yanked or deleted text so it will be shared between vim instances
 
 call plug#end()
-
-filetype on
 
 """"""""""""""""""""""""""""""""""""""""""""""""""
 " Funcions
 """""""""""""""""""""""""""""""""""""""""""""""""""
-" Funció per crear directoris si no existeixen
-function! EnsureDirExists (dir)
-  if !isdirectory(a:dir)
-    if exists('*mkdir')
-      call mkdir(a:dir,'p')
-    endif
-  endif
-endfunc
 
-" Funció per esborrar els espais a final de línia del buffer
-function! DeleteTrailingWS()
-  let previous_search=@/
-  let previous_cursor_line=line('.')
-  let previous_cursor_column=col('.')
-  %s/\s\+$//ge
-  let @/=previous_search
-  call cursor(previous_cursor_line, previous_cursor_column)
-endfunc
+" Creates vim_view and vim_undo folders
+:silent exec "!mkdir -p $HOME'/.vim_undo'"
+:silent exec "!mkdir -p $HOME'/.vim_view'"
+:silent exec "!mkdir -p $HOME'/.vim_sessions'"
 
-" Funció que canvia espais per tabs al principi de línia del buffer
-function! RetabIndents()
-  let previous_search=@/
-  let previous_cursor_line=line('.')
-  let previous_cursor_column=col('.')
-  if &expandtab
-    execute '%s@^\(\t\)\+@\=repeat(repeat(" ", '.&ts.'), len(submatch(0)))@e'
-  else
-    execute '%s@^\(\ \{'.&ts.'\}\)\+@\=repeat("\t", len(submatch(0))/'.&ts.')@e'
-  endif
-  let @/=previous_search
-  call cursor(previous_cursor_line, previous_cursor_column)
-endfunc
-
-" Use Q to intelligently close a window
-" (if there are multiple windows into the same buffer)
-" or kill the buffer entirely if it's the last window looking into that buffer
+" Closes the focused window and its buffer if this is not loaded into another window
 function! CloseWindowOrKillBuffer()
   let number_of_windows_to_this_buffer = len(filter(range(1, winnr('$')), "winbufnr(v:val) == bufnr('%')"))
-
-  " We should never bdelete a nerd tree
-  if matchstr(expand("%"), 'NERD') == 'NERD'
-    wincmd c
-    return
-  endif
 
   if number_of_windows_to_this_buffer > 1
     wincmd c
@@ -95,8 +69,8 @@ function! CloseWindowOrKillBuffer()
   endif
 endfunction
 
+" Ensures we get each buffer only once
 command! -nargs=0 -bar Qargs execute 'args' QuickfixFilenames()
-" Building a hash ensures we get each buffer only once
 function! QuickfixFilenames()
   let buffer_numbers = {}
   for quickfix_item in getqflist()
@@ -105,117 +79,113 @@ function! QuickfixFilenames()
   return join(map(values(buffer_numbers), 'fnameescape(v:val)'))
 endfunction
 
-
 """"""""""""""""""""""""""""""""""""""""""""""""""
-" Creació de directoris
-""""""""""""""""""""""""""""""""""""""""""""""""""
-" :silent call EnsureDirExists($HOME.'/.vim_backup')           " Crear directori de backup
-" :silent call EnsureDirExists($HOME.'/.vim_swap')             " Crear directori de swap
-:silent call EnsureDirExists($HOME.'/.vim_undo')             " Crear directori de undo
-:silent call EnsureDirExists($HOME.'/.vim_view')             " Crear directori de view
-:silent call EnsureDirExists($HOME.'/.vim_sessions')         " Crear directori de sessions
-
-
-""""""""""""""""""""""""""""""""""""""""""""""""""
-" General
+" General configuration
 """"""""""""""""""""""""""""""""""""""""""""""""""
 
-" Mantenir la posició del cursor quan obres un buffer al mateix lloc a on el tenies al tancar-lo
+" Changes <leader> for space
+let mapleader = " "
+
+" When opening a buffer it will move the cursor at the same place when we closed the buffer
 autocmd BufWinLeave *.* silent! mkview
 autocmd BufWinEnter *.* silent! loadview
 autocmd FocusLost *.* silent! :wa
 
-" When restoring a hidden buffer Vim doesn't always keep the same view (like
-" when your view shows beyond the end of the file). (Vim tip 1375)
+" Maintains the same position when we open a buffer in the window as we leave it
 if ! &diff
   au BufLeave * let b:winview = winsaveview()
   au BufEnter * if(exists('b:winview')) | call winrestview(b:winview) | endif
 endif
 
-" Posar al títol de la finestra el path del buffer que estem editant
-let &titlestring = expand('%:pwd')
-if &term == 'screen' || &term == 'xterm'
-  set title
-endif
+" Clear the jump list on startup.
+" I have never once remembered the jumplist between multiple Vim sessions.
+" Starting from a zero state each session lets me rewind/fast-forward through
+" the current session movements without accidentally entering a previous and
+" long-forogtten session.
+au VimEnter * clearjumps
 
-" keyboard shortcuts
-let mapleader = " "
-
+" Don't want netrw
 let loaded_netrw = 0
 
-set autoindent                                               " Activar autoindendació
-set autoread                                                 " Reload files when changed on disk, i.e. via `git checkout`
-set backspace=2                                              " Fix broken backspace in some setups
-" set backupdir=~/.vim_backup                                  " Canviar directori de buffer de backup
+" Shared clipboard with system
 if has('mac')
-  set clipboard=unnamed                                    " Yank and paste with the system clipboard
+  set clipboard=unnamed
 elseif has('unix')
-  set clipboard=unnamedplus                                " Yank and paste with the system clipboard
+  set clipboard=unnamedplus
 endif
-set cursorline                                               " Ressalta la línia a on està el cursor
-set encoding=UTF-8                                           " Posar UTF-8 com a encoding per defecte
-set expandtab tabstop=4 softtabstop=4 shiftwidth=4           " Definir els tabs com 4 espais
+
+" required by coc
+set hidden
+set nobackup
+set nowritebackup
+set cmdheight=2
+set updatetime=300
+set shortmess+=c
+set signcolumn=yes
+
+set autoindent                                           " auto indentation
+set autoread                                             " Reload files when changed on disk, i.e. via `git checkout`
+set backspace=2                                          " Fix broken backspace in some setups
+set cursorline                                           " Highlights cursor line
+set encoding=UTF-8                                       " UTF-8 as a default encoding
+set expandtab tabstop=4 softtabstop=4 shiftwidth=4       " Tabs -> 4 spaces
 set foldlevel=99
-set foldmethod=manual                                        " Es creen folds directament amb la indentació
-set foldnestmax=1                                            " Perquè es crein folds només al primer nivell d'indentació
-set hidden                                                   " Permet moure entre buffers encara que aquests estiguin editats sense guardar
-set history=10000                                            " Guarda les 10000 últimes comandes
-set hlsearch                                                 " Es ressalten les coincidencies de la cerca
-set ignorecase                                               " Case-sensitive search if any caps
-set incsearch                                                " Search as you type
-set infercase                                                " Per fer case sensitive l'autocomplete
-set iskeyword+=_,@                                           " Not word dividers
-set laststatus=2                                             " Always show statusline
-set lazyredraw                                               " No repinta la pantalla mentre s'executen macros, més ràpid
+set foldmethod=manual                                    " Manual fold creation
+set history=10000                                        " Saves last 10000 command lines executions
+set hlsearch                                             " Highlights matching searches results
+set ignorecase                                           " Case-sensitive search if any caps
+set incsearch                                            " Search as you type
+set infercase                                            " Case sensitive autocompletion
+set iskeyword+=_,@                                       " Not word dividers
+set laststatus=2                                         " Always show statusline
+set lazyredraw                                           " Do not redraw screen in the middle of a macro, much faster
 set linebreak
-set nolist                                                   " No ressaltar els caràcters especials
-set listchars=tab:▸\ ,trail:▫,eol:↵,extends:»,precedes:«     " Llistat de caràcters especials que es ressalten
-set mouse=                                                   " Deshabilitar el ratolí
-set noerrorbells                                             " No vull errors sonors
-set visualbell                                               " No vull errors visuals
-set nowrap sidescroll=1 sidescrolloff=1                      " No tallar frases
-set noswapfile
-set nrformats=                                               " Per utilitzar el sistema decimal, no octal a l'incrementar o decrementar números
-set number                                                   " Show line numbers
-set relativenumber                                           " Shows relative numbers
-set ruler                                                    " Show where you are
-set showcmd                                                  " Mostra els parcials de les comandes
-set showtabline=2                                            " Mostra la barra de tabs/buffers sempre
-set smartcase                                                " Case-sensitive search if any caps
-set splitright splitbelow                                    " Obre les noves finestres a la dreta i a sota
-set switchbuf=usetab                                         " A l'obrir un nou fitxer posiciona a la tab/finestra que el tingui, no l'obre de nou
-set tags=tags                                                " Afegir tags del virtualenv als tags per defecte
-set undodir=~/.vim_undo                                      " Canviar directori de fitxers de undo
-set undofile                                                 " Undo persistent, encara que es tanqui el buffer
-set undolevels=10000                                         " Augmenta a 10000 el nivel de undo
-set undoreload=10000                                         " Augmenta a 10000 el nivel de redo
-set viewdir=~/.vim_view                                      " Canviar directori de fitxers de view
-set wildignore=*/tmp/,*/.git/*,*.so,*.swp,*.zip,*.pdf,*.bak,*.pyc,*.pyo,*.class,*.tmp,*~      " Ignorar aquests tipus de fitxers
-set wildmenu                                                 " Show a navigable menu for tab completion on command line
-set wildmode=full                                            " Mostra les possibilitats d'una comanda rotllo zsh
+set nolist                                               " Do not highlight special characters
+set listchars=tab:▸\ ,trail:▫,eol:↵,extends:»,precedes:« " Highlighted characters
+set mouse=                                               " No mouse allowed
+set noerrorbells                                         " No sounds alowed
+set visualbell                                           " No visual errors allowed
+set nowrap sidescroll=1 sidescrolloff=1                  " Don't cut sentences
+set nojoinspaces                                         " Prevents inserting two spaces after punctuation on a join
+set noswapfile                                           " Don't create swap files
+set nrformats=                                           " increase or decrease numbers in decimal
+set number                                               " Show line numbers
+set relativenumber                                       " Shows relative numbers
+set ruler                                                " Show where you are
+set showcmd                                              " Shows partials of the commands
+set showtabline=2                                        " Buffer/Tab line always visible
+set smartcase                                            " Turns case-sensitive search if any caps in the query
+set spelllang=en_us,ca,es_es                             " Current spelling dictionaries
+set nospell                                              " Don't check spell by default
+set splitright splitbelow                                " Opens new windows on the right and below
+set switchbuf=usetab                                     " If a opened buffer is already open, witches to the window that contains it
+set tags=./tags;/
+set undodir=~/.vim_undo                                  " Undo folder
+set undofile                                             " Persistent undo for buffers
+set undolevels=10000                                     " Undo level
+set undoreload=10000                                     " Redo level
+set viewdir=~/.vim_view                                  " View folder
+set wildignore=*/tmp/,*/.git/*,*.so,*.swp,*.zip,*.pdf,*.bak,*.pyc,*.pyo,*.class,*.tmp,*~      " Ignore file types
+set wildmenu                                             " Show a navigable menu for tab completion on command line
+set wildmode=full
+set pastetoggle=<f5>
+
+syntax on " Highlighted text
+
+" Colors for the buffer highlight
+set t_Co=256                                                 " Número de colors
 if !has('nvim')
   set term=screen-256color
 else
   set guifont=DroidSansMono_Nerd_Font:h11
 endif
-set pastetoggle=<f5>
-
-set path+=**
-set suffixesadd+=.php,.py
-
-" TAGS
-autocmd BufNewFile,BufRead *.h,*.m set tags+=~/Documents/global-objc-tags
-
-" Activar colors al text
-syntax on
-
-set t_Co=256                                                 " Número de colors
 set termguicolors
 let base16colorspace=256
 set background=dark
 colorscheme solarized8
 highlight SpecialKey ctermbg=NONE guibg=NONE
-" Highlights selection in yellow
+
+" Highlights selection in orange
 hi Visual cterm=reverse guifg=#b4881d guibg=#022b35
 if !has('gui_running')
   highlight Normal ctermbg=NONE guibg=NONE
@@ -227,120 +197,117 @@ let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""
-" Mapeig de teclat en mode inserció
+" Insert custom mappings
 """"""""""""""""""""""""""""""""""""""""""""""""""
 
-" Anar al mode normal des del mode insert amb jj o jk
+" Exit inser mode with jk
 inoremap jk <Esc>
 
+" Movement in insert mode
+inoremap <C-h> <C-o>h
+inoremap <C-l> <C-o>a
+inoremap <C-j> <C-o>j
+inoremap <C-k> <C-o>k
+
 
 """"""""""""""""""""""""""""""""""""""""""""""""""
-" Mapeig de teclat en mode comanda
+" Command-line mode custom mappings
 """"""""""""""""""""""""""""""""""""""""""""""""""
 
-" Escriu a la línia de comandes el directori actual posant %%
-cnoremap %% <C-R>=fnameescape(expand('%:h')).'/'<Cr>
+" Expands with %% in the command line the current buffer folder starting from pwd
+cnoremap %% <C-R>=fnameescape(expand('%:h')).'/'<cr>
 
-" Permet moure's per la història de comandes amb <C-n> i <C-p>
+" Command line history movement
 cnoremap <C-p> <Up>
 cnoremap <C-n> <Down>
 
+" Allows save the buffer as a sudo
 cmap w!! w !sudo tee % >/dev/null
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""
-" Mapeig de comandes
+" Visual mode custom mappings
 """"""""""""""""""""""""""""""""""""""""""""""""""
 
-" Si escribim malament el guardar i/o sortir de vim, que funcioni
-command! WQ wq
-command! Wq wq
-command! W w
-command! Q q
-
-command! Qa qa
+vnoremap <leader>? :Go <cr>
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""
-" Mapeig de teclat en mode normal
+" Normal mode custom mappings
 """"""""""""""""""""""""""""""""""""""""""""""""""
 
-" Tracta les línies llarques com a línies separades
+nnoremap <leader>? :Go <c-r>=expand("<cword>")<cr><cr>
+
 map j gj
 map k gk
 
-" Moure a la finestra dreta amb Ctrl-H
+" Start and end of line
+nnoremap H ^
+nnoremap L g_
+
+" Split movement
 nmap <C-h> <C-w>h
-" Moure a la finestra inferior amb Ctrl-J
 nmap <C-j> <C-w>j
-" Moure a la finestra superior amb Ctrl-K
 nmap <C-k> <C-w>k
-" Moure a la finestra esquerra amb Ctrl-L
 nmap <C-l> <C-w>l
 
-" Utilitzar Ctrl-C per comentar/descomentar línies de codi
+" Display the number of matches for the last search
+nm <leader># :%s///gn<cr>
+
+" Toggle spelling and change spelling language
+nm <leader>sp :set nospell!<cr>:set nospell?<cr>
+nm <leader>se :set spelllang=en_us<cr>
+nm <leader>sc :set spelllang=ca<cr>
+nm <leader>sñ :set spelllang=es_es<cr>
+
+" Comment/uncomment lines
 map <C-c> gcc<Esc>
 
-map gb :bnext<Cr>
-map gB :bprevious<Cr>
+" Buffer movement
+map gb :bnext<cr>
+map gB :bprevious<cr>
 
-" Utilitzar <Tab> en lloc de % per moure pels "aparellats"
-nnoremap <Tab> %
+" Source vimrc
+nnoremap gsv :so $MYVIMRC<cr>
 
-" Reload vimrc
-nnoremap gsv :so $MYVIMRC<CR>
-let g:WebDevIconsUnicodeDecorateFileNodesDefaultSymbol = 'ƛ'
-
-" Per fer redo es pot amb <C-r> i amb U
-nnoremap U <C-r>
+" Repeats last command from command line
 nnoremap :: @:
 
-" Centra verticalment cada nova ocurrència d'una cerca
+" New search result centered vertically in the window
 nnoremap n nzz
 nnoremap N Nzz
 
-" Copiar del caràcter actual al final de línia amb la tecla Y, per similitud amb D i C
+" Copy from the current cursor position to end of line
 nmap Y y$
 
-" Separar línies amb K
-nnoremap K i<Cr><Esc>^
+" Split lines
+nnoremap K i<cr><Esc>^
 
-" Guardar el buffer actual amb <Leader>w
-nnoremap <Leader>w :w<CR>
-" Guardar el buffer actual i tancar-lo amb <Leader>W
-nnoremap <Leader>W :wq<CR>
+" Save buffer
+nnoremap <leader>w :w<cr>
+" Save and close buffer
+nnoremap <leader>W :wq<cr>
 
-" Posar la configuració de tabs a 2 espais amb <Leader><Leader>2
-nnoremap <Leader><Leader>2 <Esc>:set noexpandtab tabstop=2 softtabstop=2 shiftwidth=2<Cr>
-" Posar la configuració de tabs a 4 espais amb <Leader><Leader>4
-nnoremap <Leader><Leader>4 <Esc>:set noexpandtab tabstop=4 softtabstop=4 shiftwidth=4<Cr>
-" Posar la configuració de 4 espais amb <leader><leader>0
-nnoremap <Leader><Leader>0 <Esc>:set expandtab tabstop=4 softtabstop=4 shiftwidth=4<Cr>
+" Close buffers
+nnoremap <silent> Q :call CloseWindowOrKillBuffer()<cr>
 
-" Utilitzar Q per tancar buffers
-nnoremap <silent> Q :call CloseWindowOrKillBuffer()<Cr>
-
-" Per seleccionar l'últim text enganxat
+" Selects last pasted text
 nnoremap <expr> gv '`[' . strpart(getregtype(), 0, 1) . '`]'
 
-" Indica un nom de fitxer pel buffer actual
-map <Leader>c :f <C-R>=expand('%:p:h') . '/' <Cr>
+" Specify file buffer path and name to save
+map <leader>c :f <C-R>=expand('%:p:h') . '/'<cr>
 
-map <Leader>n :enew<Cr>
+" Create new buffer
+map <leader>e :enew<cr>
+" Create a new buffer starting in the same dir as the current file
+map <leader>ce :e <C-R>=expand("%:p:h") . "/" <cr>
 
-" Esborra els espais al final de totes les línies amb <Leader>dt
-noremap <silent> <Leader>dt :call DeleteTrailingWS()<Cr>
-" Canvia els espais per tabuladors al principi de totes les línies amb <Leader>ri
-noremap <silent> <Leader>ri :call RetabIndents()<Cr>
+" Repeats last subtitution command with the same flags
+nnoremap & :&&<cr>
+xnoremap & :&&<cr>
 
-" Repeteix la última cerca amb els mateixos flags amb & en mode normal, visual o de selecció
-nnoremap & :&&<CR>
-xnoremap & :&&<CR>
-
-if has('nvim')
-    " Sortir del terminal de neovim amb Esc
-  tnoremap <Esc> <C-\><C-n>
-endif
+" From terminal to normal mode with <ESC>
+" tnoremap <Esc> <C-\><C-n>
 
 augroup CursorLineOnlyInActiveWindow
   autocmd!
@@ -348,30 +315,16 @@ augroup CursorLineOnlyInActiveWindow
   autocmd WinLeave * setlocal nocursorline
 augroup END
 
-if has("eval")
-  function! SL(function)
-    if exists('*'.a:function)
-      return call(a:function,[])
-    else
-      return ''
-    endif
-  endfunction
-endif
-
 
 """"""""""""""""""""""""""""""""""""""""""""""""""
-" Configuració de plugins
+" Plugin configuration
 """"""""""""""""""""""""""""""""""""""""""""""""""
 
-" vim-g: Obre finestra al navegador amb el text a buscar
-let g:vim_g_query_url = "https://duckduckgo.com/?q="
-let g:vim_g_command = "Go"
-
-nnoremap <Leader>u :UndotreeToggle<Cr>
-let g:undotree_WindowLayout = 1
+" Opens Undotree
+nnoremap <leader>u :UndotreeToggle<cr>
+let g:undotree_WindowLayout = 2
 let g:undotree_ShortIndicators = 1
-let g:undotree_SplitWidth = 60
-let g:undotree_DiffpanelHeight = 20
+let g:undotree_DiffpanelHeight = 15
 let g:undotree_SetFocusWhenToggle = 1
 
 " vim-session
@@ -379,39 +332,27 @@ let g:session_directory = '~/.vim_sessions'
 let g:session_autoload = 'yes'
 let g:session_autosave = 'yes'
 let g:session_command_aliases = 1
-nnoremap <Leader>so :OpenSession
-nnoremap <Leader>ss :SaveSession
-nnoremap <Leader>sd :DeleteSession<Cr>
-nnoremap <Leader>sc :CloseSession<Cr>
+nnoremap <leader>so :OpenSession 
+nnoremap <leader>ss :SaveSession 
+nnoremap <leader>sd :DeleteSession<cr>
+nnoremap <leader>sc :CloseSession<cr>
 
 " vim-airline: Línia de status i de buffers
-let g:airline_section_c = '%f'
-let g:airline_section_y = ''
-let g:airline#extensions#tagbar#enabled = 0
 let g:airline#extensions#hunks#enabled = 0
-let g:airline#extensions#virtualenv#enabled = 0
-let g:airline_left_sep=''
-let g:airline_right_sep=''
-let g:airline#extensions#tabline#show_buffers = 1
+let g:airline_left_sep = ''
+let g:airline_right_sep = ''
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
 let g:airline#extensions#tabline#buffer_nr_show = 1
-let g:airline#extensions#bufferline#enabled = 1
-let g:airline#extensions#whitespace#checks = []
+let g:airline#extensions#whitespace#enabled = 0
 let g:airline_powerline_fonts = 1
 
 " smoothie
-let g:smoothie_update_interval = 20
-let g:smoothie_base_speed = 25
+let g:smoothie_base_speed = 30
 
 " vim-easy-align
 xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
-
-" FZF
-let g:fzf_history_dir = $HOME.'/.fzf-history'
-" In order to work with vim
-set rtp+=/usr/local/opt/fzf
 
 " miniyank
 let g:miniyank_filename = $HOME."/.miniyank.mpack"
@@ -436,100 +377,39 @@ function! FZFYankHandler(opt, line) abort
   endif
 endfunction
 
-command! YanksAfter call fzf#run(fzf#wrap('YanksAfter', {
-\ 'source':  FZFYankList(),
-\ 'sink':    function('FZFYankHandler', ['p']),
-\ 'options': '--no-sort --no-preview --prompt="YanksAfter> "',
-\ }))
-
-command! YanksBefore call fzf#run(fzf#wrap('YanksBefore', {
-\ 'source':  FZFYankList(),
-\ 'sink':    function('FZFYankHandler', ['P']),
-\ 'options': '--no-sort --no-preview --prompt="YanksBefore> "',
-\ }))
-
-map <leader>ya :YanksAfter<CR>
-map <leader>yb :YanksBefore<CR>
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-""""" Versió 1
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-"if has('nvim')
-"    hi Floating guibg=#022b35
-
-"    nnoremap <Leader>ff  :<C-u>FzfPreviewDirectoryFiles<CR>
-"    nnoremap <Leader>fgs :<C-u>FzfPreviewGitStatus<CR>
-"    nnoremap <Leader>fgf :<C-u>FzfPreviewGitFiles<CR>
-"    nnoremap <Leader>fb  :<C-u>FzfPreviewBuffers<CR>
-"    nnoremap <Leader>fgr :<C-u>FzfPreviewProjectGrep<Space>
-"    nnoremap <Leader>ft  :<C-u>FzfPreviewBufferTags<CR>
-
-"else
-"    nmap <Leader>f :FZF!<Cr>
-"    nmap <Leader>b :Buffers!<Cr>
-"    nmap <Leader>. :Tags!<Cr>
-"    inoremap <C-f> <Esc><Esc>:BLines!<CR>
-"    let $FZF_DEFAULT_COMMAND = 'ag -g ""'
-"    "let $FZF_DEFAULT_OPTS .= ' --preview'
-"    let g:fzf_preview_window = 'right:60%'
-
-"    function! s:fzf_statusline()
-"        highlight fzf1 ctermfg=161 ctermbg=251
-"        highlight fzf2 ctermfg=23 ctermbg=251
-"        highlight fzf3 ctermfg=237 ctermbg=251
-"        setlocal statusline=%#fzf1#\ >\ %#fzf2#fz%#fzf3#f
-"    endfunction
-"    autocmd! User FzfStatusLine call <SID>fzf_statusline()
-"endif
-
-" Files + devicons
-let g:max_lines=10000
-let g:fzf_default_bind = '--bind change:top,ctrl-w:backward-kill-word,ctrl-a:beginning-of-line,ctrl-e:end-of-line,shift-right:forward-word,shift-left:backward-word,ctrl-c:clear-query,ctrl-f:page-down,ctrl-b:page-up,ctrl-u:half-page-up,ctrl-d:half-page-down,ctrl-t:top,ctrl-p:up,ctrl-n:down,ctrl-o:toggle-sort,ctrl-x:toggle,tab:toggle-out,btab:toggle-up,alt-e:preview-down,alt-y:preview-up,alt-j:preview-page-down,alt-k:preview-page-up,alt-f:preview-page-down,alt-b:preview-page-up,alt-p:toggle-preview'
-let g:fzf_default_preview_window = '--preview-window=bottom:50%:border'
-" Searches for all folder files
-nnoremap <silent> <leader>f :call Fzf_files_with_dev_icons($FZF_DEFAULT_COMMAND, "Files")<CR>
-" Searches for all git tracked files
-nnoremap <silent> <leader>g :call Fzf_files_with_dev_icons("git ls-files \| uniq", "Git files")<CR>
-" Searches for all git files not staged
-nnoremap <silent> <leader>m :call Fzf_git_diff_files_with_dev_icons()<CR>
-
-function! Fzf_files_with_dev_icons(command, prompt)
-  let l:fzf_files_options = '--preview "bat --theme solarizedDark --color always --style=numbers,changes {2..} | head -' . g:max_lines . '" --reverse'
-
-  function! s:edit_devicon_prepended_file(item)
-    let l:file_path = a:item[4:-1]
-    execute 'silent e' l:file_path
-  endfunction
+function! MiniPut(before)
+  let l:fzf_files_options = '--preview "echo {}" --reverse'
+  if (a:before)
+    let l:parameter = ['P']
+    let l:beforeAfter = 'Before'
+  else
+    let l:parameter = ['p']
+    let l:beforeAfter = 'After'
+  endif
 
   let opts = fzf#wrap({})
-  let opts['source'] = a:command . ' | devicon-lookup'
-  let opts['sink'] = function('s:edit_devicon_prepended_file')
-  let opts['options'] = '-m ' . g:fzf_default_preview_window . ' --prompt "' . a:prompt . ' > " ' . l:fzf_files_options . ' ' . g:fzf_default_bind
-  let opts['down'] = '40%'
-  let opts['window'] = {'width': 0.9, 'height': 0.9}
+  let opts['source'] = FZFYankList()
+  let opts['sink'] = function('FZFYankHandler', l:parameter)
+  let opts['options'] = '-m ' . g:fzf_default_preview_window . ' --prompt "Put ' . l:beforeAfter . ' > " ' . l:fzf_files_options . ' ' . g:fzf_default_bind
 
   call fzf#run(opts)
 endfunction
 
-function! Fzf_git_diff_files_with_dev_icons()
-  let l:fzf_files_options = '--ansi --preview "sh -c \"(git diff --color=always -- {3..}) \"" --reverse'
+nnoremap <silent> <leader>P :call MiniPut(1)<cr>
+nnoremap <silent> <leader>p :call MiniPut(0)<cr>
 
-  function! s:edit_devicon_prepended_file_diff(item)
-    echom a:item
-    let l:file_path = a:item[7:-1]
-    echom l:file_path
-    let l:first_diff_line_number = system("git diff -U0 " . l:file_path . " | rg '^@@.*\+' -o | rg '[0-9]+' -o | head -1")
-    execute 'silent e' l:file_path
-    execute l:first_diff_line_number
-  endfunction
+" fzf-preview.vim
+let g:fzf_history_dir = $HOME.'/.fzf-history'
 
-  let opts = fzf#wrap({})
-  let opts['source'] = 'git -c color.status=always status --short --untracked-files=all | devicon-lookup'
-  let opts['sink'] = function('s:edit_devicon_prepended_file_diff')
-  let opts['options'] = '-m ' . g:fzf_default_preview_window . ' --prompt "Untracked files > " ' . l:fzf_files_options . ' ' . g:fzf_default_bind
-  let opts['down'] = '40%'
-  let opts['window'] = {'width': 0.9, 'height': 0.9}
-
-  call fzf#run(opts)
-endfunction
+if executable('rg')
+  let $FZF_DEFAULT_COMMAND = 'rg --files --hidden --follow --glob "!.git/*"'
+  set grepprg=rg\ --vimgrep
+endif
+let g:fzf_layout = { 'down': '~50%' }
+let g:fzf_layout = { 'window': 'enew' }
+let g:fzf_action = { 'ctrl-z': 'split' }
+nmap <leader>f :Files<cr>
+nmap <leader>g :GFiles<cr>
+nmap <leader>m :GFiles?<cr>
+nmap <leader>b :Buffers<cr>
+nmap <leader>h :History<cr>

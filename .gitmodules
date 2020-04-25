@@ -25,21 +25,12 @@
 [submodule "vim/plugged/vim-easymotion"]
 	path = vim/plugged/vim-easymotion
 	url = https://github.com/Lokaltog/vim-easymotion
-[submodule "vim/plugged/vim-matchit"]
-	path = vim/plugged/vim-matchit
-	url = https://github.com/adelarsq/vim-matchit
 [submodule "vim/plugged/vim-tmux-navigator"]
 	path = vim/plugged/vim-tmux-navigator
 	url = https://github.com/christoomey/vim-tmux-navigator
-[submodule "vim/plugged/smartpairs.vim"]
-	path = vim/plugged/smartpairs.vim
-	url = https://github.com/gorkunov/smartpairs.vim
 [submodule "vim/plugged/vim-extradite"]
 	path = vim/plugged/vim-extradite
 	url = https://github.com/int3/vim-extradite
-[submodule "vim/plugged/fzf.vim"]
-	path = vim/plugged/fzf.vim
-	url = https://github.com/junegunn/fzf.vim
 [submodule "vim/plugged/vim-solarized8"]
 	path = vim/plugged/vim-solarized8
 	url = https://github.com/lifepillar/vim-solarized8
@@ -52,9 +43,6 @@
 [submodule "vim/plugged/vim-fugitive"]
 	path = vim/plugged/vim-fugitive
 	url = https://github.com/tpope/vim-fugitive
-[submodule "vim/plugged/vim-repeat"]
-	path = vim/plugged/vim-repeat
-	url = https://github.com/tpope/vim-repeat
 [submodule "vim/plugged/vim-surround"]
 	path = vim/plugged/vim-surround
 	url = https://github.com/tpope/vim-surround
@@ -76,21 +64,9 @@
 [submodule "vim/plugged/stable-windows"]
 	path = vim/plugged/stable-windows
 	url = https://github.com/gillyb/stable-windows
-[submodule "vim/plugged/vim-g"]
-	path = vim/plugged/vim-g
-	url = https://github.com/szw/vim-g
-[submodule "vim/plugged/swift.vim"]
-	path = vim/plugged/swift.vim
-	url = https://github.com/keith/swift.vim
 [submodule "vim/plugged/undotree"]
 	path = vim/plugged/undotree
 	url = https://github.com/mbbill/undotree
-[submodule "vim/plugged/fzf-preview.vim"]
-	path = vim/plugged/fzf-preview.vim
-	url = https://github.com/yuki-ycino/fzf-preview.vim
-[submodule "vim/plugged/vim-airline-themes"]
-	path = vim/plugged/vim-airline-themes
-	url = https://github.com/vim-airline/vim-airline-themes
 [submodule "vim/plugged/vim-nerdtree-syntax-highlight"]
 	path = vim/plugged/vim-nerdtree-syntax-highlight
 	url = https://github.com/tiagofumo/vim-nerdtree-syntax-highlight
@@ -118,3 +94,15 @@
 [submodule "vim/plugged/vim-easy-align"]
 	path = vim/plugged/vim-easy-align
 	url = https://github.com/junegunn/vim-easy-align
+[submodule "vim/plugged/fzf.vim"]
+	path = vim/plugged/fzf.vim
+	url = https://github.com/junegunn/fzf.vim
+[submodule "vim/plugged/vim-airline-themes"]
+	path = vim/plugged/vim-airline-themes
+	url = https://github.com/vim-airline/vim-airline-themes
+[submodule "vim/plugged/matchit"]
+	path = vim/plugged/matchit
+	url = https://github.com/chrisbra/matchit
+[submodule "vim/plugged/vim-g"]
+	path = vim/plugged/vim-g
+	url = https://github.com/vim-scripts/vim-g

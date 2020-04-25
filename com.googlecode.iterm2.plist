@@ -964,7 +964,7 @@
 	<key>NSNavPanelExpandedSizeForOpenMode</key>
 	<string>{799, 448}</string>
 	<key>NSNavPanelExpandedSizeForSaveMode</key>
-	<string>{841, 448}</string>
+	<string>{841, 457}</string>
 	<key>NSQuotedKeystrokeBinding</key>
 	<string></string>
 	<key>NSRepeatCountBinding</key>
@@ -1007,15 +1007,21 @@
 		<integer>1</integer>
 	</dict>
 	<key>NSWindow Frame NSNavPanelAutosaveName</key>
-	<string>261 351 799 448 0 0 1440 877 </string>
+	<string>300 327 841 283 0 0 1440 877 </string>
+	<key>NSWindow Frame ProfilesPanel</key>
+	<string>205 479 735 382 0 0 1440 900 </string>
 	<key>NSWindow Frame SharedPreferences</key>
 	<string>258 357 796 486 0 0 1440 877 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>0 0 1440 900 0 0 1440 900 </string>
+	<string>0 0 1440 877 0 0 1440 877 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
-	<string>0 1 1440 874 0 0 1440 877 </string>
+	<string>0 0 1440 877 0 0 1440 877 </string>
 	<key>NSWindow Frame iTerm Window 2</key>
 	<string>197 47 395 419 0 0 1440 877 </string>
+	<key>NeverWarnAboutShortLivedSessions_B93596FE-C004-41F3-AEFC-67AEE3B2ECE4</key>
+	<true/>
+	<key>NeverWarnAboutShortLivedSessions_B93596FE-C004-41F3-AEFC-67AEE3B2ECE4_selection</key>
+	<integer>0</integer>
 	<key>New Bookmarks</key>
 	<array>
 		<dict>
@@ -1771,7 +1777,7 @@
 		<key>screenFrame</key>
 		<string>{{0, 0}, {1440, 900}}</string>
 		<key>topLeft</key>
-		<string>{288, 747}</string>
+		<string>{252, 814}</string>
 	</dict>
 	<key>NoSyncHaveRequestedFullDiskAccess</key>
 	<true/>
@@ -1780,7 +1786,7 @@
 	<key>NoSyncInstallationId</key>
 	<string>A2166A52-3A6C-45E7-9FBE-153307830631</string>
 	<key>NoSyncLaunchExperienceControllerRunCount</key>
-	<integer>80</integer>
+	<integer>87</integer>
 	<key>NoSyncNeverRemindPrefsChangesLostForFile</key>
 	<true/>
 	<key>NoSyncNeverRemindPrefsChangesLostForFile_selection</key>
@@ -2566,6 +2572,8 @@
 	</dict>
 	<key>PrefsCustomFolder</key>
 	<string>~/.dotfiles</string>
+	<key>Print In Black And White</key>
+	<true/>
 	<key>PromptOnClose</key>
 	<true/>
 	<key>PromptOnQuit</key>

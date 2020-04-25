@@ -10,7 +10,7 @@ if [ ! $session_name ] ; then
 fi
 
 move_to_iterm_tab='osascript '$HOME'/.applescript/move_to_iterm_tab.scpt '$session_name
-start_configured_session=$HOME'/.start/'$session_name
+start_configured_session=$HOME'/.tmux_start_sessions/'$session_name
 
 in_tmux() {
     [ -n "$TMUX" ]
