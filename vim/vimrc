@@ -35,6 +35,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'http://github.com/chrisbra/matchit'                " Extended use for % command
 
   " Other
+  Plug 'https://github.com/wellle/targets.vim'             " Adds text objects and improves the default ones
   Plug 'https://github.com/vim-scripts/vim-g'              " Opens browser with the specified text
     let g:vim_g_query_url = "https://duckduckgo.com/?q="
     let g:vim_g_command = "Go"
@@ -242,6 +243,7 @@ map j gj
 map k gk
 
 " Start and end of line
+nnoremap <tab> %
 nnoremap H ^
 nnoremap L g_
 
@@ -253,6 +255,9 @@ nmap <C-l> <C-w>l
 
 " Display the number of matches for the last search
 nm <leader># :%s///gn<cr>
+
+" Search whole file
+nm <leader>S :%s..g<left><left>
 
 " Toggle spelling and change spelling language
 nm <leader>sp :set nospell!<cr>:set nospell?<cr>

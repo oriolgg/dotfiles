@@ -107,3 +107,6 @@
 [submodule "zsh/oh-my-zsh"]
 	path = zsh/oh-my-zsh
 	url = https://github.com/ohmyzsh/ohmyzsh
+[submodule "vim/plugged/targets.vim"]
+	path = vim/plugged/targets.vim
+	url = https://github.com/wellle/targets.vim
