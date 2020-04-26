@@ -2,6 +2,8 @@ alias e=exit
 alias ls='ls -G'
 alias ls=exa
 
+alias zs="source ~/.zshrc && clear"
+
 alias ag='ag -U'
 
 alias tk='tmux list-panes -s -F '\''#{pane_pid} #{pane_current_command}'\'' | grep -v tmux | awk '\''{print $1}'\'' | xargs kill -9 ; e'
@@ -26,8 +28,8 @@ alias gu='gf ; gcm ; gl ; gcd ; gl ; gbpurge'
 alias edf='vim -S $HOME/.vim_sessions/dotfiles.vim'
 
 alias v=nvim
-alias vi=v
-alias vim=v
+alias vi=nvim
+alias vim=nvim
 
 vf() { fzf -m | xargs -o $EDITOR ;}
 
