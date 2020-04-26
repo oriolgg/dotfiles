@@ -1,6 +1,8 @@
 alias e=exit
 alias ls='ls -G'
 alias ls=exa
+alias ll="exa -bghHliS --git"
+alias history-stat="history | awk '{print \$2}' | sort | uniq -c | sort -n -r | head"
 
 alias zs="source ~/.zshrc && clear"
 
@@ -25,7 +27,7 @@ alias gbpurge='git branch --merged develop | grep -v "\*" | grep -v "master" | g
 alias gmodpull='git submodule foreach git pull origin master'
 alias gu='gf ; gcm ; gl ; gcd ; gl ; gbpurge'
 
-alias edf='vim -S $HOME/.vim_sessions/dotfiles.vim'
+alias edf='cd $HOME/.dotfiles && vim -S $HOME/.vim_sessions/dotfiles.vim'
 
 alias v=nvim
 alias vi=nvim
