@@ -44,8 +44,8 @@ local color06='#B4881D'
 default_bind_options='change:top,ctrl-w:backward-kill-word,ctrl-a:beginning-of-line,ctrl-e:end-of-line,shift-right:forward-word,shift-left:backward-word,ctrl-c:clear-query,ctrl-f:page-down,ctrl-b:page-up,ctrl-u:half-page-up,ctrl-d:half-page-down,ctrl-t:top,ctrl-p:up,ctrl-n:down,ctrl-o:toggle-sort,ctrl-x:toggle,tab:down,btab:up,alt-e:preview-down,alt-y:preview-up,alt-j:preview-page-down,alt-k:preview-page-up,alt-f:preview-page-down,alt-b:preview-page-up,alt-p:toggle-preview'
 default_preview_window='bottom:50%:border'
 default_preview="'bat --style=numbers,changes --color=always {} | head -10000'"
-default_preview="'[[ -d {} ]] && tree -L 1 {} && exit ||
-    [[ \$(file --mime {}) =~ binary ]] && echo {} is a binary file ||
+default_preview="'[[ -d {} ]] && tree -L 2 {} && exit ||
+    [[ ( -f {} ) && ( \$(file --mime {}) =~ binary ) ]] && echo {} is a binary file ||
     (bat --style=numbers,changes --color=always {})
     2> /dev/null | head -10000'"
 export FZF_DEFAULT_COMMAND='rg --files --hidden --follow --glob "!.git/*"'
