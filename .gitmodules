@@ -82,9 +82,6 @@
 [submodule "vim/plugged/vim-smoothie"]
 	path = vim/plugged/vim-smoothie
 	url = https://github.com/psliwka/vim-smoothie
-[submodule "vim/plugged/vim-gutentags"]
-	path = vim/plugged/vim-gutentags
-	url = https://github.com/ludovicchabant/vim-gutentags
 [submodule "vim/plugged/gutentags_plus"]
 	path = vim/plugged/gutentags_plus
 	url = https://github.com/skywind3000/gutentags_plus
