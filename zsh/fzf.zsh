@@ -25,13 +25,12 @@ bindkey '^P' history-beginning-search-backward
 bindkey '^N' history-beginning-search-forward
 
 function cd_with_fzf() {
-    cd $HOME
-    cd "$(fd -t d | fzf --preview="tree -L 1 {}")"
+    cd "$(fd -t d | fzf --preview="tree -L 2 {}")"
     zle reset-prompt
     zle redisplay
 }
 zle -N cd_with_fzf
-bindkey '^gf' cd_with_fzf
+bindkey '^T' cd_with_fzf
 
 local color00='#022b35'
 local color01='#A7ADBA'
@@ -43,11 +42,10 @@ local color06='#B4881D'
 
 default_bind_options='change:top,ctrl-w:backward-kill-word,ctrl-a:beginning-of-line,ctrl-e:end-of-line,shift-right:forward-word,shift-left:backward-word,ctrl-c:clear-query,ctrl-f:page-down,ctrl-b:page-up,ctrl-u:half-page-up,ctrl-d:half-page-down,ctrl-t:top,ctrl-p:up,ctrl-n:down,ctrl-o:toggle-sort,ctrl-x:toggle,tab:down,btab:up,alt-e:preview-down,alt-y:preview-up,alt-j:preview-page-down,alt-k:preview-page-up,alt-f:preview-page-down,alt-b:preview-page-up,alt-p:toggle-preview'
 default_preview_window='bottom:50%:border'
-default_preview="'bat --style=numbers,changes --color=always {} | head -10000'"
 default_preview="'[[ -d {} ]] && tree -L 2 {} && exit ||
-    [[ ( -f {} ) && ( \$(file --mime {}) =~ binary ) ]] && echo {} is a binary file ||
-    (bat --style=numbers,changes --color=always {})
-    2> /dev/null | head -10000'"
+    [[ ( -f {} ) && ( \$(file --mime {}) =~ binary ) ]] && echo {} is a binary file && exit ||
+    [[ -f {} ]] && (bat --style=numbers,changes --color=always {}) && exit ||
+    echo {} 2> /dev/null | head -10000'"
 export FZF_DEFAULT_COMMAND='rg --files --hidden --follow --glob "!.git/*"'
 export FZF_DEFAULT_OPTS="  --height 75%
   --reverse
