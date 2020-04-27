@@ -61,6 +61,7 @@ apps=(
     slack
     sourcetree
     spotify
+    caskroom/cask/therm
     transmission
     vlc
     webpquicklook

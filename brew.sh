@@ -21,6 +21,7 @@ brew uninstall --force brew-cask
 
 # Add some new tabs
 brew tap homebrew/cask-fonts
+brew tap universal-ctags/universal-ctags
 
 # Make sure we’re using the latest Homebrew.
 brew update
@@ -34,9 +35,11 @@ apps=(
     coreutils
     exa
     exiftool
+    diff-so-fancy
     fd
     findutils
     fzf
+    gh
     git
     git-flow
     lynx
@@ -48,7 +51,6 @@ apps=(
     reattach-to-user-namespace
     rename
     ripgrep
-    the_silver_searcher
     tmux
     tree
     unar
@@ -57,7 +59,9 @@ apps=(
     vim --with-python3
     wifi-password
     youtube-dl
+    z
     zsh
+    zsh-syntax-highlighting
 
 )
 
