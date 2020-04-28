@@ -20,10 +20,6 @@ bindkey '^Y' fzf-history-widget
 bindkey '^R' up-line-or-history
 bindkey '^F' down-line-or-history
 
-# Busca a l'historial comandes que comencen pel que ja s'ha escrit
-bindkey '^P' history-beginning-search-backward
-bindkey '^N' history-beginning-search-forward
-
 function cd_with_fzf() {
     cd "$(fd -t d | fzf --preview="tree -L 2 {}")"
     zle reset-prompt

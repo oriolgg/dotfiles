@@ -3,54 +3,60 @@ ZSH=$HOME/.oh-my-zsh
 
 # Set name of the theme to load.
 ZSH_THEME="oriol"
+# ZSH_THEME="powerlevel10k/powerlevel10k"
+
+HISTSIZE=50000
+SAVEHIST=10000
+setopt EXTENDED_HISTORY
+setopt HIST_EXPIRE_DUPS_FIRST # If trim needed, do it for the dups first, nou unique
+setopt HIST_IGNORE_DUPS # if executing same command in a row, save it only once
+setopt HIST_IGNORE_SPACE # If a command starts with a space, do not save it
+setopt INC_APPEND_HISTORY # Save commands as soon as you run it
+setopt NO_SHARE_HISTORY # Do not share history between sessions
+
+setopt AUTO_CD # If the executed command is not a normal command but a directory, cd to it
+setopt AUTO_PUSHD # Make cd push the old directory onto the directory stack
+setopt APPEND_HISTORY
+setopt PUSHD_IGNORE_DUPS # Don’t push multiple copies of the same directory onto the directory stack
+setopt PUSHDMINUS # Swaps the meaning of cd +1 and cd -1
+setopt AUTO_MENU # Automatically use menu completion after the second consecutive request for completion
+setopt ALWAYS_TO_END # The cursor is moved to the end of the word if either a single match is inserted or menu completion is performed
+setopt COMPLETE_IN_WORD # The cursor is not set to the end of the word if completion is started
+setopt FLOW_CONTROL # Disables the use of ⌃S to stop terminal output and the use of ⌃Q to resume it
+setopt MENU_COMPLETE # Prevents the completion menu from showing even if AUTO_MENU is set
+setopt PROMPT_SUBST # Adds support for command substitution
 
 # COMPLETION SETTINGS
-# add custom completion scripts
-fpath=(~/.dotfiles/zsh/completions $fpath) 
-zstyle ":completion:*" verbose yes
-zstyle ":completion:*:descriptions" format "%B%d%b"
-zstyle ":completion:*:messages" format "%d"
-zstyle ":completion:*:warnings" format "No matches for: %d"
-zstyle ":completion:*" group-name ”
+# fpath=(~/.dotfiles/zsh/completions $fpath) 
+# zstyle ":completion:*" verbose yes
+# zstyle ":completion:*:descriptions" format "%B%d%b"
+# zstyle ":completion:*:messages" format "%d"
+# zstyle ":completion:*:warnings" format "No matches for: %d"
+# zstyle ":completion:*" group-name ”
 
 # Set to this to use case-sensitive completion
 CASE_SENSITIVE="true"
 
-#plugins=(git history-substring-search)
 plugins=(
     colored-man-pages
-    composer
-    encode64
+    command-not-found
     extract
-    fasd
-    fzf
+    forgit
     fzf-tab
-    git
-    git-extras
-    git-flow-avh
-    history
     jsontools
-    osx
-    pass
-    symfony2
-    tmuxinator
-    vagrant
+    sudo
     web-search
     z
+    zsh-autosuggestions
+    # zsh-completions
     zsh-syntax-highlighting
+    zsh-history-substring-search
 )
+# autoload -U compinit && compinit
 
 DISABLE_AUTO_TITLE="true"
 autoload -U zmv
 setopt correct
-
-# I don't like every tab on my terminal sharing the same history.
-setopt NO_SHARE_HISTORY
-setopt APPEND_HISTORY
-
-# Remember about a years worth of history (AWESOME)
-SAVEHIST=10000
-HISTSIZE=10000
 
 # Al navegar per l'historial de comandes, deixar el cursor al final de la comanda
 unsetopt global_rcs
@@ -58,7 +64,7 @@ unsetopt global_rcs
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
-
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#155b6d"
 export PATH=$HOME/.bin:/usr/local/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin:/usr/bin:/usr/local/opt/sqlite/bin:$PATH
 export VIRTUAL_ENV_DISABLE_PROMPT=disable
 
@@ -85,9 +91,6 @@ export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 
 # Utilitza Solarized dark per veure els fitxers
 export BAT_THEME="solarizedDark"
-
-# Using the AUTOCD option, you can simply type the name of a directory, and it will become the current directory.
-setopt AUTO_CD
 
 bindkey -v 
 
@@ -179,3 +182,6 @@ fi
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 [ -f ~/.fzf-forgit.zsh ] && source ~/.fzf-forgit.zsh
 
+# zsh-history-substring-search key bindings
+bindkey '^P' history-substring-search-up
+bindkey '^N' history-substring-search-down
