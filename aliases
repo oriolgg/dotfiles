@@ -42,3 +42,10 @@ alias lynx='lynx -cfg=$HOME/.lynx.cfg -lss=$HOME/.lynx.lss'
 ansi-colors() {
     for i in {0..255}; do print -Pn "%K{$i}  %k%F{$i}${(l:3::0:)i}%f " ${${(M)$((i%6)):#3}:+$'\n'}; done
 }
+
+manp() {
+    man -t "$1" | open -f -a Preview
+}
+rmdsstore() {
+    find "${@:-.}" -type f -name .DS_Store -delete
+}
