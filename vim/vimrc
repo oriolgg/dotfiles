@@ -13,6 +13,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'http://github.com/psliwka/vim-smoothie'            " Smoothie scroll (using [Ctrl-u], [Ctrl-d], [Ctrl-b] and [Ctrl-f]
   Plug 'http://github.com/gillyb/stable-windows'           " When opening splits, maintains the same layout (working?)
   Plug 'http://github.com/ap/vim-buftabline'               " Use of buffers in tabline
+  Plug 'http://github.com/airblade/vim-gitgutter'          " Adds Git changes in lines
 
   " Fuzzy finder
   Plug '/usr/local/opt/fzf'                                " Fuzzy finder in Vim
@@ -221,6 +222,7 @@ hi default link BufTabLineCurrent PmenuSel
 hi default link BufTabLineActive ErrorMsg
 hi default link BufTabLineHidden Normal
 hi default link BufTabLineFill Normal
+
 
 """"""""""""""""""""""""""""""""""""""""""""""""""
 " Insert custom mappings

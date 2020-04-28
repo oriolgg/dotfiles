@@ -121,3 +121,6 @@
 [submodule "vim/plugged/vim-buftabline"]
 	path = vim/plugged/vim-buftabline
 	url = https://github.com/ap/vim-buftabline
+[submodule "vim/plugged/vim-gitgutter"]
+	path = vim/plugged/vim-gitgutter
+	url = https://github.com/airblade/vim-gitgutter
