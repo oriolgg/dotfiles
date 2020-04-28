@@ -94,10 +94,6 @@
 [submodule "vim/plugged/matchit"]
 	path = vim/plugged/matchit
 	url = https://github.com/chrisbra/matchit
-[submodule "vim/plugged/vim-g"]
-	path = vim/plugged/vim-g
-	url = https://github.com/vim-scripts/vim-g
-	url = https://github.com/ohmyzsh/ohmyzsh
 [submodule "zsh/oh-my-zsh"]
 	path = zsh/oh-my-zsh
 	url = https://github.com/ohmyzsh/ohmyzsh
@@ -125,3 +121,6 @@
 [submodule "zsh/themes/powerlevel10k"]
 	path = zsh/themes/powerlevel10k
 	url = http://github.com/romkatv/powerlevel10k.git
+[submodule "vim/plugged/vim-g.git"]
+	path = vim/plugged/vim-g.git
+	url = https://github.com/szw/vim-g.git
