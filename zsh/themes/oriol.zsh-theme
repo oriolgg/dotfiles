@@ -15,7 +15,7 @@ function _virtualenv_prompt_info {
 }
 
 PROMPT='
-╭ %{$fg_bold[red]%}➜%{$reset_color%} %{$fg[yellow]%}%n%{$reset_color%} in %{$fg[blue]%}$(_pwd_prompt_info)$(_git_prompt_info)%{$reset_color%}
+╭ %{$fg[yellow]%}%n%{$reset_color%} in %{$fg[green]%}$(_pwd_prompt_info)$(_git_prompt_info)%{$reset_color%}
 ╰ %{$fg[cyan]%}$(_virtualenv_prompt_info)%{$reset_color%}➤ '
 
 ZSH_THEME_GIT_PROMPT_PREFIX="$reset_color on $fg[magenta]"
