@@ -122,3 +122,6 @@
 [submodule "zsh/plugins/zsh-history-substring-search"]
 	path = zsh/plugins/zsh-history-substring-search
 	url = http://github.com/zsh-users/zsh-history-substring-search
+[submodule "zsh/themes/powerlevel10k"]
+	path = zsh/themes/powerlevel10k
+	url = http://github.com/romkatv/powerlevel10k.git

@@ -79,3 +79,5 @@ ln -s ~/.dotfiles/zsh/plugins/zsh-syntax-highlighting ~/.oh-my-zsh/custom/plugin
 
 # Zsh Theme
 ln -s  ~/.dotfiles/zsh/themes/oriol.zsh-theme ~/.oh-my-zsh/custom/themes/oriol.zsh-theme
+ln -s  ~/.dotfiles/zsh/themes/powerlevel10k ~/.oh-my-zsh/custom/themes/powerlevel10k
+ln -s  ~/.dotfiles/zsh/p10k.zsh ~/.p10k.zsh
