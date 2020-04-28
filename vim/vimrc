@@ -8,13 +8,11 @@ call plug#begin('~/.vim/plugged')
 
   " User Interface
   Plug 'http://github.com/lifepillar/vim-solarized8'       " Solarized color schema
-  Plug 'http://github.com/vim-airline/vim-airline'         " Airline status bar
-  Plug 'http://github.com/vim-airline/vim-airline-themes'  " Airline themes
-  Plug 'http://github.com/ryanoasis/vim-devicons'          " Use of icons in the UI
   Plug 'http://github.com/machakann/vim-highlightedyank'   " Highlights in red the yanked text
     let g:highlightedyank_highlight_duration = 200
   Plug 'http://github.com/psliwka/vim-smoothie'            " Smoothie scroll (using [Ctrl-u], [Ctrl-d], [Ctrl-b] and [Ctrl-f]
   Plug 'http://github.com/gillyb/stable-windows'           " When opening splits, maintains the same layout (working?)
+  Plug 'http://github.com/ap/vim-buftabline'               " Use of buffers in tabline
 
   " Fuzzy finder
   Plug '/usr/local/opt/fzf'                                " Fuzzy finder in Vim
@@ -194,6 +192,33 @@ endif
 let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
 let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 
+" let g:solarized_statusline=
+fu! StatusLineGitBranch()
+    if fugitive#head() == ''
+        return ''
+    else
+        return '['.fugitive#head().']'
+    endif
+endf
+
+" Status-line
+set statusline+=%#PmenuSel#
+set statusline+=\ %F
+set statusline+=\ %{FugitiveStatusline()}
+set statusline+=\ %m
+set statusline+=\ %r
+set statusline+=%= "Right side settings
+set statusline+=\ %([%{&ff}\|%{(&fenc==\"\"?&enc:&fenc).((exists(\"+bomb\")\ &&\ &bomb)?\",B\":\"\")}%k\|%Y]%)
+set statusline+=\ %c:%l/%L
+set statusline+=\ [%n]
+
+let g:buftabline_numbers=1
+let g:buftabline_indicators=1
+let g:buftabline_separators=1
+hi default link BufTabLineCurrent PmenuSel
+hi default link BufTabLineActive ErrorMsg
+hi default link BufTabLineHidden Normal
+hi default link BufTabLineFill Normal
 
 """"""""""""""""""""""""""""""""""""""""""""""""""
 " Insert custom mappings
@@ -341,16 +366,6 @@ nnoremap <leader>so :OpenSession
 nnoremap <leader>ss :SaveSession 
 nnoremap <leader>sd :DeleteSession<cr>
 nnoremap <leader>sc :CloseSession<cr>
-
-" vim-airline: Línia de status i de buffers
-let g:airline#extensions#hunks#enabled = 0
-let g:airline_left_sep = ''
-let g:airline_right_sep = ''
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
-let g:airline#extensions#tabline#buffer_nr_show = 1
-let g:airline#extensions#whitespace#enabled = 0
-let g:airline_powerline_fonts = 1
 
 " smoothie
 let g:smoothie_base_speed = 30

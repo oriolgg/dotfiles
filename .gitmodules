@@ -46,9 +46,6 @@
 [submodule "vim/plugged/vim-unimpaired"]
 	path = vim/plugged/vim-unimpaired
 	url = https://github.com/tpope/vim-unimpaired
-[submodule "vim/plugged/vim-airline"]
-	path = vim/plugged/vim-airline
-	url = https://github.com/vim-airline/vim-airline
 [submodule "vim/plugged/vim-misc"]
 	path = vim/plugged/vim-misc
 	url = https://github.com/xolox/vim-misc
@@ -67,9 +64,6 @@
 [submodule "vim/plugged/vim-commentary"]
 	path = vim/plugged/vim-commentary
 	url = https://github.com/tpope/vim-commentary
-[submodule "vim/plugged/vim-devicons"]
-	path = vim/plugged/vim-devicons
-	url = https://github.com/ryanoasis/vim-devicons
 [submodule "vim/plugged/nvim-miniyank"]
 	path = vim/plugged/nvim-miniyank
 	url = https://github.com/bfredl/nvim-miniyank
@@ -88,9 +82,6 @@
 [submodule "vim/plugged/fzf.vim"]
 	path = vim/plugged/fzf.vim
 	url = https://github.com/junegunn/fzf.vim
-[submodule "vim/plugged/vim-airline-themes"]
-	path = vim/plugged/vim-airline-themes
-	url = https://github.com/vim-airline/vim-airline-themes
 [submodule "vim/plugged/matchit"]
 	path = vim/plugged/matchit
 	url = https://github.com/chrisbra/matchit
@@ -127,3 +118,6 @@
 [submodule "vim/plugged/vifm.vim"]
 	path = vim/plugged/vifm.vim
 	url = https://github.com/vifm/vifm.vim
+[submodule "vim/plugged/vim-buftabline"]
+	path = vim/plugged/vim-buftabline
+	url = https://github.com/ap/vim-buftabline
