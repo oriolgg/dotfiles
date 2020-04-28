@@ -54,6 +54,7 @@ apps=(
     qlprettypatch
     qlstephen
     qlvideo
+    qutebrowser
     quicklook-csv
     quicklook-json
     script-debugger

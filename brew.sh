@@ -53,10 +53,12 @@ apps=(
     rename
     ripgrep
     tmux
+    tmuxinator
     tree
     unar
     universal-ctags
     unrar
+    vifm
     wifi-password
     youtube-dl
     z

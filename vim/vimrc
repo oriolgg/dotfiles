@@ -47,6 +47,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'http://github.com/christoomey/vim-tmux-navigator'  " Seamless navigation between tmux panes and vim splits
   Plug 'http://github.com/tpope/vim-unimpaired'            " Mappings for common ex commands, line mappings (add before/after, movement), toggle vim options and encode/decode
   Plug 'http://github.com/bfredl/nvim-miniyank'            " Saves in disk yanked or deleted text so it will be shared between vim instances
+  Plug 'http://github.com/vifm/vifm.vim'                   " Vim plugin that allows use of vifm as a file picker
 
 call plug#end()
 

@@ -124,3 +124,6 @@
 [submodule "vim/plugged/vim-g.git"]
 	path = vim/plugged/vim-g.git
 	url = https://github.com/szw/vim-g.git
+[submodule "vim/plugged/vifm.vim"]
+	path = vim/plugged/vifm.vim
+	url = https://github.com/vifm/vifm.vim
