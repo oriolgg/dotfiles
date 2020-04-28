@@ -73,9 +73,6 @@
 [submodule "vim/plugged/vim-smoothie"]
 	path = vim/plugged/vim-smoothie
 	url = https://github.com/psliwka/vim-smoothie
-[submodule "vim/plugged/gutentags_plus"]
-	path = vim/plugged/gutentags_plus
-	url = https://github.com/skywind3000/gutentags_plus
 [submodule "vim/plugged/vim-easy-align"]
 	path = vim/plugged/vim-easy-align
 	url = https://github.com/junegunn/vim-easy-align
