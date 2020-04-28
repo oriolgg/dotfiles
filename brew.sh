@@ -32,19 +32,20 @@ brew upgrade
 apps=(
 
     awscli
+    bat
     coreutils
+    diff-so-fancy
     exa
     exiftool
-    diff-so-fancy
     fd
-    findutils
     fzf
     gh
     git
     git-flow
+    hub
+    jq
     lynx
     neovim
-    node
     python
     python3
     readline
@@ -56,12 +57,9 @@ apps=(
     unar
     universal-ctags
     unrar
-    vim --with-python3
     wifi-password
     youtube-dl
     z
-    zsh
-    zsh-syntax-highlighting
 
 )
 
