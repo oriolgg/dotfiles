@@ -171,10 +171,12 @@ syntax on " Highlighted text
 
 " Colors for the buffer highlight
 set t_Co=256                                                 " Número de colors
-if !has('nvim')
-  set term=screen-256color
+if has('nvim')
+  if has('gui_running')
+    set guifont=DroidSansMono_Nerd_Font:h11
+  endif
 else
-  set guifont=DroidSansMono_Nerd_Font:h11
+  set term=screen-256color
 endif
 set termguicolors
 let base16colorspace=256
