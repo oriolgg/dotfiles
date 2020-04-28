@@ -64,9 +64,6 @@
 [submodule "vim/plugged/undotree"]
 	path = vim/plugged/undotree
 	url = https://github.com/mbbill/undotree
-[submodule "vim/plugged/vim-nerdtree-syntax-highlight"]
-	path = vim/plugged/vim-nerdtree-syntax-highlight
-	url = https://github.com/tiagofumo/vim-nerdtree-syntax-highlight
 [submodule "vim/plugged/vim-commentary"]
 	path = vim/plugged/vim-commentary
 	url = https://github.com/tpope/vim-commentary
@@ -107,3 +104,21 @@
 [submodule "vim/plugged/targets.vim"]
 	path = vim/plugged/targets.vim
 	url = https://github.com/wellle/targets.vim
+[submodule "zsh/plugins/zsh-completions"]
+	path = zsh/plugins/zsh-completions
+	url = http://github.com/zsh-users/zsh-completions
+[submodule "zsh/plugins/zsh-autosuggestions"]
+	path = zsh/plugins/zsh-autosuggestions
+	url = http://github.com/zsh-users/zsh-autosuggestions
+[submodule "zsh/plugins/fzf-tab"]
+	path = zsh/plugins/fzf-tab
+	url = http://github.com/Aloxaf/fzf-tab
+[submodule "zsh/plugins/forgit"]
+	path = zsh/plugins/forgit
+	url = http://github.com/wfxr/forgit
+[submodule "zsh/plugins/zsh-syntax-highlighting"]
+	path = zsh/plugins/zsh-syntax-highlighting
+	url = http://github.com/zsh-users/zsh-syntax-highlighting
+[submodule "zsh/plugins/zsh-history-substring-search"]
+	path = zsh/plugins/zsh-history-substring-search
+	url = http://github.com/zsh-users/zsh-history-substring-search

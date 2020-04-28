@@ -29,6 +29,7 @@ git clone https://github.com/oriolgg/dotfiles ~/.dotfiles --recursive
 chsh -s /bin/zsh
 
 ln -s ~/.dotfiles/agignore ~/.agignore
+ln -s ~/.dotfiles/aliases ~/.aliases
 ln -s ~/.dotfiles/applescript ~/.applescript
 ln -s ~/.dotfiles/bash/bash-alias ~/.bash-alias
 ln -s ~/.dotfiles/bash/bashrc ~/.bashrc
@@ -38,7 +39,9 @@ ln -s ~/.dotfiles/bin ~/.bin
 ln -s ~/.dotfiles/ctags ~/.ctags
 ln -s ~/.dotfiles/git/gitconfig ~/.gitconfig
 ln -s ~/.dotfiles/git/gitignore_global ~/.gitignore_global
-ln -s ~/.dotfiles/aliases ~/.aliases
+ln -s ~/.dotfiles/lynx/lynx.cfg ~/.lynx.cfg
+ln -s ~/.dotfiles/lynx/lynx.lss ~/.lynx.lss
+ln -s ~/.dotfiles/lynx/lynxrc ~/.lynxrc
 ln -s ~/.dotfiles/tmux/tmux ~/.tmux
 ln -s ~/.dotfiles/tmux/tmux-osx.conf ~/.tmux-osx.conf
 ln -s ~/.dotfiles/tmux/tmux-vim-select-pane /usr/local/bin/tmux-vim-select-pane
@@ -47,18 +50,11 @@ ln -s ~/.dotfiles/vim ~/.vim
 ln -s ~/.dotfiles/vim/gvimrc ~/.gvimrc
 ln -s ~/.dotfiles/vim/vimrc ~/.vimrc
 ln -s ~/.dotfiles/vim/xvimrc ~/.xvimrc
+ln -s ~/.dotfiles/zsh/fzf-forgit.zsh ~/.fzf-forgit.zsh
+ln -s ~/.dotfiles/zsh/fzf.zsh ~/.fzf.zsh
 ln -s ~/.dotfiles/zsh/oh-my-zsh ~/.oh-my-zsh
 ln -s ~/.dotfiles/zsh/zshrc ~/.zshrc
 ln -s ~/.dotfiles/zsh/zshrc-osx ~/.zshrc-osx
-ln -s ~/.dotfiles/zsh/fzf.zsh ~/.fzf.zsh
-ln -s ~/.dotfiles/zsh/fzf-forgit.zsh ~/.fzf-forgit.zsh
-ln -s ~/.dotfiles/lynx/lynx.cfg ~/.lynx.cfg
-ln -s ~/.dotfiles/lynx/lynx.lss ~/.lynx.lss
-ln -s ~/.dotfiles/lynx/lynxrc ~/.lynxrc
-ln -s ~/.dotfiles/zsh/oriol.zsh-theme ~/.oh-my-zsh/custom/themes/oriol.zsh-theme
-
-git clone https://github.com/Aloxaf/fzf-tab ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/fzf-tab
-git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 
 mkdir -p ~/.config/nvim
 ln -s ~/.dotfiles/nvim/init.vim ~/.config/nvim/init.vim
@@ -70,3 +66,16 @@ cargo install devicon-lookup
 # Set default osx defaults
 /bin/bash ~/.dotfiles/osx-defaults.sh
 /usr/local/opt/fzf/install --all
+
+$(brew --prefix)/opt/fzf/install
+
+# Zsh Plugins
+ln -s ~/.dotfiles/zsh/plugins/forgit ~/.oh-my-zsh/custom/plugins/forgit
+ln -s ~/.dotfiles/zsh/plugins/fzf-tab ~/.oh-my-zsh/custom/plugins/fzf-tab
+ln -s ~/.dotfiles/zsh/plugins/zsh-autosuggestions ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions
+ln -s ~/.dotfiles/zsh/plugins/zsh-completions ~/.oh-my-zsh/custom/plugins/zsh-completions
+ln -s ~/.dotfiles/zsh/plugins/zsh-history-substring-search ~/.oh-my-zsh/custom/plugins/zsh-history-substring-search
+ln -s ~/.dotfiles/zsh/plugins/zsh-syntax-highlighting ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
+
+# Zsh Theme
+ln -s  ~/.dotfiles/zsh/themes/oriol.zsh-theme ~/.oh-my-zsh/custom/themes/oriol.zsh-theme
