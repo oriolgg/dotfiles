@@ -173,7 +173,7 @@ syntax on " Highlighted text
 " Colors for the buffer highlight
 set t_Co=256                                                 " Número de colors
 if has('nvim')
-  if has('gui_running')
+  if !has('gui_vimr')
     set guifont=DroidSansMono_Nerd_Font:h11
   endif
 else
@@ -265,6 +265,7 @@ vnoremap <leader>? :Go <cr>
 """"""""""""""""""""""""""""""""""""""""""""""""""
 
 nnoremap <leader>? :Go <c-r>=expand("<cword>")<cr><cr>
+nnoremap <leader>, :EditVifm .<cr>
 
 map j gj
 map k gk
