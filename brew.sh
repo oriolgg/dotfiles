@@ -52,6 +52,7 @@ apps=(
     reattach-to-user-namespace
     rename
     ripgrep
+    sqlite
     tmux
     tmuxinator
     tree

@@ -45,6 +45,7 @@ apps=(
     handbrake
     iterm2
     jitouch
+    keka
     macvim
     monolingual
     opera
