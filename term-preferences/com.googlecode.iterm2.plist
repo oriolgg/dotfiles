@@ -726,7 +726,7 @@
 	<key>MaxVertically</key>
 	<false/>
 	<key>NSNavLastRootDirectory</key>
-	<string>~/Desktop</string>
+	<string>~/.dotfiles/term-preferences</string>
 	<key>NSNavLastUserSetHideExtensionButtonState</key>
 	<false/>
 	<key>NSNavPanelExpandedSizeForOpenMode</key>
@@ -775,7 +775,7 @@
 		<integer>1</integer>
 	</dict>
 	<key>NSWindow Frame NSNavPanelAutosaveName</key>
-	<string>-87 342 841 479 0 0 1440 877 </string>
+	<string>320 321 799 448 0 0 1440 877 </string>
 	<key>NSWindow Frame ProfilesPanel</key>
 	<string>205 479 735 382 0 0 1440 900 </string>
 	<key>NSWindow Frame SharedPreferences</key>
@@ -1545,7 +1545,7 @@
 		<key>screenFrame</key>
 		<string>{{0, 0}, {1440, 900}}</string>
 		<key>topLeft</key>
-		<string>{275, 850}</string>
+		<string>{225, 767}</string>
 	</dict>
 	<key>NoSyncHaveRequestedFullDiskAccess</key>
 	<true/>
@@ -1554,7 +1554,7 @@
 	<key>NoSyncInstallationId</key>
 	<string>A2166A52-3A6C-45E7-9FBE-153307830631</string>
 	<key>NoSyncLaunchExperienceControllerRunCount</key>
-	<integer>104</integer>
+	<integer>119</integer>
 	<key>NoSyncNeverRemindPrefsChangesLostForFile</key>
 	<true/>
 	<key>NoSyncNeverRemindPrefsChangesLostForFile_selection</key>
@@ -2339,7 +2339,7 @@
 		</dict>
 	</dict>
 	<key>PrefsCustomFolder</key>
-	<string>~/.dotfiles</string>
+	<string>/Users/oriol/.dotfiles/term-preferences</string>
 	<key>Print In Black And White</key>
 	<true/>
 	<key>PromptOnClose</key>

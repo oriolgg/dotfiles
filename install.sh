@@ -43,6 +43,8 @@ ln -s ~/.dotfiles/zsh/oh-my-zsh ~/.oh-my-zsh
 ln -s ~/.dotfiles/zsh/zshrc ~/.zshrc
 ln -s ~/.dotfiles/zsh/zshrc-osx ~/.zshrc-osx
 
+ln -s ~/.dotfiles/term-preferences/com.pancake.therm.plist ~/Library/Preferences/com.pancake.therm.plist
+
 ln -s ~/.dotfiles/ctags.d ~/.ctags.d
 
 # Config folder as it should be
