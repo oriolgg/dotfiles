@@ -9,31 +9,31 @@ set inccommand=nosplit
 call plug#begin('~/.config/nvim/plugged')
 
   " User Interface
-  Plug 'http://github.com/lifepillar/vim-solarized8'       " Solarized color schema
-  Plug 'http://github.com/machakann/vim-highlightedyank'   " Highlights in red the yanked text
+  Plug 'https://github.com/lifepillar/vim-solarized8'       " Solarized color schema
+  Plug 'https://github.com/machakann/vim-highlightedyank'   " Highlights in red the yanked text
     let g:highlightedyank_highlight_duration = 200
-  Plug 'http://github.com/psliwka/vim-smoothie'            " Smoothie scroll (using [Ctrl-u], [Ctrl-d], [Ctrl-b] and [Ctrl-f]
-  Plug 'http://github.com/gillyb/stable-windows'           " When opening splits, maintains the same layout (working?)
-  Plug 'http://github.com/ap/vim-buftabline'               " Use of buffers in tabline
-  Plug 'http://github.com/airblade/vim-gitgutter'          " Adds Git changes in lines
+  Plug 'https://github.com/psliwka/vim-smoothie'            " Smoothie scroll (using [Ctrl-u], [Ctrl-d], [Ctrl-b] and [Ctrl-f]
+  Plug 'https://github.com/gillyb/stable-windows'           " When opening splits, maintains the same layout (working?)
+  Plug 'https://github.com/ap/vim-buftabline'               " Use of buffers in tabline
+  Plug 'https://github.com/airblade/vim-gitgutter'          " Adds Git changes in lines
 
   " Fuzzy finder
   Plug '/usr/local/opt/fzf'                                " Fuzzy finder in Vim
-  Plug 'http://github.com/junegunn/fzf.vim'                " Extended Fuzzy finder commands
+  Plug 'https://github.com/junegunn/fzf.vim'                " Extended Fuzzy finder commands
 
   " Intregration of Git
-  Plug 'http://github.com/tpope/vim-fugitive'              " Best Git plugin for Vim
-  Plug 'http://github.com/int3/vim-extradite'              " Git commit plugin for Vim
+  Plug 'https://github.com/tpope/vim-fugitive'              " Best Git plugin for Vim
+  Plug 'https://github.com/int3/vim-extradite'              " Git commit plugin for Vim
 
   " Text manupilation
-  Plug 'http://github.com/tpope/vim-commentary'            " Better commenting lines
-  Plug 'http://github.com/tpope/vim-surround'              " All about 'surroundings': parentheses, brackets, quotes, XML tags, and more
-  Plug 'http://github.com/matze/vim-move'                  " Extends movement of text in the buffer
-  Plug 'http://github.com/junegunn/vim-easy-align'         " Alignment for contiguos lines using a character as a reference
+  Plug 'https://github.com/tpope/vim-commentary'            " Better commenting lines
+  Plug 'https://github.com/tpope/vim-surround'              " All about 'surroundings': parentheses, brackets, quotes, XML tags, and more
+  Plug 'https://github.com/matze/vim-move'                  " Extends movement of text in the buffer
+  Plug 'https://github.com/junegunn/vim-easy-align'         " Alignment for contiguos lines using a character as a reference
 
   " Movement inside a buffer
-  Plug 'http://github.com/Lokaltog/vim-easymotion'         " Improved movement and motion
-  Plug 'http://github.com/chrisbra/matchit'                " Extended use for % command
+  Plug 'https://github.com/Lokaltog/vim-easymotion'         " Improved movement and motion
+  Plug 'https://github.com/chrisbra/matchit'                " Extended use for % command
 
   " Other
   Plug 'https://github.com/wellle/targets.vim'             " Adds text objects and improves the default ones
@@ -41,14 +41,14 @@ call plug#begin('~/.config/nvim/plugged')
     let g:vim_g_query_url = "https://duckduckgo.com/?q="
     let g:vim_g_command = "Go"
   Plug 'https://github.com/mbbill/undotree'                " Shows undo tree for the current buffer
-  Plug 'http://github.com/pbrisbin/vim-mkdir'              " Creates all required folders when saving buffers
-  Plug 'http://github.com/xolox/vim-session'               " Improves Vim session management
-  Plug 'http://github.com/chrisbra/Colorizer'              " Colorizes all color codes and color names in the buffer
-  Plug 'http://github.com/xolox/vim-misc'                  " Misc Vim script functions (required for vim-session)
-  Plug 'http://github.com/christoomey/vim-tmux-navigator'  " Seamless navigation between tmux panes and vim splits
-  Plug 'http://github.com/tpope/vim-unimpaired'            " Mappings for common ex commands, line mappings (add before/after, movement), toggle vim options and encode/decode
-  Plug 'http://github.com/bfredl/nvim-miniyank'            " Saves in disk yanked or deleted text so it will be shared between vim instances
-  Plug 'http://github.com/vifm/vifm.vim'                   " Vim plugin that allows use of vifm as a file picker
+  Plug 'https://github.com/pbrisbin/vim-mkdir'              " Creates all required folders when saving buffers
+  Plug 'https://github.com/xolox/vim-session'               " Improves Vim session management
+  Plug 'https://github.com/chrisbra/Colorizer'              " Colorizes all color codes and color names in the buffer
+  Plug 'https://github.com/xolox/vim-misc'                  " Misc Vim script functions (required for vim-session)
+  Plug 'https://github.com/christoomey/vim-tmux-navigator'  " Seamless navigation between tmux panes and vim splits
+  Plug 'https://github.com/tpope/vim-unimpaired'            " Mappings for common ex commands, line mappings (add before/after, movement), toggle vim options and encode/decode
+  Plug 'https://github.com/bfredl/nvim-miniyank'            " Saves in disk yanked or deleted text so it will be shared between vim instances
+  Plug 'https://github.com/vifm/vifm.vim'                   " Vim plugin that allows use of vifm as a file picker
 
 call plug#end()
 
@@ -102,8 +102,8 @@ if ! &diff
   au BufEnter * if(exists('b:winview')) | call winrestview(b:winview) | endif
 endif
 
-" Clear the jump list on startup.
-" au VimEnter * clearjumps
+" Do not create .viminfo file
+set viminfo=""
 
 " Don't want netrw
 let loaded_netrw = 0
@@ -215,11 +215,11 @@ let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 
 " let g:solarized_statusline=
 fu! StatusLineGitBranch()
-    if fugitive#head() == ''
-        return ''
-    else
-        return '['.fugitive#head().']'
-    endif
+  if fugitive#head() == ''
+    return ''
+  else
+    return '['.fugitive#head().']'
+  endif
 endf
 
 " Status-line

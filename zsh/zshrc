@@ -125,21 +125,18 @@ bindkey '\e[3~' delete-char # Del
 bindkey '\e[6~' end-of-history
 bindkey '\e[5~' beginning-of-history
 
-# Common settings
+[ -f ~/.aliases.local.zsh ] && source ~/.aliases.local.zsh
+[ -f ~/.zsh/funcalias/aliases.zsh ] && source ~/.zsh/funcalias/aliases.zsh
+[ -f ~/.zsh/funcalias/fzf.zsh ] && source ~/.zsh/funcalias/fzf.zsh
+[ -f ~/.zsh/funcalias/fzf-forgit.zsh ] && source ~/.zsh/funcalias/fzf-forgit.zsh
+
 [[ -f $HOME/.profile ]] && source $HOME/.profile
-# User settings
 [[ -f $HOME/.user_profile ]] && source $HOME/.user_profile
-# User settings
 [[ -f $HOME/.zshrc.local ]] && source $HOME/.zshrc.local
 
 if [[ "$TERM" != "screen-256color" ]]; then
     ts "$USER"
 fi
-
-[ -f ~/.aliases.local.zsh ] && source ~/.aliases.local.zsh
-[ -f ~/.zsh/funcalias/aliases.zsh ] && source ~/.zsh/funcalias/aliases.zsh
-[ -f ~/.zsh/funcalias/fzf.zsh ] && source ~/.zsh/funcalias/fzf.zsh
-[ -f ~/.zsh/funcalias/fzf-forgit.zsh ] && source ~/.zsh/funcalias/fzf-forgit.zsh
 
 # zsh-history-substring-search key bindings
 bindkey '^P' history-substring-search-up
