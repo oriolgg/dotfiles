@@ -44,6 +44,7 @@ ln -s ~/.dotfiles/zsh/zshrc ~/.zshrc
 ln -s ~/.dotfiles/zsh/zshrc-osx ~/.zshrc-osx
 
 ln -s ~/.dotfiles/term-preferences/com.pancake.therm.plist ~/Library/Preferences/com.pancake.therm.plist
+ln -s ~/.dotfiles/term-preferences/com.qvacua.VimR.plist ~/Library/Preferences/com.qvacua.VimR.plist
 
 ln -s ~/.dotfiles/ctags.d ~/.ctags.d
 
@@ -67,3 +68,5 @@ ln -s ~/.dotfiles/zsh/plugins/zsh-syntax-highlighting ~/.oh-my-zsh/custom/plugin
 
 # Zsh Theme
 ln -s  ~/.dotfiles/zsh/themes/oriol.zsh-theme ~/.oh-my-zsh/custom/themes/oriol.zsh-theme
+
+cp ~/.dotfiles/font/*.* ~/Library/Fonts

@@ -162,7 +162,7 @@ set nospell                                              " Don't check spell by 
 set splitright splitbelow                                " Opens new windows on the right and below
 set switchbuf=usetab                                     " If a opened buffer is already open, witches to the window that contains it
 set tags=./tags;/
-set undodir=~/.cache/vim/vim_undo                          " Undo folder
+set undodir=~/.cache/vim/vim_undo                        " Undo folder
 set undofile                                             " Persistent undo for buffers
 set undolevels=10000                                     " Undo level
 set undoreload=10000                                     " Redo level
@@ -175,12 +175,14 @@ set pastetoggle=<f5>
 syntax on " Highlighted text
 
 " Colors for the buffer highlight
-set t_Co=256                                                 " Número de colors
-if has('nvim')
-  if !has('gui_vimr')
-    set guifont=DroidSansMono_Nerd_Font:h11
-  endif
-else
+set t_Co=256                                             " Número de colors
+if has('gui_macvim')
+    set macligatures
+endif
+if !has('gui_vimr')
+    set guifont=Fira\ Code:h11
+endif
+if !has('nvim')
   set term=screen-256color
 endif
 set termguicolors

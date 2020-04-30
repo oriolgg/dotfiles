@@ -781,7 +781,7 @@
 	<key>NSWindow Frame SharedPreferences</key>
 	<string>258 357 796 486 0 0 1440 877 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>0 0 1440 877 0 0 1440 877 </string>
+	<string>0 0 1440 900 0 0 1440 900 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
 	<string>0 1 1440 874 0 0 1440 877 </string>
 	<key>NSWindow Frame iTerm Window 2</key>
@@ -1334,7 +1334,7 @@
 			<key>Non-ASCII Anti Aliased</key>
 			<true/>
 			<key>Normal Font</key>
-			<string>DroidSansMonoNerdFontComplete- 11</string>
+			<string>FiraCode-Regular 11</string>
 			<key>Option Key Sends</key>
 			<integer>0</integer>
 			<key>Prompt Before Closing 2</key>
@@ -1506,7 +1506,7 @@
 			<key>Use Non-ASCII Font</key>
 			<false/>
 			<key>Vertical Spacing</key>
-			<real>1</real>
+			<real>0.90000000000000002</real>
 			<key>Visual Bell</key>
 			<false/>
 			<key>Window Type</key>
@@ -1522,12 +1522,13 @@
 		<string>3.3.5</string>
 		<string>3.3.6</string>
 	</array>
+	<key>NoSyncBFPFavorites</key>
+	<array>
+		<string>Fira Code</string>
+	</array>
 	<key>NoSyncBFPRecents</key>
 	<array>
-		<string>Droid Sans Mono for Powerline</string>
-		<string>Hack Nerd Font</string>
-		<string>DroidSansMono Nerd Font Mono</string>
-		<string>DroidSansMono Nerd Font</string>
+		<string>Fira Code</string>
 	</array>
 	<key>NoSyncConfirmRunOpenFile</key>
 	<true/>
@@ -1545,7 +1546,7 @@
 		<key>screenFrame</key>
 		<string>{{0, 0}, {1440, 900}}</string>
 		<key>topLeft</key>
-		<string>{225, 767}</string>
+		<string>{406, 791}</string>
 	</dict>
 	<key>NoSyncHaveRequestedFullDiskAccess</key>
 	<true/>
@@ -1554,7 +1555,7 @@
 	<key>NoSyncInstallationId</key>
 	<string>A2166A52-3A6C-45E7-9FBE-153307830631</string>
 	<key>NoSyncLaunchExperienceControllerRunCount</key>
-	<integer>119</integer>
+	<integer>122</integer>
 	<key>NoSyncNeverRemindPrefsChangesLostForFile</key>
 	<true/>
 	<key>NoSyncNeverRemindPrefsChangesLostForFile_selection</key>
@@ -2339,7 +2340,7 @@
 		</dict>
 	</dict>
 	<key>PrefsCustomFolder</key>
-	<string>/Users/oriol/.dotfiles/term-preferences</string>
+	<string>~/.dotfiles/term-preferences</string>
 	<key>Print In Black And White</key>
 	<true/>
 	<key>PromptOnClose</key>
