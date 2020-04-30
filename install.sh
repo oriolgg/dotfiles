@@ -37,11 +37,9 @@ ln -s ~/.dotfiles/git/gitignore_global ~/.gitignore_global
 ln -s ~/.dotfiles/config/nvim ~/.vim
 ln -s ~/.dotfiles/config/nvim/init.vim ~/.vimrc
 ln -s ~/.dotfiles/config/nvim/xvimrc ~/.xvimrc
-ln -s ~/.dotfiles/zsh/fzf-forgit.zsh ~/.fzf-forgit.zsh
-ln -s ~/.dotfiles/zsh/fzf.zsh ~/.fzf.zsh
-ln -s ~/.dotfiles/zsh/oh-my-zsh ~/.oh-my-zsh
+
+ln -s ~/.dotfiles/zsh ~/.zsh
 ln -s ~/.dotfiles/zsh/zshrc ~/.zshrc
-ln -s ~/.dotfiles/zsh/zshrc-osx ~/.zshrc-osx
 
 ln -s ~/.dotfiles/term-preferences/com.pancake.therm.plist ~/Library/Preferences/com.pancake.therm.plist
 ln -s ~/.dotfiles/term-preferences/com.qvacua.VimR.plist ~/Library/Preferences/com.qvacua.VimR.plist
@@ -59,14 +57,13 @@ ln -s ~/.config/qutebrowser ~/.qutebrowser
 $(brew --prefix)/opt/fzf/install
 
 # Zsh Plugins
-ln -s ~/.dotfiles/zsh/plugins/forgit ~/.oh-my-zsh/custom/plugins/forgit
-ln -s ~/.dotfiles/zsh/plugins/fzf-tab ~/.oh-my-zsh/custom/plugins/fzf-tab
-ln -s ~/.dotfiles/zsh/plugins/zsh-autosuggestions ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions
-ln -s ~/.dotfiles/zsh/plugins/zsh-completions ~/.oh-my-zsh/custom/plugins/zsh-completions
-ln -s ~/.dotfiles/zsh/plugins/zsh-history-substring-search ~/.oh-my-zsh/custom/plugins/zsh-history-substring-search
-ln -s ~/.dotfiles/zsh/plugins/zsh-syntax-highlighting ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
+ln -s ~/.dotfiles/zsh/plugins/fzf-tab ~/.zsh/oh-my-zsh/custom/plugins/fzf-tab
+ln -s ~/.dotfiles/zsh/plugins/zsh-autosuggestions ~/.zsh/oh-my-zsh/custom/plugins/zsh-autosuggestions
+ln -s ~/.dotfiles/zsh/plugins/zsh-completions ~/.zsh/oh-my-zsh/custom/plugins/zsh-completions
+ln -s ~/.dotfiles/zsh/plugins/zsh-history-substring-search ~/.zsh/oh-my-zsh/custom/plugins/zsh-history-substring-search
+ln -s ~/.dotfiles/zsh/plugins/zsh-syntax-highlighting ~/.zsh/oh-my-zsh/custom/plugins/zsh-syntax-highlighting
 
 # Zsh Theme
-ln -s  ~/.dotfiles/zsh/themes/oriol.zsh-theme ~/.oh-my-zsh/custom/themes/oriol.zsh-theme
+ln -s  ~/.dotfiles/zsh/themes/oriol.zsh-theme ~/.zsh/oh-my-zsh/custom/themes/oriol.zsh-theme
 
 cp ~/.dotfiles/font/*.* ~/Library/Fonts

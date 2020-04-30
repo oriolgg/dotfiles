@@ -1,5 +1,0 @@
-plugins=(colored-man common-aliases encode64 extract git git-flow-avh history jsontools tmuxinator osx xcode z)
-
-alias ctags="`brew --prefix`/bin/ctags"
-
-source ~/.dotfiles/zsh/shell-functions.sh

@@ -1,5 +1,5 @@
 #Path to your oh-my-zsh configuration.
-ZSH=$HOME/.oh-my-zsh
+ZSH=$HOME/.zsh/oh-my-zsh
 
 # Set name of the theme to load.
 ZSH_THEME="oriol"
@@ -40,7 +40,6 @@ plugins=(
     colored-man-pages
     command-not-found
     extract
-    forgit
     fzf-tab
     jsontools
     sudo
@@ -71,12 +70,6 @@ export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 
 export EVENT_NOKQUEUE=1
 
-# Preferred editor for local and remote sessions
-if [[ -n $SSH_CONNECTION ]]; then
-  export EDITOR='vim'
-else
-  export EDITOR='nvim'
-fi
 export VISUAL='nvim'
 export EDITOR='nvim'
 
@@ -132,9 +125,6 @@ bindkey '\e[3~' delete-char # Del
 bindkey '\e[6~' end-of-history
 bindkey '\e[5~' beginning-of-history
 
-[[ -f $HOME/.aliases.sh ]] && source $HOME/.aliases.sh
-[[ -f $HOME/.aliases.sh.local ]] && source $HOME/.aliases.sh.local
-
 # Common settings
 [[ -f $HOME/.profile ]] && source $HOME/.profile
 # User settings
@@ -142,45 +132,15 @@ bindkey '\e[5~' beginning-of-history
 # User settings
 [[ -f $HOME/.zshrc.local ]] && source $HOME/.zshrc.local
 
-# Keypad
-# 0 . Enter
-bindkey -s "^[Op" "0"
-bindkey -s "^[Ol" "."
-bindkey -s "^[OM" "^M"
-# 1 2 3
-bindkey -s "^[Oq" "1"
-bindkey -s "^[Or" "2"
-bindkey -s "^[Os" "3"
-# 4 5 6
-bindkey -s "^[Ot" "4"
-bindkey -s "^[Ou" "5"
-bindkey -s "^[Ov" "6"
-# 7 8 9
-bindkey -s "^[Ow" "7"
-bindkey -s "^[Ox" "8"
-bindkey -s "^[Oy" "9"
-# + -  * / =
-bindkey -s "^[Ok" "+"
-bindkey -s "^[Om" "-"
-bindkey -s "^[Oj" "*"
-bindkey -s "^[Oo" "/"
-bindkey -s "^[OX" "="
-
-if [[ `uname` == 'Linux' ]]; then
-elif [[ `uname` == 'Darwin' ]]; then
-    source $HOME/.zshrc-osx
-fi
-
 if [[ "$TERM" != "screen-256color" ]]; then
     ts "$USER"
 fi
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-[ -f ~/.fzf-forgit.zsh ] && source ~/.fzf-forgit.zsh
+[ -f ~/.aliases.local.zsh ] && source ~/.aliases.local.zsh
+[ -f ~/.zsh/funcalias/aliases.zsh ] && source ~/.zsh/funcalias/aliases.zsh
+[ -f ~/.zsh/funcalias/fzf.zsh ] && source ~/.zsh/funcalias/fzf.zsh
+[ -f ~/.zsh/funcalias/fzf-forgit.zsh ] && source ~/.zsh/funcalias/fzf-forgit.zsh
 
 # zsh-history-substring-search key bindings
 bindkey '^P' history-substring-search-up
 bindkey '^N' history-substring-search-down
-
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
