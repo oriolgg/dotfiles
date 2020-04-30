@@ -29,22 +29,14 @@ git clone https://github.com/oriolgg/dotfiles ~/.dotfiles --recursive
 chsh -s /bin/zsh
 
 ln -s ~/.dotfiles/ignore ~/.ignore
-ln -s ~/.dotfiles/aliases ~/.aliases
-ln -s ~/.dotfiles/applescript ~/.applescript
-ln -s ~/.dotfiles/bash/bash-alias ~/.bash-alias
-ln -s ~/.dotfiles/bash/bashrc ~/.bashrc
-ln -s ~/.dotfiles/bash/bashrc-osx ~/.bashrc-osx
-ln -s ~/.dotfiles/bash/profile ~/.profile
+ln -s ~/.dotfiles/aliases.sh ~/.aliases.sh
+ln -s ~/.dotfiles/config/applescript ~/.applescript
 ln -s ~/.dotfiles/bin ~/.bin
 ln -s ~/.dotfiles/git/gitconfig ~/.gitconfig
 ln -s ~/.dotfiles/git/gitignore_global ~/.gitignore_global
-ln -s ~/.dotfiles/tmux/tmux ~/.tmux
-ln -s ~/.dotfiles/tmux/tmux-osx.conf ~/.tmux-osx.conf
-ln -s ~/.dotfiles/tmux/tmux.conf ~/.tmux.conf
-ln -s ~/.dotfiles/vim ~/.vim
-ln -s ~/.dotfiles/vim/gvimrc ~/.gvimrc
-ln -s ~/.dotfiles/vim/vimrc ~/.vimrc
-ln -s ~/.dotfiles/vim/xvimrc ~/.xvimrc
+ln -s ~/.dotfiles/config/nvim ~/.vim
+ln -s ~/.dotfiles/config/nvim/init.vim ~/.vimrc
+ln -s ~/.dotfiles/config/nvim/xvimrc ~/.xvimrc
 ln -s ~/.dotfiles/zsh/fzf-forgit.zsh ~/.fzf-forgit.zsh
 ln -s ~/.dotfiles/zsh/fzf.zsh ~/.fzf.zsh
 ln -s ~/.dotfiles/zsh/oh-my-zsh ~/.oh-my-zsh

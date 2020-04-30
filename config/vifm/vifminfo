@@ -85,8 +85,8 @@ d/Users
 	oriol
 3
 d/Users/oriol
-	lynx_session
-16
+	opcions-balis.txt
+18
 d
 
 # Right window history (oldest to newest):
@@ -107,10 +107,13 @@ D
 # Local filter history (oldest to newest):
 
 # Registers:
+""/Users/oriol/.local/share/vifm/Trash/000_~
 
 # Directory stack (oldest to newest):
 
 # Trash content:
+t/Users/oriol/.local/share/vifm/Trash/000_~
+	/Users/oriol/~
 
 # State:
 f
