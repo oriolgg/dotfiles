@@ -57,11 +57,11 @@ call plug#end()
 """""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Creates necessary folders
-:silent exec "!mkdir -p '~/.cache/vim/vim_undo'"
-:silent exec "!mkdir -p '~/.cache/vim/vim_view'"
-:silent exec "!mkdir -p '~/.cache/vim/vim_sessions'"
-:silent exec "!mkdir -p '~/.cache/vim/vim_sessions'"
-:silent exec "!mkdir -p '~/.cache/vim/miniyank/miniyank.mpack'"
+:silent exec "!mkdir -p $HOME.'/.cache/vim/vim_undo'"
+:silent exec "!mkdir -p $HOME.'/.cache/vim/vim_view'"
+:silent exec "!mkdir -p $HOME.'/.cache/vim/vim_sessions'"
+:silent exec "!mkdir -p $HOME.'/.cache/vim/vim_sessions'"
+:silent exec "!mkdir -p $HOME.'/.cache/vim/miniyank/miniyank.mpack'"
 
 " Closes the focused window and its buffer if this is not loaded into another window
 function! CloseWindowOrKillBuffer()
