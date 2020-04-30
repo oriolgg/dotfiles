@@ -1,24 +1,6 @@
 [submodule "fonts"]
 	path = fonts
 	url = https://github.com/powerline/fonts
-[submodule "tmux/tmux/plugins/tmux-battery"]
-	path = tmux/tmux/plugins/tmux-battery
-	url = https://github.com/tmux-plugins/tmux-battery
-[submodule "tmux/tmux/plugins/tmux-continuum"]
-	path = tmux/tmux/plugins/tmux-continuum
-	url = https://github.com/tmux-plugins/tmux-continuum
-[submodule "tmux/tmux/plugins/tmux-copycat"]
-	path = tmux/tmux/plugins/tmux-copycat
-	url = https://github.com/tmux-plugins/tmux-copycat
-[submodule "tmux/tmux/plugins/tmux-open"]
-	path = tmux/tmux/plugins/tmux-open
-	url = https://github.com/tmux-plugins/tmux-open
-[submodule "tmux/tmux/plugins/tmux-resurrect"]
-	path = tmux/tmux/plugins/tmux-resurrect
-	url = https://github.com/tmux-plugins/tmux-resurrect
-[submodule "tmux/tmux/plugins/tmux-yank"]
-	path = tmux/tmux/plugins/tmux-yank
-	url = https://github.com/tmux-plugins/tmux-yank
 [submodule "vim/plugged/vim-easymotion"]
 	path = vim/plugged/vim-easymotion
 	url = https://github.com/Lokaltog/vim-easymotion
@@ -118,3 +100,21 @@
 [submodule "vim/plugged/vim-gitgutter"]
 	path = vim/plugged/vim-gitgutter
 	url = https://github.com/airblade/vim-gitgutter
+[submodule "config/tmux/plugins/tmux-battery"]
+	path = config/tmux/plugins/tmux-battery
+	url = https://github.com/tmux-plugins/tmux-battery
+[submodule "config/tmux/plugins/tmux-continuum"]
+	path = config/tmux/plugins/tmux-continuum
+	url = https://github.com/tmux-plugins/tmux-continuum
+[submodule "config/tmux/plugins/tmux-copycat"]
+	path = config/tmux/plugins/tmux-copycat
+	url = https://github.com/tmux-plugins/tmux-copycat
+[submodule "config/tmux/plugins/tmux-open"]
+	path = config/tmux/plugins/tmux-open
+	url = https://github.com/tmux-plugins/tmux-open
+[submodule "config/tmux/plugins/tmux-resurrect"]
+	path = config/tmux/plugins/tmux-resurrect
+	url = https://github.com/tmux-plugins/tmux-resurrect
+[submodule "config/tmux/plugins/tmux-yank"]
+	path = config/tmux/plugins/tmux-yank
+	url = https://github.com/tmux-plugins/tmux-yank

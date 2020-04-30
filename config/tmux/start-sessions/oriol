@@ -1,0 +1,23 @@
+#!/bin/sh
+
+session=$USER
+cd $HOME/.dotfiles
+
+tmux start-server
+tmux has-session -t $session 2>/dev/null
+
+if [ $? -eq 1 ] ; then
+    tmux new-session -s $session -n vim~zsh -d
+
+    tmux send-keys -t $session 'edf' C-m
+    tmux splitw -t $session -h -p 50
+    tmux selectp -t $session -t 1
+
+    tmux selectw -t $session -t 1
+else
+    session_name=`tmux display -p '#{session_name}'`
+    in_tmux=`echo $TMUX`
+    if [ "$in_tmux" != "" ] || [ $session_name != $session ] ; then
+        tmux detach-client
+    fi
+fi
