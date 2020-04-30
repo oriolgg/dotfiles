@@ -30,6 +30,7 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'https://github.com/tpope/vim-surround'              " All about 'surroundings': parentheses, brackets, quotes, XML tags, and more
   Plug 'https://github.com/matze/vim-move'                  " Extends movement of text in the buffer
   Plug 'https://github.com/junegunn/vim-easy-align'         " Alignment for contiguos lines using a character as a reference
+  Plug 'https://github.com/tpope/vim-repeat'                " Allows use of '.' in some plugins
 
   " Movement inside a buffer
   Plug 'https://github.com/Lokaltog/vim-easymotion'         " Improved movement and motion
