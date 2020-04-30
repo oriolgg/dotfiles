@@ -27,7 +27,7 @@ alias gbpurge='git branch --merged develop | grep -v "\*" | grep -v "master" | g
 alias gmodpull='git submodule foreach git pull origin master'
 alias gu='gf ; gcm ; gl ; gcd ; gl ; gbpurge'
 
-alias edf='cd $HOME/.dotfiles && vim -S $HOME/.vim_sessions/dotfiles.vim'
+alias edf='cd $HOME/.dotfiles && vim -S $HOME/.tmp/vim/vim_sessions/dotfiles.vim'
 
 alias v=nvim
 alias vi=nvim
@@ -37,7 +37,7 @@ vf() { fzf -m | xargs -o $EDITOR ;}
 
 alias afk="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend"
 
-alias lynx='lynx -cfg=$HOME/.lynx.cfg -lss=$HOME/.lynx.lss'
+alias lynx='lynx -cfg=$HOME/.config/lynx/lynx.cfg -lss=$HOME/.config/lynx/lynx.lss -session=$HOME/.tmp/lynx/session'
 
 ansi-colors() {
     for i in {0..255}; do print -Pn "%K{$i}  %k%F{$i}${(l:3::0:)i}%f " ${${(M)$((i%6)):#3}:+$'\n'}; done

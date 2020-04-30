@@ -28,7 +28,7 @@ git clone https://github.com/oriolgg/dotfiles ~/.dotfiles --recursive
 # Change the default shell
 chsh -s /bin/zsh
 
-ln -s ~/.dotfiles/agignore ~/.agignore
+ln -s ~/.dotfiles/ignore ~/.ignore
 ln -s ~/.dotfiles/aliases ~/.aliases
 ln -s ~/.dotfiles/applescript ~/.applescript
 ln -s ~/.dotfiles/bash/bash-alias ~/.bash-alias
@@ -39,9 +39,6 @@ ln -s ~/.dotfiles/bin ~/.bin
 ln -s ~/.dotfiles/ctags ~/.ctags
 ln -s ~/.dotfiles/git/gitconfig ~/.gitconfig
 ln -s ~/.dotfiles/git/gitignore_global ~/.gitignore_global
-ln -s ~/.dotfiles/lynx/lynx.cfg ~/.lynx.cfg
-ln -s ~/.dotfiles/lynx/lynx.lss ~/.lynx.lss
-ln -s ~/.dotfiles/lynx/lynxrc ~/.lynxrc
 ln -s ~/.dotfiles/tmux/tmux ~/.tmux
 ln -s ~/.dotfiles/tmux/tmux-osx.conf ~/.tmux-osx.conf
 ln -s ~/.dotfiles/tmux/tmux-vim-select-pane /usr/local/bin/tmux-vim-select-pane
@@ -56,8 +53,9 @@ ln -s ~/.dotfiles/zsh/oh-my-zsh ~/.oh-my-zsh
 ln -s ~/.dotfiles/zsh/zshrc ~/.zshrc
 ln -s ~/.dotfiles/zsh/zshrc-osx ~/.zshrc-osx
 
-mkdir -p ~/.config/nvim
-ln -s ~/.dotfiles/nvim/init.vim ~/.config/nvim/init.vim
+# Config folder as it should be
+ln -s ~/.dotfiles/config ~/.config
+ln -s ~/.config/qutebrowser ~/.qutebrowser
 
 # Install Rust and devicon-lookup
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh

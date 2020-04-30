@@ -1,0 +1,124 @@
+# You can edit this file by hand, but it's recommended not to do that.
+
+# Marks:
+'H
+	/Users/oriol/
+	..
+1588094919
+'b
+	/Users/oriol/bin/
+	..
+1588094919
+'h
+	/Users/oriol/
+	..
+1588094919
+'z
+	/Users/oriol/.config/vifm
+	..
+1588094919
+
+# Bookmarks:
+
+# TUI:
+al
+q1
+v2
+ov
+m-1
+l2
+r2
+
+# Left window history (oldest to newest):
+d/Users/oriol/.dotfiles
+	..
+0
+d/Users/oriol/.vim/plugged/vifm.vim/doc/plugin
+	..
+0
+d/Users/oriol/.dotfiles/vim
+	..
+0
+d/Users/oriol/.dotfiles
+	..
+0
+d/Users/oriol/.dotfiles/zsh
+	..
+0
+d/Users/oriol/.dotfiles
+	agignore
+13
+d/Users/oriol
+	lavanguardia-remove-shit.txt
+14
+d/Users/oriol/.dotfiles
+	agignore
+13
+d/Users/oriol/.dotfiles/vim
+	vimrc
+7
+d/Users/oriol/.dotfiles
+	agignore
+13
+d/Users/oriol/.dotfiles/vim
+	vimrc
+7
+d/Users/oriol/.dotfiles
+	config
+4
+d/Users/oriol/.dotfiles/config
+	lynx
+2
+d/Users/oriol/.dotfiles/config/lynx
+	lynx.cfg
+1
+d/Users/oriol/.dotfiles/config
+	lynx
+2
+d/Users/oriol/.dotfiles
+	config
+4
+d/Users/oriol
+	..
+0
+d/Users
+	oriol
+3
+d/Users/oriol
+	lynx_session
+16
+d
+
+# Right window history (oldest to newest):
+D/Users/oriol/.dotfiles
+	nvim
+8
+D
+
+# Command line history (oldest to newest):
+:DiffVim
+:set wrap!
+:q
+
+# Search history (oldest to newest):
+
+# Prompt history (oldest to newest):
+
+# Local filter history (oldest to newest):
+
+# Registers:
+
+# Directory stack (oldest to newest):
+
+# Trash content:
+
+# State:
+f
+i1
+[.1
+[F
+F
+I1
+].1
+]F
+s0

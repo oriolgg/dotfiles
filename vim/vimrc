@@ -55,9 +55,9 @@ call plug#end()
 """""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Creates vim_view and vim_undo folders
-:silent exec "!mkdir -p $HOME'/.vim_undo'"
-:silent exec "!mkdir -p $HOME'/.vim_view'"
-:silent exec "!mkdir -p $HOME'/.vim_sessions'"
+:silent exec "!mkdir -p $HOME'/.tmp/vim/vim_undo'"
+:silent exec "!mkdir -p $HOME'/.tmp/vim/vim_view'"
+:silent exec "!mkdir -p $HOME'/.tmp/vim/vim_sessions'"
 
 " Closes the focused window and its buffer if this is not loaded into another window
 function! CloseWindowOrKillBuffer()
@@ -158,11 +158,11 @@ set nospell                                              " Don't check spell by 
 set splitright splitbelow                                " Opens new windows on the right and below
 set switchbuf=usetab                                     " If a opened buffer is already open, witches to the window that contains it
 set tags=./tags;/
-set undodir=~/.vim_undo                                  " Undo folder
+set undodir=~/.tmp/vim/vim_undo                          " Undo folder
 set undofile                                             " Persistent undo for buffers
 set undolevels=10000                                     " Undo level
 set undoreload=10000                                     " Redo level
-set viewdir=~/.vim_view                                  " View folder
+set viewdir=~/.tmp/vim/vim_view                          " View folder
 set wildignore=*/tmp/,*/.git/*,*.so,*.swp,*.zip,*.pdf,*.bak,*.pyc,*.pyo,*.class,*.tmp,*~      " Ignore file types
 set wildmenu                                             " Show a navigable menu for tab completion on command line
 set wildmode=full
@@ -361,7 +361,7 @@ let g:undotree_DiffpanelHeight = 15
 let g:undotree_SetFocusWhenToggle = 1
 
 " vim-session
-let g:session_directory = '~/.vim_sessions'
+let g:session_directory = '~/.tmp/vim/vim_sessions'
 let g:session_autoload = 'yes'
 let g:session_autosave = 'yes'
 let g:session_persist_font = 0
