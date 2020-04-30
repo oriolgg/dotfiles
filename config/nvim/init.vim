@@ -441,9 +441,6 @@ endfunction
 nnoremap <silent> <leader>P :call MiniPut(1)<cr>
 nnoremap <silent> <leader>p :call MiniPut(0)<cr>
 
-" fzf-preview.vim
-let g:fzf_history_dir = '~/.fzf-history'
-
 if executable('rg')
   let $FZF_DEFAULT_COMMAND = 'rg --files --hidden --follow --glob "!.git/*"'
   set grepprg=rg\ --vimgrep
