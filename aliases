@@ -27,7 +27,7 @@ alias gbpurge='git branch --merged develop | grep -v "\*" | grep -v "master" | g
 alias gmodpull='git submodule foreach git pull origin master'
 alias gu='gf ; gcm ; gl ; gcd ; gl ; gbpurge'
 
-alias edf='cd $HOME/.dotfiles && vim -S $HOME/.tmp/vim/vim_sessions/dotfiles.vim'
+alias edf='cd $HOME/.dotfiles && vim -S $HOME/.cache/vim/vim_sessions/dotfiles.vim'
 
 alias v=nvim
 alias vi=nvim
