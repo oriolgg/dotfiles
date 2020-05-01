@@ -51,6 +51,7 @@ ln -s ~/.dotfiles/term-preferences/com.qvacua.VimR.plist ~/Library/Preferences/c
 /bin/bash ~/.dotfiles/install/osx-defaults.sh
 
 $(brew --prefix)/opt/fzf/install --all
+bat cache --build
 
 # Zsh Plugins
 ln -s ~/.dotfiles/zsh/plugins/fzf-tab ~/.zsh/oh-my-zsh/custom/plugins/fzf-tab
