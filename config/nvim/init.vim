@@ -57,7 +57,7 @@ call plug#end()
 " Funcions
 """""""""""""""""""""""""""""""""""""""""""""""""""
 
-" Creates necessary folders
+" Creates cache folders
 :silent exec "!mkdir -p $HOME'/.cache/nvim/nvim_undo'"
 :silent exec "!mkdir -p $HOME'/.cache/nvim/nvim_view'"
 :silent exec "!mkdir -p $HOME'/.cache/nvim/nvim_sessions'"

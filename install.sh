@@ -42,7 +42,6 @@ ln -s ~/.config/rg/ignore ~/.ignore
 ln -s ~/.dotfiles/zsh ~/.zsh
 ln -s ~/.zsh/oh-my-zsh ~/.oh-my-zsh
 ln -s ~/.zsh/zshrc ~/.zshrc
-cp -r ~/.dotfiles/cache ~/.cache
 
 ln -s ~/.dotfiles/term-preferences/com.pancake.therm.plist ~/Library/Preferences/com.pancake.therm.plist
 ln -s ~/.dotfiles/term-preferences/com.qvacua.VimR.plist ~/Library/Preferences/com.qvacua.VimR.plist

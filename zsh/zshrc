@@ -125,14 +125,20 @@ bindkey '\e[3~' delete-char # Del
 bindkey '\e[6~' end-of-history
 bindkey '\e[5~' beginning-of-history
 
-[ -f ~/.aliases.local.zsh ] && source ~/.aliases.local.zsh
-[ -f ~/.zsh/lib/aliases.zsh ] && source ~/.zsh/lib/aliases.zsh
-[ -f ~/.zsh/lib/fzf.zsh ] && source ~/.zsh/lib/fzf.zsh
-[ -f ~/.zsh/lib/fzf-forgit.zsh ] && source ~/.zsh/lib/fzf-forgit.zsh
+# Create ~/.cache folder structure
+[ ! -d $HOME/.cache ] && mkdir -p $HOME/.cache
+[ ! -d $HOME/.cache/bat ] && mkdir -p $HOME/.cache/bat
+[ ! -d $HOME/.cache/lynx ] && mkdir -p $HOME/.cache/lynx
+[ ! -d $HOME/.cache/tmux ] && mkdir -p $HOME/.cache/tmux
+[ ! -d $HOME/.cache/tmux/tmux-resurrect ] && mkdir -p $HOME/.cache/tmux/tmux-resurrect
 
-[[ -f $HOME/.profile ]] && source $HOME/.profile
-[[ -f $HOME/.user_profile ]] && source $HOME/.user_profile
-[[ -f $HOME/.zshrc.local ]] && source $HOME/.zshrc.local
+[ -f $HOME/.aliases.local.zsh ] && source $HOME/.aliases.local.zsh
+[ -f $HOME/.zsh/lib/aliases.zsh ] && source $HOME/.zsh/lib/aliases.zsh
+[ -f $HOME/.zsh/lib/fzf.zsh ] && source $HOME/.zsh/lib/fzf.zsh
+[ -f $HOME/.zsh/lib/fzf-forgit.zsh ] && source $HOME/.zsh/lib/fzf-forgit.zsh
+[ -f $HOME/.profile ] && source $HOME/.profile
+[ -f $HOME/.user_profile ] && source $HOME/.user_profile
+[ -f $HOME/.zshrc.local ] && source $HOME/.zshrc.local
 
 if [[ "$TERM" != "screen-256color" ]]; then
     ts "$USER"
