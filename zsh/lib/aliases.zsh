@@ -1,10 +1,11 @@
 alias e=exit
 alias ls='ls -G'
-alias ls=exa
-alias ll="exa -bghHliS --git"
-alias history-stat="history | awk '{print \$2}' | sort | uniq -c | sort -n -r | head"
+alias ls='exa'
+alias l='exa -lah'
+alias ll='exa -bghHliS --git'
+alias history-stat='history | awk '{print \$2}' | sort | uniq -c | sort -n -r | head'
 
-alias zs="source ~/.zshrc && clear"
+alias zs='source ~/.zshrc && clear'
 
 alias ag='ag -U'
 

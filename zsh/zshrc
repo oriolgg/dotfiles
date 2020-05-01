@@ -126,9 +126,9 @@ bindkey '\e[6~' end-of-history
 bindkey '\e[5~' beginning-of-history
 
 [ -f ~/.aliases.local.zsh ] && source ~/.aliases.local.zsh
-[ -f ~/.zsh/funcalias/aliases.zsh ] && source ~/.zsh/funcalias/aliases.zsh
-[ -f ~/.zsh/funcalias/fzf.zsh ] && source ~/.zsh/funcalias/fzf.zsh
-[ -f ~/.zsh/funcalias/fzf-forgit.zsh ] && source ~/.zsh/funcalias/fzf-forgit.zsh
+[ -f ~/.zsh/lib/aliases.zsh ] && source ~/.zsh/lib/aliases.zsh
+[ -f ~/.zsh/lib/fzf.zsh ] && source ~/.zsh/lib/fzf.zsh
+[ -f ~/.zsh/lib/fzf-forgit.zsh ] && source ~/.zsh/lib/fzf-forgit.zsh
 
 [[ -f $HOME/.profile ]] && source $HOME/.profile
 [[ -f $HOME/.user_profile ]] && source $HOME/.user_profile
