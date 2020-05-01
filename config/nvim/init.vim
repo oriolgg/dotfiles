@@ -58,11 +58,10 @@ call plug#end()
 """""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Creates necessary folders
-:silent exec "!mkdir -p $HOME.'/.cache/vim/vim_undo'"
-:silent exec "!mkdir -p $HOME.'/.cache/vim/vim_view'"
-:silent exec "!mkdir -p $HOME.'/.cache/vim/vim_sessions'"
-:silent exec "!mkdir -p $HOME.'/.cache/vim/vim_sessions'"
-:silent exec "!mkdir -p $HOME.'/.cache/vim/miniyank/miniyank.mpack'"
+:silent exec "!mkdir -p $HOME'/.cache/nvim/nvim_undo'"
+:silent exec "!mkdir -p $HOME'/.cache/nvim/nvim_view'"
+:silent exec "!mkdir -p $HOME'/.cache/nvim/nvim_sessions'"
+:silent exec "!mkdir -p $HOME'/.cache/nvim/miniyank'"
 
 " Closes the focused window and its buffer if this is not loaded into another window
 function! CloseWindowOrKillBuffer()
@@ -163,11 +162,11 @@ set nospell                                              " Don't check spell by 
 set splitright splitbelow                                " Opens new windows on the right and below
 set switchbuf=usetab                                     " If a opened buffer is already open, witches to the window that contains it
 set tags=./tags;/
-set undodir=~/.cache/vim/vim_undo                        " Undo folder
+set undodir=~/.cache/nvim/nvim_undo                        " Undo folder
 set undofile                                             " Persistent undo for buffers
 set undolevels=10000                                     " Undo level
 set undoreload=10000                                     " Redo level
-set viewdir=~/.cache/vim/vim_view                          " View folder
+set viewdir=~/.cache/nvim/nvim_view                          " View folder
 set wildignore=*/tmp/,*/.git/*,*.so,*.swp,*.zip,*.pdf,*.bak,*.pyc,*.pyo,*.class,*.tmp,*~      " Ignore file types
 set wildmenu                                             " Show a navigable menu for tab completion on command line
 set wildmode=full
@@ -380,7 +379,7 @@ let g:undotree_DiffpanelHeight = 15
 let g:undotree_SetFocusWhenToggle = 1
 
 " vim-session
-let g:session_directory = '~/.cache/vim/vim_sessions'
+let g:session_directory = '~/.cache/nvim/nvim_sessions'
 let g:session_autoload = 'yes'
 let g:session_autosave = 'yes'
 let g:session_persist_font = 0
@@ -399,7 +398,7 @@ xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
 
 " miniyank
-let g:miniyank_filename = $HOME.'/.cache/vim/miniyank/miniyank.mpack'
+let g:miniyank_filename = $HOME.'/.cache/nvim/miniyank/miniyank'
 let g:miniyank_maxitems = 100
 
 function! FZFYankList() abort

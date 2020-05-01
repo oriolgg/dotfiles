@@ -19,42 +19,38 @@ brew install "git"
 
 git clone https://github.com/oriolgg/dotfiles ~/.dotfiles --recursive
 
-# Installs brew and the default formulas
-/bin/bash ~/.dotfiles/brew.sh
-
-# Installs brew and the default cask formulas
-/bin/bash ~/.dotfiles/brew-cask.sh
+# Installs brew and formulas and casks
+/bin/bash ~/.dotfiles/install/brew.sh
+/bin/bash ~/.dotfiles/install/brew-cask.sh
 
 # Change the default shell
 chsh -s /bin/zsh
 
-ln -s ~/.dotfiles/ignore ~/.ignore
-ln -s ~/.dotfiles/aliases.sh ~/.aliases.sh
-ln -s ~/.dotfiles/config/applescript ~/.applescript
+cp ~/.dotfiles/git/gitconfig ~/.gitconfig
 ln -s ~/.dotfiles/bin ~/.bin
-ln -s ~/.dotfiles/git/gitconfig ~/.gitconfig
+ln -s ~/.dotfiles/ctags.d ~/.ctags.d
 ln -s ~/.dotfiles/git/gitignore_global ~/.gitignore_global
-ln -s ~/.dotfiles/config/nvim ~/.vim
-ln -s ~/.dotfiles/config/nvim/init.vim ~/.vimrc
-ln -s ~/.dotfiles/config/nvim/xvimrc ~/.xvimrc
+
+ln -s ~/.dotfiles/config ~/.config
+ln -s ~/.config/nvim ~/.vim
+ln -s ~/.config/nvim/init.vim ~/.vimrc
+ln -s ~/.config/nvim/xvimrc ~/.ideavimrc
+ln -s ~/.config/nvim/xvimrc ~/.xvimrc
+ln -s ~/.config/qutebrowser ~/.qutebrowser
+ln -s ~/.config/rg/ignore ~/.ignore
 
 ln -s ~/.dotfiles/zsh ~/.zsh
-ln -s ~/.dotfiles/zsh/zshrc ~/.zshrc
+ln -s ~/.zsh/oh-my-zsh ~/.oh-my-zsh
+ln -s ~/.zsh/zshrc ~/.zshrc
+cp -r ~/.dotfiles/cache ~/.cache
 
 ln -s ~/.dotfiles/term-preferences/com.pancake.therm.plist ~/Library/Preferences/com.pancake.therm.plist
 ln -s ~/.dotfiles/term-preferences/com.qvacua.VimR.plist ~/Library/Preferences/com.qvacua.VimR.plist
 
-ln -s ~/.dotfiles/ctags.d ~/.ctags.d
-
-# Config folder as it should be
-ln -s ~/.dotfiles/config ~/.config
-ln -s ~/.config/qutebrowser ~/.qutebrowser
-
 # Set default osx defaults
-/bin/bash ~/.dotfiles/osx-defaults.sh
-/usr/local/opt/fzf/install --all
+/bin/bash ~/.dotfiles/install/osx-defaults.sh
 
-$(brew --prefix)/opt/fzf/install
+$(brew --prefix)/opt/fzf/install --all
 
 # Zsh Plugins
 ln -s ~/.dotfiles/zsh/plugins/fzf-tab ~/.zsh/oh-my-zsh/custom/plugins/fzf-tab

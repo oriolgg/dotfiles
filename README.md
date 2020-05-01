@@ -1,6 +1,6 @@
 # Readme #
 
-This dotfiles include my configuration for [Zsh][zsh], [tmux][tmux] and [Vim][vim].
+This dotfiles include my configuration for [Zsh][zsh], [tmux][tmux] and [Neovim][nvim].
 
 The configuration of each one is in a folder with its name.
 
@@ -45,30 +45,33 @@ Make zsh your default shell:
 
 Finally, you just need to create some symlinks:
 
-    ln -s ~/.dotfiles/agignore ~/.agignore
-    ln -s ~/.dotfiles/bash/profile ~/.profile
-    ln -s ~/.dotfiles/ctags ~/.ctags
-    ln -s ~/.dotfiles/git/gitconfig ~/.gitconfig
+    cp ~/.dotfiles/git/gitconfig ~/.gitconfig
+    ln -s ~/.dotfiles/bin ~/.bin
+    ln -s ~/.dotfiles/ctags.d ~/.ctags.d
     ln -s ~/.dotfiles/git/gitignore_global ~/.gitignore_global
-    ln -s ~/.dotfiles/tmux/tmux-vim-select-pane /usr/local/bin/tmux-vim-select-pane
-    ln -s ~/.dotfiles/tmux ~/.tmux
-    ln -s ~/.dotfiles/tmux/tmux.conf ~/.tmux.conf
-    ln -s ~/.dotfiles/tmux/tmux-osx.conf ~/.tmux-osx.conf
-    ln -s ~/.dotfiles/vim ~/.vim
-    ln -s ~/.dotfiles/vim/gvimrc ~/.gvimrc
-    ln -s ~/.dotfiles/vim/vimrc ~/.vimrc
-    ln -s ~/.dotfiles/zsh/oh-my-zsh ~/.oh-my-zsh
-    ln -s ~/.dotfiles/zsh/zshrc ~/.zshrc
-    ln -s ~/.dotfiles/zsh/zshrc-osx ~/.zshrc-osx
+    
+    ln -s ~/.dotfiles/config ~/.config
+    ln -s ~/.config/nvim ~/.vim
+    ln -s ~/.config/nvim/init.vim ~/.vimrc
+    ln -s ~/.config/nvim/xvimrc ~/.ideavimrc
+    ln -s ~/.config/nvim/xvimrc ~/.xvimrc
+    ln -s ~/.config/qutebrowser ~/.qutebrowser
+    ln -s ~/.config/rg/ignore ~/.ignore
+    
+    ln -s ~/.dotfiles/zsh ~/.zsh
+    ln -s ~/.zsh/oh-my-zsh ~/.oh-my-zsh
+    ln -s ~/.zsh/zshrc ~/.zshrc
+    cp -r ~/.dotfiles/cache ~/.cache
 
-[zsh]: http://www.zsh.org/
+[zsh]: http://zsh.org/
 [tmux]: http://tmux.sourceforge.net/
-[vim]: http://www.vim.org/
+[nvim]: https://neovim.io/
 [xcode]: https://developer.apple.com/xcode/
-[iterm2]: http://www.iterm2.com/#/section/home
+[iterm2]: http://iterm2.com/
 [homebrew]: http://brew.sh/
 [git]: http://git-scm.com/
-[macvim]: https://code.google.com/p/macvim/
-[silversercher]: https://github.com/ggreer/the_silver_searcher
+[macvim]: https://macvim-dev.github.io/macvim
+[vimr]: http://vimr.org/
+[ripgrep]: https://github.com/BurntSushi/ripgrep
 [reattach-to-user-namespace]: https://github.com/ChrisJohnsen/tmux-MacOSX-pasteboard
 
