@@ -2,10 +2,7 @@
 " vim/neovim config file
 """"""""""""""""""""""""""""""""""""""""""""""""""
 
-set inccommand=nosplit
-
 " vim-plug: Plugins section
-
 call plug#begin('~/.config/nvim/plugged')
 
   " User Interface
@@ -62,6 +59,7 @@ call plug#end()
 :silent exec "!mkdir -p $HOME'/.cache/nvim/nvim_view'"
 :silent exec "!mkdir -p $HOME'/.cache/nvim/nvim_sessions'"
 :silent exec "!mkdir -p $HOME'/.cache/nvim/miniyank'"
+:silent exec "!mkdir -p $HOME'/.cache/nvim/shada'"
 
 " Closes the focused window and its buffer if this is not loaded into another window
 function! CloseWindowOrKillBuffer()
@@ -103,7 +101,14 @@ if ! &diff
 endif
 
 " Do not create .viminfo file
-set viminfo=""
+if !has('nvim')
+  set viminfo+=n~/.cache/nvim/viminfo
+else
+  " Shows the effects of a command incrementally, as you type.
+  set inccommand=nosplit
+
+  set shada+=n~/.cache/nvim/shada/main.shada
+endif
 
 " Don't want netrw
 let loaded_netrw = 0
@@ -182,20 +187,16 @@ endif
 if !has('gui_vimr')
     set guifont=Fira\ Code:h11
 endif
-if !has('nvim')
-  set term=screen-256color
-endif
+
 set termguicolors
 let base16colorspace=256
 set background=dark
 colorscheme solarized8
 highlight SpecialKey ctermbg=NONE guibg=NONE
 
-" Highlights selection in orange
-hi Visual cterm=reverse guifg=#b4881d guibg=#022b35
+" Highlights selection in blue
+highlight Visual guifg=#1488ad guibg=#022b35
 if !has('gui_running')
-  highlight Normal ctermbg=NONE guibg=NONE
-
   " Specific gui options
   set visualbell
   set guioptions-=rL
