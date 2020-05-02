@@ -53,6 +53,7 @@ apps=(
     rename
     ripgrep
     sqlite
+    terminal-notifier
     tmux
     tmuxinator
     tree
@@ -62,7 +63,6 @@ apps=(
     vifm
     wifi-password
     youtube-dl
-    z
 
 )
 

@@ -59,19 +59,24 @@ setopt notify                   # report the status of backgrounds jobs immediat
 setopt print_exit_value         # print return value if non-zero
 setopt prompt_subst             # Adds support for command substitution
 
+DISABLE_MAGIC_FUNCTIONS=true
+
 plugins=(
+    alias-finder
+    bgnotify
     colored-man-pages
     command-not-found
     extract
+    fast-syntax-highlighting
     fzf-tab
+    gitignore
+    history-substring-search
     jsontools
     sudo
+    urltools
     web-search
     z
     zsh-autosuggestions
-    # zsh-completions
-    fast-syntax-highlighting
-    zsh-history-substring-search
 )
 
 DISABLE_AUTO_TITLE="true"
@@ -102,6 +107,7 @@ export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 # Utilitza Solarized dark per veure els fitxers
 export BAT_THEME="solarizedDark"
 
+export _Z_DATA="$HOME/.cache/zsh/z"
 
 
 
@@ -173,3 +179,12 @@ fi
 # zsh-history-substring-search key bindings
 bindkey '^P' history-substring-search-up
 bindkey '^N' history-substring-search-down
+
+
+# Plugin configurations
+function bgnotify_formatted {
+  ## $1=exit_status, $2=command, $3=elapsed_time
+  [ $1 -eq 0 ] && title="Has finished OK" || title="Has finished KO"
+  bgnotify "$title -- after $3 s" "$2";
+}
+
