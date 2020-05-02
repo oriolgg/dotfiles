@@ -4,37 +4,60 @@ ZSH=$HOME/.zsh/oh-my-zsh
 # Set name of the theme to load.
 ZSH_THEME="oriol"
 
+# Create ~/.cache folder structure
+[ ! -d $HOME/.cache ] && mkdir -p $HOME/.cache
+[ ! -d $HOME/.cache/bat ] && mkdir -p $HOME/.cache/bat
+[ ! -d $HOME/.cache/lynx ] && mkdir -p $HOME/.cache/lynx
+[ ! -d $HOME/.cache/tmux ] && mkdir -p $HOME/.cache/tmux
+[ ! -d $HOME/.cache/tmux/tmux-resurrect ] && mkdir -p $HOME/.cache/tmux/tmux-resurrect
+[ ! -d $HOME/.cache/zsh ] && mkdir -p $HOME/.cache/zsh
+
+##
+# History
+##
+HISTFILE=$HOME/.cache/zsh/history
 HISTSIZE=50000
-SAVEHIST=10000
-setopt EXTENDED_HISTORY
-setopt HIST_EXPIRE_DUPS_FIRST # If trim needed, do it for the dups first, nou unique
-setopt HIST_IGNORE_DUPS # if executing same command in a row, save it only once
-setopt HIST_IGNORE_SPACE # If a command starts with a space, do not save it
-setopt INC_APPEND_HISTORY # Save commands as soon as you run it
-setopt NO_SHARE_HISTORY # Do not share history between sessions
+SAVEHIST=50000
+setopt always_to_end            # when completing from the middle of a word, move the cursor to the end of the word    
+setopt append_history           # append
+setopt bang_hist                # !keyword
+setopt complete_in_word         # allow completion from within a word/phrase
+setopt completealiases          # complete alisases
+setopt correct                  # spelling correction for commands
+setopt extended_history         # save each command's beginning timestamp and the duration to the history file
+setopt hash_list_all            # hash everything before completion
+setopt hist_ignore_all_dups     # no duplicate
+setopt hist_ignore_space        # ignore space prefixed commands
+setopt hist_reduce_blanks       # trim blanks
+setopt hist_verify              # show before executing history commands
+setopt inc_append_history       # add commands as they are typed, don't wait until shell exit 
+setopt list_ambiguous           # complete as much of a completion until it gets ambiguous.
+setopt no_share_history         # share hist between sessions
 
-setopt AUTO_CD # If the executed command is not a normal command but a directory, cd to it
-setopt AUTO_PUSHD # Make cd push the old directory onto the directory stack
-setopt APPEND_HISTORY
-setopt PUSHD_IGNORE_DUPS # Don’t push multiple copies of the same directory onto the directory stack
-setopt PUSHDMINUS # Swaps the meaning of cd +1 and cd -1
-setopt AUTO_MENU # Automatically use menu completion after the second consecutive request for completion
-setopt ALWAYS_TO_END # The cursor is moved to the end of the word if either a single match is inserted or menu completion is performed
-setopt COMPLETE_IN_WORD # The cursor is not set to the end of the word if completion is started
-setopt FLOW_CONTROL # Disables the use of ⌃S to stop terminal output and the use of ⌃Q to resume it
-setopt MENU_COMPLETE # Prevents the completion menu from showing even if AUTO_MENU is set
-setopt PROMPT_SUBST # Adds support for command substitution
+##
+# Pushd
+##
+setopt auto_pushd               # make cd push old dir in dir stack
+setopt pushd_ignore_dups        # no duplicates in dir stack
+setopt pushd_silent             # no dir stack after pushd or popd
+setopt pushd_to_home            # `pushd` = `pushd $HOME`
 
-# COMPLETION SETTINGS
-# fpath=(~/.dotfiles/zsh/completions $fpath) 
-# zstyle ":completion:*" verbose yes
-# zstyle ":completion:*:descriptions" format "%B%d%b"
-# zstyle ":completion:*:messages" format "%d"
-# zstyle ":completion:*:warnings" format "No matches for: %d"
-# zstyle ":completion:*" group-name ”
-
-# Set to this to use case-sensitive completion
-CASE_SENSITIVE="true"
+##
+# Various
+##
+setopt auto_cd                  # if command is a path, cd into it
+setopt auto_menu                # Automatically use menu completion after the second consecutive request for completion
+setopt auto_remove_slash        # self explicit
+setopt chase_links              # resolve symlinks
+setopt extended_glob            # activate complex pattern globbing
+setopt flow_control             # Disables the use of ⌃S to stop terminal output and the use of ⌃Q to resume it
+setopt glob_dots                # include dotfiles in globbing
+setopt hist_expire_dups_first   # If trim needed, do it for the dups first, nou unique
+setopt hist_ignore_dups         # if executing same command in a row, save it only once
+setopt menu_complete            # Prevents the completion menu from showing even if AUTO_MENU is set
+setopt notify                   # report the status of backgrounds jobs immediately
+setopt print_exit_value         # print return value if non-zero
+setopt prompt_subst             # Adds support for command substitution
 
 plugins=(
     colored-man-pages
@@ -47,14 +70,12 @@ plugins=(
     z
     zsh-autosuggestions
     # zsh-completions
-    zsh-syntax-highlighting
+    fast-syntax-highlighting
     zsh-history-substring-search
 )
-# autoload -U compinit && compinit
 
 DISABLE_AUTO_TITLE="true"
 autoload -U zmv
-setopt correct
 
 # Al navegar per l'historial de comandes, deixar el cursor al final de la comanda
 unsetopt global_rcs
@@ -81,12 +102,22 @@ export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 # Utilitza Solarized dark per veure els fitxers
 export BAT_THEME="solarizedDark"
 
+
+
+
+
+# Bind keys for widgets
+
 bindkey -v 
 
 # Allow using C-s in terminal
 bindkey -r '\C-s'
 stty -ixon
 stty stop undef
+
+# On autosugest command line, executes the current suggestion
+# bindkey '^ ' autosuggest-accept
+# bindkey '^[e' autosuggest-execute
 
 # vi style incremental search
 bindkey '^A' beginning-of-line
@@ -125,13 +156,6 @@ bindkey '\e[3~' delete-char # Del
 bindkey '\e[6~' end-of-history
 bindkey '\e[5~' beginning-of-history
 
-# Create ~/.cache folder structure
-[ ! -d $HOME/.cache ] && mkdir -p $HOME/.cache
-[ ! -d $HOME/.cache/bat ] && mkdir -p $HOME/.cache/bat
-[ ! -d $HOME/.cache/lynx ] && mkdir -p $HOME/.cache/lynx
-[ ! -d $HOME/.cache/tmux ] && mkdir -p $HOME/.cache/tmux
-[ ! -d $HOME/.cache/tmux/tmux-resurrect ] && mkdir -p $HOME/.cache/tmux/tmux-resurrect
-
 [ -f $HOME/.aliases.local.zsh ] && source $HOME/.aliases.local.zsh
 [ -f $HOME/.zsh/lib/aliases.zsh ] && source $HOME/.zsh/lib/aliases.zsh
 [ -f $HOME/.zsh/lib/fzf.zsh ] && source $HOME/.zsh/lib/fzf.zsh
@@ -139,6 +163,8 @@ bindkey '\e[5~' beginning-of-history
 [ -f $HOME/.profile ] && source $HOME/.profile
 [ -f $HOME/.user_profile ] && source $HOME/.user_profile
 [ -f $HOME/.zshrc.local ] && source $HOME/.zshrc.local
+
+source $HOME/.zsh/lib/autoload/*.zsh
 
 if [[ "$TERM" != "screen-256color" ]]; then
     ts "$USER"

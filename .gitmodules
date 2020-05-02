@@ -115,3 +115,6 @@
 [submodule "config/nvim/plugged/vim-repeat"]
 	path = config/nvim/plugged/vim-repeat
 	url = https://github.com/tpope/vim-repeat
+[submodule "zsh/plugins/fast-syntax-highlighting"]
+	path = zsh/plugins/fast-syntax-highlighting
+	url = https://github.com/zdharma/fast-syntax-highlighting

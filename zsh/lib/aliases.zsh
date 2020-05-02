@@ -1,19 +1,25 @@
 alias e=exit
-alias ls='ls -G'
-alias ls='exa'
-alias l='exa -lah'
-alias ll='exa -bghHliS --git'
-alias history-stat='history | awk '{print \$2}' | sort | uniq -c | sort -n -r | head'
-
 alias zs='source ~/.zshrc && clear'
 
-alias ag='ag -U'
+# Brew
+alias bup='brew update && brew upgrade && brew cu -ay && brew cleanup && brew doctor'
+alias br='brew'
+alias bi='brew info'
+alias bl='brew list'
+alias bs='brew search'
+alias bis='brew install'
+alias bus='brew uninstall'
+alias bci='brew cask info'
+alias bcis='brew cask install'
+alias bcus='brew cask uninstall'
+
+alias l='exa -lahH --git'
+alias lt='exa --tree --level=2'
 
 alias tmux='tmux -f ~/.config/tmux/tmux.conf'
 alias tk='tmux list-panes -s -F '\''#{pane_pid} #{pane_current_command}'\'' | grep -v tmux | awk '\''{print $1}'\'' | xargs kill -9 ; e'
 alias ts='tmux-start'
 
-alias brewup=' brew update &&  brew upgrade &&  brew cleanup &&  brew cu -ay &&  brew cleanup &&  brew doctor'
 
 # Git
 alias gcd='git checkout develop'

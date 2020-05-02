@@ -53,6 +53,7 @@ $(brew --prefix)/opt/fzf/install --all
 bat cache --build
 
 # Zsh Plugins
+ln -s ~/.dotfiles/zsh/plugins/fast-syntax-highlighting ~/.zsh/oh-my-zsh/custom/plugins/fast-syntax-highlighting
 ln -s ~/.dotfiles/zsh/plugins/fzf-tab ~/.zsh/oh-my-zsh/custom/plugins/fzf-tab
 ln -s ~/.dotfiles/zsh/plugins/zsh-autosuggestions ~/.zsh/oh-my-zsh/custom/plugins/zsh-autosuggestions
 ln -s ~/.dotfiles/zsh/plugins/zsh-completions ~/.zsh/oh-my-zsh/custom/plugins/zsh-completions

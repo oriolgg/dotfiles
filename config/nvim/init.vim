@@ -197,6 +197,9 @@ highlight SpecialKey ctermbg=NONE guibg=NONE
 " Highlights selection in blue
 highlight Visual guifg=#1488ad guibg=#022b35
 if !has('gui_running')
+  " Lighter background when out of vim to focus on the active panel
+  highlight Normal ctermbg=NONE guibg=NONE
+
   " Specific gui options
   set visualbell
   set guioptions-=rL
@@ -324,6 +327,9 @@ nnoremap gsv :so $MYVIMRC<cr>
 
 " Repeats last command from command line
 nnoremap :: @:
+
+" Don't need the command history list
+map q: :q
 
 " New search result centered vertically in the window
 nnoremap n nzz
