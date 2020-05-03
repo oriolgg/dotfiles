@@ -56,9 +56,9 @@ bat cache --build
 ln -s ~/.dotfiles/zsh/plugins/fast-syntax-highlighting ~/.zsh/oh-my-zsh/custom/plugins/fast-syntax-highlighting
 ln -s ~/.dotfiles/zsh/plugins/fzf-tab ~/.zsh/oh-my-zsh/custom/plugins/fzf-tab
 ln -s ~/.dotfiles/zsh/plugins/zsh-autosuggestions ~/.zsh/oh-my-zsh/custom/plugins/zsh-autosuggestions
-ln -s ~/.dotfiles/zsh/plugins/zsh-completions ~/.zsh/oh-my-zsh/custom/plugins/zsh-completions
 ln -s ~/.dotfiles/zsh/plugins/zsh-history-substring-search ~/.zsh/oh-my-zsh/custom/plugins/zsh-history-substring-search
 ln -s ~/.dotfiles/zsh/plugins/zsh-syntax-highlighting ~/.zsh/oh-my-zsh/custom/plugins/zsh-syntax-highlighting
+ln -s ~/.dotfiles/zsh/plugins/zsh-vim-mode ~/.zsh/oh-my-zsh/custom/plugins/zsh-vim-mode
 
 # Zsh Theme
 ln -s  ~/.dotfiles/zsh/themes/oriol.zsh-theme ~/.zsh/oh-my-zsh/custom/themes/oriol.zsh-theme

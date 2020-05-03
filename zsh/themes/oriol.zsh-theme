@@ -18,8 +18,7 @@ PROMPT='
 ╭ %{$fg[yellow]%}%n%{$reset_color%} in %{$fg[green]%}$(_pwd_prompt_info)$(_git_prompt_info)%{$reset_color%}
 ╰ %{$fg[cyan]%}$(_virtualenv_prompt_info)%{$reset_color%}➤ '
 
-ZSH_THEME_GIT_PROMPT_PREFIX="$reset_color on $fg[magenta]"
+ZSH_THEME_GIT_PROMPT_PREFIX="$reset_color on $fg[cyan]"
 ZSH_THEME_GIT_PROMPT_SUFFIX=""
-ZSH_THEME_GIT_PROMPT_DIRTY="$fg[yellow]✗"
-ZSH_THEME_GIT_PROMPT_CLEAN=""
-
+ZSH_THEME_GIT_PROMPT_DIRTY="$fg[red] ✗"
+ZSH_THEME_GIT_PROMPT_CLEAN="$fg[cyan] ✔"

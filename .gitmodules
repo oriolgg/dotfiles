@@ -67,9 +67,6 @@
 [submodule "config/nvim/plugged/targets.vim"]
 	path = config/nvim/plugged/targets.vim
 	url = https://github.com/wellle/targets.vim
-[submodule "zsh/plugins/zsh-completions"]
-	path = zsh/plugins/zsh-completions
-	url = https://github.com/zsh-users/zsh-completions
 [submodule "zsh/plugins/zsh-autosuggestions"]
 	path = zsh/plugins/zsh-autosuggestions
 	url = https://github.com/zsh-users/zsh-autosuggestions
@@ -112,3 +109,6 @@
 [submodule "zsh/plugins/fast-syntax-highlighting"]
 	path = zsh/plugins/fast-syntax-highlighting
 	url = https://github.com/zdharma/fast-syntax-highlighting
+[submodule "zsh/plugins/zsh-vim-mode"]
+	path = zsh/plugins/zsh-vim-mode
+	url = https://github.com/softmoth/zsh-vim-mode
