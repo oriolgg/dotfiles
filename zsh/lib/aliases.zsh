@@ -41,8 +41,6 @@ alias v=nvim
 alias vi=nvim
 alias vim=nvim
 
-vf() { fzf -m | xargs -o $EDITOR ;}
-
 alias afk="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend"
 
 alias lynx='lynx -cfg=$HOME/.config/lynx/lynx.cfg -lss=$HOME/.config/lynx/lynx.lss -session=$HOME/.cache/lynx/session'
@@ -57,6 +55,11 @@ manp() {
 rmdsstore() {
     find "${@:-.}" -type f -name .DS_Store -delete
 }
+# Create a new directory and enter it
+mkd() {
+    mkdir -p "$@" && cd "$_";
+}
+vf() { fzf -m | xargs -o $EDITOR ;}
 
 # Tmuxinator aliases
 # alias txs='tmuxinator start'
