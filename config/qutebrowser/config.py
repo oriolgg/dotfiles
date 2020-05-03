@@ -3,8 +3,8 @@ c.auto_save.session = True
 
 c.bindings.key_mappings['<Meta-N>'] = '<Ctrl-N>'
 
-config.bind('<Shift-Q>', ':close')
-config.bind('<Meta-W>', ':close')
+config.bind('<Shift-Q>', ':tab-close')
+config.bind('<Meta-W>', ':tab-close')
 config.bind('<Meta-1>', ':tab-focus 1')
 config.bind('<Meta-2>', ':tab-focus 2')
 config.bind('<Meta-3>', ':tab-focus 3')
