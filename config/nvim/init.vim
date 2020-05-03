@@ -281,6 +281,9 @@ cmap w!! w !sudo tee % >/dev/null
 
 vnoremap <leader>? :Go <cr>
 
+" Paste on visual mode does not substitute the buffer
+vmap p "_dP
+
 
 """"""""""""""""""""""""""""""""""""""""""""""""""
 " Normal mode custom mappings
@@ -323,7 +326,9 @@ map gb :bnext<cr>
 map gB :bprevious<cr>
 
 " Source vimrc
-nnoremap gsv :so $MYVIMRC<cr>
+nmap <silent> <leader>ev :e $MYVIMRC<cr>
+nmap <silent> <leader>sv :e $MYVIMRC<cr>
+nmap <silent> <leader>ez :e ~/.zshrc<cr>
 
 " Repeats last command from command line
 nnoremap :: @:
