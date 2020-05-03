@@ -174,7 +174,7 @@ bindkey '\e[5~' beginning-of-history
 source $HOME/.zsh/lib/autoload/*.zsh
 
 if [[ "$TERM" != "screen-256color" ]]; then
-    ts "$USER"
+    tmux-start "$USER"
 fi
 
 # zsh-history-substring-search key bindings

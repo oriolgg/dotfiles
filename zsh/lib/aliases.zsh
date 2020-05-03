@@ -17,9 +17,6 @@ alias l='exa -lahH --git'
 alias lt='exa --tree --level=2'
 
 alias tmux='tmux -f ~/.config/tmux/tmux.conf'
-alias tk='tmux list-panes -s -F '\''#{pane_pid} #{pane_current_command}'\'' | grep -v tmux | awk '\''{print $1}'\'' | xargs kill -9 ; e'
-alias ts='tmux-start'
-
 
 # Git
 alias gcd='git checkout develop'
@@ -32,8 +29,18 @@ alias go='git commit -m'
 alias gc='git checkout'
 alias gmd='git-merge-develop'
 alias gbpurge='git branch --merged develop | grep -v "\*" | grep -v "master" | grep -v "develop" | grep -v "staging" | xargs -n 1 git branch -d'
+alias gupurge='gf ; gcm ; gl ; gcd ; gl ; gbpurge'
 alias gmodpull='git submodule foreach git pull origin master'
-alias gu='gf ; gcm ; gl ; gcd ; gl ; gbpurge'
+
+git_remove_submodule() {
+    [[ ! -d "$1" ]] && echo "$1 is not a directory" && return
+    [[ ! -d ".git/modules/$1" ]] && echo "$1 is not a git submodule" && return
+    [[ ! -f "$1/.git" ]] && echo "$1 is not a git submodule" && return
+
+    git submodule deinit -f -- "$1"
+    git rm -f "$1"
+    rm -rf ".git/modules/$1"
+}
 
 alias edf='cd $HOME/.dotfiles && nvim -S $HOME/.cache/nvim/nvim_sessions/dotfiles.vim'
 

@@ -92,7 +92,7 @@ let mapleader = " "
 " When opening a buffer it will move the cursor at the same place when we closed the buffer
 autocmd BufWinLeave *.* silent! mkview
 autocmd BufWinEnter *.* silent! loadview
-autocmd FocusLost *.* silent! :wa
+" autocmd FocusLost *.* silent! :wa
 
 " Maintains the same position when we open a buffer in the window as we leave it
 if ! &diff
