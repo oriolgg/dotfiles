@@ -110,59 +110,6 @@ export BAT_THEME="solarizedDark"
 
 export _Z_DATA="$HOME/.cache/zsh/z"
 
-
-
-
-# Bind keys for widgets
-
-bindkey -v 
-
-# Allow using C-s in terminal
-bindkey -r '\C-s'
-stty -ixon
-stty stop undef
-
-# On autosugest command line, executes the current suggestion
-# bindkey '^ ' autosuggest-accept
-# bindkey '^[e' autosuggest-execute
-
-# vi style incremental search
-bindkey '^A' beginning-of-line
-bindkey '^E' end-of-line
-
-bindkey '^B' backward-word
-bindkey '^H' backward-kill-word
-
-# Arrow up
-bindkey '\e0A' history-search-backward
-bindkey '\e[A' history-search-backward
-
-# Arrow down
-bindkey '\e0B' history-search-forward
-bindkey '\e[B' history-search-forward
-
-# Arrow right
-bindkey '\e0C' forward-char
-bindkey '\e[C' forward-char
-
-# Arrow left
-bindkey '\e0D' backward-char
-bindkey '\e[D' backward-char
-
-# Same as above, but with more vim-like traversal
-bindkey '\C-k' history-search-backward
-bindkey '\C-j' history-search-forward
-bindkey '\C-h' backward-char
-bindkey '\C-l' forward-char
-
-bindkey '\e[1~' beginning-of-line
-bindkey '\e[4~' end-of-line
-bindkey '\eOF' end-of-line
-bindkey '\eOH' beginning-of-line
-bindkey '\e[3~' delete-char # Del
-bindkey '\e[6~' end-of-history
-bindkey '\e[5~' beginning-of-history
-
 [ -f $HOME/.aliases.local.zsh ] && source $HOME/.aliases.local.zsh
 [ -f $HOME/.zsh/lib/aliases.zsh ] && source $HOME/.zsh/lib/aliases.zsh
 [ -f $HOME/.zsh/lib/fzf.zsh ] && source $HOME/.zsh/lib/fzf.zsh
@@ -177,10 +124,40 @@ if [[ "$TERM" != "screen-256color" ]]; then
     tmux-start "$USER"
 fi
 
-# zsh-history-substring-search key bindings
+########################################
+# Bind keys for widgets
+########################################
+bindkey -v 
+
+stty -ixon
+stty stop undef
+
+bindkey '^A' beginning-of-line
+bindkey '^E' end-of-line
+
+bindkey '\eF' forward-word
+bindkey '\eB' backward-word
+
+bindkey '^B' backward-kill-word
+
 bindkey '^P' history-substring-search-up
 bindkey '^N' history-substring-search-down
 
+# Arrow up
+bindkey '\e0A' up-line-or-history
+bindkey '\e[A' up-line-or-history
+
+# Arrow down
+bindkey '\e0B' down-line-or-history
+bindkey '\e[B' down-line-or-history
+
+# Arrow right
+bindkey '\e0C' forward-char
+bindkey '\e[C' forward-char
+
+# Arrow left
+bindkey '\e0D' backward-char
+bindkey '\e[D' backward-char
 
 # Plugin configurations
 function bgnotify_formatted {

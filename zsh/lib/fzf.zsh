@@ -10,15 +10,22 @@ fi
 
 # Key bindings
 # ------------
-# [Ctrl-T] -> Posa a la línia de comandes el nom del fitxer o directori seleccionat
-# [Alt-C] -> Llista directoris dins del directori actual i fa cd a ell. Si hi havi alguna cosa escrita, ho manté un cop s'ha fet cd al directori
-source "/usr/local/opt/fzf/shell/key-bindings.zsh"
-
 # Obre fzf amb l'historial de comandes
-bindkey '^Y' fzf-history-widget
-
-bindkey '^R' up-line-or-history
-bindkey '^F' down-line-or-history
+function history_with_fzf() {
+  local selected num
+  selected=( $(fc -rl 1 | perl -ne 'print if !$seen{($_ =~ s/^\s*[0-9]+\s+//r)}++' | fzf) )
+  local ret=$?
+  if [ -n "$selected" ]; then
+    num=$selected[1]
+    if [ -n "$num" ]; then
+      zle vi-fetch-history -n $num
+    fi
+  fi
+  zle reset-prompt
+  return $ret
+}
+zle -N history_with_fzf
+bindkey '^Y' history_with_fzf
 
 function cd_with_fzf() {
     cd "$(fd -t d | fzf --preview="tree -L 2 {}")"
@@ -27,6 +34,36 @@ function cd_with_fzf() {
 }
 zle -N cd_with_fzf
 bindkey '^T' cd_with_fzf
+
+__files_with_fzf_sel() {
+  eval "rg --files --hidden --glob '!.git/*'" | fzf -m | while read item; do
+    echo -n "${(q)item} "
+  done
+  local ret=$?
+  return $ret
+}
+
+files_with_fzf() {
+  LBUFFER="${LBUFFER}$(__files_with_fzf_sel)"
+  zle reset-prompt
+}
+zle     -N   files_with_fzf
+bindkey '^F' files_with_fzf
+
+__git_files_with_fzf_sel() {
+  eval "git ls-files" | fzf -m --preview="bat --style=numbers,changes --color=always {}" | while read item; do
+    echo -n "${(q)item} "
+  done
+  local ret=$?
+  return $ret
+}
+
+git_files_with_fzf() {
+  LBUFFER="${LBUFFER}$(__git_files_with_fzf_sel)"
+  zle reset-prompt
+}
+zle -N git_files_with_fzf
+bindkey '^G' git_files_with_fzf
 
 local color00='#022b35'
 local color01='#A7ADBA'
