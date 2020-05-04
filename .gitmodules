@@ -112,3 +112,9 @@
 [submodule "zsh/plugins/zsh-vim-mode"]
 	path = zsh/plugins/zsh-vim-mode
 	url = https://github.com/softmoth/zsh-vim-mode
+[submodule "config/nvim/plugged/vim-sneak"]
+	path = config/nvim/plugged/vim-sneak
+	url = https://github.com/justinmk/vim-sneak
+[submodule "config/nvim/plugged/vim-grepper"]
+	path = config/nvim/plugged/vim-grepper
+	url = https://github.com/mhinz/vim-grepper

@@ -15,7 +15,7 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'https://github.com/airblade/vim-gitgutter'          " Adds Git changes in lines
 
   " Fuzzy finder
-  Plug '/usr/local/opt/fzf'                                " Fuzzy finder in Vim
+  Plug '/usr/local/opt/fzf'                                 " Fuzzy finder in Vim
   Plug 'https://github.com/junegunn/fzf.vim'                " Extended Fuzzy finder commands
 
   " Intregration of Git
@@ -32,13 +32,14 @@ call plug#begin('~/.config/nvim/plugged')
   " Movement inside a buffer
   Plug 'https://github.com/Lokaltog/vim-easymotion'         " Improved movement and motion
   Plug 'https://github.com/chrisbra/matchit'                " Extended use for % command
+  Plug 'https://github.com/justinmk/vim-sneak'              " Extended use for % command
 
   " Other
-  Plug 'https://github.com/wellle/targets.vim'             " Adds text objects and improves the default ones
-  Plug 'https://github.com/vim-scripts/vim-g'              " Opens browser with the specified text
+  Plug 'https://github.com/wellle/targets.vim'              " Adds text objects and improves the default ones
+  Plug 'https://github.com/vim-scripts/vim-g'               " Opens browser with the specified text
     let g:vim_g_query_url = "https://duckduckgo.com/?q="
     let g:vim_g_command = "Go"
-  Plug 'https://github.com/mbbill/undotree'                " Shows undo tree for the current buffer
+  Plug 'https://github.com/mbbill/undotree'                 " Shows undo tree for the current buffer
   Plug 'https://github.com/pbrisbin/vim-mkdir'              " Creates all required folders when saving buffers
   Plug 'https://github.com/xolox/vim-session'               " Improves Vim session management
   Plug 'https://github.com/chrisbra/Colorizer'              " Colorizes all color codes and color names in the buffer
@@ -47,6 +48,7 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'https://github.com/tpope/vim-unimpaired'            " Mappings for common ex commands, line mappings (add before/after, movement), toggle vim options and encode/decode
   Plug 'https://github.com/bfredl/nvim-miniyank'            " Saves in disk yanked or deleted text so it will be shared between vim instances
   Plug 'https://github.com/vifm/vifm.vim'                   " Vim plugin that allows use of vifm as a file picker
+  Plug 'https://github.com/mhinz/vim-grepper'               " Multiple kind of greps, populates quickfix or location list
 
 call plug#end()
 
