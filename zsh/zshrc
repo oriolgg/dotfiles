@@ -111,14 +111,11 @@ export BAT_THEME="solarizedDark"
 export _Z_DATA="$HOME/.cache/zsh/z"
 
 [ -f $HOME/.aliases.local.zsh ] && source $HOME/.aliases.local.zsh
-[ -f $HOME/.zsh/lib/aliases.zsh ] && source $HOME/.zsh/lib/aliases.zsh
-[ -f $HOME/.zsh/lib/fzf.zsh ] && source $HOME/.zsh/lib/fzf.zsh
-[ -f $HOME/.zsh/lib/fzf-forgit.zsh ] && source $HOME/.zsh/lib/fzf-forgit.zsh
 [ -f $HOME/.profile ] && source $HOME/.profile
 [ -f $HOME/.user_profile ] && source $HOME/.user_profile
 [ -f $HOME/.zshrc.local ] && source $HOME/.zshrc.local
 
-source $HOME/.zsh/lib/autoload/*.zsh
+for f in ~/.zsh/autoload/*.zsh; do source $f; done
 
 if [[ "$TERM" != "screen-256color" ]]; then
     tmux-start "$USER"

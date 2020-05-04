@@ -9,8 +9,6 @@ fi
 [[ $- == *i* ]] && source "/usr/local/opt/fzf/shell/completion.zsh" 2> /dev/null
 
 # Key bindings
-# ------------
-# Obre fzf amb l'historial de comandes
 function history_with_fzf() {
   local selected num
   selected=( $(fc -rl 1 | perl -ne 'print if !$seen{($_ =~ s/^\s*[0-9]+\s+//r)}++' | fzf) )
