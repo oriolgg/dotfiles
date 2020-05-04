@@ -46,7 +46,6 @@ apps=(
     jq
     lynx
     neovim
-    python
     python3
     readline
     reattach-to-user-namespace

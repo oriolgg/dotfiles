@@ -1,34 +1,45 @@
 [core]
-	excludesfile = /Users/oriol/.gitignore_global
-	editor =  -v
+    excludesfile = /Users/oriol/.gitignore_global
+    editor =  -v
     pager = diff-so-fancy | less --tabs=4 -RFX
 [difftool "sourcetree"]
-	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-	path = 
-[mergetool "sourcetree"]
-	cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
-	trustExitCode = true
+    cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+    path = 
 [user]
-	name = Oriol Garcia
+    name = Oriol Garcia
 [color]
-	ui = true
+    ui = true
 [alias]
-	add = add -u
-	co = checkout
-	st = status
-	ci = commit
-	br = branch
-	discard = checkout -- .
+    add = add -u
+    co = checkout
+    st = status
+    ci = commit
+    br = branch
+    discard = checkout -- .
 [push]
-	default = current
+    default = current
 
 [init]
-	templatedir = ~/.git_template
+    templatedir = ~/.git_template
 [filter "lfs"]
-	clean = git-lfs clean %f
-	smudge = git-lfs smudge %f
-	required = true
+    clean = git-lfs clean %f
+    smudge = git-lfs smudge %f
+    required = true
 [credential]
-	helper = osxkeychain
+    helper = osxkeychain
 [commit]
-	template = /Users/oriol/.stCommitMsg
+    template = /Users/oriol/.stCommitMsg
+[diff]
+    tool = meld
+[difftool]
+    prompt = false
+[difftool "meld"]
+    trustExitCode = true
+    cmd = open -W -a Meld --args \"$LOCAL\" \"$PWD/$REMOTE\"
+[merge]
+    tool = meld
+[mergetool]
+    prompt = false
+[mergetool "meld"]
+    trustExitCode = true
+    cmd = open -W -a Meld --args --auto-merge \"$PWD/$LOCAL\" \"$PWD/$BASE\" \"$PWD/$REMOTE\" --output=\"$PWD/$MERGED\"
