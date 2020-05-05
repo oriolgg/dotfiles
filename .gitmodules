@@ -64,9 +64,6 @@
 [submodule "config/nvim/plugged/targets.vim"]
 	path = config/nvim/plugged/targets.vim
 	url = https://github.com/wellle/targets.vim
-[submodule "config/nvim/plugged/vim-g"]
-	path = config/nvim/plugged/vim-g
-	url = https://github.com/szw/vim-g
 [submodule "config/nvim/plugged/vifm.vim"]
 	path = config/nvim/plugged/vifm.vim
 	url = https://github.com/vifm/vifm.vim

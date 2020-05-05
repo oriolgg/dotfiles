@@ -36,9 +36,6 @@ call plug#begin('~/.config/nvim/plugged')
 
   " Other
   Plug 'https://github.com/wellle/targets.vim'              " Adds text objects and improves the default ones
-  Plug 'https://github.com/vim-scripts/vim-g'               " Opens browser with the specified text
-    let g:vim_g_query_url = "https://duckduckgo.com/?q="
-    let g:vim_g_command = "Go"
   Plug 'https://github.com/mbbill/undotree'                 " Shows undo tree for the current buffer
   Plug 'https://github.com/pbrisbin/vim-mkdir'              " Creates all required folders when saving buffers
   Plug 'https://github.com/xolox/vim-session'               " Improves Vim session management
@@ -281,8 +278,6 @@ cmap w!! w !sudo tee % >/dev/null
 " Visual mode custom mappings
 """"""""""""""""""""""""""""""""""""""""""""""""""
 
-vnoremap <leader>? :Go <cr>
-
 " Paste on visual mode does not substitute the buffer
 vmap p "_dP
 
@@ -291,7 +286,6 @@ vmap p "_dP
 " Normal mode custom mappings
 """"""""""""""""""""""""""""""""""""""""""""""""""
 
-nnoremap <leader>? :Go <c-r>=expand("<cword>")<cr><cr>
 nnoremap <leader>, :EditVifm .<cr>
 
 map j gj
