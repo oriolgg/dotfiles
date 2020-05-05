@@ -26,10 +26,8 @@ git clone https://github.com/oriolgg/dotfiles ~/.dotfiles --recursive
 # Change the default shell
 chsh -s /bin/zsh
 
-cp ~/.dotfiles/git/gitconfig ~/.gitconfig
 ln -s ~/.dotfiles/bin ~/.bin
 ln -s ~/.dotfiles/ctags.d ~/.ctags.d
-ln -s ~/.dotfiles/git/gitignore_global ~/.gitignore_global
 
 ln -s ~/.dotfiles/config ~/.config
 ln -s ~/.config/nvim ~/.vim
@@ -54,6 +52,7 @@ bat cache --build
 
 # Zsh Plugins
 ln -s ~/.dotfiles/zsh/plugins/fast-syntax-highlighting ~/.zsh/oh-my-zsh/custom/plugins/fast-syntax-highlighting
+ln -s ~/.dotfiles/zsh/plugins/forgit ~/.zsh/oh-my-zsh/custom/plugins/forgit
 ln -s ~/.dotfiles/zsh/plugins/fzf-tab ~/.zsh/oh-my-zsh/custom/plugins/fzf-tab
 ln -s ~/.dotfiles/zsh/plugins/zsh-autosuggestions ~/.zsh/oh-my-zsh/custom/plugins/zsh-autosuggestions
 ln -s ~/.dotfiles/zsh/plugins/zsh-vim-mode ~/.zsh/oh-my-zsh/custom/plugins/zsh-vim-mode

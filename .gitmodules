@@ -118,3 +118,6 @@
 [submodule "config/nvim/plugged/vim-grepper"]
 	path = config/nvim/plugged/vim-grepper
 	url = https://github.com/mhinz/vim-grepper
+[submodule "zsh/plugins/forgit"]
+	path = zsh/plugins/forgit
+	url = https://github.com/wfxr/forgit

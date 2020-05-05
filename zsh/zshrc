@@ -68,6 +68,7 @@ plugins=(
     command-not-found
     extract
     fast-syntax-highlighting
+    forgit
     fzf-tab
     gitignore
     history-substring-search
@@ -109,6 +110,8 @@ export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 export BAT_THEME="solarizedDark"
 
 export _Z_DATA="$HOME/.cache/zsh/z"
+export FORGIT_GI_REPO_LOCAL="$HOME/.cache/zsh/forgit/gi/repos/dvcs/gitignore"
+export FORGIT_GI_TEMPLATES="$FORGIT_GI_REPO_LOCAL/templates"
 
 [ -f $HOME/.aliases.local.zsh ] && source $HOME/.aliases.local.zsh
 [ -f $HOME/.profile ] && source $HOME/.profile
@@ -139,22 +142,6 @@ bindkey '^B' backward-kill-word
 
 bindkey '^P' history-substring-search-up
 bindkey '^N' history-substring-search-down
-
-# Arrow up
-bindkey '\e0A' up-line-or-history
-bindkey '\e[A' up-line-or-history
-
-# Arrow down
-bindkey '\e0B' down-line-or-history
-bindkey '\e[B' down-line-or-history
-
-# Arrow right
-bindkey '\e0C' forward-char
-bindkey '\e[C' forward-char
-
-# Arrow left
-bindkey '\e0D' backward-char
-bindkey '\e[D' backward-char
 
 # Plugin configurations
 function bgnotify_formatted {
