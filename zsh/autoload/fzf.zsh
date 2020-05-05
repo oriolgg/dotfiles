@@ -139,7 +139,7 @@ FZF_TAB_COMMAND=(
     --bind $default_bind_options
     --preview-window $default_preview_window
 )
-FORGIT_FZF_DEFAULT_OPTS="
+FORGIT_FZF_DEFAULT_OPTS+="
     --border
     --reverse
     --height '75%'
