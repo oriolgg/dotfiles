@@ -53,7 +53,7 @@
     root = rev-parse --show-toplevel
 
     # Update all submodules
-    subup = submodule update --init
+    subup = submodule foreach git pull
 
     # List all tags
     tags = tag -l
