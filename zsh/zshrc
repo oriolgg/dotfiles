@@ -18,46 +18,49 @@ ZSH_THEME="oriol"
 HISTFILE=$HOME/.cache/zsh/history
 HISTSIZE=50000
 SAVEHIST=50000
-setopt always_to_end            # when completing from the middle of a word, move the cursor to the end of the word    
-setopt append_history           # append
-setopt bang_hist                # !keyword
-setopt complete_in_word         # allow completion from within a word/phrase
-setopt completealiases          # complete alisases
-setopt correct                  # spelling correction for commands
-setopt extended_history         # save each command's beginning timestamp and the duration to the history file
-setopt hash_list_all            # hash everything before completion
-setopt hist_ignore_all_dups     # no duplicate
-setopt hist_ignore_space        # ignore space prefixed commands
-setopt hist_reduce_blanks       # trim blanks
-setopt hist_verify              # show before executing history commands
-setopt inc_append_history       # add commands as they are typed, don't wait until shell exit 
-setopt list_ambiguous           # complete as much of a completion until it gets ambiguous.
-setopt no_share_history         # share hist between sessions
+setopt ALWAYS_TO_END            # when completing from the middle of a word, move the cursor to the end of the word    
+setopt BANG_HIST                # !keyword
+setopt COMPLETE_IN_WORD         # allow completion from within a word/phrase
+setopt COMPLETEALIASES          # complete alisases
+setopt CORRECT                  # spelling correction for commands
+setopt HASH_LIST_ALL            # hash everything before completion
+setopt HIST_IGNORE_ALL_DUPS     # no duplicate
+setopt HIST_IGNORE_SPACE        # ignore space prefixed commands
+setopt HIST_REDUCE_BLANKS       # trim blanks
+setopt HIST_VERIFY              # show before executing history commands
+setopt LIST_AMBIGUOUS           # complete as much of a completion until it gets ambiguous.
+setopt EXTENDED_HISTORY         # save each command's beginning timestamp and the duration to the history file
+setopt APPEND_HISTORY           # append to hostory when session ends
+setopt NO_SHARE_HISTORY         # no share hist between sessions
+setopt APPEND_HISTORY
 
 ##
 # Pushd
 ##
-setopt auto_pushd               # make cd push old dir in dir stack
-setopt pushd_ignore_dups        # no duplicates in dir stack
-setopt pushd_silent             # no dir stack after pushd or popd
-setopt pushd_to_home            # `pushd` = `pushd $HOME`
+setopt AUTO_PUSHD               # make cd push old dir in dir stack
+setopt PUSHD_IGNORE_DUPS        # no duplicates in dir stack
+setopt PUSHD_SILENT             # no dir stack after pushd or popd
+setopt PUSHD_TO_HOME            # `pushd` = `pushd $HOME`
 
 ##
 # Various
 ##
-setopt auto_cd                  # if command is a path, cd into it
-setopt auto_menu                # Automatically use menu completion after the second consecutive request for completion
-setopt auto_remove_slash        # self explicit
-setopt chase_links              # resolve symlinks
-setopt extended_glob            # activate complex pattern globbing
-setopt flow_control             # Disables the use of ⌃S to stop terminal output and the use of ⌃Q to resume it
-setopt glob_dots                # include dotfiles in globbing
-setopt hist_expire_dups_first   # If trim needed, do it for the dups first, nou unique
-setopt hist_ignore_dups         # if executing same command in a row, save it only once
-setopt menu_complete            # Prevents the completion menu from showing even if AUTO_MENU is set
-setopt notify                   # report the status of backgrounds jobs immediately
-setopt print_exit_value         # print return value if non-zero
-setopt prompt_subst             # Adds support for command substitution
+setopt AUTO_CD                  # if command is a path, cd into it
+setopt AUTO_MENU                # Automatically use menu completion after the second consecutive request for completion
+setopt AUTO_REMOVE_SLASH        # self explicit
+setopt CHASE_LINKS              # resolve symlinks
+setopt EXTENDED_GLOB            # activate complex pattern globbing
+setopt FLOW_CONTROL             # Disables the use of ⌃S to stop terminal output and the use of ⌃Q to resume it
+setopt GLOB_DOTS                # include dotfiles in globbing
+setopt HIST_EXPIRE_DUPS_FIRST   # If trim needed, do it for the dups first, nou unique
+setopt HIST_IGNORE_DUPS         # if executing same command in a row, save it only once
+setopt MENU_COMPLETE            # Prevents the completion menu from showing even if AUTO_MENU is set
+setopt NOTIFY                   # report the status of backgrounds jobs immediately
+setopt PRINT_EXIT_VALUE         # print return value if non-zero
+setopt PROMPT_SUBST             # Adds support for command substitution
+
+# Al navegar per l'historial de comandes, deixar el cursor al final de la comanda
+unsetopt GLOBAL_RCS
 
 DISABLE_MAGIC_FUNCTIONS=true
 
@@ -83,9 +86,6 @@ plugins=(
 
 DISABLE_AUTO_TITLE="true"
 autoload -U zmv
-
-# Al navegar per l'historial de comandes, deixar el cursor al final de la comanda
-unsetopt global_rcs
 
 source $ZSH/oh-my-zsh.sh
 
