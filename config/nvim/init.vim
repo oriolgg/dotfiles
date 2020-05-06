@@ -323,7 +323,7 @@ map gB :bprevious<cr>
 
 " Source vimrc
 nmap <silent> <leader>ev :e $MYVIMRC<cr>
-nmap <silent> <leader>sv :e $MYVIMRC<cr>
+nmap <silent> <leader>sv :source $MYVIMRC<cr>
 nmap <silent> <leader>ez :e ~/.zshrc<cr>
 
 " Repeats last command from command line
