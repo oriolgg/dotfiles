@@ -11,7 +11,6 @@ call plug#begin('~/.config/nvim/plugged')
     let g:highlightedyank_highlight_duration = 200
   Plug 'https://github.com/psliwka/vim-smoothie'            " Smoothie scroll (using [Ctrl-u], [Ctrl-d], [Ctrl-b] and [Ctrl-f]
   Plug 'https://github.com/gillyb/stable-windows'           " When opening splits, maintains the same layout (working?)
-  Plug 'https://github.com/ap/vim-buftabline'               " Use of buffers in tabline
   Plug 'https://github.com/airblade/vim-gitgutter'          " Adds Git changes in lines
 
   " Fuzzy finder
@@ -159,7 +158,6 @@ set relativenumber                                       " Shows relative number
 set ruler                                                " Show where you are
 set scrolloff=3                                          " show 3 lines of context around cursor
 set showcmd                                              " Shows partials of the commands
-set showtabline=2                                        " Buffer/Tab line always visible
 set smartcase                                            " Turns case-sensitive search if any caps in the query
 set spelllang=en_us,ca,es_es                             " Current spelling dictionaries
 set nospell                                              " Don't check spell by default
@@ -235,14 +233,6 @@ set statusline+=%= "Right side settings
 set statusline+=\ %([%{&ff}\|%{(&fenc==\"\"?&enc:&fenc).((exists(\"+bomb\")\ &&\ &bomb)?\",B\":\"\")}%k\|%Y]%)
 set statusline+=\ %c:%l/%L
 set statusline+=\ [%n]
-
-let g:buftabline_numbers=1
-let g:buftabline_indicators=1
-let g:buftabline_separators=1
-hi default link BufTabLineCurrent PmenuSel
-hi default link BufTabLineActive Normal
-hi default link BufTabLineHidden Normal
-hi default link BufTabLineFill Normal
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""

@@ -67,9 +67,6 @@
 [submodule "config/nvim/plugged/vifm.vim"]
 	path = config/nvim/plugged/vifm.vim
 	url = https://github.com/vifm/vifm.vim
-[submodule "config/nvim/plugged/vim-buftabline"]
-	path = config/nvim/plugged/vim-buftabline
-	url = https://github.com/ap/vim-buftabline
 [submodule "config/nvim/plugged/vim-gitgutter"]
 	path = config/nvim/plugged/vim-gitgutter
 	url = https://github.com/airblade/vim-gitgutter
