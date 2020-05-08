@@ -118,23 +118,19 @@ elseif has('unix')
   set clipboard=unnamedplus
 endif
 
-" required by coc
-set hidden
-set nobackup
-set nowritebackup
-set cmdheight=2
-set updatetime=300
-set shortmess+=c
-set signcolumn=yes
-
 set autoindent                                           " auto indentation
 set autoread                                             " Reload files when changed on disk, i.e. via `git checkout`
-set backspace=2                                          " Fix broken backspace in some setups
+set backspace=indent,eol,start                           " Allow backspacing over autoindent, line breaks and start of insert action
+set breakindent                                          " So wrapped lines stay at the same indentation level
+set cmdheight=2
+set confirm                                              " Instead of failing a command because of unsaved changes, raises a dialogue asking if you wish to save changed files
 set cursorline                                           " Highlights cursor line
+set display+=lastline                                    " Always show the last line
 set encoding=UTF-8                                       " UTF-8 as a default encoding
 set expandtab tabstop=4 softtabstop=4 shiftwidth=4       " Tabs -> 4 spaces
-set foldlevel=99
-set foldmethod=manual                                    " Manual fold creation
+set foldmethod=syntax                                    " code folds will be automatically created based on the syntax settings of the current buffer
+set gdefault                                             " Do not need to specify /g on replace
+set hidden
 set history=10000                                        " Saves last 10000 command lines executions
 set hlsearch                                             " Highlights matching searches results
 set ignorecase                                           " Case-sensitive search if any caps
@@ -144,23 +140,28 @@ set iskeyword+=_,@                                       " Not word dividers
 set laststatus=2                                         " Always show statusline
 set lazyredraw                                           " Do not redraw screen in the middle of a macro, much faster
 set linebreak
-set nolist                                               " Do not highlight special characters
 set listchars=tab:▸\ ,trail:▫,eol:↵,extends:»,precedes:« " Highlighted characters
 set mouse=                                               " No mouse allowed
+set nobackup
 set noerrorbells                                         " No sounds alowed
-set visualbell                                           " No visual errors allowed
-set nowrap sidescroll=1 sidescrolloff=1                  " Don't cut sentences
+set nofoldenable                                         " Off on start
 set nojoinspaces                                         " Prevents inserting two spaces after punctuation on a join
+set nolist                                               " Do not highlight special characters
+set nospell                                              " Don't check spell by default
 set noswapfile                                           " Don't create swap files
+set nowrap sidescroll=1 sidescrolloff=1                  " Don't cut sentences
+set nowrapscan
+set nowritebackup
 set nrformats=                                           " increase or decrease numbers in decimal
 set number                                               " Show line numbers
 set relativenumber                                       " Shows relative numbers
 set ruler                                                " Show where you are
 set scrolloff=3                                          " show 3 lines of context around cursor
+set shortmess=l
 set showcmd                                              " Shows partials of the commands
+set signcolumn=yes                                       " Always show signcolumn. prevents buffer from moving when showing/hiding it
 set smartcase                                            " Turns case-sensitive search if any caps in the query
 set spelllang=en_us,ca,es_es                             " Current spelling dictionaries
-set nospell                                              " Don't check spell by default
 set splitright splitbelow                                " Opens new windows on the right and below
 set switchbuf=usetab                                     " If a opened buffer is already open, witches to the window that contains it
 set tags=./tags;/
@@ -168,11 +169,12 @@ set undodir=~/.cache/nvim/nvim_undo                        " Undo folder
 set undofile                                             " Persistent undo for buffers
 set undolevels=10000                                     " Undo level
 set undoreload=10000                                     " Redo level
+set updatetime=300
 set viewdir=~/.cache/nvim/nvim_view                          " View folder
+set visualbell                                           " No visual errors allowed
 set wildignore=*/tmp/,*/.git/*,*.so,*.swp,*.zip,*.pdf,*.bak,*.pyc,*.pyo,*.class,*.tmp,*~      " Ignore file types
 set wildmenu                                             " Show a navigable menu for tab completion on command line
 set wildmode=full
-set pastetoggle=<f5>
 
 syntax on " Highlighted text
 
@@ -236,7 +238,7 @@ set statusline+=\ [%n]
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""
-" Insert custom mappings
+" Insert mode custom mappings
 """"""""""""""""""""""""""""""""""""""""""""""""""
 
 " Exit inser mode with jk
@@ -271,6 +273,8 @@ cmap w!! w !sudo tee % >/dev/null
 " Paste on visual mode does not substitute the buffer
 vmap p "_dP
 
+" Bind :sort to something easy, don't press enter, allow for options (eg -u, n, sorting in reverse [sort!])
+vnoremap <leader>s :sort<cr>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""
 " Normal mode custom mappings
@@ -283,8 +287,6 @@ map k gk
 
 " Start and end of line
 nnoremap <tab> %
-nnoremap H ^
-nnoremap L g_
 
 " Split movement
 nmap <C-h> <C-w>h
