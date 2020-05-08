@@ -22,7 +22,6 @@ config.bind("<Shift-J>", "tab-prev")
 config.bind("gb", "tab-next")
 config.bind("gB", "tab-prev")
 config.bind("yu", "hint links yank pretty-url") # Revisar
-config.bind("<Meta-t>", "open t")
 config.bind("xs", "config-cycle statusbar.hide")
 config.bind("xt", "config-cycle tabs.show always switching")
 config.bind("xx", "config-cycle statusbar.hide ;; config-cycle tabs.show always switching")
