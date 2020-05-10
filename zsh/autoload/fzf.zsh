@@ -65,11 +65,17 @@ bindkey '^G' git_files_with_fzf
 
 local color00='#022b35'
 local color01='#A7ADBA'
-local color02='#FFFFFF'
-local color03='#65737E'
-local color04='#c94c22'
-local color05='#1488ad'
-local color06='#B4881D'
+local color02='#d2d6e0'
+local color03='#c94c22'
+local color04='#1488ad'
+local color05='#B4881D'
+
+# local color00='#fdf6e4'
+# local color01='#667b83'
+# local color02='#49595f'
+# local color03='#da3435'
+# local color04='#667b83'
+# local color05='#B4881D'
 
 default_bind_options='change:top,ctrl-w:backward-kill-word,ctrl-a:beginning-of-line,ctrl-e:end-of-line,shift-right:forward-word,shift-left:backward-word,ctrl-c:clear-query,ctrl-f:page-down,ctrl-b:page-up,ctrl-u:half-page-up,ctrl-d:half-page-down,ctrl-t:top,ctrl-p:up,ctrl-n:down,ctrl-o:toggle-sort,ctrl-x:toggle,tab:down,btab:up,alt-e:preview-down,alt-y:preview-up,alt-j:preview-page-down,alt-k:preview-page-up,alt-f:preview-page-down,alt-b:preview-page-up,alt-p:toggle-preview'
 default_preview_window='bottom:50%:border'
@@ -84,11 +90,11 @@ export FZF_DEFAULT_OPTS="  --height 75%
   --border
   --color=bg:$color00,bg+:$color00
   --color=fg:$color01,fg+:$color02
-  --color=hl:$color04,hl+:$color05
-  --color=spinner:$color04,info:$color06
-  --color=border:$color05,pointer:$color02
-  --color=prompt:$color01,header:$color05
-  --color=marker:$color05
+  --color=hl:$color03,hl+:$color03
+  --color=spinner:$color03,info:$color05
+  --color=border:$color04,pointer:$color02
+  --color=prompt:$color01,header:$color04
+  --color=marker:$color03
   --inline-info
   --preview $default_preview
   --bind $default_bind_options

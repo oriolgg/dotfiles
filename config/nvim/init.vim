@@ -226,7 +226,8 @@ fu! StatusLineGitBranch()
 endf
 
 " Status-line
-set statusline+=%#PmenuSel#
+set statusline=
+set statusline+=%#Visual#
 set statusline+=\ %F
 set statusline+=\ %{FugitiveStatusline()}
 set statusline+=\ %m
@@ -448,6 +449,10 @@ endif
 let g:fzf_layout = { 'down': '~50%' }
 let g:fzf_layout = { 'window': 'enew' }
 let g:fzf_action = { 'ctrl-z': 'split' }
+
+command! -bar -bang -nargs=? -complete=buffer Buffers 
+            \call fzf#vim#buffers(<q-args>, { "options": ["--preview", "bat --style=numbers,changes --color=always {3}"] }, <bang>0)
+
 nmap <leader>f :Files<cr>
 nmap <leader>g :GFiles<cr>
 nmap <leader>m :GFiles?<cr>
