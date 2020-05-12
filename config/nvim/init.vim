@@ -286,9 +286,6 @@ nnoremap <leader>, :EditVifm .<cr>
 map j gj
 map k gk
 
-" Start and end of line
-nnoremap <tab> %
-
 " Split movement
 nmap <C-h> <C-w>h
 nmap <C-j> <C-w>j
