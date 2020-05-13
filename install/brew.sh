@@ -42,6 +42,7 @@ apps=(
     gh
     git
     git-flow
+    htop
     hub
     jq
     lynx

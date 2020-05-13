@@ -115,3 +115,6 @@
 [submodule "zsh/plugins/forgit"]
 	path = zsh/plugins/forgit
 	url = https://github.com/wfxr/forgit
+[submodule "config/nvim/plugged/vim-showmarks"]
+	path = config/nvim/plugged/vim-showmarks
+	url = https://github.com/zakj/vim-showmarks

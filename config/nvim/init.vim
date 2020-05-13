@@ -12,6 +12,8 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'https://github.com/psliwka/vim-smoothie'            " Smoothie scroll (using [Ctrl-u], [Ctrl-d], [Ctrl-b] and [Ctrl-f]
   Plug 'https://github.com/gillyb/stable-windows'           " When opening splits, maintains the same layout (working?)
   Plug 'https://github.com/airblade/vim-gitgutter'          " Adds Git changes in lines
+  Plug 'https://github.com/zakj/vim-showmarks'              " Adds marks to gutter
+    let g:showmarks_include="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
   " Fuzzy finder
   Plug '/usr/local/opt/fzf'                                 " Fuzzy finder in Vim
