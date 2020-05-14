@@ -17,6 +17,7 @@ alias l='exa -lahH --git'
 alias lt='exa --tree --level=2'
 
 alias tmux='tmux -f ~/.config/tmux/tmux.conf'
+alias ts='tmux-start'
 
 # Git
 alias gcd='git checkout develop'
