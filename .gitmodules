@@ -76,12 +76,6 @@
 [submodule "config/tmux/plugins/tmux-continuum"]
 	path = config/tmux/plugins/tmux-continuum
 	url = https://github.com/tmux-plugins/tmux-continuum
-[submodule "config/tmux/plugins/tmux-copycat"]
-	path = config/tmux/plugins/tmux-copycat
-	url = https://github.com/tmux-plugins/tmux-copycat
-[submodule "config/tmux/plugins/tmux-open"]
-	path = config/tmux/plugins/tmux-open
-	url = https://github.com/tmux-plugins/tmux-open
 [submodule "config/tmux/plugins/tmux-resurrect"]
 	path = config/tmux/plugins/tmux-resurrect
 	url = https://github.com/tmux-plugins/tmux-resurrect
@@ -118,3 +112,6 @@
 [submodule "config/nvim/plugged/vim-showmarks"]
 	path = config/nvim/plugged/vim-showmarks
 	url = https://github.com/zakj/vim-showmarks
+[submodule "config/tmux/plugins/tmux-logging"]
+	path = config/tmux/plugins/tmux-logging
+	url = https://github.com/tmux-plugins/tmux-logging

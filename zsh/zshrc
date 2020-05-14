@@ -87,6 +87,9 @@ plugins=(
 DISABLE_AUTO_TITLE="true"
 autoload -U zmv
 
+export ZSH_COMPDUMP="$HOME/.cache/zsh/zcompdump-$HOST-$ZSH_VERSION"
+export LESSHISTFILE="$HOME/.cache/zsh/lesshst"
+
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
@@ -120,9 +123,9 @@ export FORGIT_GI_TEMPLATES="$FORGIT_GI_REPO_LOCAL/templates"
 
 for f in ~/.zsh/autoload/*.zsh; do source $f; done
 
-if [[ "$TERM" != "screen-256color" ]]; then
-    tmux-start "$USER"
-fi
+# if [[ "$TERM" != "screen-256color" ]]; then
+#     tmux-start "$USER"
+# fi
 
 ########################################
 # Bind keys for widgets

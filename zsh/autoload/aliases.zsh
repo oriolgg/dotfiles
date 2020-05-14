@@ -62,7 +62,7 @@ rmdsstore() {
     find "${@:-.}" -type f -name .DS_Store -delete
 }
 # Create a new directory and enter it
-mkd() {
+mkcd() {
     mkdir -p "$@" && cd "$_";
 }
 vf() { fzf -m | xargs -o $EDITOR ;}

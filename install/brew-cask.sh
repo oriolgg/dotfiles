@@ -36,11 +36,11 @@ brew tap homebrew/cask-fonts
 apps=(
 
     appcleaner
+    cheatsheet
     disk-inventory-x
     dropbox
     evernote
     firefox
-    font-droidsansmono-nerd-font
     google-chrome
     handbrake
     iterm2
@@ -59,8 +59,6 @@ apps=(
     quicklook-csv
     quicklook-json
     script-debugger
-    skype
-    slack
     sourcetree
     spotify
     caskroom/cask/therm
