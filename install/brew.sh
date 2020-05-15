@@ -58,7 +58,6 @@ apps=(
     tmuxinator
     tree
     unar
-    universal-ctags
     unrar
     vifm
     wifi-password
@@ -71,7 +70,7 @@ echo "installing brew formulas..."
 
 brew install "${apps[@]}"
 
-brew install --HEAD universal-ctags/universal-ctags/universal-ctags
+brew install --with-jansson --HEAD universal-ctags/universal-ctags/universal-ctags
 
 # Remove outdated versions from the cellar.
 brew cleanup

@@ -33,7 +33,6 @@ call plug#begin('~/.config/nvim/plugged')
   " Movement inside a buffer
   Plug 'https://github.com/Lokaltog/vim-easymotion'         " Improved movement and motion
   Plug 'https://github.com/chrisbra/matchit'                " Extended use for % command
-  Plug 'https://github.com/justinmk/vim-sneak'              " Extended use for % command
 
   " Other
   Plug 'https://github.com/wellle/targets.vim'              " Adds text objects and improves the default ones
@@ -47,6 +46,13 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'https://github.com/bfredl/nvim-miniyank'            " Saves in disk yanked or deleted text so it will be shared between vim instances
   Plug 'https://github.com/vifm/vifm.vim'                   " Vim plugin that allows use of vifm as a file picker
   Plug 'https://github.com/mhinz/vim-grepper'               " Multiple kind of greps, populates quickfix or location list
+
+  " Coc
+  Plug 'https://github.com/neoclide/coc.nvim'               " Intellisense engine for Vim/Neovim
+  Plug 'https://github.com/dense-analysis/ale'              " Code linting (check for syntax errors)
+  Plug 'https://github.com/liuchengxu/vista.vim'            " Tagbar that learns from LSP servers
+  Plug 'https://github.com/jeetsukumaran/vim-pythonsense'   " Provides some Python-specific text objects: classes, functions, etc
+  Plug 'https://github.com/Vimjas/vim-python-pep8-indent'   " Indentation for Python
 
 call plug#end()
 
@@ -92,7 +98,6 @@ let mapleader = " "
 " When opening a buffer it will move the cursor at the same place when we closed the buffer
 autocmd BufWinLeave *.* silent! mkview
 autocmd BufWinEnter *.* silent! loadview
-" autocmd FocusLost *.* silent! :wa
 
 " Maintains the same position when we open a buffer in the window as we leave it
 if ! &diff
@@ -143,7 +148,7 @@ set laststatus=2                                         " Always show statuslin
 set lazyredraw                                           " Do not redraw screen in the middle of a macro, much faster
 set linebreak
 set listchars=tab:▸\ ,trail:▫,eol:↵,extends:»,precedes:« " Highlighted characters
-set mouse=                                               " No mouse allowed
+set mouse=r                                              " No mouse allowed
 set nobackup
 set noerrorbells                                         " No sounds alowed
 set nofoldenable                                         " Off on start
@@ -152,14 +157,14 @@ set nolist                                               " Do not highlight spec
 set nospell                                              " Don't check spell by default
 set noswapfile                                           " Don't create swap files
 set nowrap sidescroll=1 sidescrolloff=1                  " Don't cut sentences
-set nowrapscan
+set wrapscan
 set nowritebackup
 set nrformats=                                           " increase or decrease numbers in decimal
 set number                                               " Show line numbers
 set relativenumber                                       " Shows relative numbers
 set ruler                                                " Show where you are
 set scrolloff=3                                          " show 3 lines of context around cursor
-set shortmess=l
+set shortmess=lc
 set showcmd                                              " Shows partials of the commands
 set signcolumn=yes                                       " Always show signcolumn. prevents buffer from moving when showing/hiding it
 set smartcase                                            " Turns case-sensitive search if any caps in the query
@@ -238,6 +243,7 @@ set statusline+=%= "Right side settings
 set statusline+=\ %([%{&ff}\|%{(&fenc==\"\"?&enc:&fenc).((exists(\"+bomb\")\ &&\ &bomb)?\",B\":\"\")}%k\|%Y]%)
 set statusline+=\ %c:%l/%L
 set statusline+=\ [%n]
+set statusline+=\ %{LinterStatus()}
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""
@@ -253,6 +259,10 @@ inoremap <C-l> <C-o>a
 inoremap <C-j> <C-o>j
 inoremap <C-k> <C-o>k
 
+imap <up> <nop>
+imap <down> <nop>
+imap <left> <nop>
+imap <right> <nop>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""
 " Command-line mode custom mappings
@@ -284,6 +294,11 @@ vnoremap <leader>s :sort<cr>
 """"""""""""""""""""""""""""""""""""""""""""""""""
 
 nnoremap <leader>, :EditVifm .<cr>
+
+nnoremap <up> <nop>
+nnoremap <down> <nop>
+nnoremap <left> <nop>
+nnoremap <right> <nop>
 
 map j gj
 map k gk
@@ -457,3 +472,104 @@ nmap <leader>g :GFiles<cr>
 nmap <leader>m :GFiles?<cr>
 nmap <leader>b :Buffers<cr>
 nmap <leader>h :History<cr>
+
+let g:python3_host_prog='/usr/local/bin/python3'
+
+" Coc
+
+" Use <leader>cr to trigger completion.
+inoremap <silent><expr> <leader>cr coc#refresh()
+
+" Remap keys for gotos
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+nmap <silent> gh :call <SID>show_documentation()<CR> " Use gh to show documentation in preview window
+
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
+
+" Highlight symbol under cursor on CursorHold
+autocmd CursorHold * silent call CocActionAsync('highlight')
+
+" Remap for rename current word
+nmap <leader>rn <Plug>(coc-rename)
+
+" Highlight symbol under cursor on CursorHold
+autocmd CursorHold * silent call CocActionAsync('highlight')
+
+nnoremap <silent> <leader>co  :<C-u>CocList outline<cr>
+nnoremap <silent> <leader>cs  :<C-u>CocList -I symbols<cr>
+
+" List errors
+nnoremap <silent> <leader>cl  :<C-u>CocList locationlist<cr>
+
+" list commands available in tsserver (and others)
+nnoremap <silent> <leader>cc  :<C-u>CocList commands<cr>
+
+" restart when tsserver gets wonky
+nnoremap <silent> <leader>cR  :<C-u>CocRestart<CR>
+
+" view all errors
+nnoremap <silent> <leader>cl  :<C-u>CocList locationlist<CR>
+
+" manage extensions
+nnoremap <silent> <leader>cx  :<C-u>CocList extensions<cr>
+
+" rename the current word in the cursor
+nmap <leader>cr  <Plug>(coc-rename)
+nmap <leader>cf  <Plug>(coc-format-selected)
+vmap <leader>cf  <Plug>(coc-format-selected)
+
+" run code actions
+vmap <leader>ca  <Plug>(coc-codeaction-selected)
+nmap <leader>ca  <Plug>(coc-codeaction-selected)
+
+" ALE
+let g:ale_linters = {
+      \   'python': ['flake8', 'pylint'],
+      \   'javascript': ['eslint'],
+      \}
+let g:ale_fixers = {
+      \    'python': ['yapf'],
+      \}
+" nmap <F10> :ALEFix<CR>
+let g:ale_fix_on_save = 1
+
+au BufNewFile,BufRead *.py
+    \ set foldmethod=indent
+
+au BufNewFile,BufRead *.js, *.html, *.css
+    \ set tabstop=2
+    \ set softtabstop=2
+    \ set shiftwidth=2
+    \ set fileformat=unix
+
+"python with virtualenv support
+py << EOF
+import os
+import sys
+if 'VIRTUAL_ENV' in os.environ:
+  project_base_dir = os.environ['VIRTUAL_ENV']
+  activate_this = os.path.join(project_base_dir, 'bin/activate_this.py')
+  execfile(activate_this, dict(__file__=activate_this))
+EOF
+
+function! LinterStatus() abort
+  let l:counts = ale#statusline#Count(bufnr(''))
+
+  let l:all_errors = l:counts.error + l:counts.style_error
+  let l:all_non_errors = l:counts.total - l:all_errors
+
+  return l:counts.total == 0 ? '✨ all good ✨' : printf(
+        \   '😞 %dW %dE',
+        \   all_non_errors,
+        \   all_errors
+        \)
+endfunction

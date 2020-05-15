@@ -123,9 +123,7 @@ export FORGIT_GI_TEMPLATES="$FORGIT_GI_REPO_LOCAL/templates"
 
 for f in ~/.zsh/autoload/*.zsh; do source $f; done
 
-if [[ "$TERM" != "screen-256color" ]]; then
-    tmux-start "$USER"
-fi
+if [ "$TMUX" = "" ]; then tmux-start "$USER"; fi
 
 ########################################
 # Bind keys for widgets

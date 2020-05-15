@@ -100,9 +100,6 @@
 [submodule "zsh/plugins/zsh-vim-mode"]
 	path = zsh/plugins/zsh-vim-mode
 	url = https://github.com/softmoth/zsh-vim-mode
-[submodule "config/nvim/plugged/vim-sneak"]
-	path = config/nvim/plugged/vim-sneak
-	url = https://github.com/justinmk/vim-sneak
 [submodule "config/nvim/plugged/vim-grepper"]
 	path = config/nvim/plugged/vim-grepper
 	url = https://github.com/mhinz/vim-grepper
@@ -115,3 +112,18 @@
 [submodule "config/tmux/plugins/tmux-logging"]
 	path = config/tmux/plugins/tmux-logging
 	url = https://github.com/tmux-plugins/tmux-logging
+[submodule "config/nvim/plugged/coc.nvim"]
+	path = config/nvim/plugged/coc.nvim
+	url = https://github.com/neoclide/coc.nvim
+[submodule "config/nvim/plugged/vista.vim"]
+	path = config/nvim/plugged/vista.vim
+	url = https://github.com/liuchengxu/vista.vim
+[submodule "config/nvim/plugged/vim-pythonsense"]
+	path = config/nvim/plugged/vim-pythonsense
+	url = https://github.com/jeetsukumaran/vim-pythonsense
+[submodule "config/nvim/plugged/ale"]
+	path = config/nvim/plugged/ale
+	url = https://github.com/dense-analysis/ale
+[submodule "config/nvim/plugged/vim-python-pep8-indent"]
+	path = config/nvim/plugged/vim-python-pep8-indent
+	url = https://github.com/Vimjas/vim-python-pep8-indent
