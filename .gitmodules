@@ -1,90 +1,18 @@
-[submodule "config/nvim/plugged/vim-easymotion"]
-	path = config/nvim/plugged/vim-easymotion
-	url = https://github.com/Lokaltog/vim-easymotion
-[submodule "config/nvim/plugged/vim-tmux-navigator"]
-	path = config/nvim/plugged/vim-tmux-navigator
-	url = https://github.com/christoomey/vim-tmux-navigator
-[submodule "config/nvim/plugged/vim-extradite"]
-	path = config/nvim/plugged/vim-extradite
-	url = https://github.com/int3/vim-extradite
-[submodule "config/nvim/plugged/vim-solarized8"]
-	path = config/nvim/plugged/vim-solarized8
-	url = https://github.com/lifepillar/vim-solarized8
-[submodule "config/nvim/plugged/vim-highlightedyank"]
-	path = config/nvim/plugged/vim-highlightedyank
-	url = https://github.com/machakann/vim-highlightedyank
-[submodule "config/nvim/plugged/vim-mkdir"]
-	path = config/nvim/plugged/vim-mkdir
-	url = https://github.com/pbrisbin/vim-mkdir
-[submodule "config/nvim/plugged/vim-fugitive"]
-	path = config/nvim/plugged/vim-fugitive
-	url = https://github.com/tpope/vim-fugitive
-[submodule "config/nvim/plugged/vim-surround"]
-	path = config/nvim/plugged/vim-surround
-	url = https://github.com/tpope/vim-surround
-[submodule "config/nvim/plugged/vim-unimpaired"]
-	path = config/nvim/plugged/vim-unimpaired
-	url = https://github.com/tpope/vim-unimpaired
-[submodule "config/nvim/plugged/vim-misc"]
-	path = config/nvim/plugged/vim-misc
-	url = https://github.com/xolox/vim-misc
-[submodule "config/nvim/plugged/vim-session"]
-	path = config/nvim/plugged/vim-session
-	url = https://github.com/xolox/vim-session
-[submodule "config/nvim/plugged/Colorizer"]
-	path = config/nvim/plugged/Colorizer
-	url = https://github.com/chrisbra/Colorizer
-[submodule "config/nvim/plugged/stable-windows"]
-	path = config/nvim/plugged/stable-windows
-	url = https://github.com/gillyb/stable-windows
-[submodule "config/nvim/plugged/undotree"]
-	path = config/nvim/plugged/undotree
-	url = https://github.com/mbbill/undotree
-[submodule "config/nvim/plugged/vim-commentary"]
-	path = config/nvim/plugged/vim-commentary
-	url = https://github.com/tpope/vim-commentary
-[submodule "config/nvim/plugged/nvim-miniyank"]
-	path = config/nvim/plugged/nvim-miniyank
-	url = https://github.com/bfredl/nvim-miniyank
-[submodule "config/nvim/plugged/vim-move"]
-	path = config/nvim/plugged/vim-move
-	url = https://github.com/matze/vim-move
-[submodule "config/nvim/plugged/vim-smoothie"]
-	path = config/nvim/plugged/vim-smoothie
-	url = https://github.com/psliwka/vim-smoothie
-[submodule "config/nvim/plugged/vim-easy-align"]
-	path = config/nvim/plugged/vim-easy-align
-	url = https://github.com/junegunn/vim-easy-align
-[submodule "config/nvim/plugged/fzf.vim"]
-	path = config/nvim/plugged/fzf.vim
-	url = https://github.com/junegunn/fzf.vim
-[submodule "config/nvim/plugged/matchit"]
-	path = config/nvim/plugged/matchit
-	url = https://github.com/chrisbra/matchit
-[submodule "config/nvim/plugged/targets.vim"]
-	path = config/nvim/plugged/targets.vim
-	url = https://github.com/wellle/targets.vim
-[submodule "config/nvim/plugged/vifm.vim"]
-	path = config/nvim/plugged/vifm.vim
-	url = https://github.com/vifm/vifm.vim
-[submodule "config/nvim/plugged/vim-gitgutter"]
-	path = config/nvim/plugged/vim-gitgutter
-	url = https://github.com/airblade/vim-gitgutter
 [submodule "config/tmux/plugins/tmux-battery"]
 	path = config/tmux/plugins/tmux-battery
 	url = https://github.com/tmux-plugins/tmux-battery
 [submodule "config/tmux/plugins/tmux-continuum"]
 	path = config/tmux/plugins/tmux-continuum
 	url = https://github.com/tmux-plugins/tmux-continuum
+[submodule "config/tmux/plugins/tmux-logging"]
+	path = config/tmux/plugins/tmux-logging
+	url = https://github.com/tmux-plugins/tmux-logging
 [submodule "config/tmux/plugins/tmux-resurrect"]
 	path = config/tmux/plugins/tmux-resurrect
 	url = https://github.com/tmux-plugins/tmux-resurrect
 [submodule "config/tmux/plugins/tmux-yank"]
 	path = config/tmux/plugins/tmux-yank
 	url = https://github.com/tmux-plugins/tmux-yank
-[submodule "config/nvim/plugged/vim-repeat"]
-	path = config/nvim/plugged/vim-repeat
-	url = https://github.com/tpope/vim-repeat
 [submodule "zsh/oh-my-zsh"]
 	path = zsh/oh-my-zsh
 	url = https://github.com/ohmyzsh/ohmyzsh
@@ -100,30 +28,6 @@
 [submodule "zsh/plugins/zsh-vim-mode"]
 	path = zsh/plugins/zsh-vim-mode
 	url = https://github.com/softmoth/zsh-vim-mode
-[submodule "config/nvim/plugged/vim-grepper"]
-	path = config/nvim/plugged/vim-grepper
-	url = https://github.com/mhinz/vim-grepper
 [submodule "zsh/plugins/forgit"]
 	path = zsh/plugins/forgit
 	url = https://github.com/wfxr/forgit
-[submodule "config/nvim/plugged/vim-showmarks"]
-	path = config/nvim/plugged/vim-showmarks
-	url = https://github.com/zakj/vim-showmarks
-[submodule "config/tmux/plugins/tmux-logging"]
-	path = config/tmux/plugins/tmux-logging
-	url = https://github.com/tmux-plugins/tmux-logging
-[submodule "config/nvim/plugged/coc.nvim"]
-	path = config/nvim/plugged/coc.nvim
-	url = https://github.com/neoclide/coc.nvim
-[submodule "config/nvim/plugged/vista.vim"]
-	path = config/nvim/plugged/vista.vim
-	url = https://github.com/liuchengxu/vista.vim
-[submodule "config/nvim/plugged/vim-pythonsense"]
-	path = config/nvim/plugged/vim-pythonsense
-	url = https://github.com/jeetsukumaran/vim-pythonsense
-[submodule "config/nvim/plugged/ale"]
-	path = config/nvim/plugged/ale
-	url = https://github.com/dense-analysis/ale
-[submodule "config/nvim/plugged/vim-python-pep8-indent"]
-	path = config/nvim/plugged/vim-python-pep8-indent
-	url = https://github.com/Vimjas/vim-python-pep8-indent
