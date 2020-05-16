@@ -2,6 +2,47 @@
 " vim/neovim config file
 """"""""""""""""""""""""""""""""""""""""""""""""""
 
+let fancy_symbols_enabled = 0
+
+let using_neovim = has('nvim')
+let using_vim = !using_neovim
+
+" ============================================================================
+" Vim-plug initialization
+" Avoid modifying this section, unless you are very sure of what you are doing
+
+let vim_plug_just_installed = 0
+if using_neovim
+  let vim_plug_path = expand('~/.config/nvim/autoload/plug.vim')
+else
+  let vim_plug_path = expand('~/.vim/autoload/plug.vim')
+endif
+
+if !filereadable(vim_plug_path)
+  echo "Installing Vim-plug..."
+  echo ""
+  if using_neovim
+    silent !mkdir -p ~/.config/nvim/autoload
+    silent !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  else
+    silent !mkdir -p ~/.vim/autoload
+    silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  endif
+  let vim_plug_just_installed = 1
+endif
+
+" manually load vim-plug the first time
+if vim_plug_just_installed
+  :execute 'source '.fnameescape(vim_plug_path)
+endif
+
+" Creates cache folders
+:silent exec "!mkdir -p $HOME'/.cache/nvim/nvim_undo'"
+:silent exec "!mkdir -p $HOME'/.cache/nvim/nvim_view'"
+:silent exec "!mkdir -p $HOME'/.cache/nvim/nvim_sessions'"
+:silent exec "!mkdir -p $HOME'/.cache/nvim/miniyank'"
+:silent exec "!mkdir -p $HOME'/.cache/nvim/shada'"
+
 " vim-plug: Plugins section
 call plug#begin('~/.config/nvim/plugged')
 
@@ -38,34 +79,55 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'https://github.com/wellle/targets.vim'              " Adds text objects and improves the default ones
   Plug 'https://github.com/mbbill/undotree'                 " Shows undo tree for the current buffer
   Plug 'https://github.com/pbrisbin/vim-mkdir'              " Creates all required folders when saving buffers
-  Plug 'https://github.com/xolox/vim-session'               " Improves Vim session management
-  Plug 'https://github.com/chrisbra/Colorizer'              " Colorizes all color codes and color names in the buffer
   Plug 'https://github.com/xolox/vim-misc'                  " Misc Vim script functions (required for vim-session)
+  Plug 'https://github.com/xolox/vim-session'               " Improves Vim session management
+    let g:session_directory = '~/.cache/nvim/nvim_sessions'
+    let g:session_autoload = 'yes'
+    let g:session_autosave = 'yes'
+    let g:session_persist_font = 0
+    let g:session_persist_colors = 0
+    let g:session_command_aliases = 1
+
   Plug 'https://github.com/christoomey/vim-tmux-navigator'  " Seamless navigation between tmux panes and vim splits
   Plug 'https://github.com/tpope/vim-unimpaired'            " Mappings for common ex commands, line mappings (add before/after, movement), toggle vim options and encode/decode
   Plug 'https://github.com/bfredl/nvim-miniyank'            " Saves in disk yanked or deleted text so it will be shared between vim instances
   Plug 'https://github.com/vifm/vifm.vim'                   " Vim plugin that allows use of vifm as a file picker
   Plug 'https://github.com/mhinz/vim-grepper'               " Multiple kind of greps, populates quickfix or location list
+  Plug 'https://github.com/arielrossanigo/dir-configs-override.vim' " If exists a .vim.custom file in the current folder or parents, overrides default settings stored in this files
+  Plug 'https://github.com/vim-scripts/IndexedSearch'       " Shows 'Nth match out of M' at every search
 
   " Coc
-  Plug 'https://github.com/neoclide/coc.nvim'               " Intellisense engine for Vim/Neovim
+  Plug 'https://github.com/neoclide/coc.nvim', {'do': { -> coc#util#install()}} " Intellisense engine for Vim/Neovim
   Plug 'https://github.com/dense-analysis/ale'              " Code linting (check for syntax errors)
   Plug 'https://github.com/liuchengxu/vista.vim'            " Tagbar that learns from LSP servers
   Plug 'https://github.com/jeetsukumaran/vim-pythonsense'   " Provides some Python-specific text objects: classes, functions, etc
   Plug 'https://github.com/Vimjas/vim-python-pep8-indent'   " Indentation for Python
 
+  " Coc extensions
+  Plug 'https://github.com/klaaspieter/coc-sourcekit', {'do': 'yarn install --frozen-lockfile'} " Swift language server extension using sourcekit-lsp for coc.nvim
+  Plug 'https://github.com/neoclide/coc-css', {'do': 'yarn install --frozen-lockfile'} " Css language server extension for coc.nvim
+  Plug 'https://github.com/neoclide/coc-eslint', {'do': 'yarn install --frozen-lockfile'} " Lint javascript files using eslint
+  Plug 'https://github.com/neoclide/coc-git', {'do': 'yarn install --frozen-lockfile'} " Git integration of coc.nvim
+  Plug 'https://github.com/neoclide/coc-highlight', {'do': 'yarn install --frozen-lockfile'} " Document highlight and document colors LSP support for coc.nvim
+  Plug 'https://github.com/neoclide/coc-html', {'do': 'yarn install --frozen-lockfile'} " Html language server extension for coc.nvim.
+  Plug 'https://github.com/neoclide/coc-json', {'do': 'yarn install --frozen-lockfile'} " Json language extension for coc.nvim
+  Plug 'https://github.com/neoclide/coc-lists', {'do': 'yarn install --frozen-lockfile'} " Some basic list sources for coc.nvim (buffers, tags, files, colors...)
+  Plug 'https://github.com/neoclide/coc-python', {'do': 'yarn install --frozen-lockfile'} " Python extension for coc.nvim, fork of vscode-python
+  Plug 'https://github.com/neoclide/coc-snippets', {'do': 'yarn install --frozen-lockfile'} " Snippets solution for coc.nvim
+  Plug 'https://github.com/neoclide/coc-tslint', {'do': 'yarn install --frozen-lockfile'} " Tslint language server extension of coc.nvim
+  Plug 'https://github.com/neoclide/coc-tsserver', {'do': 'yarn install --frozen-lockfile'} " Tsserver language server extension for coc.nvim.
+
 call plug#end()
+
+" Install plugins the first time vim runs
+if vim_plug_just_installed
+  echo "Installing Bundles, please ignore key map error messages"
+  :PlugInstall
+endif
 
 """"""""""""""""""""""""""""""""""""""""""""""""""
 " Funcions
 """""""""""""""""""""""""""""""""""""""""""""""""""
-
-" Creates cache folders
-:silent exec "!mkdir -p $HOME'/.cache/nvim/nvim_undo'"
-:silent exec "!mkdir -p $HOME'/.cache/nvim/nvim_view'"
-:silent exec "!mkdir -p $HOME'/.cache/nvim/nvim_sessions'"
-:silent exec "!mkdir -p $HOME'/.cache/nvim/miniyank'"
-:silent exec "!mkdir -p $HOME'/.cache/nvim/shada'"
 
 " Closes the focused window and its buffer if this is not loaded into another window
 function! CloseWindowOrKillBuffer()
@@ -235,16 +297,39 @@ endf
 " Status-line
 set statusline=
 set statusline+=%#Visual#
+set statusline+=\ [#%n]
 set statusline+=\ %F
-set statusline+=\ %{FugitiveStatusline()}
+" set statusline+=\ %{FugitiveStatusline()}
+set statusline+=\ [%{get(g:,'coc_git_status','')}%{get(b:,'coc_git_status','')}%{get(b:,'coc_git_blame','')}]
 set statusline+=\ %m
 set statusline+=\ %r
 set statusline+=%= "Right side settings
-set statusline+=\ %([%{&ff}\|%{(&fenc==\"\"?&enc:&fenc).((exists(\"+bomb\")\ &&\ &bomb)?\",B\":\"\")}%k\|%Y]%)
-set statusline+=\ %c:%l/%L
-set statusline+=\ [%n]
-set statusline+=\ %{LinterStatus()}
+" set statusline+=\ %([%{&ff}\|%{(&fenc==\"\"?&enc:&fenc).((exists(\"+bomb\")\ &&\ &bomb)?\",B\":\"\")}%k\|%Y]%)
+set statusline+=\ %([%Y]%)
+set statusline+=\ %l/%L
+set statusline+=\ %{LinterStatus()}\ 
 
+let g:lightline = {
+            \ 'active': {
+            \   'left': [
+            \     [ 'mode', 'paste' ],
+            \     [ 'ctrlpmark', 'git', 'diagnostic', 'cocstatus', 'filename', 'method' ]
+            \   ],
+            \   'right':[
+            \     [ 'filetype', 'fileencoding', 'lineinfo', 'percent' ],
+            \     [ 'blame' ]
+            \   ],
+            \ },
+            \ 'component_function': {
+            \   'blame': 'LightlineGitBlame',
+            \ }
+            \ }
+
+function! LightlineGitBlame() abort
+  let blame = get(b:, 'coc_git_blame', '')
+  " return blame
+  return winwidth(0) > 120 ? blame : ''
+endfunction
 
 """"""""""""""""""""""""""""""""""""""""""""""""""
 " Insert mode custom mappings
@@ -299,6 +384,11 @@ nnoremap <up> <nop>
 nnoremap <down> <nop>
 nnoremap <left> <nop>
 nnoremap <right> <nop>
+
+nnoremap <leader>so :OpenSession 
+nnoremap <leader>ss :SaveSession 
+nnoremap <leader>sd :DeleteSession<cr>
+nnoremap <leader>sc :CloseSession<cr>
 
 map j gj
 map k gk
@@ -393,18 +483,6 @@ let g:undotree_ShortIndicators = 1
 let g:undotree_DiffpanelHeight = 15
 let g:undotree_SetFocusWhenToggle = 1
 
-" vim-session
-let g:session_directory = '~/.cache/nvim/nvim_sessions'
-let g:session_autoload = 'yes'
-let g:session_autosave = 'yes'
-let g:session_persist_font = 0
-let g:session_persist_colors = 0
-let g:session_command_aliases = 1
-nnoremap <leader>so :OpenSession 
-nnoremap <leader>ss :SaveSession 
-nnoremap <leader>sd :DeleteSession<cr>
-nnoremap <leader>sc :CloseSession<cr>
-
 " smoothie
 let g:smoothie_base_speed = 30
 
@@ -476,6 +554,7 @@ nmap <leader>h :History<cr>
 let g:python3_host_prog='/usr/local/bin/python3'
 
 " Coc
+let g:coc_data_home = $HOME.'/.cache/coc'
 
 " Use <leader>cr to trigger completion.
 inoremap <silent><expr> <leader>cr coc#refresh()
@@ -567,8 +646,8 @@ function! LinterStatus() abort
   let l:all_errors = l:counts.error + l:counts.style_error
   let l:all_non_errors = l:counts.total - l:all_errors
 
-  return l:counts.total == 0 ? '✨ all good ✨' : printf(
-        \   '😞 %dW %dE',
+  return l:counts.total == 0 ? '✔ good' : printf(
+        \   '✗ %dW %dE',
         \   all_non_errors,
         \   all_errors
         \)

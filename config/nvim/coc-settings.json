@@ -1,4 +1,19 @@
 {
-    // disable jedi
-    "python.jediEnabled": false
-}    
+  // disable jedi
+  "python.jediEnabled": false,
+
+  // Run prettier (and others)
+  "coc.preferences.formatOnSaveFiletypes": [
+    "css",
+    "javascript",
+    "python",
+    "swift"
+  ],
+
+  "languageserver": {
+    "sourcekit-lsp": {
+      "filetypes": ["swift"],
+      "command": "sourcekit-lsp"
+    }
+  }
+}
