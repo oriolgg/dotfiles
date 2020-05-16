@@ -61,3 +61,4 @@ ln -s ~/.dotfiles/zsh/plugins/zsh-vim-mode ~/.zsh/oh-my-zsh/custom/plugins/zsh-v
 ln -s  ~/.dotfiles/zsh/themes/oriol.zsh-theme ~/.zsh/oh-my-zsh/custom/themes/oriol.zsh-theme
 
 cp ~/.dotfiles/font/*.* ~/Library/Fonts
+cp ~/.dotfiles/term-preferences/dracula-xcode/Dracula.xccolortheme ~/Library/Developer/Xcode/UserData/FontAndColorThemes/

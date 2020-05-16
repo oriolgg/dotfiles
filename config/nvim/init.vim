@@ -47,7 +47,7 @@ endif
 call plug#begin('~/.config/nvim/plugged')
 
   " User Interface
-  Plug 'https://github.com/lifepillar/vim-solarized8'       " Solarized color schema
+  Plug 'https://github.com/dracula/vim.git', { 'name': 'dracula' }
   Plug 'https://github.com/machakann/vim-highlightedyank'   " Highlights in red the yanked text
     let g:highlightedyank_highlight_duration = 200
   Plug 'https://github.com/psliwka/vim-smoothie'            " Smoothie scroll (using [Ctrl-u], [Ctrl-d], [Ctrl-b] and [Ctrl-f]
@@ -256,12 +256,8 @@ endif
 
 set termguicolors
 let base16colorspace=256
-set background=dark
-colorscheme solarized8
-highlight SpecialKey ctermbg=NONE guibg=NONE
+colorscheme dracula
 
-" Highlights selection in blue
-highlight Visual guifg=#1488ad guibg=#022b35
 if !has('gui_running')
   " Lighter background when out of vim to focus on the active panel
   highlight Normal ctermbg=NONE guibg=NONE
@@ -294,7 +290,7 @@ endf
 
 " Status-line
 set statusline=
-set statusline+=%#Visual#
+set statusline+=%#CursorLine#
 set statusline+=\ %F
 set statusline+=\ %{FugitiveStatusline()}
 set statusline+=\ %m

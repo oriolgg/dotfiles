@@ -1,3 +1,15 @@
+import dracula.draw
+
+# Load existing settings made via :set
+config.load_autoconfig()
+
+dracula.draw.blood(c, {
+    'spacing': {
+        'vertical': 0,
+        'horizontal': 0
+    }
+})
+
 c.auto_save.interval = 15000
 c.auto_save.session = True
 
