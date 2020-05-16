@@ -3,6 +3,8 @@ c.auto_save.session = True
 
 c.bindings.key_mappings["<Meta-N>"] = "<Ctrl-N>"
 
+config.bind("<Ctrl-E>", "scroll down")
+config.bind("<Ctrl-Y>", "scroll up")
 config.bind("<Shift-Q>", "tab-close")
 config.bind("<Meta-W>", "tab-close")
 config.bind("<Meta-1>", "tab-focus 1")
@@ -26,9 +28,6 @@ config.bind("xs", "config-cycle statusbar.hide")
 config.bind("xt", "config-cycle tabs.show always switching")
 config.bind("xx", "config-cycle statusbar.hide ;; config-cycle tabs.show always switching")
 
-# config.bind("xv", "spawn --userscript youtube_downloader.sh")
-# config.bind("Xv", "hint links userscript youtube_downloader.sh")
-
 config.confirm_quit = "multiple-tabs"
 
 c.completion.cmd_history_max_items = 1024
@@ -38,7 +37,7 @@ c.content.cookies.accept = "no-unknown-3rdparty"
 
 c.hints.find_implementation = "javascript"
 
-c.scrolling.bar = "when-searching" # always
+c.scrolling.bar = "when-searching"  # always
 
 c.session.lazy_restore = True
 

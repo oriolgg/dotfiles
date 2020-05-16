@@ -226,7 +226,7 @@ set number                                               " Show line numbers
 set relativenumber                                       " Shows relative numbers
 set ruler                                                " Show where you are
 set scrolloff=3                                          " show 3 lines of context around cursor
-set shortmess=lc
+set shortmess=lcs                                        " Personalizes some messages
 set showcmd                                              " Shows partials of the commands
 set signcolumn=yes                                       " Always show signcolumn. prevents buffer from moving when showing/hiding it
 set smartcase                                            " Turns case-sensitive search if any caps in the query
@@ -297,39 +297,14 @@ endf
 " Status-line
 set statusline=
 set statusline+=%#Visual#
-set statusline+=\ [#%n]
 set statusline+=\ %F
-" set statusline+=\ %{FugitiveStatusline()}
-set statusline+=\ [%{get(g:,'coc_git_status','')}%{get(b:,'coc_git_status','')}%{get(b:,'coc_git_blame','')}]
+set statusline+=\ %{FugitiveStatusline()}%{get(b:,'coc_git_status','')}
 set statusline+=\ %m
 set statusline+=\ %r
 set statusline+=%= "Right side settings
-" set statusline+=\ %([%{&ff}\|%{(&fenc==\"\"?&enc:&fenc).((exists(\"+bomb\")\ &&\ &bomb)?\",B\":\"\")}%k\|%Y]%)
 set statusline+=\ %([%Y]%)
 set statusline+=\ %l/%L
 set statusline+=\ %{LinterStatus()}\ 
-
-let g:lightline = {
-            \ 'active': {
-            \   'left': [
-            \     [ 'mode', 'paste' ],
-            \     [ 'ctrlpmark', 'git', 'diagnostic', 'cocstatus', 'filename', 'method' ]
-            \   ],
-            \   'right':[
-            \     [ 'filetype', 'fileencoding', 'lineinfo', 'percent' ],
-            \     [ 'blame' ]
-            \   ],
-            \ },
-            \ 'component_function': {
-            \   'blame': 'LightlineGitBlame',
-            \ }
-            \ }
-
-function! LightlineGitBlame() abort
-  let blame = get(b:, 'coc_git_blame', '')
-  " return blame
-  return winwidth(0) > 120 ? blame : ''
-endfunction
 
 """"""""""""""""""""""""""""""""""""""""""""""""""
 " Insert mode custom mappings
@@ -344,6 +319,7 @@ inoremap <C-l> <C-o>a
 inoremap <C-j> <C-o>j
 inoremap <C-k> <C-o>k
 
+" Disable arrow keys in insert mode
 imap <up> <nop>
 imap <down> <nop>
 imap <left> <nop>
@@ -380,6 +356,7 @@ vnoremap <leader>s :sort<cr>
 
 nnoremap <leader>, :EditVifm .<cr>
 
+" Disable arrow keys in normal mode
 nnoremap <up> <nop>
 nnoremap <down> <nop>
 nnoremap <left> <nop>
@@ -553,11 +530,12 @@ nmap <leader>h :History<cr>
 
 let g:python3_host_prog='/usr/local/bin/python3'
 
+" Vista
+let g:vista_icon_indent = ["╰─▸ ", "├─▸ "]
+
 " Coc
 let g:coc_data_home = $HOME.'/.cache/coc'
-
-" Use <leader>cr to trigger completion.
-inoremap <silent><expr> <leader>cr coc#refresh()
+let g:coc_config_home = $HOME.'.nvim'
 
 " Remap keys for gotos
 nmap <silent> gd <Plug>(coc-definition)
@@ -576,9 +554,6 @@ endfunction
 
 " Highlight symbol under cursor on CursorHold
 autocmd CursorHold * silent call CocActionAsync('highlight')
-
-" Remap for rename current word
-nmap <leader>rn <Plug>(coc-rename)
 
 " Highlight symbol under cursor on CursorHold
 autocmd CursorHold * silent call CocActionAsync('highlight')
@@ -601,7 +576,8 @@ nnoremap <silent> <leader>cl  :<C-u>CocList locationlist<CR>
 " manage extensions
 nnoremap <silent> <leader>cx  :<C-u>CocList extensions<cr>
 
-" rename the current word in the cursor
+
+" Remap for rename current word
 nmap <leader>cr  <Plug>(coc-rename)
 nmap <leader>cf  <Plug>(coc-format-selected)
 vmap <leader>cf  <Plug>(coc-format-selected)
@@ -618,8 +594,7 @@ let g:ale_linters = {
 let g:ale_fixers = {
       \    'python': ['yapf'],
       \}
-" nmap <F10> :ALEFix<CR>
-let g:ale_fix_on_save = 1
+let g:ale_fix_on_save = 0
 
 au BufNewFile,BufRead *.py
     \ set foldmethod=indent

@@ -67,9 +67,3 @@ mkcd() {
     mkdir -p "$@" && cd "$_";
 }
 vf() { fzf -m | xargs -o $EDITOR ;}
-
-# Tmuxinator aliases
-# alias txs='tmuxinator start'
-# alias txo='tmuxinator open'
-# alias txn='tmuxinator new'
-# alias txl='tmuxinator list'
