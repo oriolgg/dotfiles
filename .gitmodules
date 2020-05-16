@@ -10,24 +10,27 @@
 [submodule "config/tmux/plugins/tmux-resurrect"]
 	path = config/tmux/plugins/tmux-resurrect
 	url = https://github.com/tmux-plugins/tmux-resurrect
+[submodule "config/tmux/plugins/tmux-sessionist"]
+	path = config/tmux/plugins/tmux-sessionist
+	url = https://github.com/tmux-plugins/tmux-sessionist
 [submodule "config/tmux/plugins/tmux-yank"]
 	path = config/tmux/plugins/tmux-yank
 	url = https://github.com/tmux-plugins/tmux-yank
 [submodule "zsh/oh-my-zsh"]
 	path = zsh/oh-my-zsh
 	url = https://github.com/ohmyzsh/ohmyzsh
+[submodule "zsh/plugins/fast-syntax-highlighting"]
+    path = zsh/plugins/fast-syntax-highlighting
+    url = https://github.com/zdharma/fast-syntax-highlighting
+[submodule "zsh/plugins/forgit"]
+    path = zsh/plugins/forgit
+    url = https://github.com/wfxr/forgit
+[submodule "zsh/plugins/fzf-tab"]
+    path = zsh/plugins/fzf-tab
+    url = https://github.com/Aloxaf/fzf-tab
 [submodule "zsh/plugins/zsh-autosuggestions"]
 	path = zsh/plugins/zsh-autosuggestions
 	url = https://github.com/zsh-users/zsh-autosuggestions
-[submodule "zsh/plugins/fzf-tab"]
-	path = zsh/plugins/fzf-tab
-	url = https://github.com/Aloxaf/fzf-tab
-[submodule "zsh/plugins/fast-syntax-highlighting"]
-	path = zsh/plugins/fast-syntax-highlighting
-	url = https://github.com/zdharma/fast-syntax-highlighting
 [submodule "zsh/plugins/zsh-vim-mode"]
-	path = zsh/plugins/zsh-vim-mode
-	url = https://github.com/softmoth/zsh-vim-mode
-[submodule "zsh/plugins/forgit"]
-	path = zsh/plugins/forgit
-	url = https://github.com/wfxr/forgit
+    path = zsh/plugins/zsh-vim-mode
+    url = https://github.com/softmoth/zsh-vim-mode

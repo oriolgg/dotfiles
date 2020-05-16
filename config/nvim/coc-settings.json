@@ -4,12 +4,12 @@
   "python.formatting.provider": "yapf",
 
   // Run prettier (and others)
-  // "coc.preferences.formatOnSaveFiletypes": [
-    // "css",
-    // "javascript",
-    // "python",
-    // "swift"
-  // ],
+  "coc.preferences.formatOnSaveFiletypes": [
+    "css",
+    "javascript",
+    "python",
+    "swift"
+  ],
 
   "languageserver": {
     "sourcekit-lsp": {
