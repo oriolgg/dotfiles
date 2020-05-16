@@ -107,11 +107,9 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'https://github.com/klaaspieter/coc-sourcekit', {'do': 'yarn install --frozen-lockfile'} " Swift language server extension using sourcekit-lsp for coc.nvim
   Plug 'https://github.com/neoclide/coc-css', {'do': 'yarn install --frozen-lockfile'} " Css language server extension for coc.nvim
   Plug 'https://github.com/neoclide/coc-eslint', {'do': 'yarn install --frozen-lockfile'} " Lint javascript files using eslint
-  Plug 'https://github.com/neoclide/coc-git', {'do': 'yarn install --frozen-lockfile'} " Git integration of coc.nvim
   Plug 'https://github.com/neoclide/coc-highlight', {'do': 'yarn install --frozen-lockfile'} " Document highlight and document colors LSP support for coc.nvim
   Plug 'https://github.com/neoclide/coc-html', {'do': 'yarn install --frozen-lockfile'} " Html language server extension for coc.nvim.
   Plug 'https://github.com/neoclide/coc-json', {'do': 'yarn install --frozen-lockfile'} " Json language extension for coc.nvim
-  Plug 'https://github.com/neoclide/coc-lists', {'do': 'yarn install --frozen-lockfile'} " Some basic list sources for coc.nvim (buffers, tags, files, colors...)
   Plug 'https://github.com/neoclide/coc-python', {'do': 'yarn install --frozen-lockfile'} " Python extension for coc.nvim, fork of vscode-python
   Plug 'https://github.com/neoclide/coc-snippets', {'do': 'yarn install --frozen-lockfile'} " Snippets solution for coc.nvim
   Plug 'https://github.com/neoclide/coc-tslint', {'do': 'yarn install --frozen-lockfile'} " Tslint language server extension of coc.nvim
@@ -298,7 +296,7 @@ endf
 set statusline=
 set statusline+=%#Visual#
 set statusline+=\ %F
-set statusline+=\ %{FugitiveStatusline()}%{get(b:,'coc_git_status','')}
+set statusline+=\ %{FugitiveStatusline()}
 set statusline+=\ %m
 set statusline+=\ %r
 set statusline+=%= "Right side settings

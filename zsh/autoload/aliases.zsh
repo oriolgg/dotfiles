@@ -21,10 +21,11 @@ alias ts='tmux-start'
 
 # Git
 alias gcd='git checkout develop'
+alias gcm='git checkout master'
 alias gf='git fetch -p'
 alias gs='git status'
-alias gp='git push'
-alias gl='git pull'
+alias gpo='git push origin'
+alias gp='git pull'
 alias go='git commit -m'
 alias gc='git checkout'
 alias gmd='git-merge-develop'
