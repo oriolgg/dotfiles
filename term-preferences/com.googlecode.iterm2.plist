@@ -991,7 +991,7 @@
 	<key>NSWindow Frame SharedPreferences</key>
 	<string>258 357 796 486 0 0 1440 877 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>0 0 1440 877 0 0 1440 877 </string>
+	<string>0 0 1440 900 0 0 1440 900 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
 	<string>0 1 1440 874 0 0 1440 877 </string>
 	<key>NSWindow Frame iTerm Window 2</key>
@@ -1712,7 +1712,7 @@
 		<key>screenFrame</key>
 		<string>{{0, 0}, {1440, 900}}</string>
 		<key>topLeft</key>
-		<string>{192, 754}</string>
+		<string>{246, 746}</string>
 	</dict>
 	<key>NoSyncHaveRequestedFullDiskAccess</key>
 	<true/>
@@ -1721,7 +1721,7 @@
 	<key>NoSyncInstallationId</key>
 	<string>A2166A52-3A6C-45E7-9FBE-153307830631</string>
 	<key>NoSyncLaunchExperienceControllerRunCount</key>
-	<integer>146</integer>
+	<integer>158</integer>
 	<key>NoSyncNeverRemindPrefsChangesLostForFile</key>
 	<true/>
 	<key>NoSyncNeverRemindPrefsChangesLostForFile_selection</key>
@@ -2506,7 +2506,7 @@
 		</dict>
 	</dict>
 	<key>PrefsCustomFolder</key>
-	<string>~/.dotfiles/term-preferences</string>
+	<string>~/.dotfiles/term-preferences/</string>
 	<key>Print In Black And White</key>
 	<true/>
 	<key>PromptOnClose</key>
