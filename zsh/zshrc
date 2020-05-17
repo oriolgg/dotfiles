@@ -1,3 +1,7 @@
+if [[ "$ZPROF" = true ]]; then
+    zmodload zsh/zprof
+fi
+
 #Path to your oh-my-zsh configuration.
 ZSH=$HOME/.zsh/oh-my-zsh
 
@@ -166,3 +170,7 @@ MODE_INDICATOR_VISUAL='[VISUAL]'
 MODE_INDICATOR_VLINE='[V-LINE]'
 
 TMUX_PASSTHROUH=1
+
+if [[ "$ZPROF" = true ]]; then
+    zprof
+fi

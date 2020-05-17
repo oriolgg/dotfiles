@@ -65,6 +65,19 @@ rmdsstore() {
 }
 # Create a new directory and enter it
 mkcd() {
-    mkdir -p "$@" && cd "$_";
+    [[ -n "$1" ]] && mkdir -p "$1" && builtin cd "$1"
 }
-vf() { fzf -m | xargs -o $EDITOR ;}
+vf() {
+    fzf -m | xargs -o $EDITOR
+}
+timezsh() {
+    shell=${1-$SHELL}
+    for i in $(seq 1 10); do /usr/bin/time $shell -i -c exit; done
+}
+profzsh() {
+    shell=${1-$SHELL}
+    ZPROF=true $shell -i -c exit
+}
+timevim() {
+    for i in $(seq 1 10); do /usr/bin/time vim +qa; done
+}
