@@ -522,6 +522,11 @@ nmap <leader>m :GFiles?<cr>
 nmap <leader>b :Buffers<cr>
 nmap <leader>h :History<cr>
 
+" fzf Statusline colors
+highlight default fzf1 ctermfg=1 ctermbg=8 guifg=#62f591 guibg=#424450
+highlight default fzf2 ctermfg=2 ctermbg=8 guifg=#f7f8f3 guibg=#424450
+highlight default fzf3 ctermfg=7 ctermbg=8 guifg=#f7f8f3 guibg=#424450
+
 let g:python3_host_prog='/usr/local/bin/python3'
 
 " Vista

@@ -34,6 +34,18 @@
 [submodule "zsh/plugins/zsh-vim-mode"]
     path = zsh/plugins/zsh-vim-mode
     url = https://github.com/softmoth/zsh-vim-mode
+[submodule "term-preferences/dracula-xcode"]
+	path = term-preferences/dracula-xcode
+	url = https://github.com/dracula/xcode
+[submodule "term-preferences/dracula-iterm"]
+	path = term-preferences/dracula-iterm
+	url = https://github.com/dracula/iterm.git
+[submodule "term-preferences/dracula-terminal"]
+	path = term-preferences/dracula-terminal
+	url = https://github.com/dracula/terminal-app.git
+[submodule "config/qutebrowser/dracula"]
+	path = config/qutebrowser/dracula
+	url = https://github.com/dracula/qutebrowser-dracula-theme.git
 [submodule "config/tmux/plugins/tmux-dracula"]
 	path = config/tmux/plugins/tmux-dracula
 	url = https://github.com/dracula/tmux

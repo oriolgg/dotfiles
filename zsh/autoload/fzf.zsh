@@ -63,14 +63,15 @@ git_files_with_fzf() {
 zle -N git_files_with_fzf
 bindkey '^G' git_files_with_fzf
 
-local background='#282a36'
-local border='#53555e'
-local results='#bfbfbf'
-local selected_result='#89f198'
-local match_results='#f1766e'
-local match_selected_result='#f1766e'
-local info_spinner='#fdb771'
-local marker='#f1766e'
+local bg_color='#282a36'
+local border_color='#53555e'
+local results_color='#bfbfbf'
+local selected_result_color='#f8f8f2'
+local prompt_color='#62f591'
+local match_results_color='#62f591'
+local selected_match_result_color='#fdb772'
+local info_spinner_color='#bc96f6'
+local marker_color='#62f591'
 
 default_bind_options='change:top,ctrl-w:backward-kill-word,ctrl-a:beginning-of-line,ctrl-e:end-of-line,shift-right:forward-word,shift-left:backward-word,ctrl-c:clear-query,ctrl-f:page-down,ctrl-b:page-up,ctrl-u:half-page-up,ctrl-d:half-page-down,ctrl-t:top,ctrl-p:up,ctrl-n:down,ctrl-o:toggle-sort,ctrl-x:toggle,tab:down,btab:up,alt-e:preview-down,alt-y:preview-up,alt-j:preview-page-down,alt-k:preview-page-up,alt-f:preview-page-down,alt-b:preview-page-up,alt-p:toggle-preview'
 default_preview_window='bottom:50%:border'
@@ -83,13 +84,13 @@ export FZF_DEFAULT_OPTS="  --height 75%
   --reverse
   -s
   --border
-  --color=bg:$background,bg+:$background
-  --color=fg:$results,fg+:$selected_result
-  --color=hl:$match_results,hl+:$match_selected_result
-  --color=spinner:$info_spinner,info:$info_spinner
-  --color=border:$border,pointer:$selected_result
-  --color=prompt:$results,header:$match_results
-  --color=marker:$marker
+  --color=bg:$bg_color,bg+:$bg_color
+  --color=fg:$results_color,fg+:$selected_result_color
+  --color=hl:$match_results_color,hl+:$selected_match_result_color
+  --color=spinner:$info_spinner_color,info:$info_spinner_color
+  --color=border:$border_color,pointer:$marker_color
+  --color=prompt:$prompt_color,header:$match_results_color
+  --color=marker:$marker_color
   --inline-info
   --preview $default_preview
   --bind $default_bind_options
