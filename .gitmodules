@@ -46,6 +46,3 @@
 [submodule "config/qutebrowser/dracula"]
 	path = config/qutebrowser/dracula
 	url = https://github.com/dracula/qutebrowser-dracula-theme.git
-[submodule "config/tmux/plugins/tmux-dracula"]
-	path = config/tmux/plugins/tmux-dracula
-	url = https://github.com/dracula/tmux

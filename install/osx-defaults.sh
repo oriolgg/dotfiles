@@ -84,10 +84,10 @@ echo "  ›  Allow fast user switching (icon style, in the menu bar)"
 defaults write NSGlobalDomain userMenuExtraStyle -int 2
 
 echo "  ›  Menu bar clock format"
-echo "  ›  "h:mm" Default"
-echo "  ›  "HH"   Use a 24-hour clock"
-echo "  ›  "a"    Show AM/PM"
-echo "  ›  "ss"   Display the time with seconds"
+# "h:mm" Default"
+# "HH"   Use a 24-hour clock"
+# "a"    Show AM/PM"
+# "ss"   Display the time with seconds"
 defaults write com.apple.menuextra.clock DateFormat -string "HH:mm:ss"
 
 echo "  › Set dark interface style"
@@ -230,8 +230,8 @@ defaults write com.apple.screensaver askForPassword -int 1
 defaults write com.apple.screensaver askForPasswordDelay -int 0
 
 echo "  › Always show scrollbars"
-defaults write NSGlobalDomain AppleShowScrollBars -string "Always"
-echo "  ›  Possible values: 'WhenScrolling', 'Automatic' and 'Always'"
+defaults write NSGlobalDomain AppleShowScrollBars -string "WhenScrolling"
+# Possible values: 'WhenScrolling', 'Automatic' and 'Always'"
 
 echo "  › Increase the window resize speed for Cocoa applications"
 defaults write NSGlobalDomain NSWindowResizeTime -float 0.001
@@ -421,7 +421,7 @@ end tell
 EOD
 
 echo "  ›  Enable Secure Keyboard Entry in Terminal.app"
-echo "  ›  See: https://security.stackexchange.com/a/47786/8918"
+# See: https://security.stackexchange.com/a/47786/8918"
 defaults write com.apple.terminal SecureKeyboardEntry -bool true
 
 echo "  ›  Don’t display the annoying prompt when quitting iTerm2"
@@ -535,7 +535,7 @@ echo "  ›  Hide the legal disclaimer"
 defaults write org.m0k.transmission WarningLegal -bool false
 
 echo "  ›  IP block list."
-echo "  ›  Source: https://giuliomac.wordpress.com/2014/02/19/best-blocklist-for-transmission/"
+# Source: https://giuliomac.wordpress.com/2014/02/19/best-blocklist-for-transmission/"
 defaults write org.m0k.transmission BlocklistNew -bool true
 defaults write org.m0k.transmission BlocklistURL -string "http://john.bitsurge.net/public/biglist.p2p.gz"
 defaults write org.m0k.transmission BlocklistAutoUpdate -bool true
