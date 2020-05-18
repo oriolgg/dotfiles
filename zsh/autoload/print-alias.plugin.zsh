@@ -1,3 +1,5 @@
+#!/bin/zsh
+
 _print-alias-accept-line () {
     emulate -L zsh
 

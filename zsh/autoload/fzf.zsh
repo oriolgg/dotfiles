@@ -1,3 +1,5 @@
+#!/bin/zsh
+
 # Setup fzf
 # ---------
 if [[ ! "$PATH" == */usr/local/opt/fzf/bin* ]]; then

@@ -97,7 +97,7 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'https://github.com/vim-scripts/IndexedSearch'       " Shows 'Nth match out of M' at every search
 
   " Coc
-  Plug 'https://github.com/neoclide/coc.nvim', {'do': { -> coc#util#install()}} " Intellisense engine for Vim/Neovim
+  Plug 'neoclide/coc.nvim', {'branch': 'release'}           " Intellisense engine for Vim/Neovim
   Plug 'https://github.com/dense-analysis/ale'              " Code linting (check for syntax errors)
   Plug 'https://github.com/liuchengxu/vista.vim'            " Tagbar that learns from LSP servers
   Plug 'https://github.com/jeetsukumaran/vim-pythonsense'   " Provides some Python-specific text objects: classes, functions, etc
@@ -279,15 +279,6 @@ endif
 let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
 let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 
-" let g:solarized_statusline=
-fu! StatusLineGitBranch()
-  if fugitive#head() == ''
-    return ''
-  else
-    return '['.fugitive#head().']'
-  endif
-endf
-
 " Status-line
 set statusline=
 set statusline+=%#CursorLine#
@@ -343,6 +334,7 @@ vmap p "_dP
 
 " Bind :sort to something easy, don't press enter, allow for options (eg -u, n, sorting in reverse [sort!])
 vnoremap <leader>s :sort<cr>
+
 
 """"""""""""""""""""""""""""""""""""""""""""""""""
 " Normal mode custom mappings
@@ -557,33 +549,32 @@ autocmd CursorHold * silent call CocActionAsync('highlight')
 " Highlight symbol under cursor on CursorHold
 autocmd CursorHold * silent call CocActionAsync('highlight')
 
-nnoremap <silent> <leader>co  :<C-u>CocList outline<cr>
-nnoremap <silent> <leader>cs  :<C-u>CocList -I symbols<cr>
+nnoremap <silent> <leader>co :<C-u>CocList outline<cr>
+nnoremap <silent> <leader>cs :<C-u>CocList -I symbols<cr>
 
 " List errors
-nnoremap <silent> <leader>cl  :<C-u>CocList locationlist<cr>
+nnoremap <silent> <leader>cl :<C-u>CocList locationlist<cr>
 
 " list commands available in tsserver (and others)
-nnoremap <silent> <leader>cc  :<C-u>CocList commands<cr>
+nnoremap <silent> <leader>cc :<C-u>CocList commands<cr>
 
 " restart when tsserver gets wonky
-nnoremap <silent> <leader>cR  :<C-u>CocRestart<CR>
+nnoremap <silent> <leader>cR :<C-u>CocRestart<CR>
 
 " view all errors
-nnoremap <silent> <leader>cl  :<C-u>CocList locationlist<CR>
+nnoremap <silent> <leader>cl :<C-u>CocList locationlist<CR>
 
 " manage extensions
-nnoremap <silent> <leader>cx  :<C-u>CocList extensions<cr>
-
+nnoremap <silent> <leader>cx :<C-u>CocList extensions<cr>
 
 " Remap for rename current word
-nmap <leader>cr  <Plug>(coc-rename)
-nmap <leader>cf  <Plug>(coc-format-selected)
-vmap <leader>cf  <Plug>(coc-format-selected)
+nmap <leader>cr <Plug>(coc-rename)
+nmap <leader>cf <Plug>(coc-format-selected)
+vmap <leader>cf <Plug>(coc-format-selected)
 
 " run code actions
-vmap <leader>ca  <Plug>(coc-codeaction-selected)
-nmap <leader>ca  <Plug>(coc-codeaction-selected)
+vmap <leader>ca <Plug>(coc-codeaction-selected)
+nmap <leader>ca <Plug>(coc-codeaction-selected)
 
 " ALE
 let g:ale_linters = {

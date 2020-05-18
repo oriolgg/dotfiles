@@ -1,12 +1,8 @@
+#!/bin/zsh
+
 if [[ "$ZPROF" = true ]]; then
     zmodload zsh/zprof
 fi
-
-#Path to your oh-my-zsh configuration.
-ZSH=$HOME/.zsh/oh-my-zsh
-
-# Set name of the theme to load.
-ZSH_THEME="oriol"
 
 # Create ~/.cache folder structure
 [ ! -d $HOME/.cache ] && mkdir -p $HOME/.cache
@@ -15,6 +11,38 @@ ZSH_THEME="oriol"
 [ ! -d $HOME/.cache/tmux ] && mkdir -p $HOME/.cache/tmux
 [ ! -d $HOME/.cache/tmux/tmux-resurrect ] && mkdir -p $HOME/.cache/tmux/tmux-resurrect
 [ ! -d $HOME/.cache/zsh ] && mkdir -p $HOME/.cache/zsh
+
+#############################
+### Environment variables ###
+#############################
+
+export ZSH_COMPDUMP="$HOME/.cache/zsh/zcompdump-$HOST-$ZSH_VERSION"
+export LESSHISTFILE="$HOME/.cache/zsh/lesshst"
+
+### User configuration
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#53555e"
+export PATH=$HOME/.bin:/usr/local/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin:/usr/bin:/usr/local/opt/sqlite/bin:$PATH
+
+export HOMEBREW_CASK_OPTS="--appdir=/Applications"
+
+export VISUAL='nvim'
+export EDITOR='nvim'
+
+export LC_ALL=en_US.UTF-8
+
+# Highlight man pages with bat
+export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+
+# Utilitza Dracula per veure el preview dels fitxers
+export BAT_THEME="Dracula"
+
+export _Z_DATA="$HOME/.cache/zsh/z"
+export FORGIT_GI_REPO_LOCAL="$HOME/.cache/zsh/forgit/gi/repos/dvcs/gitignore"
+export FORGIT_GI_TEMPLATES="$FORGIT_GI_REPO_LOCAL/templates"
+
+#############################
+### General configuration ###
+#############################
 
 ##
 # History
@@ -66,7 +94,12 @@ setopt PROMPT_SUBST             # Adds support for command substitution
 # Al navegar per l'historial de comandes, deixar el cursor al final de la comanda
 unsetopt GLOBAL_RCS
 
-DISABLE_MAGIC_FUNCTIONS=true
+DISABLE_AUTO_TITLE="true"
+autoload -U zmv
+
+#############################
+### Plugins configuration ###
+#############################
 
 plugins=(
     alias-finder
@@ -88,54 +121,26 @@ plugins=(
     zsh-vim-mode
 )
 
-DISABLE_AUTO_TITLE="true"
-autoload -U zmv
+# Set name of the theme to load.
+ZSH_THEME="oriol"
 
-export ZSH_COMPDUMP="$HOME/.cache/zsh/zcompdump-$HOST-$ZSH_VERSION"
-export LESSHISTFILE="$HOME/.cache/zsh/lesshst"
-
+#Path to oh-my-zsh configuration
+ZSH=$HOME/.zsh/oh-my-zsh
 source $ZSH/oh-my-zsh.sh
 
-# User configuration
-ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#155b6d"
-export PATH=$HOME/.bin:/usr/local/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin:/usr/bin:/usr/local/opt/sqlite/bin:$PATH
-export VIRTUAL_ENV_DISABLE_PROMPT=disable
+DISABLE_MAGIC_FUNCTIONS=true
 
-export HOMEBREW_CASK_OPTS="--appdir=/Applications"
+function bgnotify_formatted {
+  ## $1=exit_status, $2=command, $3=elapsed_time
+  [ $1 -eq 0 ] && title="Has finished OK" || title="Has finished KO"
+  bgnotify "$title -- after $3 s" "$2";
+}
 
-export EVENT_NOKQUEUE=1
+#############################
+### Bind keys for widgets ###
+#############################
 
-export VISUAL='nvim'
-export EDITOR='nvim'
-
-export LC_ALL=en_US.UTF-8
-
-# Highlight man pages with bat
-export MANPAGER="sh -c 'col -bx | bat -l man -p'"
-
-# Utilitza Dracula per veure el preview dels fitxers
-export BAT_THEME="Dracula"
-
-export _Z_DATA="$HOME/.cache/zsh/z"
-export FORGIT_GI_REPO_LOCAL="$HOME/.cache/zsh/forgit/gi/repos/dvcs/gitignore"
-export FORGIT_GI_TEMPLATES="$FORGIT_GI_REPO_LOCAL/templates"
-
-[ -f $HOME/.aliases.local.zsh ] && source $HOME/.aliases.local.zsh
-[ -f $HOME/.profile ] && source $HOME/.profile
-[ -f $HOME/.user_profile ] && source $HOME/.user_profile
-[ -f $HOME/.zshrc.local ] && source $HOME/.zshrc.local
-
-for f in ~/.zsh/autoload/*.zsh; do source $f; done
-
-if [ "$TMUX" = "" ]; then tmux-start "$USER"; fi
-
-########################################
-# Bind keys for widgets
-########################################
 bindkey -v 
-
-stty -ixon
-stty stop undef
 
 bindkey '^A' beginning-of-line
 bindkey '^E' end-of-line
@@ -148,19 +153,12 @@ bindkey '^B' backward-kill-word
 bindkey '^P' history-substring-search-up
 bindkey '^N' history-substring-search-down
 
-# Plugin configurations
-function bgnotify_formatted {
-  ## $1=exit_status, $2=command, $3=elapsed_time
-  [ $1 -eq 0 ] && title="Has finished OK" || title="Has finished KO"
-  bgnotify "$title -- after $3 s" "$2";
-}
-
-MODE_CURSOR_VIINS="#00ff00 blinking bar"
-MODE_CURSOR_REPLACE="$MODE_CURSOR_VIINS #ff0000"
+MODE_CURSOR_VIINS="#62f591 blinking bar"
+MODE_CURSOR_REPLACE="$MODE_CURSOR_VIINS #fc5759"
 MODE_CURSOR_VICMD="green block"
-MODE_CURSOR_SEARCH="#ff00ff steady underline"
+MODE_CURSOR_SEARCH="#62f591 steady underline"
 MODE_CURSOR_VISUAL="$MODE_CURSOR_VICMD steady bar"
-MODE_CURSOR_VLINE="$MODE_CURSOR_VISUAL #00ffff"
+MODE_CURSOR_VLINE="$MODE_CURSOR_VISUAL #acebfc"
 
 MODE_INDICATOR_VIINS='[INSERT]'
 MODE_INDICATOR_VICMD='[NORMAL]'
@@ -169,7 +167,20 @@ MODE_INDICATOR_SEARCH='[SEARCH]'
 MODE_INDICATOR_VISUAL='[VISUAL]'
 MODE_INDICATOR_VLINE='[V-LINE]'
 
-TMUX_PASSTHROUH=1
+#############################
+###  Other configuration  ###
+#############################
+
+[ -f $HOME/.aliases.local.zsh ] && source $HOME/.aliases.local.zsh
+[ -f $HOME/.profile ] && source $HOME/.profile
+[ -f $HOME/.user_profile ] && source $HOME/.user_profile
+[ -f $HOME/.zshrc.local ] && source $HOME/.zshrc.local
+for f in ~/.zsh/autoload/*.zsh; do source $f; done
+
+stty -ixon
+stty stop undef
+
+if [ "$TMUX" = "" ]; then tmux-start "$USER"; fi
 
 if [[ "$ZPROF" = true ]]; then
     zprof

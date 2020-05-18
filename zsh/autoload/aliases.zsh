@@ -1,3 +1,5 @@
+#!/bin/zsh
+
 alias e=exit
 alias zs='source ~/.zshrc && clear'
 
@@ -13,9 +15,11 @@ alias bci='brew cask info'
 alias bcis='brew cask install'
 alias bcus='brew cask uninstall'
 
+# Changes ls for exa
 alias l='exa -lahH --git'
 alias lt='exa --tree --level=2'
 
+# Tmux
 alias tmux='tmux -f ~/.config/tmux/tmux.conf'
 alias ts='tmux-start'
 
@@ -33,51 +37,15 @@ alias gbpurge='git branch --merged develop | grep -v "\*" | grep -v "master" | g
 alias gupurge='gf ; gcm ; gl ; gcd ; gl ; gbpurge'
 alias gmodpull='git submodule foreach git pull origin master'
 
-git_remove_submodule() {
-    [[ ! -d "$1" ]] && echo "$1 is not a directory" && return
-    [[ ! -d ".git/modules/$1" ]] && echo "$1 is not a git submodule" && return
-    [[ ! -f "$1/.git" ]] && echo "$1 is not a git submodule" && return
+# Batgrep uses Rg internally but with a more friendly result
+alias bg='batgrep'
 
-    git submodule deinit -f -- "$1"
-    git rm -f "$1"
-    rm -rf ".git/modules/$1"
-}
-
+# Edit dotfiles
 alias edf='cd $HOME/.dotfiles && nvim -S $HOME/.cache/nvim/nvim_sessions/dotfiles.vim'
 
 alias v=nvim
 alias vi=nvim
 alias vim=nvim
 
-alias afk="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend"
-
+# Lynx start with custom config files
 alias lynx='lynx -cfg=$HOME/.config/lynx/lynx.cfg -lss=$HOME/.config/lynx/lynx.lss -session=$HOME/.cache/lynx/session'
-
-ansi-colors() {
-    for i in {0..255}; do print -Pn "%K{$i}  %k%F{$i}${(l:3::0:)i}%f " ${${(M)$((i%6)):#3}:+$'\n'}; done
-}
-
-manp() {
-    man -t "$1" | open -f -a Preview
-}
-rmdsstore() {
-    find "${@:-.}" -type f -name .DS_Store -delete
-}
-# Create a new directory and enter it
-mkcd() {
-    [[ -n "$1" ]] && mkdir -p "$1" && builtin cd "$1"
-}
-vf() {
-    fzf -m | xargs -o $EDITOR
-}
-timezsh() {
-    shell=${1-$SHELL}
-    for i in $(seq 1 10); do /usr/bin/time $shell -i -c exit; done
-}
-profzsh() {
-    shell=${1-$SHELL}
-    ZPROF=true $shell -i -c exit
-}
-timevim() {
-    for i in $(seq 1 10); do /usr/bin/time vim +qa; done
-}
