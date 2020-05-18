@@ -49,3 +49,7 @@ alias vim=nvim
 
 # Lynx start with custom config files
 alias lynx='lynx -cfg=$HOME/.config/lynx/lynx.cfg -lss=$HOME/.config/lynx/lynx.lss -session=$HOME/.cache/lynx/session'
+
+alias python3=/usr/local/opt/python@3.8/bin/python3.8
+alias python=python3
+alias pip=/usr/local/opt/python@3.8/bin/pip3.8
