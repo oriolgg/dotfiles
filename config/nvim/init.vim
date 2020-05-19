@@ -103,18 +103,6 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'https://github.com/jeetsukumaran/vim-pythonsense'   " Provides some Python-specific text objects: classes, functions, etc
   Plug 'https://github.com/Vimjas/vim-python-pep8-indent'   " Indentation for Python
 
-  " Coc extensions
-  Plug 'https://github.com/klaaspieter/coc-sourcekit', {'do': 'yarn install --frozen-lockfile'} " Swift language server extension using sourcekit-lsp for coc.nvim
-  Plug 'https://github.com/neoclide/coc-css', {'do': 'yarn install --frozen-lockfile'} " Css language server extension for coc.nvim
-  Plug 'https://github.com/neoclide/coc-eslint', {'do': 'yarn install --frozen-lockfile'} " Lint javascript files using eslint
-  Plug 'https://github.com/neoclide/coc-highlight', {'do': 'yarn install --frozen-lockfile'} " Document highlight and document colors LSP support for coc.nvim
-  Plug 'https://github.com/neoclide/coc-html', {'do': 'yarn install --frozen-lockfile'} " Html language server extension for coc.nvim.
-  Plug 'https://github.com/neoclide/coc-json', {'do': 'yarn install --frozen-lockfile'} " Json language extension for coc.nvim
-  Plug 'https://github.com/neoclide/coc-python', {'do': 'yarn install --frozen-lockfile'} " Python extension for coc.nvim, fork of vscode-python
-  Plug 'https://github.com/neoclide/coc-snippets', {'do': 'yarn install --frozen-lockfile'} " Snippets solution for coc.nvim
-  Plug 'https://github.com/neoclide/coc-tslint', {'do': 'yarn install --frozen-lockfile'} " Tslint language server extension of coc.nvim
-  Plug 'https://github.com/neoclide/coc-tsserver', {'do': 'yarn install --frozen-lockfile'} " Tsserver language server extension for coc.nvim.
-
 call plug#end()
 
 " Install plugins the first time vim runs
@@ -519,14 +507,14 @@ highlight default fzf1 ctermfg=1 ctermbg=8 guifg=#62f591 guibg=#424450
 highlight default fzf2 ctermfg=2 ctermbg=8 guifg=#f7f8f3 guibg=#424450
 highlight default fzf3 ctermfg=7 ctermbg=8 guifg=#f7f8f3 guibg=#424450
 
-let g:python3_host_prog='/usr/local/opt/python@3.8/bin/python3.8'
+let g:python3_host_prog='/usr/local/opt/python/bin/python3'
 
 " Vista
 let g:vista_icon_indent = ["╰─▸ ", "├─▸ "]
 
 " Coc
 let g:coc_data_home = $HOME.'/.cache/coc'
-let g:coc_config_home = $HOME.'.nvim'
+let g:coc_config_home = $HOME.'/.nvim'
 
 " Remap keys for gotos
 nmap <silent> gd <Plug>(coc-definition)
@@ -548,6 +536,8 @@ autocmd CursorHold * silent call CocActionAsync('highlight')
 
 " Highlight symbol under cursor on CursorHold
 autocmd CursorHold * silent call CocActionAsync('highlight')
+
+inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
 nnoremap <silent> <leader>co :<C-u>CocList outline<cr>
 nnoremap <silent> <leader>cs :<C-u>CocList -I symbols<cr>
@@ -578,13 +568,16 @@ nmap <leader>ca <Plug>(coc-codeaction-selected)
 
 " ALE
 let g:ale_linters = {
-      \   'python': ['flake8', 'pylint'],
+      \   'python': ['flake8', 'pylint_django'],
       \   'javascript': ['eslint'],
       \}
 let g:ale_fixers = {
       \    'python': ['yapf'],
       \}
-let g:ale_fix_on_save = 0
+let g:ale_fix_on_save = 1
+
+nmap <silent> [x <Plug>(ale_previous_wrap)
+nmap <silent> ]x <Plug>(ale_next_wrap)
 
 au BufNewFile,BufRead *.py
     \ set foldmethod=indent
@@ -611,8 +604,8 @@ function! LinterStatus() abort
   let l:all_errors = l:counts.error + l:counts.style_error
   let l:all_non_errors = l:counts.total - l:all_errors
 
-  return l:counts.total == 0 ? '✔ good' : printf(
-        \   '✗ %dW %dE',
+  return l:counts.total == 0 ? '[ ✔ good ]' : printf(
+        \   '[ ✗ %dW %dE ]',
         \   all_non_errors,
         \   all_errors
         \)
