@@ -98,10 +98,11 @@ call plug#begin('~/.config/nvim/plugged')
 
   " Coc
   Plug 'neoclide/coc.nvim', {'branch': 'release'}           " Intellisense engine for Vim/Neovim
-  Plug 'https://github.com/dense-analysis/ale'              " Code linting (check for syntax errors)
   Plug 'https://github.com/liuchengxu/vista.vim'            " Tagbar that learns from LSP servers
   Plug 'https://github.com/jeetsukumaran/vim-pythonsense'   " Provides some Python-specific text objects: classes, functions, etc
   Plug 'https://github.com/Vimjas/vim-python-pep8-indent'   " Indentation for Python
+  Plug 'https://github.com/vim-syntastic/syntastic'
+  Plug 'https://github.com/keith/swift.vim'
 
 call plug#end()
 
@@ -276,8 +277,7 @@ set statusline+=\ %m
 set statusline+=\ %r
 set statusline+=%= "Right side settings
 set statusline+=\ %([%Y]%)
-set statusline+=\ %l/%L
-set statusline+=\ %{LinterStatus()}\ 
+set statusline+=\ %l/%L\ 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""
 " Insert mode custom mappings
@@ -566,19 +566,6 @@ vmap <leader>cf <Plug>(coc-format-selected)
 vmap <leader>ca <Plug>(coc-codeaction-selected)
 nmap <leader>ca <Plug>(coc-codeaction-selected)
 
-" ALE
-let g:ale_linters = {
-      \   'python': ['flake8', 'pylint_django'],
-      \   'javascript': ['eslint'],
-      \}
-let g:ale_fixers = {
-      \    'python': ['yapf'],
-      \}
-let g:ale_fix_on_save = 1
-
-nmap <silent> [x <Plug>(ale_previous_wrap)
-nmap <silent> ]x <Plug>(ale_next_wrap)
-
 au BufNewFile,BufRead *.py
     \ set foldmethod=indent
 
@@ -598,15 +585,14 @@ if 'VIRTUAL_ENV' in os.environ:
   execfile(activate_this, dict(__file__=activate_this))
 EOF
 
-function! LinterStatus() abort
-  let l:counts = ale#statusline#Count(bufnr(''))
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
 
-  let l:all_errors = l:counts.error + l:counts.style_error
-  let l:all_non_errors = l:counts.total - l:all_errors
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
 
-  return l:counts.total == 0 ? '[ ✔ good ]' : printf(
-        \   '[ ✗ %dW %dE ]',
-        \   all_non_errors,
-        \   all_errors
-        \)
-endfunction
+let g:syntastic_python_checkers = ['pylint']
+let g:syntastic_swift_checkers = ['swiftlint']
