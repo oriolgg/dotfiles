@@ -519,7 +519,7 @@ highlight default fzf1 ctermfg=1 ctermbg=8 guifg=#62f591 guibg=#424450
 highlight default fzf2 ctermfg=2 ctermbg=8 guifg=#f7f8f3 guibg=#424450
 highlight default fzf3 ctermfg=7 ctermbg=8 guifg=#f7f8f3 guibg=#424450
 
-let g:python3_host_prog='/usr/local/bin/python3'
+let g:python3_host_prog='/usr/local/opt/python@3.8/bin/python3.8'
 
 " Vista
 let g:vista_icon_indent = ["╰─▸ ", "├─▸ "]
