@@ -103,6 +103,11 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'https://github.com/Vimjas/vim-python-pep8-indent'   " Indentation for Python
   Plug 'https://github.com/vim-syntastic/syntastic'
   Plug 'https://github.com/keith/swift.vim'
+  Plug 'https://github.com/SirVer/ultisnips'
+    let g:UltiSnipsExpandTrigger="<tab>"
+    let g:UltiSnipsJumpForwardTrigger="<c-b>"
+    let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+  Plug 'https://github.com/honza/vim-snippets'
 
 call plug#end()
 
