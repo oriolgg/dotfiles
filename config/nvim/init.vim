@@ -39,7 +39,6 @@ endif
 " Creates cache folders
 :silent exec "!mkdir -p $HOME'/.cache/nvim/nvim_undo'"
 :silent exec "!mkdir -p $HOME'/.cache/nvim/nvim_view'"
-:silent exec "!mkdir -p $HOME'/.cache/nvim/nvim_sessions'"
 :silent exec "!mkdir -p $HOME'/.cache/nvim/miniyank'"
 :silent exec "!mkdir -p $HOME'/.cache/nvim/shada'"
 
@@ -209,7 +208,6 @@ set nrformats=                                           " increase or decrease 
 set number                                               " Show line numbers
 set relativenumber                                       " Shows relative numbers
 set ruler                                                " Show where you are
-set scrolloff=3                                          " show 3 lines of context around cursor
 set shortmess=lcs                                        " Personalizes some messages
 set showcmd                                              " Shows partials of the commands
 set signcolumn=yes                                       " Always show signcolumn. prevents buffer from moving when showing/hiding it
