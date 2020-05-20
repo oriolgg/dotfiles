@@ -41,7 +41,7 @@ alias gmodpull='git submodule foreach git pull origin master'
 alias bg='batgrep'
 
 # Edit dotfiles
-alias edf='cd $HOME/.dotfiles && nvim -S $HOME/.cache/nvim/nvim_sessions/dotfiles.vim'
+alias edf='cd $HOME/.dotfiles && nvim'
 
 alias v=nvim
 alias vi=nvim

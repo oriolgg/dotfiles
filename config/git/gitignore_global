@@ -3,3 +3,4 @@
 *.py[co]
 *tags
 .vim
+.session.vim

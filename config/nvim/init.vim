@@ -79,14 +79,7 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'https://github.com/wellle/targets.vim'              " Adds text objects and improves the default ones
   Plug 'https://github.com/mbbill/undotree'                 " Shows undo tree for the current buffer
   Plug 'https://github.com/pbrisbin/vim-mkdir'              " Creates all required folders when saving buffers
-  Plug 'https://github.com/xolox/vim-misc'                  " Misc Vim script functions (required for vim-session)
-  Plug 'https://github.com/xolox/vim-session'               " Improves Vim session management
-    let g:session_directory = '~/.cache/nvim/nvim_sessions'
-    let g:session_autoload = 'yes'
-    let g:session_autosave = 'yes'
-    let g:session_persist_font = 0
-    let g:session_persist_colors = 0
-    let g:session_command_aliases = 1
+  Plug 'https://github.com/tpope/vim-obsession'             " Improves Vim session management
 
   Plug 'https://github.com/christoomey/vim-tmux-navigator'  " Seamless navigation between tmux panes and vim splits
   Plug 'https://github.com/tpope/vim-unimpaired'            " Mappings for common ex commands, line mappings (add before/after, movement), toggle vim options and encode/decode
@@ -341,10 +334,8 @@ nnoremap <down> <nop>
 nnoremap <left> <nop>
 nnoremap <right> <nop>
 
-nnoremap <leader>so :OpenSession 
-nnoremap <leader>ss :SaveSession 
-nnoremap <leader>sd :DeleteSession<cr>
-nnoremap <leader>sc :CloseSession<cr>
+nnoremap <leader>ss :Obsession .session.vim<cr>
+nnoremap <leader>sd :Obsession!<cr>
 
 map j gj
 map k gk
@@ -601,3 +592,8 @@ let g:syntastic_check_on_wq = 0
 
 let g:syntastic_python_checkers = ['pylint']
 let g:syntastic_swift_checkers = ['swiftlint']
+
+" If exists a Session.vim file in the current folder, sources it
+if filereadable(getcwd() . '/.session.vim')
+  :execute 'source '.getcwd() . '/.session.vim'
+endif
