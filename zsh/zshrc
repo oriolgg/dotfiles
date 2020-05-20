@@ -22,6 +22,7 @@ export LESSHISTFILE="$HOME/.cache/zsh/lesshst"
 ### User configuration
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#53555e"
 export PATH=$HOME/.bin:/usr/local/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin:/usr/bin:/usr/local/opt/sqlite/bin:$PATH
+export VIRTUAL_ENV_DISABLE_PROMPT=disable
 
 export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 
