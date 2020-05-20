@@ -49,7 +49,6 @@ call plug#begin('~/.config/nvim/plugged')
   " User Interface
   Plug 'https://github.com/dracula/vim.git', { 'name': 'dracula' }
   Plug 'https://github.com/machakann/vim-highlightedyank'   " Highlights in red the yanked text
-    let g:highlightedyank_highlight_duration = 200
   Plug 'https://github.com/psliwka/vim-smoothie'            " Smoothie scroll (using [Ctrl-u], [Ctrl-d], [Ctrl-b] and [Ctrl-f]
   Plug 'https://github.com/gillyb/stable-windows'           " When opening splits, maintains the same layout (working?)
   Plug 'https://github.com/airblade/vim-gitgutter'          " Adds Git changes in lines
@@ -90,7 +89,7 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'https://github.com/vim-scripts/IndexedSearch'       " Shows 'Nth match out of M' at every search
 
   " Coc
-  Plug 'neoclide/coc.nvim', {'branch': 'release'}           " Intellisense engine for Vim/Neovim
+  Plug 'https://github.com/neoclide/coc.nvim', {'branch': 'release'}           " Intellisense engine for Vim/Neovim
   Plug 'https://github.com/liuchengxu/vista.vim'            " Tagbar that learns from LSP servers
   Plug 'https://github.com/jeetsukumaran/vim-pythonsense'   " Provides some Python-specific text objects: classes, functions, etc
   Plug 'https://github.com/Vimjas/vim-python-pep8-indent'   " Indentation for Python
@@ -460,6 +459,8 @@ function! FZFYankHandler(opt, line) abort
   endif
 endfunction
 
+let g:fzf_default_bind = '--bind change:top,ctrl-w:backward-kill-word,ctrl-a:beginning-of-line,ctrl-e:end-of-line,shift-right:forward-word,shift-left:backward-word,ctrl-c:clear-query,ctrl-f:page-down,ctrl-b:page-up,ctrl-u:half-page-up,ctrl-d:half-page-down,ctrl-t:top,ctrl-p:up,ctrl-n:down,ctrl-o:toggle-sort,ctrl-x:toggle,tab:toggle-out,btab:toggle-up,alt-e:preview-down,alt-y:preview-up,alt-j:preview-page-down,alt-k:preview-page-up,alt-f:preview-page-down,alt-b:preview-page-up,alt-p:toggle-preview'
+let g:fzf_default_preview_window = '--preview-window=bottom:50%:border'
 function! MiniPut(before)
   let l:fzf_files_options = '--preview "echo {}" --reverse'
   if (a:before)
