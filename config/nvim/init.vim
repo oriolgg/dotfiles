@@ -2,8 +2,6 @@
 " vim/neovim config file
 """"""""""""""""""""""""""""""""""""""""""""""""""
 
-let fancy_symbols_enabled = 0
-
 let using_neovim = has('nvim')
 let using_vim = !using_neovim
 
@@ -50,7 +48,6 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'https://github.com/machakann/vim-highlightedyank'   " Highlights in red the yanked text
   Plug 'https://github.com/psliwka/vim-smoothie'            " Smoothie scroll (using [Ctrl-u], [Ctrl-d], [Ctrl-b] and [Ctrl-f]
   Plug 'https://github.com/gillyb/stable-windows'           " When opening splits, maintains the same layout (working?)
-  Plug 'https://github.com/airblade/vim-gitgutter'          " Adds Git changes in lines
   Plug 'https://github.com/zakj/vim-showmarks'              " Adds marks to gutter
     let g:showmarks_include="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
@@ -60,6 +57,10 @@ call plug#begin('~/.config/nvim/plugged')
 
   " Intregration of Git
   Plug 'https://github.com/tpope/vim-fugitive'              " Best Git plugin for Vim
+  Plug 'https://github.com/junegunn/gv.vim'                 " A git commit browser in Vim
+  Plug 'https://github.com/airblade/vim-gitgutter'          " Adds Git changes in lines
+    let g:gitgutter_map_keys = 0
+    let g:gitgutter_grep = 'rg'
   Plug 'https://github.com/int3/vim-extradite'              " Git commit plugin for Vim
 
   " Text manupilation
@@ -99,6 +100,7 @@ call plug#begin('~/.config/nvim/plugged')
     let g:UltiSnipsJumpForwardTrigger="<c-b>"
     let g:UltiSnipsJumpBackwardTrigger="<c-z>"
   Plug 'https://github.com/honza/vim-snippets'
+  Plug 'https://github.com/liuchengxu/vim-which-key'
 
 call plug#end()
 
@@ -133,12 +135,41 @@ function! QuickfixFilenames()
   return join(map(values(buffer_numbers), 'fnameescape(v:val)'))
 endfunction
 
+let g:lt_height = get( g:, 'lt_height', 10 )
+command! LToggle call s:LListToggle()
+function! s:LListToggle() abort
+  let buffer_count_before = s:BufferCount()
+  " Location list can't be closed if there's cursor in it, so we need 
+  " to call lclose twice to move cursor to the main pane
+  silent! lclose
+  silent! lclose
+
+  if s:BufferCount() == buffer_count_before
+    execute "silent! lopen " . g:lt_height
+  endif
+endfunction
+
+command! QToggle call s:QListToggle()
+function! s:QListToggle() abort
+  let buffer_count_before = s:BufferCount()
+  silent! cclose
+
+  if s:BufferCount() == buffer_count_before
+    execute "silent! botright copen " . g:lt_height
+  endif
+endfunction
+
+function! s:BufferCount() abort
+    return len(filter(range(1, bufnr('$')), 'bufwinnr(v:val) != -1'))
+endfunction
+
 """"""""""""""""""""""""""""""""""""""""""""""""""
 " General configuration
 """"""""""""""""""""""""""""""""""""""""""""""""""
 
 " Changes <leader> for space
 let mapleader = " "
+nnoremap <Space> <Nop>
 
 " When opening a buffer it will move the cursor at the same place when we closed the buffer
 autocmd BufWinLeave *.* silent! mkview
@@ -202,10 +233,10 @@ set nolist                                               " Do not highlight spec
 set nospell                                              " Don't check spell by default
 set noswapfile                                           " Don't create swap files
 set nowrap sidescroll=1 sidescrolloff=1                  " Don't cut sentences
-set wrapscan
 set nowritebackup
 set nrformats=                                           " increase or decrease numbers in decimal
 set number                                               " Show line numbers
+set pumheight=20                                         " Popup menu smaller
 set relativenumber                                       " Shows relative numbers
 set ruler                                                " Show where you are
 set shortmess=lcs                                        " Personalizes some messages
@@ -226,6 +257,7 @@ set visualbell                                           " No visual errors allo
 set wildignore=*/tmp/,*/.git/*,*.so,*.swp,*.zip,*.pdf,*.bak,*.pyc,*.pyo,*.class,*.tmp,*~      " Ignore file types
 set wildmenu                                             " Show a navigable menu for tab completion on command line
 set wildmode=full
+set wrapscan
 
 syntax on " Highlighted text
 
@@ -237,6 +269,9 @@ endif
 if !has('gui_vimr')
     set guifont=Fira\ Code:h11
 endif
+
+highlight Cursor cterm=reverse gui=reverse
+highlight iCursor cterm=reverse gui=reverse
 
 set termguicolors
 let base16colorspace=256
@@ -279,13 +314,13 @@ set statusline+=\ %l/%L\
 """"""""""""""""""""""""""""""""""""""""""""""""""
 
 " Exit inser mode with jk
-inoremap jk <Esc>
+imap jk <Esc>
 
 " Movement in insert mode
-inoremap <C-h> <C-o>h
-inoremap <C-l> <C-o>a
-inoremap <C-j> <C-o>j
-inoremap <C-k> <C-o>k
+imap <C-h> <C-o>h
+imap <C-l> <C-o>a
+imap <C-j> <C-o>j
+imap <C-k> <C-o>k
 
 " Disable arrow keys in insert mode
 imap <up> <nop>
@@ -298,11 +333,11 @@ imap <right> <nop>
 """"""""""""""""""""""""""""""""""""""""""""""""""
 
 " Expands with %% in the command line the current buffer folder starting from pwd
-cnoremap %% <C-R>=fnameescape(expand('%:h')).'/'<cr>
+cmap %% <C-R>=fnameescape(expand('%:h')).'/'<cr>
 
 " Command line history movement
-cnoremap <C-p> <Up>
-cnoremap <C-n> <Down>
+cmap <C-p> <Up>
+cmap <C-n> <Down>
 
 " Allows save the buffer as a sudo
 cmap w!! w !sudo tee % >/dev/null
@@ -316,26 +351,28 @@ cmap w!! w !sudo tee % >/dev/null
 vmap p "_dP
 
 " Bind :sort to something easy, don't press enter, allow for options (eg -u, n, sorting in reverse [sort!])
-vnoremap <leader>s :sort<cr>
+vmap <leader>s :sort<cr>
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""
 " Normal mode custom mappings
 """"""""""""""""""""""""""""""""""""""""""""""""""
 
-nnoremap <leader>, :EditVifm .<cr>
-
 " Disable arrow keys in normal mode
-nnoremap <up> <nop>
-nnoremap <down> <nop>
-nnoremap <left> <nop>
-nnoremap <right> <nop>
+nmap <up> <nop>
+nmap <down> <nop>
+nmap <left> <nop>
+nmap <right> <nop>
 
-nnoremap <leader>ss :Obsession .session.vim<cr>
-nnoremap <leader>sd :Obsession!<cr>
+" Comment/uncomment lines
+map <C-c> gcc<Esc>
 
-map j gj
-map k gk
+noremap j gj
+noremap k gk
+
+" Buffer movement
+nmap gb :bnext<cr>
+nmap gB :bprevious<cr>
 
 " Split movement
 nmap <C-h> <C-w>h
@@ -343,71 +380,33 @@ nmap <C-j> <C-w>j
 nmap <C-k> <C-w>k
 nmap <C-l> <C-w>l
 
-" Display the number of matches for the last search
-nm <leader># :%s///gn<cr>
-
-" Search whole file
-nm <leader>S :%s..g<left><left>
-
 " Toggle spelling and change spelling language
-nm <leader>sp :set nospell!<cr>:set nospell?<cr>
-nm <leader>se :set spelllang=en_us<cr>
-nm <leader>sc :set spelllang=ca<cr>
-nm <leader>sñ :set spelllang=es_es<cr>
-
-" Comment/uncomment lines
-map <C-c> gcc<Esc>
-
-" Buffer movement
-map gb :bnext<cr>
-map gB :bprevious<cr>
-
-" Source vimrc
-nmap <silent> <leader>ev :e $MYVIMRC<cr>
-nmap <silent> <leader>sv :source $MYVIMRC<cr>
-nmap <silent> <leader>ez :e ~/.zshrc<cr>
+" nmap leader>sp :set spell! spell?<cr>
+nmap <leader>se :set spelllang=en_us<cr>
+nmap <leader>sc :set spelllang=ca<cr>
+nmap <leader>sñ :set spelllang=es_es<cr>
 
 " Repeats last command from command line
-nnoremap :: @:
+nmap :: @:
 
 " Don't need the command history list
-map q: :q
-
-" New search result centered vertically in the window
-nnoremap n nzz
-nnoremap N Nzz
+nmap q: :q
 
 " Copy from the current cursor position to end of line
 nmap Y y$
 
-" Split lines
-nnoremap K i<cr><Esc>^
-
-" Save buffer
-nnoremap <leader>w :w<cr>
-" Save and close buffer
-nnoremap <leader>W :wq<cr>
-
 " Close buffers
-nnoremap <silent> Q :call CloseWindowOrKillBuffer()<cr>
+nmap <silent> Q :call CloseWindowOrKillBuffer()<cr>
 
 " Selects last pasted text
-nnoremap <expr> gv '`[' . strpart(getregtype(), 0, 1) . '`]'
+nmap <expr> gv '`[' . strpart(getregtype(), 0, 1) . '`]'
 
 " Specify file buffer path and name to save
-map <leader>c :f <C-R>=expand('%:p:h') . '/'<cr>
-
-" Create new buffer
-map <leader>e :enew<cr>
-" Create a new buffer starting in the same dir as the current file
-map <leader>ce :e <C-R>=expand("%:p:h") . "/" <cr>
+nmap <leader>c :f <C-R>=expand($PWD) . '/'<cr>
 
 " Repeats last subtitution command with the same flags
-nnoremap & :&&<cr>
-xnoremap & :&&<cr>
-
-" From terminal to normal mode with <ESC>
-" tnoremap <Esc> <C-\><C-n>
+map & :&&<cr>
+xmap & :&&<cr>
 
 augroup CursorLineOnlyInActiveWindow
   autocmd!
@@ -421,7 +420,6 @@ augroup END
 """"""""""""""""""""""""""""""""""""""""""""""""""
 
 " Opens Undotree
-nnoremap <leader>u :UndotreeToggle<cr>
 let g:undotree_WindowLayout = 2
 let g:undotree_ShortIndicators = 1
 let g:undotree_DiffpanelHeight = 15
@@ -477,9 +475,6 @@ function! MiniPut(before)
   call fzf#run(opts)
 endfunction
 
-nnoremap <silent> <leader>P :call MiniPut(1)<cr>
-nnoremap <silent> <leader>p :call MiniPut(0)<cr>
-
 if executable('rg')
   let $FZF_DEFAULT_COMMAND = 'rg --files --hidden --follow --glob "!.git/*"'
   set grepprg=rg\ --vimgrep
@@ -487,15 +482,10 @@ endif
 let g:fzf_layout = { 'down': '~50%' }
 let g:fzf_layout = { 'window': 'enew' }
 let g:fzf_action = { 'ctrl-z': 'split' }
+let g:fzf_action2 = { 'ctrl-z': 'split' }
 
 command! -bar -bang -nargs=? -complete=buffer Buffers 
             \call fzf#vim#buffers(<q-args>, { "options": ["--preview", "bat --style=numbers,changes --color=always {3}"] }, <bang>0)
-
-nmap <leader>f :Files<cr>
-nmap <leader>g :GFiles<cr>
-nmap <leader>m :GFiles?<cr>
-nmap <leader>b :Buffers<cr>
-nmap <leader>h :History<cr>
 
 " fzf Statusline colors
 highlight default fzf1 ctermfg=1 ctermbg=8 guifg=#62f591 guibg=#424450
@@ -504,19 +494,12 @@ highlight default fzf3 ctermfg=7 ctermbg=8 guifg=#f7f8f3 guibg=#424450
 
 let g:python3_host_prog='/usr/local/opt/python/bin/python3'
 
-" Vista
-let g:vista_icon_indent = ["╰─▸ ", "├─▸ "]
-
 " Coc
 let g:coc_data_home = $HOME.'/.cache/coc'
 let g:coc_config_home = $HOME.'/.nvim'
 
-" Remap keys for gotos
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
-nmap <silent> gh :call <SID>show_documentation()<CR> " Use gh to show documentation in preview window
+" Use K to show documentation in preview window
+nmap <silent> K :call <SID>show_documentation()<CR>
 
 function! s:show_documentation()
   if (index(['vim','help'], &filetype) >= 0)
@@ -534,23 +517,23 @@ autocmd CursorHold * silent call CocActionAsync('highlight')
 
 inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
-nnoremap <silent> <leader>co :<C-u>CocList outline<cr>
-nnoremap <silent> <leader>cs :<C-u>CocList -I symbols<cr>
+nmap <silent> <leader>co :<C-u>CocList outline<cr>
+nmap <silent> <leader>cs :<C-u>CocList -I symbols<cr>
 
 " List errors
-nnoremap <silent> <leader>cl :<C-u>CocList locationlist<cr>
+nmap <silent> <leader>cl :<C-u>CocList locationlist<cr>
 
 " list commands available in tsserver (and others)
-nnoremap <silent> <leader>cc :<C-u>CocList commands<cr>
+nmap <silent> <leader>cc :<C-u>CocList commands<cr>
 
 " restart when tsserver gets wonky
-nnoremap <silent> <leader>cR :<C-u>CocRestart<CR>
+nmap <silent> <leader>cR :<C-u>CocRestart<CR>
 
 " view all errors
-nnoremap <silent> <leader>cl :<C-u>CocList locationlist<CR>
+nmap <silent> <leader>cl :<C-u>CocList locationlist<CR>
 
 " manage extensions
-nnoremap <silent> <leader>cx :<C-u>CocList extensions<cr>
+nmap <silent> <leader>cx :<C-u>CocList extensions<cr>
 
 " Remap for rename current word
 nmap <leader>cr <Plug>(coc-rename)
@@ -596,3 +579,164 @@ let g:syntastic_swift_checkers = ['swiftlint']
 if filereadable(getcwd() . '/.session.vim')
   :execute 'source '.getcwd() . '/.session.vim'
 endif
+
+" vim-which-key
+
+nnoremap <silent> <leader> :silent <c-u> :silent WhichKey '<space>'<cr>
+vnoremap <silent> <leader> :silent <c-u> :silent WhichKeyVisual '<space>'<cr>
+
+" Create map for leader to add keys to
+let g:which_key_leader = {}
+let g:which_key_leader['name'] = 'leader root'
+
+" Change the colors if you want
+highlight default link WhichKey          Error
+highlight default link WhichKeySeperator String
+highlight default link WhichKeyGroup     Function
+highlight default link WhichKeyDesc      Identifier
+
+let g:which_key_leader[',']  = [ ':EditVifm'               , 'Open Vifm']
+let g:which_key_leader['-']  = [ '<C-W>s'                  , 'Split below']
+let g:which_key_leader['|']  = [ '<C-W>v'                  , 'Split right']
+let g:which_key_leader['.']  = [ ':edit $MYVIMRC'          , 'Edit init.vim' ]
+let g:which_key_leader['/']  = [ ':Commentary'             , 'Comment line' ]
+let g:which_key_leader['e']  = [ ':CocCommand explorer'    , 'Coc Explorer']
+let g:which_key_leader['n']  = [ ':enew'                   , 'New buffer']
+let g:which_key_leader['q']  = [ 'q'                       , 'Quit' ]
+let g:which_key_leader['w']  = [ 'w'                       , 'Write' ]
+let g:which_key_leader['P']  = [ ':call MiniPut(1)'        , 'Put before history yank' ]
+let g:which_key_leader['p']  = [ ':call MiniPut(0)'        , 'Put after history yank' ]
+
+let g:which_key_leader.b = {
+      \ 'name' : '+buffer',
+      \ 'd' : [':call CloseWindowOrKillBuffer'        , 'Closes current window or buffer'],
+      \ 'f' : ['bfirst'                               , 'First buffer'],
+      \ 'l' : ['blast'                                , 'Last buffer'],
+      \ 'n' : ['bnext'                                , 'Next buffer'],
+      \ 'p' : ['bprevious'                            , 'Previous buffer'],
+      \ '?' : ['Buffers'                              , 'FZF buffers'],
+      \ }
+
+let g:which_key_leader.g = {
+      \ 'name' : '+git',
+      \ 'a' : [':Git add %'                           , 'Add current file'],
+      \ 'A' : [':Git add .'                           , 'Add all files'],
+      \ 'b' : [':Git blame'                           , 'Blame'],
+      \ 'B' : [':GBrowse'                             , 'Browse'],
+      \ 'c' : [':Git commit'                          , 'Commit'],
+      \ 'd' : [':Git diff'                            , 'Diff'],
+      \ 'D' : [':Gdiffsplit'                          , 'Diff split'],
+      \ 'G' : [':Gstatus'                             , 'Status'],
+      \ 'h' : [':GitGutterLineHighlightsToggle'       , 'Highlight hunks'],
+      \ 'H' : ['<Plug>(GitGutterPreviewHunk)'         , 'Preview hunk'],
+      \ 'j' : ['<Plug>(GitGutterNextHunk)'            , 'Next hunk'],
+      \ 'k' : ['<Plug>(GitGutterPrevHunk)'            , 'Prev hunk'],
+      \ 'l' : [':Git log'                             , 'Log'],
+      \ 'p' : [':Git push'                            , 'Push'],
+      \ 'P' : [':Git pull'                            , 'Pull'],
+      \ 'r' : [':GRemove'                             , 'Remove'],
+      \ 's' : ['<Plug>(GitGutterStageHunk)'           , 'Stage hunk'],
+      \ 't' : [':GitGutterSignsToggle'                , 'Toggle signs'],
+      \ 'u' : ['<Plug>(GitGutterUndoHunk)'            , 'Undo hunk'],
+      \ 'v' : [':GV'                                  , 'View project commits'],
+      \ 'V' : [':GV!'                                 , 'View current buffer commits'],
+      \ }
+
+let g:which_key_leader.l = {
+      \ 'name' : '+lsp',
+      \ '.' : [':CocConfig'                           , 'Config'],
+      \ ';' : ['<Plug>(coc-refactor)'                 , 'Refactor'],
+      \ 'a' : ['<Plug>(coc-codeaction)'               , 'Line action'],
+      \ 'A' : ['<Plug>(coc-codeaction-selected)'      , 'Selected action'],
+      \ 'b' : [':CocNext'                             , 'Next action'],
+      \ 'B' : [':CocPrev'                             , 'Prev action'],
+      \ 'c' : [':CocList commands'                    , 'Commands'],
+      \ 'd' : ['<Plug>(coc-definition)'               , 'Definition'],
+      \ 'D' : ['<Plug>(coc-declaration)'              , 'Declaration'],
+      \ 'e' : [':CocList extensions'                  , 'Extensions'],
+      \ 'f' : ['<Plug>(coc-format-selected)'          , 'Format selected'],
+      \ 'F' : ['<Plug>(coc-format)'                   , 'Format'],
+      \ 'h' : ['<Plug>(coc-float-hide)'               , 'Hide'],
+      \ 'i' : ['<Plug>(coc-implementation)'           , 'Implementation'],
+      \ 'I' : [':CocList diagnostics'                 , 'Diagnostics'],
+      \ 'j' : ['<Plug>(coc-float-jump)'               , 'Float jump'],
+      \ 'l' : ['<Plug>(coc-codelens-action)'          , 'Code lens'],
+      \ 'n' : ['<Plug>(coc-diagnostic-next)'          , 'Next diagnostic'],
+      \ 'N' : ['<Plug>(coc-diagnostic-next-error)'    , 'Next error'],
+      \ 'O' : [':CocList outline'                     , 'Outline'],
+      \ 'p' : ['<Plug>(coc-diagnostic-prev)'          , 'Prev diagnostic'],
+      \ 'P' : ['<Plug>(coc-diagnostic-prev-error)'    , 'Prev error'],
+      \ 'q' : ['<Plug>(coc-fix-current)'              , 'Quickfix'],
+      \ 'r' : ['<Plug>(coc-rename)'                   , 'Rename'],
+      \ 'R' : ['<Plug>(coc-references)'               , 'References'],
+      \ 's' : [':CocList -I symbols'                  , 'References'],
+      \ 't' : ['<Plug>(coc-type-definition)'          , 'Type definition'],
+      \ 'u' : [':CocListResume'                       , 'Resume list'],
+      \ 'U' : [':CocUpdate'                           , 'Update CoC'],
+      \ 'v' : [':Vista!!'                             , 'Tag viewer'],
+      \ 'z' : [':CocDisable'                          , 'Disable CoC'],
+      \ 'Z' : [':CocEnable'                           , 'Enable CoC'],
+      \ }
+
+let g:which_key_leader.m = {
+      \ 'name' : '+marks',
+      \ 'a' : [':ShowMarksClearAll'                   , 'Clear all marks of current buffer'],
+      \ 'h' : [':ShowMarksClearMark'                  , 'Clear current mark'],
+      \ 'm' : [':ShowMarksPlaceMark'                  , 'Places new mark in current line'],
+      \ 'o' : [':ShowMarksOn'                         , 'Forces ShowMarks on'],
+      \ 't' : [':ShowMarksToggle'                     , 'Toggle ShowMarks'],
+      \ }
+
+let g:which_key_leader.s = {
+      \ 'name' : '+search/session',
+      \ '/' : [':History/'                            , 'History'],
+      \ ';' : [':Commands'                            , 'Commands'],
+      \ 'b' : [':Buffers'                             , 'Open buffers'],
+      \ 'B' : [':BLines'                              , 'Current buffer'],
+      \ 'c' : [':Commits'                             , 'Commits'],
+      \ 'd' : [':Obsession!'                          , 'Removes current session'],
+      \ 'C' : [':BCommits'                            , 'Buffer commits'],
+      \ 'f' : [':Files'                               , 'Files'],
+      \ 'g' : [':GFiles'                              , 'Git files'],
+      \ 'G' : [':GFiles?'                             , 'Modified git files'],
+      \ 'h' : [':History'                             , 'File history'],
+      \ 'H' : [':History:'                            , 'Command history'],
+      \ 'l' : [':Lines'                               , 'Lines'] ,
+      \ 'm' : [':Marks'                               , 'Marks'] ,
+      \ 'o' : [':Obsession .session.vim'              , 'Saves session'],
+      \ 'M' : [':Maps'                                , 'Normal maps'] ,
+      \ 'p' : [':Helptags'                            , 'Help tags'] ,
+      \ 'P' : [':Tags'                                , 'Project tags'],
+      \ 's' : [':Snippets'                            , 'Snippets'],
+      \ 't' : [':Rg'                                  , 'Text Rg'],
+      \ 'T' : [':BTags'                               , 'Buffer tags'],
+      \ 'w' : [':Windows'                             , 'Search windows'],
+      \ 'y' : [':Filetypes'                           , 'File types'],
+      \ 'z' : [':FZF'                                 , 'FZF'],
+      \ }
+
+let g:which_key_leader.t = {
+      \ 'name' : '+toggle',
+      \ 'g' : [':GitGutterSignsToggle'                , 'Toggle Git signs'],
+      \ 'h' : [':set hlsearch!'                       , 'Toggle search highlight'],
+      \ 'l' : [':LToggle'                             , 'Toggle location list'],
+      \ 'm' : [':ShowMarksToggle'                     , 'Toggle ShowMarks'],
+      \ 'n' : [':set nonumber!'                       , 'Toggle line numbers'],
+      \ 'q' : [':QToggle'                             , 'Toggle quickfix list'],
+      \ 's' : [':set spell!'                          , 'Toggle spelling'],
+      \ 'u' : [':UndotreeToggle'                      , 'Toggle undotree'],
+      \ 'v' : [':Vista!!'                             , 'Toggle Vista tag viewer'],
+      \ }
+
+call which_key#register('<space>', "g:which_key_leader")
+
+" nnoremap <silent> g :silent <c-u> :silent WhichKey 'g'<cr>
+" vnoremap <silent> g :silent <c-u> :silent WhichKeyVisual 'g'<cr>
+let g:which_key_g =  {}
+let g:which_key_g['b'] = [ ':bnext'                , 'Next Buffer' ]
+let g:which_key_g['B'] = [ ':bprev'                , 'Previous Buffer' ]
+call which_key#register('g', "g:which_key_g")
+nnoremap <silent> ] :silent <c-u> :silent WhichKey ']'<cr>
+vnoremap <silent> ] :silent <c-u> :silent WhichKeyVisual ']'<cr>
+nnoremap <silent> [ :silent <c-u> :silent WhichKey '['<cr>
+vnoremap <silent> [ :silent <c-u> :silent WhichKeyVisual '['<cr>

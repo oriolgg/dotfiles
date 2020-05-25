@@ -94,6 +94,7 @@ setopt PROMPT_SUBST             # Adds support for command substitution
 
 # Al navegar per l'historial de comandes, deixar el cursor al final de la comanda
 unsetopt GLOBAL_RCS
+unsetopt nomatch
 
 DISABLE_AUTO_TITLE="true"
 autoload -U zmv
