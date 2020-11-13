@@ -37,16 +37,14 @@ apps=(
 
     appcleaner
     cheatsheet
-    disk-inventory-x
-    dropbox
-    evernote
     firefox
     google-chrome
     handbrake
+    iina
     iterm2
-    jitouch
+    keepassxc
     keka
-    macvim
+    meld
     monolingual
     opera
     qlcolorcode
@@ -55,17 +53,20 @@ apps=(
     qlprettypatch
     qlstephen
     qlvideo
-    qutebrowser
     quicklook-csv
     quicklook-json
-    script-debugger
+    qutebrowser
     sourcetree
     spotify
-    caskroom/cask/therm
+    therm
+    tor-browser
     transmission
+    tweeten
+    vimr
     vlc
     webpquicklook
     whatsapp
+    yacreader
 
 )
 

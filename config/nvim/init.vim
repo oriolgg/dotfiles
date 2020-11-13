@@ -100,7 +100,7 @@ call plug#begin('~/.config/nvim/plugged')
     let g:UltiSnipsJumpForwardTrigger="<c-b>"
     let g:UltiSnipsJumpBackwardTrigger="<c-z>"
   Plug 'https://github.com/honza/vim-snippets'
-  Plug 'https://github.com/liuchengxu/vim-which-key'
+  Plug 'https://github.com/liuchengxu/vim-which-key'        " Shows menu with the keys and what they do
 
 call plug#end()
 
