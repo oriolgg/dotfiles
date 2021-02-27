@@ -61,4 +61,11 @@ ln -s ~/.dotfiles/zsh/plugins/zsh-vim-mode ~/.zsh/oh-my-zsh/custom/plugins/zsh-v
 ln -s  ~/.dotfiles/zsh/themes/oriol.zsh-theme ~/.zsh/oh-my-zsh/custom/themes/oriol.zsh-theme
 
 cp ~/.dotfiles/font/*.* ~/Library/Fonts
+mkdir ~/Library/Developer/Xcode/UserData/FontAndColorThemes/
 cp ~/.dotfiles/term-preferences/dracula-xcode/Dracula.xccolortheme ~/Library/Developer/Xcode/UserData/FontAndColorThemes/
+
+# Update vim plugins opening nvim and executing :PlugInstall
+
+sudo easy_install pip
+pip install pynvim
+pip3 install pynvim

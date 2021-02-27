@@ -120,12 +120,13 @@ plugins=(
     web-search
     z
     zsh-autosuggestions
-    zsh-vim-mode
+    zsh-vi-mode
 )
 
 # Set name of the theme to load.
 ZSH_THEME="oriol"
 
+ZSH_DISABLE_COMPFIX="true"
 #Path to oh-my-zsh configuration
 ZSH=$HOME/.zsh/oh-my-zsh
 source $ZSH/oh-my-zsh.sh
@@ -187,3 +188,5 @@ if [ "$TMUX" = "" ]; then tmux-start "$USER"; fi
 if [[ "$ZPROF" = true ]]; then
     zprof
 fi
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
