@@ -42,7 +42,6 @@ apps=(
     handbrake
     iina
     iterm2
-    keepassxc
     keka
     meld
     monolingual
