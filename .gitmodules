@@ -46,3 +46,6 @@
 [submodule "config/qutebrowser/dracula"]
 	path = config/qutebrowser/dracula
 	url = https://github.com/dracula/qutebrowser-dracula-theme.git
+[submodule "zsh/plugins/zsh-vi-mode"]
+	path = zsh/plugins/zsh-vi-mode
+	url = https://github.com/jeffreytse/zsh-vi-mode
