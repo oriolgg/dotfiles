@@ -36,10 +36,9 @@ config.bind("<Shift-J>", "tab-prev")
 config.bind("gb", "tab-next")
 config.bind("gB", "tab-prev")
 config.bind("yu", "hint links yank")
-# config.bind("xs", "config-cycle statusbar.hide")
-config.bind("xs", "config-cycle statusbar.show always switching")
+config.bind("xs", "config-cycle statusbar.hide")
 config.bind("xt", "config-cycle tabs.show always switching")
-config.bind("xx", "config-cycle statusbar.show always switching ;; config-cycle tabs.show always switching")
+config.bind("xx", "config-cycle statusbar.hide ;; config-cycle tabs.show always switching")
 
 config.confirm_quit = "multiple-tabs"
 
@@ -48,18 +47,20 @@ c.completion.cmd_history_max_items = 1024
 c.content.autoplay = False
 c.content.cookies.accept = "no-unknown-3rdparty"
 
-c.scrolling.bar = "always" # "when-searching"
+c.hints.find_implementation = "javascript"
+
+c.scrolling.bar = "when-searching"  # always
 
 c.session.lazy_restore = True
+
+c.spellcheck.languages = ["ca-ES", "es-ES", "en-US"]
 
 c.tabs.background = True
 c.tabs.indicator.width = 10
 c.tabs.last_close = "close"
-c.tabs.title.format = "{perc}{audio}{index}: {current_title}"
+c.tabs.title.format = "{perc}{audio}{index}: [{protocol}] {current_title}"
 c.tabs.title.format_pinned = "{index}: {host}"
 
 c.url.searchengines["g"] = "https://google.com/search?hl=en&q={}"
 c.url.searchengines["yt"] = "https://youtube.com/results?search_query={}"
 c.url.searchengines["re"] = "https://reddit.com/r/{}"
-
-# c.window.hide_decoration = True
