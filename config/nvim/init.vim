@@ -404,6 +404,14 @@ nmap <expr> gv '`[' . strpart(getregtype(), 0, 1) . '`]'
 " Specify file buffer path and name to save
 nmap <leader>c :f <C-R>=expand($PWD) . '/'<cr>
 
+nmap K i<cr><esc>
+
+nnoremap <A-j> :m .+1<CR>==
+nnoremap <A-k> :m .-2<CR>==
+inoremap <A-j> <Esc>:m .+1<CR>==gi
+inoremap <A-k> <Esc>:m .-2<CR>==gi
+vnoremap <A-j> :m '>+1<CR>gv=gv
+vnoremap <A-k> :m '<-2<CR>gv=gv
 " Repeats last subtitution command with the same flags
 map & :&&<cr>
 xmap & :&&<cr>
@@ -498,8 +506,8 @@ let g:python3_host_prog='/usr/local/opt/python/bin/python3'
 let g:coc_data_home = $HOME.'/.cache/coc'
 let g:coc_config_home = $HOME.'/.nvim'
 
-" Use K to show documentation in preview window
-nmap <silent> K :call <SID>show_documentation()<CR>
+" Use ; to show do;cumentation in preview window
+nmap <silent> ; :call <SID>show_documentation()<CR>
 
 function! s:show_documentation()
   if (index(['vim','help'], &filetype) >= 0)
