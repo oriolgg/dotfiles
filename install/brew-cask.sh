@@ -37,15 +37,12 @@ apps=(
 
     appcleaner
     cheatsheet
-    firefox
     google-chrome
     handbrake
     iina
     iterm2
-    keka
     meld
     monolingual
-    opera
     qlcolorcode
     qlimagesize
     qlmarkdown
@@ -57,15 +54,11 @@ apps=(
     qutebrowser
     sourcetree
     spotify
-    therm
     tor-browser
     transmission
-    tweeten
     vimr
-    vlc
     webpquicklook
     whatsapp
-    yacreader
 
 )
 
