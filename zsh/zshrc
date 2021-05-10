@@ -183,8 +183,6 @@ for f in ~/.zsh/autoload/*.zsh; do source $f; done
 stty -ixon
 stty stop undef
 
-if [ "$TMUX" = "" ]; then tmux-start "$USER"; fi
-
 if [[ "$ZPROF" = true ]]; then
     zprof
 fi
