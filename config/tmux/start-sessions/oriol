@@ -16,11 +16,4 @@ if [ $? -eq 1 ] ; then
     tmux selectw -t $main_session -t 1
 
     tmux a -t $main_session
-else
-    session_name=`tmux display -p '#{session_name}'`
-    in_tmux=`echo $TMUX`
-
-    if [ "$in_tmux" != "" ] || [ $session_name != $main_session ] ; then
-        tmux detach-client
-    fi
 fi

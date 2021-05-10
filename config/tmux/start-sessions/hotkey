@@ -1,6 +1,6 @@
 #!/bin/sh
 
-hotkey_session=HOTKEY
+hotkey_session=hotkey
 
 tmux start-server
 tmux has-session -t $hotkey_session 2>/dev/null
