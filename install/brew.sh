@@ -31,37 +31,75 @@ brew upgrade
 
 apps=(
 
+    autoconf
+    automake
     awscli
     bat
+    broot
+    brotli
+    c-ares
     coreutils
     diff-so-fancy
     exa
     exiftool
     fd
     fzf
+    gdbm
+    gettext
     gh
     git
     git-flow
+    highlight
     htop
     hub
+    icu4c
+    jansson
+    jemalloc
     jq
+    lazygit
+    libev
+    libevent
+    libtermkey
+    libuv
+    libvterm
+    libyaml
+    libzip
+    lua
+    luajit
+    luajit-openresty
+    luv
     lynx
+    m4
+    mpdecimal
+    msgpack
+    ncurses
     neovim
+    nghttp2
     node
-    python3
+    oniguruma
+    openssl@1.1
+    pcre2
+    pkg-config
+    python@3.9
     readline
     reattach-to-user-namespace
     rename
     ripgrep
+    ruby
     sqlite
+    tcl-tk
     terminal-notifier
+    tldr
     tmux
     tmuxinator
     tree
     unar
-    unrar
+    unibilium
+    universal-ctags
+    utf8proc
     vifm
     wifi-password
+    xz
     youtube-dl
 
 )

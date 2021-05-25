@@ -35,8 +35,11 @@ brew tap homebrew/cask-fonts
 # Apps for caskroom
 apps=(
 
+    1password-cli
+    amazon-photos
     appcleaner
     cheatsheet
+    dropbox
     google-chrome
     handbrake
     iina

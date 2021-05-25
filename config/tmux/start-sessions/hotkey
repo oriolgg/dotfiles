@@ -1,16 +1,16 @@
 #!/bin/sh
 
-hotkey_session=hotkey
+session=hotkey
 
 tmux start-server
-tmux has-session -t $hotkey_session 2>/dev/null
+tmux has-session -t $session 2>/dev/null
 
 if [ $? -eq 1 ] ; then
     cd $HOME
-    tmux new-session -s $hotkey_session -n main -d
-    tmux selectp -t $hotkey_session -t 1
+    tmux new-session -s $session -n main -d
+    tmux selectp -t $session -t 1
 
-    tmux selectw -t $hotkey_session -t 1
+    tmux selectw -t $session -t 1
 fi
 
-tmux a -t $hotkey_session
+tmux a -t $session

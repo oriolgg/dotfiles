@@ -22,6 +22,8 @@ alias lt='exa --tree --level=2'
 # Tmux
 alias tmux='tmux -f ~/.config/tmux/tmux.conf'
 alias ts='tmux-start'
+alias tmux_oriol='~/.config/tmux/start-sessions/oriol'
+alias tmux_hotkey='~/.config/tmux/start-sessions/hotkey'
 
 # Git
 alias gcd='git checkout develop'

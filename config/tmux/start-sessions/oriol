@@ -1,19 +1,19 @@
 #!/bin/sh
 
-main_session=$USER
+session=$USER
 
 tmux start-server
-tmux has-session -t $main_session 2>/dev/null
+tmux has-session -t $session 2>/dev/null
 
 if [ $? -eq 1 ] ; then
     cd $HOME/.dotfiles
-    tmux new-session -s $main_session -n vim~zsh -d
+    tmux new-session -s $session -n vim~zsh -d
 
-    tmux send-keys -t $main_session 'edf' C-m
-    tmux splitw -t $main_session -h -p 50
-    tmux selectp -t $main_session -t 1
+    tmux send-keys -t $session 'edf' C-m
+    tmux splitw -t $session -h -p 50
+    tmux selectp -t $session -t 1
 
-    tmux selectw -t $main_session -t 1
-
-    tmux a -t $main_session
+    tmux selectw -t $session -t 1
 fi
+
+tmux a -t $session
