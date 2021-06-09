@@ -55,7 +55,7 @@ ln -s ~/.dotfiles/zsh/plugins/fast-syntax-highlighting ~/.zsh/oh-my-zsh/custom/p
 ln -s ~/.dotfiles/zsh/plugins/forgit ~/.zsh/oh-my-zsh/custom/plugins/forgit
 ln -s ~/.dotfiles/zsh/plugins/fzf-tab ~/.zsh/oh-my-zsh/custom/plugins/fzf-tab
 ln -s ~/.dotfiles/zsh/plugins/zsh-autosuggestions ~/.zsh/oh-my-zsh/custom/plugins/zsh-autosuggestions
-ln -s ~/.dotfiles/zsh/plugins/zsh-vim-mode ~/.zsh/oh-my-zsh/custom/plugins/zsh-vim-mode
+ln -s ~/.dotfiles/zsh/plugins/zsh-vi-mode ~/.zsh/oh-my-zsh/custom/plugins/zsh-vi-mode
 
 # Zsh Theme
 ln -s  ~/.dotfiles/zsh/themes/oriol.zsh-theme ~/.zsh/oh-my-zsh/custom/themes/oriol.zsh-theme
