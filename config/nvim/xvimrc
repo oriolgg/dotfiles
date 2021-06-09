@@ -1,5 +1,6 @@
 " Exit insert mode with double j
 inoremap jk <Esc>
+inoremap jj <Esc>
 
 " Split lines uith K
 nnoremap K i<Cr><Esc>^
