@@ -38,7 +38,6 @@ apps=(
     1password-cli
     amazon-photos
     appcleaner
-    cheatsheet
     dropbox
     google-chrome
     handbrake
