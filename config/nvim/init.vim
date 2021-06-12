@@ -73,6 +73,7 @@ call plug#begin('~/.config/nvim/plugged')
   " Movement inside a buffer
   Plug 'https://github.com/Lokaltog/vim-easymotion'         " Improved movement and motion
   Plug 'https://github.com/chrisbra/matchit'                " Extended use for % command
+  Plug 'https://github.com/farmergreg/vim-lastplace'        " Opens the current in the same last position before close it
 
   " Other
   Plug 'https://github.com/wellle/targets.vim'              " Adds text objects and improves the default ones
@@ -317,12 +318,6 @@ set statusline+=\ %l/%L\
 imap jk <Esc>
 imap jj <Esc>
 
-" Movement in insert mode
-imap <C-h> <C-o>h
-imap <C-l> <C-o>a
-imap <C-j> <C-o>j
-imap <C-k> <C-o>k
-
 " Disable arrow keys in insert mode
 imap <up> <nop>
 imap <down> <nop>
@@ -375,17 +370,15 @@ noremap k gk
 nmap gb :bnext<cr>
 nmap gB :bprevious<cr>
 
-" Split movement
-nmap <C-h> <C-w>h
-nmap <C-j> <C-w>j
-nmap <C-k> <C-w>k
-nmap <C-l> <C-w>l
-
 " Toggle spelling and change spelling language
 " nmap leader>sp :set spell! spell?<cr>
 nmap <leader>se :set spelllang=en_us<cr>
 nmap <leader>sc :set spelllang=ca<cr>
 nmap <leader>sñ :set spelllang=es_es<cr>
+
+" Moves the cursor to the lines with git changes
+nmap ]c <Plug>(GitGutterNextHunk)
+nmap [c <Plug>(GitGutterPrevHunk)
 
 " Repeats last command from command line
 nmap :: @:
@@ -407,12 +400,14 @@ nmap <leader>c :f <C-R>=expand($PWD) . '/'<cr>
 
 nmap K i<cr><esc>
 
-nnoremap <A-j> :m .+1<CR>==
+" Moves current line up or down with <A-k> and <A-j>
+noremap <A-j> :m .+1<CR>==
 nnoremap <A-k> :m .-2<CR>==
 inoremap <A-j> <Esc>:m .+1<CR>==gi
 inoremap <A-k> <Esc>:m .-2<CR>==gi
 vnoremap <A-j> :m '>+1<CR>gv=gv
 vnoremap <A-k> :m '<-2<CR>gv=gv
+
 " Repeats last subtitution command with the same flags
 map & :&&<cr>
 xmap & :&&<cr>
@@ -508,7 +503,7 @@ let g:coc_data_home = $HOME.'/.cache/coc'
 let g:coc_config_home = $HOME.'/.nvim'
 
 " Use ; to show do;cumentation in preview window
-nmap <silent> ; :call <SID>show_documentation()<CR>
+" nmap <silent> ; :call <SID>show_documentation()<CR>
 
 function! s:show_documentation()
   if (index(['vim','help'], &filetype) >= 0)
