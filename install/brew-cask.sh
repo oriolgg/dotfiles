@@ -56,6 +56,7 @@ apps=(
     qutebrowser
     sourcetree
     spotify
+    the-unarchiver
     tor-browser
     transmission
     vimr

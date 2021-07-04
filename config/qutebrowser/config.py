@@ -13,10 +13,28 @@
 # Change the argument to True to still load settings configured via autoconfig.yml
 config.load_autoconfig(False)
 
+## In v2.0.0+, use next if you use Adblock Plus AND hosts blocking 
+c.content.blocking.method = 'both'
+
+c.content.default_encoding = 'utf-8'
+
+c.content.geolocation = False
+
+## Display PDFs within qutebrowser
+c.content.pdfjs = True
+
 # Aliases for commands. The keys of the given dictionary are the
 # aliases, while the values are the commands they map to.
 # Type: Dict
-c.aliases = {'q': 'close', 'qa': 'quit', 'w': 'session-save', 'wq': 'quit --save', 'wqa': 'quit --save'}
+c.aliases = {
+    'q': 'close',
+    'qa': 'quit',
+    'w': 'session-save',
+    'wq': 'quit --save',
+    'wqa': 'quit --save'
+}
+
+config.set('colors.webpage.darkmode.enabled', True)
 
 # Load a restored tab as soon as it takes focus.
 # Type: Bool
@@ -407,7 +425,14 @@ c.url.default_page = 'about:blank'
 # the search engine name to the search term, e.g. `:open google
 # qutebrowser`.
 # Type: Dict
-c.url.searchengines = {'DEFAULT': 'https://duckduckgo.com/?q={}', 'g': 'https://google.com/search?hl=en&q={}', 'yt': 'https://youtube.com/results?search_query={}', 're': 'https://reddit.com/r/{}', 'tr': 'https://translate.google.com/?sl=es&tl=en&text={}&op=translate'}
+c.url.searchengines = {
+    'DEFAULT': 'https://duckduckgo.com/?q={}',
+    'g': 'https://google.com/search?hl=en&q={}',
+    'yt': 'https://youtube.com/results?search_query={}',
+    're': 'https://reddit.com/r/{}',
+    'am': 'https://www.amazon.com/s?k={}',
+    'tr': 'https://translate.google.com/?sl=es&tl=en&text={}&op=translate'
+}
 
 # Page(s) to open at the start.
 # Type: List of FuzzyUrl, or FuzzyUrl
@@ -781,7 +806,18 @@ c.colors.webpage.bg = 'white'
 # key. Note that when a key is bound (via `bindings.default` or
 # `bindings.commands`), the mapping is ignored.
 # Type: Dict
-c.bindings.key_mappings = {'<Ctrl+[>': '<Escape>', '<Ctrl+6>': '<Ctrl+^>', '<Ctrl+m>': '<Return>', '<Ctrl+j>': '<Return>', '<Ctrl+i>': '<Tab>', '<Shift+Return>': '<Return>', '<Enter>': '<Return>', '<Shift+Enter>': '<Return>', '<Ctrl+Enter>': '<Ctrl+Return>', '<Meta+n>': '<Ctrl+n>'}
+c.bindings.key_mappings = {
+    '<Ctrl+[>': '<Escape>',
+    '<Ctrl+6>': '<Ctrl+^>',
+    '<Ctrl+m>': '<Return>',
+    '<Ctrl+j>': '<Return>',
+    '<Ctrl+i>': '<Tab>',
+    '<Shift+Return>': '<Return>',
+    '<Enter>': '<Return>',
+    '<Shift+Enter>': '<Return>',
+    '<Ctrl+Enter>': '<Ctrl+Return>',
+    '<Meta+n>': '<Ctrl+n>'
+}
 
 # Bindings for normal mode
 config.bind('<Ctrl+e>', 'scroll down')
@@ -805,8 +841,10 @@ config.bind('Q', 'tab-close')
 config.bind('gB', 'tab-prev')
 config.bind('gb', 'tab-next')
 config.bind('po', 'open -p')
-config.bind('xs', 'config-cycle statusbar.show always switching')
-config.bind('xt', 'config-cycle tabs.show always switching')
-config.bind('xx', 'config-cycle statusbar.show always switching ;; config-cycle tabs.show always switching')
+config.bind('xs', 'config-cycle statusbar.show always never')
+config.bind('xt', 'config-cycle tabs.show always never')
+config.bind('xx', 'config-cycle statusbar.show always never ;; config-cycle tabs.show always never')
 config.bind('ym', "yank inline '[{title}] - {url:pretty}'")
 config.bind('yu', 'hint links yank')
+config.bind(',p', 'spawn --userscript qute-pass --dmenu-invocation dmenu')
+config.bind(',P', 'spawn --userscript qute-pass --dmenu-invocation dmenu --password-only')
