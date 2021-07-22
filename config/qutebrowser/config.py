@@ -161,45 +161,6 @@ c.bindings.key_mappings = {
 ## Type: QssColor
 # c.colors.prompts.selected.fg = 'white'
 
-## Background color of pinned unselected even tabs.
-## Type: QtColor
-# c.colors.tabs.pinned.even.bg = 'darkseagreen'
-c.colors.tabs.pinned.even.bg = '#0066cc'
-
-## Foreground color of pinned unselected even tabs.
-## Type: QtColor
-# c.colors.tabs.pinned.even.fg = 'white'
-
-## Background color of pinned unselected odd tabs.
-## Type: QtColor
-# c.colors.tabs.pinned.odd.bg = 'seagreen'
-c.colors.tabs.pinned.odd.bg = '#0066cc'
-
-## Foreground color of pinned unselected odd tabs.
-## Type: QtColor
-# c.colors.tabs.pinned.odd.fg = 'white'
-
-## Background color of pinned selected even tabs.
-## Type: QtColor
-# c.colors.tabs.pinned.selected.even.bg = 'black'
-c.colors.tabs.pinned.selected.even.bg = '#00cc33'
-
-## Foreground color of pinned selected even tabs.
-## Type: QtColor
-# c.colors.tabs.pinned.selected.even.fg = 'white'
-# c.colors.tabs.pinned.selected.even.fg = '#44475a'
-c.colors.tabs.pinned.selected.even.fg = '#f8f8f2'
-
-## Background color of pinned selected odd tabs.
-## Type: QtColor
-c.colors.tabs.pinned.selected.odd.bg = '#00cc33'
-
-## Foreground color of pinned selected odd tabs.
-## Type: QtColor
-# c.colors.tabs.pinned.selected.odd.fg = 'white'
-# c.colors.tabs.pinned.selected.odd.fg = '#44475a'
-c.colors.tabs.pinned.selected.odd.fg = '#f8f8f2'
-
 ## Background color for webpages if unset (or empty to use the theme's
 ## color).
 ## Type: QtColor
@@ -965,7 +926,7 @@ c.fonts.default_family = ["Fira Code"]
 ## either a float value with a "pt" suffix, or an integer value with a
 ## "px" suffix.
 ## Type: String
-c.fonts.default_size = '11pt'
+c.fonts.default_size = '10pt'
 
 ## Font used for the downloadbar.
 ## Type: Font
