@@ -10,14 +10,31 @@
 ##   qute://help/configuring.html
 ##   qute://help/settings.html
 
+import dracula.draw
+
 ## This is here so configs done via the GUI are still loaded.
 ## Remove it to not load settings done via the GUI.
-# config.load_autoconfig(True)
+config.load_autoconfig(False)
+
+dracula.draw.blood(c, {
+    'spacing': {
+        'vertical': 6,
+        'horizontal': 8
+    }
+})
 
 ## Aliases for commands. The keys of the given dictionary are the
 ## aliases, while the values are the commands they map to.
 ## Type: Dict
-# c.aliases = {'w': 'session-save', 'q': 'close', 'qa': 'quit', 'wq': 'quit --save', 'wqa': 'quit --save'}
+c.aliases = {
+    'q':    'tab-close',
+    'Q':    'tab-close',
+    'w':    'session-save',
+    'wq':   'quit --save', # Closes current window with all its tabs saving it
+    's':    'spawn open -a safari {url}',
+    'ch':   'spawn open -a "Google Chrome" {url}',
+    'pass': 'spawn -d pass -c'
+}
 
 ## Time interval (in milliseconds) between auto-saves of
 ## config/cookies/etc.
@@ -31,7 +48,7 @@
 ## session which was last loaded. This behavior can be customized via the
 ## `session.default_name` setting.
 ## Type: Bool
-# c.auto_save.session = False
+c.auto_save.session = True
 
 ## Backend to use to display websites. qutebrowser supports two different
 ## web rendering engines / backends, QtWebEngine and QtWebKit (not
@@ -68,7 +85,13 @@
 ## key. Note that when a key is bound (via `bindings.default` or
 ## `bindings.commands`), the mapping is ignored.
 ## Type: Dict
-# c.bindings.key_mappings = {'<Ctrl-[>': '<Escape>', '<Ctrl-6>': '<Ctrl-^>', '<Ctrl-M>': '<Return>', '<Ctrl-J>': '<Return>', '<Ctrl-I>': '<Tab>', '<Shift-Return>': '<Return>', '<Enter>': '<Return>', '<Shift-Enter>': '<Return>', '<Ctrl-Enter>': '<Ctrl-Return>'}
+c.bindings.key_mappings = {
+    '<Ctrl+6>':      '<Ctrl+^>', # Return to the last used tab of the current window
+    '<Enter>':       '<Return>',
+    '<Shift+Enter>': '<Return>',
+    '<Ctrl+Enter>':  '<Ctrl+Return>',
+    '<Meta+n>':      '<Ctrl+n>'
+}
 
 ## When to show a changelog after qutebrowser was upgraded.
 ## Type: String
@@ -79,66 +102,9 @@
 ##   - never: Never show changelog after upgrades.
 # c.changelog_after_upgrade = 'minor'
 
-## Background color of the completion widget category headers.
-## Type: QssColor
-# c.colors.completion.category.bg = 'qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #888888, stop:1 #505050)'
-
-## Bottom border color of the completion widget category headers.
-## Type: QssColor
-# c.colors.completion.category.border.bottom = 'black'
-
-## Top border color of the completion widget category headers.
-## Type: QssColor
-# c.colors.completion.category.border.top = 'black'
-
-## Foreground color of completion widget category headers.
-## Type: QtColor
-# c.colors.completion.category.fg = 'white'
-
-## Background color of the completion widget for even rows.
-## Type: QssColor
-# c.colors.completion.even.bg = '#333333'
-
-## Text color of the completion widget. May be a single color to use for
-## all columns or a list of three colors, one for each column.
-## Type: List of QtColor, or QtColor
-# c.colors.completion.fg = ['white', 'white', 'white']
-
-## Background color of the selected completion item.
-## Type: QssColor
-# c.colors.completion.item.selected.bg = '#e8c000'
-
-## Bottom border color of the selected completion item.
-## Type: QssColor
-# c.colors.completion.item.selected.border.bottom = '#bbbb00'
-
-## Top border color of the selected completion item.
-## Type: QssColor
-# c.colors.completion.item.selected.border.top = '#bbbb00'
-
-## Foreground color of the selected completion item.
-## Type: QtColor
-# c.colors.completion.item.selected.fg = 'black'
-
 ## Foreground color of the matched text in the selected completion item.
 ## Type: QtColor
 # c.colors.completion.item.selected.match.fg = '#ff4444'
-
-## Foreground color of the matched text in the completion.
-## Type: QtColor
-# c.colors.completion.match.fg = '#ff4444'
-
-## Background color of the completion widget for odd rows.
-## Type: QssColor
-# c.colors.completion.odd.bg = '#444444'
-
-## Color of the scrollbar in the completion view.
-## Type: QssColor
-# c.colors.completion.scrollbar.bg = '#333333'
-
-## Color of the scrollbar handle in the completion view.
-## Type: QssColor
-# c.colors.completion.scrollbar.fg = 'white'
 
 ## Background color of disabled items in the context menu. If set to
 ## null, the Qt default is used.
@@ -170,18 +136,6 @@
 ## Type: QssColor
 # c.colors.contextmenu.selected.fg = None
 
-## Background color for the download bar.
-## Type: QssColor
-# c.colors.downloads.bar.bg = 'black'
-
-## Background color for downloads with errors.
-## Type: QtColor
-# c.colors.downloads.error.bg = 'red'
-
-## Foreground color for downloads with errors.
-## Type: QtColor
-# c.colors.downloads.error.fg = 'white'
-
 ## Color gradient start for download backgrounds.
 ## Type: QtColor
 # c.colors.downloads.start.bg = '#0000aa'
@@ -190,22 +144,9 @@
 ## Type: QtColor
 # c.colors.downloads.start.fg = 'white'
 
-## Color gradient stop for download backgrounds.
-## Type: QtColor
-# c.colors.downloads.stop.bg = '#00aa00'
-
 ## Color gradient end for download text.
 ## Type: QtColor
 # c.colors.downloads.stop.fg = 'white'
-
-## Color gradient interpolation system for download backgrounds.
-## Type: ColorSystem
-## Valid values:
-##   - rgb: Interpolate in the RGB color system.
-##   - hsv: Interpolate in the HSV color system.
-##   - hsl: Interpolate in the HSL color system.
-##   - none: Don't show a gradient.
-# c.colors.downloads.system.bg = 'rgb'
 
 ## Color gradient interpolation system for download text.
 ## Type: ColorSystem
@@ -216,225 +157,14 @@
 ##   - none: Don't show a gradient.
 # c.colors.downloads.system.fg = 'rgb'
 
-## Background color for hints. Note that you can use a `rgba(...)` value
-## for transparency.
-## Type: QssColor
-# c.colors.hints.bg = 'qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 rgba(255, 247, 133, 0.8), stop:1 rgba(255, 197, 66, 0.8))'
-
-## Font color for hints.
-## Type: QssColor
-# c.colors.hints.fg = 'black'
-
-## Font color for the matched part of hints.
-## Type: QtColor
-# c.colors.hints.match.fg = 'green'
-
-## Background color of the keyhint widget.
-## Type: QssColor
-# c.colors.keyhint.bg = 'rgba(0, 0, 0, 80%)'
-
-## Text color for the keyhint widget.
-## Type: QssColor
-# c.colors.keyhint.fg = '#FFFFFF'
-
-## Highlight color for keys to complete the current keychain.
-## Type: QssColor
-# c.colors.keyhint.suffix.fg = '#FFFF00'
-
-## Background color of an error message.
-## Type: QssColor
-# c.colors.messages.error.bg = 'red'
-
-## Border color of an error message.
-## Type: QssColor
-# c.colors.messages.error.border = '#bb0000'
-
-## Foreground color of an error message.
-## Type: QssColor
-# c.colors.messages.error.fg = 'white'
-
-## Background color of an info message.
-## Type: QssColor
-# c.colors.messages.info.bg = 'black'
-
-## Border color of an info message.
-## Type: QssColor
-# c.colors.messages.info.border = '#333333'
-
-## Foreground color of an info message.
-## Type: QssColor
-# c.colors.messages.info.fg = 'white'
-
-## Background color of a warning message.
-## Type: QssColor
-# c.colors.messages.warning.bg = 'darkorange'
-
-## Border color of a warning message.
-## Type: QssColor
-# c.colors.messages.warning.border = '#d47300'
-
-## Foreground color of a warning message.
-## Type: QssColor
-# c.colors.messages.warning.fg = 'black'
-
-## Background color for prompts.
-## Type: QssColor
-# c.colors.prompts.bg = '#444444'
-
-## Border used around UI elements in prompts.
-## Type: String
-# c.colors.prompts.border = '1px solid gray'
-
-## Foreground color for prompts.
-## Type: QssColor
-# c.colors.prompts.fg = 'white'
-
-## Background color for the selected item in filename prompts.
-## Type: QssColor
-# c.colors.prompts.selected.bg = 'grey'
-
 ## Foreground color for the selected item in filename prompts.
 ## Type: QssColor
 # c.colors.prompts.selected.fg = 'white'
 
-## Background color of the statusbar in caret mode.
-## Type: QssColor
-# c.colors.statusbar.caret.bg = 'purple'
-
-## Foreground color of the statusbar in caret mode.
-## Type: QssColor
-# c.colors.statusbar.caret.fg = 'white'
-
-## Background color of the statusbar in caret mode with a selection.
-## Type: QssColor
-# c.colors.statusbar.caret.selection.bg = '#a12dff'
-
-## Foreground color of the statusbar in caret mode with a selection.
-## Type: QssColor
-# c.colors.statusbar.caret.selection.fg = 'white'
-
-## Background color of the statusbar in command mode.
-## Type: QssColor
-# c.colors.statusbar.command.bg = 'black'
-
-## Foreground color of the statusbar in command mode.
-## Type: QssColor
-# c.colors.statusbar.command.fg = 'white'
-
-## Background color of the statusbar in private browsing + command mode.
-## Type: QssColor
-# c.colors.statusbar.command.private.bg = 'darkslategray'
-
-## Foreground color of the statusbar in private browsing + command mode.
-## Type: QssColor
-# c.colors.statusbar.command.private.fg = 'white'
-
-## Background color of the statusbar in insert mode.
-## Type: QssColor
-# c.colors.statusbar.insert.bg = 'darkgreen'
-
-## Foreground color of the statusbar in insert mode.
-## Type: QssColor
-# c.colors.statusbar.insert.fg = 'white'
-
-## Background color of the statusbar.
-## Type: QssColor
-# c.colors.statusbar.normal.bg = 'black'
-
-## Foreground color of the statusbar.
-## Type: QssColor
-# c.colors.statusbar.normal.fg = 'white'
-
-## Background color of the statusbar in passthrough mode.
-## Type: QssColor
-# c.colors.statusbar.passthrough.bg = 'darkblue'
-
-## Foreground color of the statusbar in passthrough mode.
-## Type: QssColor
-# c.colors.statusbar.passthrough.fg = 'white'
-
-## Background color of the statusbar in private browsing mode.
-## Type: QssColor
-# c.colors.statusbar.private.bg = '#666666'
-
-## Foreground color of the statusbar in private browsing mode.
-## Type: QssColor
-# c.colors.statusbar.private.fg = 'white'
-
-## Background color of the progress bar.
-## Type: QssColor
-# c.colors.statusbar.progress.bg = 'white'
-
-## Foreground color of the URL in the statusbar on error.
-## Type: QssColor
-# c.colors.statusbar.url.error.fg = 'orange'
-
-## Default foreground color of the URL in the statusbar.
-## Type: QssColor
-# c.colors.statusbar.url.fg = 'white'
-
-## Foreground color of the URL in the statusbar for hovered links.
-## Type: QssColor
-# c.colors.statusbar.url.hover.fg = 'aqua'
-
-## Foreground color of the URL in the statusbar on successful load
-## (http).
-## Type: QssColor
-# c.colors.statusbar.url.success.http.fg = 'white'
-
-## Foreground color of the URL in the statusbar on successful load
-## (https).
-## Type: QssColor
-# c.colors.statusbar.url.success.https.fg = 'lime'
-
-## Foreground color of the URL in the statusbar when there's a warning.
-## Type: QssColor
-# c.colors.statusbar.url.warn.fg = 'yellow'
-
-## Background color of the tab bar.
-## Type: QssColor
-# c.colors.tabs.bar.bg = '#555555'
-
-## Background color of unselected even tabs.
-## Type: QtColor
-# c.colors.tabs.even.bg = 'darkgrey'
-
-## Foreground color of unselected even tabs.
-## Type: QtColor
-# c.colors.tabs.even.fg = 'white'
-
-## Color for the tab indicator on errors.
-## Type: QtColor
-# c.colors.tabs.indicator.error = '#ff0000'
-
-## Color gradient start for the tab indicator.
-## Type: QtColor
-# c.colors.tabs.indicator.start = '#0000aa'
-
-## Color gradient end for the tab indicator.
-## Type: QtColor
-# c.colors.tabs.indicator.stop = '#00aa00'
-
-## Color gradient interpolation system for the tab indicator.
-## Type: ColorSystem
-## Valid values:
-##   - rgb: Interpolate in the RGB color system.
-##   - hsv: Interpolate in the HSV color system.
-##   - hsl: Interpolate in the HSL color system.
-##   - none: Don't show a gradient.
-# c.colors.tabs.indicator.system = 'rgb'
-
-## Background color of unselected odd tabs.
-## Type: QtColor
-# c.colors.tabs.odd.bg = 'grey'
-
-## Foreground color of unselected odd tabs.
-## Type: QtColor
-# c.colors.tabs.odd.fg = 'white'
-
 ## Background color of pinned unselected even tabs.
 ## Type: QtColor
 # c.colors.tabs.pinned.even.bg = 'darkseagreen'
+c.colors.tabs.pinned.even.bg = '#0066cc'
 
 ## Foreground color of pinned unselected even tabs.
 ## Type: QtColor
@@ -443,6 +173,7 @@
 ## Background color of pinned unselected odd tabs.
 ## Type: QtColor
 # c.colors.tabs.pinned.odd.bg = 'seagreen'
+c.colors.tabs.pinned.odd.bg = '#0066cc'
 
 ## Foreground color of pinned unselected odd tabs.
 ## Type: QtColor
@@ -451,34 +182,23 @@
 ## Background color of pinned selected even tabs.
 ## Type: QtColor
 # c.colors.tabs.pinned.selected.even.bg = 'black'
+c.colors.tabs.pinned.selected.even.bg = '#00cc33'
 
 ## Foreground color of pinned selected even tabs.
 ## Type: QtColor
 # c.colors.tabs.pinned.selected.even.fg = 'white'
+# c.colors.tabs.pinned.selected.even.fg = '#44475a'
+c.colors.tabs.pinned.selected.even.fg = '#f8f8f2'
 
 ## Background color of pinned selected odd tabs.
 ## Type: QtColor
-# c.colors.tabs.pinned.selected.odd.bg = 'black'
+c.colors.tabs.pinned.selected.odd.bg = '#00cc33'
 
 ## Foreground color of pinned selected odd tabs.
 ## Type: QtColor
 # c.colors.tabs.pinned.selected.odd.fg = 'white'
-
-## Background color of selected even tabs.
-## Type: QtColor
-# c.colors.tabs.selected.even.bg = 'black'
-
-## Foreground color of selected even tabs.
-## Type: QtColor
-# c.colors.tabs.selected.even.fg = 'white'
-
-## Background color of selected odd tabs.
-## Type: QtColor
-# c.colors.tabs.selected.odd.bg = 'black'
-
-## Foreground color of selected odd tabs.
-## Type: QtColor
-# c.colors.tabs.selected.odd.fg = 'white'
+# c.colors.tabs.pinned.selected.odd.fg = '#44475a'
+c.colors.tabs.pinned.selected.odd.fg = '#f8f8f2'
 
 ## Background color for webpages if unset (or empty to use the theme's
 ## color).
@@ -511,7 +231,7 @@
 ## `colors.webpage.darkmode.threshold.background` to 205.  - "With
 ## selective inversion of everything": Combines the two variants   above.
 ## Type: Bool
-# c.colors.webpage.darkmode.enabled = False
+c.colors.webpage.darkmode.enabled = True
 
 ## Render all colors as grayscale. This only has an effect when
 ## `colors.webpage.darkmode.algorithm` is set to `lightness-hsl` or
@@ -575,7 +295,7 @@
 ## Number of commands to save in the command history. 0: no history / -1:
 ## unlimited
 ## Type: Int
-# c.completion.cmd_history_max_items = 100
+c.completion.cmd_history_max_items = 1024
 
 ## Delay (in milliseconds) before updating completions after typing a
 ## character.
@@ -664,11 +384,11 @@
 ##   - multiple-tabs: Show a confirmation if multiple tabs are opened.
 ##   - downloads: Show a confirmation if downloads are running
 ##   - never: Never show a confirmation.
-# c.confirm_quit = ['never']
+c.confirm_quit = ['downloads']
 
 ## Automatically start playing `<video>` elements.
 ## Type: Bool
-# c.content.autoplay = True
+c.content.autoplay = False
 
 ## List of URLs to ABP-style adblocking rulesets.  Only used when Brave's
 ## ABP-style adblocker is used (see `content.blocking.method`).  You can
@@ -679,7 +399,14 @@
 ## extracting it from the `location` parameter of the subscribe URL and
 ## URL-decoding it).
 ## Type: List of Url
-# c.content.blocking.adblock.lists = ['https://easylist.to/easylist/easylist.txt', 'https://easylist.to/easylist/easyprivacy.txt']
+c.content.blocking.adblock.lists = [
+    'https://easylist.to/easylist/easylist.txt',
+    'https://easylist.to/easylist/easyprivacy.txt',
+    'http://someonewhocares.org/hosts/hosts',
+    'http://winhelp2002.mvps.org/hosts.zip',
+    'http://malwaredomains.lehigh.edu/files/justdomains.zip',
+    'https://pgl.yoyo.org/adservers/serverlist.php?hostformat=hosts&mimetype=plaintext'
+]
 
 ## Enable the ad/host blocker
 ## Type: Bool
@@ -695,7 +422,10 @@
 ## lists.  The file `~/.config/qutebrowser/blocked-hosts` is always read
 ## if it exists.
 ## Type: List of Url
-# c.content.blocking.hosts.lists = ['https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts']
+c.content.blocking.hosts.lists = [
+    'https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts',
+    'https://pgl.yoyo.org/adservers/serverlist.php?hostformat=hosts&mimetype=plaintext'
+]
 
 ## Which method of blocking ads should be used.  Support for Adblock Plus
 ## (ABP) syntax blocklists using Brave's Rust library requires the
@@ -770,7 +500,7 @@
 ##   - no-3rdparty: Accept cookies from the same origin only. This is known to break some sites, such as GMail.
 ##   - no-unknown-3rdparty: Accept cookies from the same origin only, unless a cookie is already set for the domain. On QtWebEngine, this is the same as no-3rdparty.
 ##   - never: Don't accept cookies at all.
-# c.content.cookies.accept = 'all'
+c.content.cookies.accept = 'no-unknown-3rdparty'
 
 ## Store cookies.
 ## Type: Bool
@@ -779,7 +509,7 @@
 ## Default encoding to use for websites. The encoding must be a string
 ## describing an encoding such as _utf-8_, _iso-8859-1_, etc.
 ## Type: String
-# c.content.default_encoding = 'iso-8859-1'
+c.content.default_encoding = 'utf-8'
 
 ## Allow websites to share screen content.
 ## Type: BoolAsk
@@ -998,7 +728,7 @@
 ## still be downloaded by clicking the download button in the pdf.js
 ## viewer.
 ## Type: Bool
-# c.content.pdfjs = False
+c.content.pdfjs = True
 
 ## Allow websites to request persistent storage quota via
 ## `navigator.webkitPersistentStorage.requestQuota`.
@@ -1011,7 +741,7 @@
 
 ## Enable plugins in Web pages.
 ## Type: Bool
-# c.content.plugins = False
+c.content.plugins = True
 
 ## Request websites to minimize non-essentials animations and motion.
 ## This results in the `prefers-reduced-motion` CSS media query to
@@ -1228,14 +958,14 @@
 ## font setting, it's replaced with the fonts listed here. If set to an
 ## empty value, a system-specific monospace default is used.
 ## Type: List of Font, or Font
-# c.fonts.default_family = []
+c.fonts.default_family = ["Fira Code"]
 
 ## Default font size to use. Whenever "default_size" is used in a font
 ## setting, it's replaced with the size listed here. Valid values are
 ## either a float value with a "pt" suffix, or an integer value with a
 ## "px" suffix.
 ## Type: String
-# c.fonts.default_size = '10pt'
+c.fonts.default_size = '11pt'
 
 ## Font used for the downloadbar.
 ## Type: Font
@@ -1331,10 +1061,6 @@
 ## successful auto-follow.
 ## Type: Int
 # c.hints.auto_follow_timeout = 0
-
-## CSS border value for hints.
-## Type: String
-# c.hints.border = '1px solid #E3BE23'
 
 ## Characters used for hint strings.
 ## Type: UniqueCharString
@@ -1546,7 +1272,7 @@
 
 ## Show a filebrowser in download prompts.
 ## Type: Bool
-# c.prompt.filebrowser = True
+c.prompt.filebrowser = False
 
 ## Rounding radius (in pixels) for the edges of prompts.
 ## Type: Int
@@ -1643,7 +1369,7 @@
 ##   - never: Never show the scrollbar.
 ##   - when-searching: Show the scrollbar when searching for text in the webpage. With the QtWebKit backend, this is equal to `never`.
 ##   - overlay: Show an overlay scrollbar. On macOS, this is unavailable and equal to `when-searching`; with the QtWebKit backend, this is equal to `never`. Enabling/disabling overlay scrollbars requires a restart.
-# c.scrolling.bar = 'overlay'
+c.scrolling.bar = 'always'
 
 ## Enable smooth scrolling for web pages. Note smooth scrolling does not
 ## work with the `:scroll-px` command.
@@ -1675,7 +1401,7 @@
 
 ## Load a restored tab as soon as it takes focus.
 ## Type: Bool
-# c.session.lazy_restore = False
+c.session.lazy_restore = True
 
 ## Languages to use for spell checking. You can check for available
 ## languages and install dictionaries using scripts/dictcli.py. Run the
@@ -1727,10 +1453,6 @@
 ##   - vi-VN: Vietnamese (Viet Nam)
 # c.spellcheck.languages = []
 
-## Padding (in pixels) for the statusbar.
-## Type: Padding
-# c.statusbar.padding = {'top': 1, 'bottom': 1, 'left': 0, 'right': 0}
-
 ## Position of the status bar.
 ## Type: VerticalPosition
 ## Valid values:
@@ -1780,11 +1502,6 @@
 ##   - ignore: Don't do anything.
 # c.tabs.close_mouse_button_on_bar = 'new-tab'
 
-## Scaling factor for favicons in the tab bar. The tab size is unchanged,
-## so big favicons also require extra `tabs.padding`.
-## Type: Float
-# c.tabs.favicons.scale = 1.0
-
 ## When to show favicons in the tab bar. When switching this from never
 ## to always/pinned, note that favicons might not be loaded yet, thus
 ## tabs might require a reload to display them.
@@ -1803,10 +1520,6 @@
 ## Type: Padding
 # c.tabs.indicator.padding = {'top': 2, 'bottom': 2, 'left': 0, 'right': 4}
 
-## Width (in pixels) of the progress indicator (0 to disable).
-## Type: Int
-# c.tabs.indicator.width = 3
-
 ## How to behave when the last tab is closed. If the
 ## `tabs.tabs_are_windows` setting is set, this is ignored and the
 ## behavior is always identical to the `close` value.
@@ -1817,7 +1530,7 @@
 ##   - startpage: Load the start page.
 ##   - default-page: Load the default page.
 ##   - close: Close the window.
-# c.tabs.last_close = 'ignore'
+c.tabs.last_close = 'close'
 
 ## Maximum width (in pixels) of tabs (-1 for no maximum). This setting
 ## only applies when tabs are horizontal. This setting does not apply to
@@ -1871,10 +1584,6 @@
 ##   - first: At the beginning.
 ##   - last: At the end.
 # c.tabs.new_position.unrelated = 'last'
-
-## Padding (in pixels) around text for tabs.
-## Type: Padding
-# c.tabs.padding = {'top': 0, 'bottom': 0, 'left': 5, 'right': 5}
 
 ## Force pinned tabs to stay at fixed URL.
 ## Type: Bool
@@ -1940,12 +1649,12 @@
 ## web page. * `{protocol}`: Protocol (http/https/...) of the current web
 ## page. * `{audio}`: Indicator for audio/mute status.
 ## Type: FormatString
-# c.tabs.title.format = '{audio}{index}: {current_title}'
+c.tabs.title.format = '{perc}{audio}{index}: {current_title}'
 
 ## Format to use for the tab title for pinned tabs. The same placeholders
 ## like for `tabs.title.format` are defined.
 ## Type: FormatString
-# c.tabs.title.format_pinned = '{index}'
+c.tabs.title.format_pinned = '{index}: {host}'
 
 ## Show tooltips on tabs. Note this setting only affects windows opened
 ## after it has been set.
@@ -1978,7 +1687,7 @@
 ## Page to open if :open -t/-b/-w is used without URL. Use `about:blank`
 ## for a blank page.
 ## Type: FuzzyUrl
-# c.url.default_page = 'https://start.duckduckgo.com/'
+c.url.default_page = 'about:blank'
 
 ## URL segments where `:navigate increment/decrement` will search for a
 ## number.
@@ -2015,11 +1724,19 @@
 ## the search engine name to the search term, e.g. `:open google
 ## qutebrowser`.
 ## Type: Dict
-# c.url.searchengines = {'DEFAULT': 'https://duckduckgo.com/?q={}'}
+c.url.searchengines = {
+    'DEFAULT': 'https://duckduckgo.com/?q={}',
+    'g': 'https://google.com/search?hl=en&q={}',
+    'am': 'https://www.amazon.com/s?k={}',
+    'tr': 'https://translate.google.com/?sl=es&tl=en&text={}&op=translate',
+    'yt': 'https://youtube.com/results?search_query={}',
+    're': 'https://reddit.com/r/{}',
+    'wiki': 'https://en.wikipedia.org/wiki/{}'
+}
 
 ## Page(s) to open at the start.
 ## Type: List of FuzzyUrl, or FuzzyUrl
-# c.url.start_pages = ['https://start.duckduckgo.com']
+c.url.start_pages = 'about:blank'
 
 ## URL parameters to strip with `:yank url`.
 ## Type: List of String
@@ -2033,7 +1750,7 @@
 ## Format to use for the window title. The same placeholders like for
 ## `tabs.title.format` are defined.
 ## Type: FormatString
-# c.window.title_format = '{perc}{current_title}{title_sep}qutebrowser'
+c.window.title_format = '{perc}{current_title} - {host}'
 
 ## Set the main window background to transparent.  This allows having a
 ## transparent tab- or statusbar (might require a compositor such as
@@ -2251,6 +1968,47 @@
 # config.bind('{{', 'navigate prev -t')
 # config.bind('}}', 'navigate next -t')
 
+config.bind('<Ctrl+e>', 'scroll down')
+config.bind('<Ctrl+y>', 'scroll up')
+config.bind('<Meta+1>', 'tab-focus 1')
+config.bind('<Meta+2>', 'tab-focus 2')
+config.bind('<Meta+3>', 'tab-focus 3')
+config.bind('<Meta+4>', 'tab-focus 4')
+config.bind('<Meta+5>', 'tab-focus 5')
+config.bind('<Meta+6>', 'tab-focus 6')
+config.bind('<Meta+7>', 'tab-focus 7')
+config.bind('<Meta+8>', 'tab-focus 8')
+config.bind('<Meta+9>', 'tab-focus 9')
+config.bind('<Meta+0>', 'tab-focus -1')
+config.bind('<Meta+Alt+i>', 'inspector')
+config.bind('<Meta+p>', 'print')
+config.bind('<Meta+u>', 'view-source')
+config.bind('<Meta+w>', 'tab-close')
+config.bind('J', 'tab-prev')
+config.bind('K', 'tab-next')
+config.bind('Q', 'tab-close')
+config.bind('gB', 'tab-prev')
+config.bind('gb', 'tab-next')
+config.bind('po', 'open -p')
+config.bind('xs', 'config-cycle statusbar.show always never')
+config.bind('xt', 'config-cycle tabs.show always never')
+config.bind('xx', 'config-cycle statusbar.show always never ;; config-cycle tabs.show always never')
+config.bind('ym', "yank inline '[{title}] - {url:pretty}'")
+config.bind('yu', 'hint links yank')
+config.bind(',p', 'spawn --userscript qute-pass --dmenu-invocation dmenu')
+config.bind(',P', 'spawn --userscript qute-pass --dmenu-invocation dmenu --password-only')
+config.bind(',s', 'config-source ;; message-info "config-source finished"')
+config.bind('wi', 'devtools bottom')
+
+config.bind(',y', 'spawn ytd {url}')
+
+config.bind(',,', 'hint inputs --first')
+config.bind(',i', 'hint')
+
+config.unbind("<ctrl+tab>")
+config.bind("<ctrl+tab>", "tab-next")
+config.bind("<ctrl+shift+tab>", "tab-prev")
+
 ## Bindings for caret mode
 # config.bind('$', 'move-to-end-of-line', mode='caret')
 # config.bind('0', 'move-to-start-of-line', mode='caret')
@@ -2368,3 +2126,5 @@
 # config.bind('Y', 'prompt-accept --save yes', mode='yesno')
 # config.bind('n', 'prompt-accept no', mode='yesno')
 # config.bind('y', 'prompt-accept yes', mode='yesno')
+config.bind('td', 'config-cycle colors.webpage.darkmode.enabled ;; restart')
+
