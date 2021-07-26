@@ -52,4 +52,4 @@ alias vim=nvim
 # Lynx start with custom config files
 alias lynx='lynx -cfg=$HOME/.config/lynx/lynx.cfg -lss=$HOME/.config/lynx/lynx.lss -session=$HOME/.cache/lynx/session'
 
-alias ytd=youtube-dl -f bestvideo+bestaudio
+alias ytd=youtube-dl -f bestvideo+bestaudio -o "~/Downloads/%(title)s-%(id)s.%(ext)s"

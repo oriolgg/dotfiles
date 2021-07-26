@@ -45,6 +45,7 @@ call plug#begin('~/.config/nvim/plugged')
 
   " User Interface
   Plug 'https://github.com/dracula/vim.git', { 'name': 'dracula' }
+  Plug 'https://github.com/altercation/vim-colors-solarized', { 'name': 'solarized' }
   Plug 'https://github.com/machakann/vim-highlightedyank'   " Highlights in red the yanked text
   Plug 'https://github.com/psliwka/vim-smoothie'            " Smoothie scroll (using [Ctrl-u], [Ctrl-d], [Ctrl-b] and [Ctrl-f]
   Plug 'https://github.com/gillyb/stable-windows'           " When opening splits, maintains the same layout (working?)
