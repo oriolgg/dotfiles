@@ -45,7 +45,7 @@ call plug#begin('~/.config/nvim/plugged')
 
   " User Interface
   Plug 'https://github.com/dracula/vim.git', { 'name': 'dracula' }
-  Plug 'https://github.com/altercation/vim-colors-solarized', { 'name': 'solarized' }
+  Plug 'https://github.com/lifepillar/vim-solarized8'       " Solarized color schema
   Plug 'https://github.com/machakann/vim-highlightedyank'   " Highlights in red the yanked text
   Plug 'https://github.com/psliwka/vim-smoothie'            " Smoothie scroll (using [Ctrl-u], [Ctrl-d], [Ctrl-b] and [Ctrl-f]
   Plug 'https://github.com/gillyb/stable-windows'           " When opening splits, maintains the same layout (working?)
@@ -277,7 +277,12 @@ highlight iCursor cterm=reverse gui=reverse
 
 set termguicolors
 let base16colorspace=256
-colorscheme dracula
+let g:solarized_termcolors=256
+syntax enable
+set background=dark
+colorscheme solarized8
+highlight SpecialKey ctermbg=NONE guibg=NONE
+" colorscheme dracula
 
 if !has('gui_running')
   " Lighter background when out of vim to focus on the active panel
